@@ -110,6 +110,91 @@ app.get("/info/education_expenditure", (request,response)=>{
 
 });
 
+// Recurso Miguel Gómez Vázquez - illiteracy
+
+app.get("/info/illiteracy", (request,response)=>{
+
+	response.send(`<!DOCTYPE html>
+				<html>
+					<head>
+						<title>illiteracy</title>
+
+						<style>
+							table, tr, td {
+								border: 1px solid black;
+								border-collapse: collapse;
+							}
+							tr, td {
+								padding: 5px;
+								text-align: center;    
+							}
+						</style>
+
+					</head>
+
+					<body>
+						<h3>El índice o tasa de alfabetización es el porcentaje de la población que sabe leer o escribir después de determinada edad.
+						 No existe una convención internacional acerca de la edad a tomar en cuenta ni el nivel cualitativo de lectura o escritura.
+						  La alfabetización es uno de los principales indicadores utilizados para la medición del IDH. </h3>
+						 </br>
+
+						 <table class="default" style="width:100%">
+
+						<tr>
+							<td>year</td>
+							<td>country</td>
+							<td>female_illiteracy_rate</td>
+							<td>male_illiteracy_rate</td>
+							<td>adult_illiteracy_rate</td>
+							<td>young_illiteracy_rate</td>
+						</tr>
+						<tr>
+							<td>2018</td>
+							<td>Spain</td>
+							<td>97,97%</td>
+							<td>98,93%</td>
+							<td>98,44%</td>
+							<td>99,72%</td>
+						</tr>
+						<tr>
+							<td>2018</td>
+							<td>Italy</td>
+							<td>98.97%</td>
+							<td>99,35%</td>
+							<td>99,16%</td>
+							<td>99,93%</td>
+						</tr>
+						<tr>
+							<td>2018</td>
+							<td>Portugal</td>
+							<td>95,05%</td>
+							<td>97,35%</td>
+							<td>96,14%</td>
+							<td>99,66%</td>
+						</tr>
+						<tr>
+							<td>2018</td>
+							<td>Greece</td>
+							<td>97,39%</td>
+							<td>98,51%</td>
+							<td>97,94%</td>
+							<td>99,16%</td>
+						</tr>
+						<tr>
+							<td>2016</td>
+							<td>Andorra</td>
+							<td>100%</td>
+							<td>100%</td>
+							<td>100%</td>
+							<td>100%</td>
+						</tr>
+
+						</table>
+					</body>
+					</html>`
+					);
+
+});
 
 //Ponemos el servidor a escuchar
 
