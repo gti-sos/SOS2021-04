@@ -111,6 +111,93 @@ app.get("/info/education_expenditure", (request,response)=>{
 });
 
 
+
+// Recurso Javier Carmona Andrés - poverty_risks
+
+app.get("/info/poverty_risks", (request,response)=>{
+
+	response.send(`<!DOCTYPE html>
+				<html>
+					<head>
+						<title>Poverty_Risks</title>
+
+						<style>
+							table, tr, td {
+								border: 1px solid black;
+								border-collapse: collapse;
+							}
+							tr, td {
+								padding: 5px;
+								text-align: center;    
+							}
+						</style>
+
+					</head>
+
+					<body>
+						<h3>
+						El umbral de la pobreza, son los ingresos por debajo de los cuales se considera que una persona o familia está en riesgo de pobreza. </h3>
+						 </br>
+
+						 <table class="default" style="width:100%">
+
+						<tr>
+							<td>year</td>
+							<td>country</td>
+							<td>people_in_risk_of_poverty</td>
+							<td>people's_poverty_line</td>
+							<td>homes'_poverty_line</td>
+							<td>percentage_risk_of_poverty</td>
+						</tr>
+						<tr>
+							<td>2019</td>
+							<td>Spain</td>
+							<td>9.610 m.</td>
+							<td>9.009</td>
+							<td>18.919</td>
+							<td>20,7%</td>
+						</tr>
+						<tr>
+							<td>2015</td>
+							<td>Germany</td>
+							<td>13.428 m.</td>
+							<td>12.401</td>
+							<td>26.041</td>
+							<td>16,7%</td>
+						</tr>
+						<tr>
+							<td>2015</td>
+							<td>France</td>
+							<td>8.474 m.</td>
+							<td>12.849</td>
+							<td>26.983</td>
+							<td>13,6%</td>
+						</tr>
+						<tr>
+							<td>2015</td>
+							<td>Italy</td>
+							<td>12.130 m.</td>
+							<td>9.508</td>
+							<td>19.966</td>
+							<td>19,9%</td>
+						</tr>
+						<tr>
+							<td>2015</td>
+							<td>Portugal</td>
+							<td>2.019 m.</td>
+							<td>5.061</td>
+							<td>10.628</td>
+							<td>19,5%</td>
+						</tr>
+
+						</table>
+					</body>
+					</html>`
+					);
+
+});
+
+
 //Ponemos el servidor a escuchar
 
 app.listen(port, () =>{
