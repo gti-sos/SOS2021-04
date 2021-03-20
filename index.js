@@ -1,11 +1,52 @@
+
+/*
+
+****************************
+*	    MILESTONE F03      *
+****************************
+
+*/
+
+// Creamos una variable express para el desarrollo web
+
+var express = require("express");
+
+var app = express();
+
+//Definimos el puerto al que estará asociado el servidor web
+
+var port = process.env.PORT || 10000;
+
+//Para jugar con rutas usamos el modulo path
+
+var path = require("path");
+
+//Definimos las rutas de recursos
+
+app.use("/", express.static(path.join(__dirname,"./public"))); //La variable __dirname encadena la carpeta actual con la public
+
+//Ponemos el servidor a escuchar
+
+app.listen(port, () =>{
+    console.log("Server ready to listen on port " + port);
+});
+
+
+/* 
+
+****************************
+*	    MILESTONE F02      *
+****************************
+
+
 //Cuando inicializamos un paquete debemos crear una variable y usar la función require("nombre de la carpeta contenedora del modulo");
 
 var cool = require("cool-ascii-faces");
 
-/*Para el desarrollo de webs sencillas usaremos el modulo express. Al igual que 
+Para el desarrollo de webs sencillas usaremos el modulo express. Al igual que 
 el anterior, debemos incluirlo en una variable con la función require. Express aporta
 una función constructora
-*/
+
 
 var express = require("express");
 
@@ -42,3 +83,5 @@ console.log(cool());
 */
 
 //El comando npm install instala todos los paquetes que necesita el proyecto si se clona desde git
+
+*/
