@@ -32,7 +32,7 @@ app.get("/info/education_expenditure", (request,response)=>{
 	response.send(`<!DOCTYPE html>
 				<html>
 					<head>
-						<title>Education_Expenditure
+						<title>Education_Expenditure</title>
 					</head>
 
 					<body>
