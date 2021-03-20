@@ -33,6 +33,18 @@ app.get("/info/education_expenditure", (request,response)=>{
 				<html>
 					<head>
 						<title>Education_Expenditure</title>
+
+						<style>
+							table, th, td {
+								border: 1px solid black;
+								border-collapse: collapse;
+							}
+							th, td {
+								padding: 5px;
+								text-align: center;    
+							}
+						</style>
+
 					</head>
 
 					<body>
@@ -40,7 +52,7 @@ app.get("/info/education_expenditure", (request,response)=>{
 						 y subsidios para estudiantes y otras entidades privadas a lo largo de un año </h3>
 						 </br>
 
-						 <table class="default">
+						 <table class="default" style="width:100%">
 
 						<tr>
 							<td>year</td>
