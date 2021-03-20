@@ -35,11 +35,11 @@ app.get("/info/education_expenditure", (request,response)=>{
 						<title>Education_Expenditure</title>
 
 						<style>
-							table, th, td {
+							table, tr, td {
 								border: 1px solid black;
 								border-collapse: collapse;
 							}
-							th, td {
+							tr, td {
 								padding: 5px;
 								text-align: center;    
 							}
