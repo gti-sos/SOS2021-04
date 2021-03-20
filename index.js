@@ -84,4 +84,3 @@ console.log(cool());
 
 //El comando npm install instala todos los paquetes que necesita el proyecto si se clona desde git
 
-*/
