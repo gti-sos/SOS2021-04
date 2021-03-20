@@ -11,7 +11,11 @@
 
 var express = require("express");
 
+<<<<<<< HEAD
 /*Contraprueba de PULL*/
+=======
+//Prueba para comprobar si se suprimen datos al hacer pull
+>>>>>>> 4ffaef7d5bebcaeade0662c3ec052b478450b67b
 
 var app = express();
 
