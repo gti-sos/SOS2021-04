@@ -9,5 +9,5 @@
 - **URL**: [http://sos2021-04.herokuapp.com](http://sos2021-04.herokuapp.com)
 -  **APIs**:
     - [https://sos2021-04.herokuapp.com/api/v1/education_expenditure/docs](https://sos2021-04.herokuapp.com/api/v1/education_expenditure/docs) (developed by [Manuel González Regadera](https://github.com/mangonreg))
-    - [https://sos2021-04.herokuapp.com/api/v1/risk_poverty/docs](https://sos2021-00.herokuapp.com/api/v1/risk_poverty/docs) (developed by [Javier Carmona Andrés](https://github.com/JavierCarmona16))
-    - [https://sos2021-00.herokuapp.com/api/v1/illiteracy_rate/docs](https://sos2021-00.herokuapp.com/api/v1/illiteracy_rate/docs) (developed by [Miguel Gómez Vázquez](https://github.com/migueclon98))
+    - [https://sos2021-04.herokuapp.com/api/v1/risk_poverty/docs](https://sos2021-04.herokuapp.com/api/v1/risk_poverty/docs) (developed by [Javier Carmona Andrés](https://github.com/JavierCarmona16))
+    - [https://sos2021-04.herokuapp.com/api/v1/illiteracy_rate/docs](https://sos2021-04.herokuapp.com/api/v1/illiteracy_rate/docs) (developed by [Miguel Gómez Vázquez](https://github.com/migueclon98))
