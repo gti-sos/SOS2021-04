@@ -11,6 +11,8 @@
 
 var express = require("express");
 
+//Prueba para comprobar si se suprimen datos al hacer pull
+
 var app = express();
 
 //Definimos el puerto al que estará asociado el servidor web
