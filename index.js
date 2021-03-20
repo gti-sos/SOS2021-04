@@ -25,6 +25,80 @@ var path = require("path");
 
 app.use("/", express.static(path.join(__dirname,"./public"))); //La variable __dirname encadena la carpeta actual con la public
 
+// Recurso Manuel Gonzalez Regadera - education_expenditure
+
+app.get("/info/education_expenditure", (request,response)=>{
+
+	response.send(`<!DOCTYPE html>
+				<html>
+					<head>
+						<title>Education_Expenditure
+					</head>
+
+					<body>
+						<h3>El Gasto Público en Educación es aquel que destina el Gobierno a instituciones educativas, administración educativa
+						 y subsidios para estudiantes y otras entidades privadas a lo largo de un año <h3>
+						 <br>
+
+						 <table class="default">
+
+						<tr>
+							<td>year</td>
+							<td>country</td>
+							<td>education_expenditure_perMillions</td>
+							<td>education_expenditure_perPublicExpenditure</td>
+							<td>education_expenditure_gdp</td>
+							<td>education_expenditure_perCapita</td>
+						</tr>
+						<tr>
+							<td>2016</td>
+							<td>Spain</td>
+							<td>46.882,8</td>
+							<td>9,97</td>
+							<td>4,21</td>
+							<td>1.009,00</td>
+						</tr>
+						<tr>
+							<td>2016</td>
+							<td>Germany</td>
+							<td>150.496,7</td>
+							<td>10,93</td>
+							<td>4,8</td>
+							<td>1.828,00</td>
+						</tr>
+						<tr>
+							<td>2015</td>
+							<td>France</td>
+							<td>118.496,3</td>
+							<td>9,66</td>
+							<td>5,46</td>
+							<td>1.804,00</td>
+						</tr>
+						<tr>
+							<td>2016</td>
+							<td>Italy</td>
+							<td>63.936,1</td>
+							<td>7,81</td>
+							<td>3,83</td>
+							<td>1.071,00</td>
+						</tr>
+						<tr>
+							<td>2015</td>
+							<td>Portugal</td>
+							<td>8.775,3</td>
+							<td>10,15</td>
+							<td>4,88</td>
+							<td>847,00</td>
+						</tr>
+
+						</table>
+					</body>
+					</html>`
+					);
+
+});
+
+
 //Ponemos el servidor a escuchar
 
 app.listen(port, () =>{
