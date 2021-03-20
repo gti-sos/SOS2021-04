@@ -37,8 +37,8 @@ app.get("/info/education_expenditure", (request,response)=>{
 
 					<body>
 						<h3>El Gasto Público en Educación es aquel que destina el Gobierno a instituciones educativas, administración educativa
-						 y subsidios para estudiantes y otras entidades privadas a lo largo de un año <h3>
-						 <br>
+						 y subsidios para estudiantes y otras entidades privadas a lo largo de un año </h3>
+						 </br>
 
 						 <table class="default">
 
