@@ -25,14 +25,14 @@ var path = require("path");
 
 app.use("/", express.static(path.join(__dirname,"./public"))); //La variable __dirname encadena la carpeta actual con la public
 
-// Recurso Manuel Gonzalez Regadera - education_expenditure
+// Recurso Manuel Gonzalez Regadera - education_expenditures
 
-app.get("/info/education_expenditure", (request,response)=>{
+app.get("/info/education_expenditures", (request,response)=>{
 
 	response.send(`<!DOCTYPE html>
 				<html>
 					<head>
-						<title>Education_Expenditure</title>
+						<title>Education_Expenditures</title>
 
 						<style>
 							table, tr, td {
