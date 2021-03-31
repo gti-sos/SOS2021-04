@@ -51,8 +51,8 @@ var BASE_API_PATH = "/api/v1";
 	//Get del array completo
 	app.get(BASE_API_PATH+"/education_expenditures", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures
 		//Debemos enviar el objeto pero pasandolo a JSON
-		res.send(JSON.stringify(education_expenditure_array,null,2));
-		res.sendStatus(200);
+		
+		res.send(200, JSON.stringify(education_expenditure_array,null,2));
 	});
 
 	//Get para incluir los elementos iniciales
@@ -96,8 +96,8 @@ var BASE_API_PATH = "/api/v1";
 		}
 		
 		//Indicamos al usuario que se han cargado exitosamente los datos
-	
-		res.send(`<!DOCTYPE html>
+		
+		res.send(200,`<!DOCTYPE html>
 					<html>
 						<head>
 							<title>Education expenditures initial data</title>
@@ -107,7 +107,7 @@ var BASE_API_PATH = "/api/v1";
 						</body>
 					</html>`);
 		
-		res.sendStatus(201);
+		
 	});
 
 	//Get para tomar elementos por pais
@@ -118,11 +118,11 @@ var BASE_API_PATH = "/api/v1";
 		var filtraPaises = education_expenditure_array.filter(function(e){ 
 			return e.country===String(req.country);
 		});
+
+		console.log(filtraPaises);
 		
 		//Debemos enviar el objeto pero pasandolo a JSON
-		res.send(JSON.stringify(filtraPaises,null,2));
-
-		res.sendStatus(200);
+		res.send(200,JSON.stringify(filtraPaises,null,2));		
 	});
 
 	//Get para tomar elementos por pais y año
@@ -135,9 +135,7 @@ var BASE_API_PATH = "/api/v1";
 		});
 		
 		//Debemos enviar el objeto pero pasandolo a JSON
-		res.send(JSON.stringify(filtraPA,null,2));
-
-		res.sendStatus(200);
+		res.send(200,JSON.stringify(filtraPA,null,2));
 	});
 
 	//Post al array completo para incluir datos como los de la ficha de propuestas
