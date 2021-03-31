@@ -52,6 +52,7 @@ var BASE_API_PATH = "/api/v1";
 	app.get(BASE_API_PATH+"/education_expenditures", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures
 		//Debemos enviar el objeto pero pasandolo a JSON
 		res.send(JSON.stringify(education_expenditure_array,null,2));
+		res.sendStatus(200);
 	});
 
 	//Get para incluir los elementos iniciales
@@ -95,8 +96,7 @@ var BASE_API_PATH = "/api/v1";
 		}
 		
 		//Indicamos al usuario que se han cargado exitosamente los datos
-		res.sendStatus(201);
-
+	
 		res.send(`<!DOCTYPE html>
 					<html>
 						<head>
@@ -106,9 +106,112 @@ var BASE_API_PATH = "/api/v1";
 							<h3>Initial data loaded successfully</h3>
 						</body>
 					</html>`);
-
+		
+		res.sendStatus(201);
 	});
 
+	//Get para tomar elementos por pais
+	
+	app.get(BASE_API_PATH+"/education_expenditures/:country", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+		
+		//Crearemos un nuevo array resultado de filtrar el array completo
+		var filtraPaises = education_expenditure_array.filter(function(e){ 
+			return e.country===String(req.country);
+		});
+		
+		//Debemos enviar el objeto pero pasandolo a JSON
+		res.send(JSON.stringify(filtraPaises,null,2));
+
+		res.sendStatus(200);
+	});
+
+	//Get para tomar elementos por pais y año
+	
+	app.get(BASE_API_PATH+"/education_expenditures/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+		
+		//Crearemos un nuevo array resultado de filtrar el array completo
+		var filtraPA = education_expenditure_array.filter(function(e){ 
+			return e.country===String(req.country) && e.year===String(req.year);
+		});
+		
+		//Debemos enviar el objeto pero pasandolo a JSON
+		res.send(JSON.stringify(filtraPA,null,2));
+
+		res.sendStatus(200);
+	});
+
+	//Post al array completo para incluir datos como los de la ficha de propuestas
+
+	app.post(BASE_API_PATH+"/education_expenditures", (req,res)=>{
+		
+		var newData = req.body; //Se toma el cuerpo de la peticion donde estan los datos
+		education_expenditure_array.push(newData); //Se introduce el nuevo elemento
+		res.sendStatus(201);
+		console.log(JSON.stringify(newData,null,2));
+	
+	});
+
+	//Post ERRONEO de elemento
+
+	app.post(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
+
+		res.send(405); //Method not allowed
+	});
+
+	//Delete del array completo
+
+	app.delete(BASE_API_PATH+"/education_expenditures", (req,res)=>{
+		
+		education_expenditure_array = []; // vaciamos el array
+		res.send(200);
+	
+	});
+
+	//Delete de elementos por pais
+
+	app.delete(BASE_API_PATH+"/education_expenditures/:country", function(req, res) { 
+
+		//Se hace un filtrado por pais, eliminando aquellos que coinciden con el pais dado
+		education_expenditure_array = education_expenditure_array.filter(function(e){ 
+			return e.country!==String(req.country);
+		});
+		res.send(200);
+	});
+
+	//Delete elemento por pais y año
+
+	app.delete(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
+
+		//Se hace un filtrado por pais y año, eliminando aquellos que coinciden con el pais y año dado
+		education_expenditure_array = education_expenditure_array.filter(function(e){ 
+			return e.country!==String(req.country) && e.year!==String(req.year);
+		});
+		res.send(200);
+	});
+
+	//Put modificar elemento
+
+	app.put(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
+
+		//Recorremos el array en busca del elemento a modificar
+		for(var e in education_expenditure_array){
+			if(education_expenditure_array[e].country === String(req.country) &&
+				education_expenditure_array[e].year === String(req.year)){
+					var newData = req.body;
+					education_expenditure_array[e] = newData;
+					break;
+			}
+		}
+
+		res.send(200);
+	});
+
+	//Put ERRONEO array de elementos
+
+	app.put(BASE_API_PATH+"/education_expenditures", function(req, res) { 
+
+		res.send(405); //Method not allowed
+	});
 
 /*
 
