@@ -57,10 +57,10 @@ app.get("/info/education_expenditures", (request,response)=>{
 						<tr>
 							<td>year</td>
 							<td>country</td>
-							<td>education_expenditure_perMillions</td>
-							<td>education_expenditure_perPublicExpenditure</td>
+							<td>education_expenditure_per_millions</td>
+							<td>education_expenditure_per_public_expenditure</td>
 							<td>education_expenditure_gdp</td>
-							<td>education_expenditure_perCapita</td>
+							<td>education_expenditure_per_capita</td>
 						</tr>
 						<tr>
 							<td>2016</td>
