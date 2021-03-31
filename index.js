@@ -1,17 +1,18 @@
-
 /*
-
 ****************************
-*	    MILESTONE F03      *
+*	       COMUNES         *
 ****************************
-/*								COMENTARIO DE PRUEBA
-*/
+*/ 
 
 // Creamos una variable express para el desarrollo web
 
 var express = require("express");
 
 var app = express();
+
+//Creamos la variable usada para parsear el cuerpo de las peticiones post con json
+
+var body_parser = require("body-parser");
 
 //Definimos el puerto al que estará asociado el servidor web
 
@@ -21,9 +22,101 @@ var port = process.env.PORT || 10000;
 
 var path = require("path");
 
-//Definimos las rutas de recursos
+//Definimos las rutas de recursos y el uso de bodyParser
 
 app.use("/", express.static(path.join(__dirname,"./public"))); //La variable __dirname encadena la carpeta actual con la public
+
+app.use(body_parser.json());
+
+//Definimos el path inicial de la API
+
+var BASE_API_PATH = "/api/v1";
+
+/*
+
+****************************
+*	    MILESTONE F04      *
+****************************
+
+*/
+
+// Api Manuel González Regadera - education_expenditures
+
+	//Creamos el array de objetos relativos al gasto en educación, inicialmente vacío.
+
+	var education_expenditure_array = [];
+
+	//Generamos las distintas peticiones
+
+	//Get del array completo
+	app.get(BASE_API_PATH+"/education_expenditures", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures
+		//Debemos enviar el objeto pero pasandolo a JSON
+		res.send(JSON.stringify(education_expenditure_array,null,2));
+	});
+
+	//Get para incluir los elementos iniciales
+	app.get(BASE_API_PATH+"/education_expenditures/loadInitialData", (req,res)=>{ 
+		
+		//Definimos los datos iniciales
+		
+		var datosIniciales_EE =  [
+			{
+				"year":"2016",
+				"country":"Spain",
+				"education_expenditure_per_millions": "46.882,8" ,
+				"education_expenditure_per_public_expenditure":"9,97",
+				"education_expenditure_gdp":"4,21",
+				"education_expenditure_per_capita":"1,009.00"
+			},
+
+			{
+				"year":"2016",
+				"country":"Germany",
+				"education_expenditure_per_millions": "150.496,7" ,
+				"education_expenditure_per_public_expenditure":"10,93",
+				"education_expenditure_gdp":"4,8",
+				"education_expenditure_per_capita":"1,828.00"
+			},
+
+			{
+				"year":"2015",
+				"country":"France",
+				"education_expenditure_per_millions": "118.496,3" ,
+				"education_expenditure_per_public_expenditure":"9,66",
+				"education_expenditure_gdp":"5,46",
+				"education_expenditure_per_capita":"1,804.00"
+			}
+		];
+
+		// Incluimos los datos en el array 
+
+		for(var e in datosIniciales_EE){
+			education_expenditure_array.push(e);
+		}
+		
+		//Indicamos al usuario que se han cargado exitosamente los datos
+		res.sendStatus(201);
+
+		res.send(`<!DOCTYPE html>
+					<html>
+						<head>
+							<title>Education expenditures initial data</title>
+						</head>
+						<body>
+							<h3>Initial data loaded successfully</h3>
+						</body>
+					</html>`);
+
+	});
+
+
+/*
+
+****************************
+*	    MILESTONE F03      *
+****************************
+
+*/
 
 // Recurso Manuel Gonzalez Regadera - education_expenditures
 
@@ -283,11 +376,6 @@ app.get("/info/poverty_risks", (request,response)=>{
 });
 
 
-//Ponemos el servidor a escuchar
-
-app.listen(port, () =>{
-    console.log("Server ready to listen on port " + port);
-});
 
 
 /* 
@@ -341,4 +429,17 @@ console.log(cool());
 */
 
 //El comando npm install instala todos los paquetes que necesita el proyecto si se clona desde git
+
+
+/*
+****************************
+*	      COMUNES 2        *
+****************************
+*/ 
+
+//Ponemos el servidor a escuchar
+
+app.listen(port, () =>{
+    console.log("Server ready to listen on port " + port);
+});
 
