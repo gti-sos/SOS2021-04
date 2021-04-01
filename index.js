@@ -346,7 +346,7 @@ var BASE_API_PATH = "/api/v1";
 		*/
 		let found = -1;
 		for(let e in illiteracy_array){
-			if(req.country===illiteracy_array[e].country && req.year===illiteracy_array[e].year){
+			if(req.country==illiteracy_array[e].country && req.year==illiteracy_array[e].year){
 				found = e;
 				break;
 			}
