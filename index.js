@@ -291,7 +291,7 @@ var BASE_API_PATH = "/api/v1";
 		
 		//Crearemos un nuevo array resultado de filtrar el array completo
 		var filtraPaises = illiteracy_array.filter(function(e){ 
-			return e.country===String(req.country);
+			return e.country==String(req.country);
 		});
 		console.log(filtraPaises);
 
