@@ -323,7 +323,7 @@ var BASE_API_PATH = "/api/v1";
 
 	//Delete del array completo
 
-	app.delete(BASE_API_PATH+"/education_expenditures", (req,res)=>{
+	app.delete(BASE_API_PATH+"/illiteracy_rate", (req,res)=>{
 		
 		education_expenditure_array = []; // vaciamos el array
 		res.send(200);
