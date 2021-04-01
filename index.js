@@ -258,9 +258,10 @@ var BASE_API_PATH = "/api/v1";
 		// Incluimos los datos en el array 
 
 		for(var e in datosIniciales_EE){
-			//illiteracy_array.pop(datosIniciales_EE[e]);
-			if(datosIniciales_EE[e] in illiteracy_array){
-				
+			illiteracy_array.pop(datosIniciales_EE[e]);
+			var condicion = datosIniciales_EE[e] in illiteracy_array;
+			if(condicion){
+				console.log(condicion);
 			}
 			else{
 				illiteracy_array.push(datosIniciales_EE[e]);
