@@ -49,7 +49,7 @@ var BASE_API_PATH = "/api/v1";
 	app.get(BASE_API_PATH+"/education_expenditures", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures
 		//Debemos enviar el objeto pero pasandolo a JSON
 		
-		res.send(200, JSON.stringify(education_expenditure_array,null,2));
+		res.status(200).send(JSON.stringify(education_expenditure_array,null,2));
 	});
 
 	//Get para incluir los elementos iniciales
@@ -91,10 +91,21 @@ var BASE_API_PATH = "/api/v1";
 		for(var e in datosIniciales_EE){
 			education_expenditure_array.push(datosIniciales_EE[e]);
 		}
+
+		//Eliminamos repetidos en caso de que se hayan cargado previamente
+
+		education_expenditure_array = education_expenditure_array.map(e => JSON.stringify(e)); //Lo pasamos a JSON para poder compararlos
+
+		education_expenditure_array = new Set(education_expenditure_array); //Lo convertimos a conjunto para eliminar repetidos
+
+		education_expenditure_array = [...education_expenditure_array] //Lo convertimos de nuevo a array
+
+		education_expenditure_array = education_expenditure_array.map(e => JSON.parse(e)) //Lo pasamos de nuevo a objetos
+
 		
 		//Indicamos al usuario que se han cargado exitosamente los datos
 		
-		res.send(200,`<!DOCTYPE html>
+		res.status(200).send(`<!DOCTYPE html>
 					<html>
 						<head>
 							<title>Education expenditures initial data</title>
@@ -109,17 +120,15 @@ var BASE_API_PATH = "/api/v1";
 
 	//Get para tomar elementos por pais
 	
-	app.get(BASE_API_PATH+"/education_expenditures/:country", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+	app.get(BASE_API_PATH+'/education_expenditures/:country', (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
 		
 		//Crearemos un nuevo array resultado de filtrar el array completo
 		var filtraPaises = education_expenditure_array.filter(function(e){ 
-			return e.country===String(req.country);
+			return e.country==String(req.params.country);
 		});
-
-		console.log(filtraPaises);
 		
 		//Debemos enviar el objeto pero pasandolo a JSON
-		res.send(200,JSON.stringify(filtraPaises,null,2));		
+		res.status(200).send(JSON.stringify(filtraPaises,null,2));		
 	});
 
 	//Get para tomar elementos por pais y año
@@ -128,11 +137,11 @@ var BASE_API_PATH = "/api/v1";
 		
 		//Crearemos un nuevo array resultado de filtrar el array completo
 		var filtraPA = education_expenditure_array.filter(function(e){ 
-			return e.country===String(req.country) && e.year===String(req.year);
+			return e.country==String(req.params.country) && e.year==String(req.params.year);
 		});
 		
 		//Debemos enviar el objeto pero pasandolo a JSON
-		res.send(200,JSON.stringify(filtraPA,null,2));
+		res.status(200).send(JSON.stringify(filtraPA,null,2));
 	});
 
 	//Post al array completo para incluir datos como los de la ficha de propuestas
@@ -141,8 +150,19 @@ var BASE_API_PATH = "/api/v1";
 		
 		var newData = req.body; //Se toma el cuerpo de la peticion donde estan los datos
 		education_expenditure_array.push(newData); //Se introduce el nuevo elemento
+
+		//Eliminamos repetidos en caso de que se hayan cargado previamente
+
+		education_expenditure_array = education_expenditure_array.map(e => JSON.stringify(e)); //Lo pasamos a JSON para poder compararlos
+
+		education_expenditure_array = new Set(education_expenditure_array); //Lo convertimos a conjunto para eliminar repetidos
+
+		education_expenditure_array = [...education_expenditure_array] //Lo convertimos de nuevo a array
+
+		education_expenditure_array = education_expenditure_array.map(e => JSON.parse(e)) //Lo pasamos de nuevo a objetos
+
+		//Devolvemos el estado
 		res.sendStatus(201);
-		console.log(JSON.stringify(newData,null,2));
 	
 	});
 
@@ -150,7 +170,7 @@ var BASE_API_PATH = "/api/v1";
 
 	app.post(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
 
-		res.send(405); //Method not allowed
+		res.status(405).send("Metodo no permitido"); //Method not allowed
 	});
 
 	//Delete del array completo
@@ -158,7 +178,7 @@ var BASE_API_PATH = "/api/v1";
 	app.delete(BASE_API_PATH+"/education_expenditures", (req,res)=>{
 		
 		education_expenditure_array = []; // vaciamos el array
-		res.send(200);
+		res.status(200).send("Eliminacion correcta");
 	
 	});
 
@@ -168,9 +188,9 @@ var BASE_API_PATH = "/api/v1";
 
 		//Se hace un filtrado por pais, eliminando aquellos que coinciden con el pais dado
 		education_expenditure_array = education_expenditure_array.filter(function(e){ 
-			return e.country!==String(req.country);
+			return e.country!==String(req.params.country);
 		});
-		res.send(200);
+		res.status(200).send("Eliminacion correcta");
 	});
 
 	//Delete elemento por pais y año
@@ -179,9 +199,9 @@ var BASE_API_PATH = "/api/v1";
 
 		//Se hace un filtrado por pais y año, eliminando aquellos que coinciden con el pais y año dado
 		education_expenditure_array = education_expenditure_array.filter(function(e){ 
-			return e.country!==String(req.country) && e.year!==String(req.year);
+			return e.country!==String(req.params.country) && e.year!==String(req.params.year);
 		});
-		res.send(200);
+		res.status(200).send("Eliminacion correcta");
 	});
 
 	//Put modificar elemento
@@ -190,22 +210,32 @@ var BASE_API_PATH = "/api/v1";
 
 		//Recorremos el array en busca del elemento a modificar
 		for(var e in education_expenditure_array){
-			if(education_expenditure_array[e].country === String(req.country) &&
-				education_expenditure_array[e].year === String(req.year)){
+			if(education_expenditure_array[e].country == String(req.params.country) &&
+				education_expenditure_array[e].year == String(req.params.year)){
 					var newData = req.body;
 					education_expenditure_array[e] = newData;
 					break;
 			}
 		}
 
-		res.send(200);
+		//Eliminamos repetidos en caso de que se haya realizado un cambio para añadirlo
+
+		education_expenditure_array = education_expenditure_array.map(e => JSON.stringify(e)); //Lo pasamos a JSON para poder compararlos
+
+		education_expenditure_array = new Set(education_expenditure_array); //Lo convertimos a conjunto para eliminar repetidos
+
+		education_expenditure_array = [...education_expenditure_array] //Lo convertimos de nuevo a array
+
+		education_expenditure_array = education_expenditure_array.map(e => JSON.parse(e)) //Lo pasamos de nuevo a objetos
+
+		res.status(200).send("Modificacion correcta");
 	});
 
 	//Put ERRONEO array de elementos
 
 	app.put(BASE_API_PATH+"/education_expenditures", function(req, res) { 
 
-		res.send(405); //Method not allowed
+		res.status(405).send("Metodo no permitido"); //Method not allowed
 	});
 
 
