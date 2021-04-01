@@ -330,6 +330,13 @@ var BASE_API_PATH = "/api/v1";
 	
 	});
 
+	//Put ERRONEO array de elementos
+
+	app.put(BASE_API_PATH+"/illiteracy_rate", function(req, res) { 
+
+		res.send(405); //Method not allowed
+	});
+
 
 
 
