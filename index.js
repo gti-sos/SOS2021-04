@@ -211,6 +211,19 @@ var BASE_API_PATH = "/api/v1";
 		res.send(405); //Method not allowed
 	});
 
+
+// Api Miguel Gómez Vázquez - illiteracy
+
+
+
+
+
+
+
+
+
+
+
 /*
 
 ****************************
