@@ -41,7 +41,7 @@ var BASE_API_PATH = "/api/v1";
 
 	//Creamos el array de objetos relativos al gasto en educación, inicialmente vacío.
 
-	var poverty_risks_array = [];
+	var education_expenditure_array = [];
 
 	//Generamos las distintas peticiones
 
