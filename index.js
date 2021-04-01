@@ -209,19 +209,20 @@ var BASE_API_PATH = "/api/v1";
 
 
 // Api Miguel Gómez Vázquez - illiteracy
+
 	var illiteracy_array = [];
 
 	//Generamos las distintas peticiones
 
 	//Get del array completo
-	app.get(BASE_API_PATH+"/illiteracy", (req,res)=>{ //Cuando llamen a /api/v1/illiteracy
+	app.get(BASE_API_PATH+"/illiteracy_rate", (req,res)=>{ //Cuando llamen a /api/v1/illiteracy
 		//Debemos enviar el objeto pero pasandolo a JSON
 		
 		res.send(200, JSON.stringify(illiteracy_array,null,2));
 	});
 
 	//Get para incluir los elementos iniciales
-	app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
+	app.get(BASE_API_PATH+"/illiteracy_rate/loadInitialData", (req,res)=>{ 
 		
 		//Definimos los datos iniciales
 		
