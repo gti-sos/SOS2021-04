@@ -310,6 +310,13 @@ var BASE_API_PATH = "/api/v1";
 		res.sendStatus(201);
 	});
 
+	//Post ERRONEO de elemento
+
+	app.post(BASE_API_PATH+"/illiteracy_rate/:country/:year", function(req, res) { 
+
+		res.send(405); //Method not allowed
+	});
+
 	app.delete(BASE_API_PATH+"/illiteracy_rate/:country", (req,res)=>{
 
 		var newline = req.body;
