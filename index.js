@@ -41,7 +41,7 @@ var BASE_API_PATH = "/api/v1";
 
 	//Creamos el array de objetos relativos al gasto en educación, inicialmente vacío.
 
-	var education_expenditure_array = [];
+	var poverty_risks_array = [];
 
 	//Generamos las distintas peticiones
 
@@ -89,7 +89,7 @@ var BASE_API_PATH = "/api/v1";
 		// Incluimos los datos en el array 
 
 		for(var e in datosIniciales_EE){
-			education_expenditure_array.push(datosIniciales_EE[e]);
+			poverty_risks_array.push(datosIniciales_EE[e]);
 		}
 
 		//Eliminamos repetidos en caso de que se hayan cargado previamente
@@ -213,7 +213,7 @@ var BASE_API_PATH = "/api/v1";
 			if(education_expenditure_array[e].country == String(req.params.country) &&
 				education_expenditure_array[e].year == String(req.params.year)){
 					var newData = req.body;
-					education_expenditure_array[e] = newData;
+					poverty_risks_array[e] = newData;
 					break;
 			}
 		}
@@ -320,7 +320,7 @@ var BASE_API_PATH = "/api/v1";
 	app.get(BASE_API_PATH+"/illiteracy_rate/:country", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
 		
 		//Crearemos un nuevo array resultado de filtrar el array completo
-		var filtraPaises = illiteracy_array.filter(function(e){ 
+		var filtraPaises = illiteracy_array[0].filter(function(e){ 
 			return e.country==String(req.country);
 		});
 		console.log(filtraPaises);
@@ -403,10 +403,175 @@ var BASE_API_PATH = "/api/v1";
 
 // Api Javier Carmona Andrés - poverty_risks
 
+	//Creamos el array de objetos relativos al gasto en educación, inicialmente vacío.
 
+	var poverty_risks_array = [];
 
+	//Generamos las distintas peticiones
 
+	//Get del array completo
+	app.get(BASE_API_PATH+"/risk_poverty", (req,res)=>{
+		//Cuando llamen a /api/v1/education_expenditures
+		//Debemos enviar el objeto pero pasandolo a JSON
+		
+		res.send(200, JSON.stringify(poverty_risks_array,null,2));
+	});
 
+	//Get para incluir los elementos iniciales
+	app.get(BASE_API_PATH+"/risk_poverty/loadInitialData", (req,res)=>{ 
+		
+		//Definimos los datos iniciales
+		
+		var datosIniciales_PovertyRisks =  [
+			{
+				"year":"2016",
+				"country":"Spain",
+				"education_expenditure_per_millions": "46.882,8" ,
+				"education_expenditure_per_public_expenditure":"9,97",
+				"education_expenditure_gdp":"4,21",
+				"education_expenditure_per_capita":"1,009.00"
+			},
+
+			{
+				"year":"2016",
+				"country":"Germany",
+				"education_expenditure_per_millions": "150.496,7" ,
+				"education_expenditure_per_public_expenditure":"10,93",
+				"education_expenditure_gdp":"4,8",
+				"education_expenditure_per_capita":"1,828.00"
+			},
+
+			{
+				"year":"2015",
+				"country":"France",
+				"education_expenditure_per_millions": "118.496,3" ,
+				"education_expenditure_per_public_expenditure":"9,66",
+				"education_expenditure_gdp":"5,46",
+				"education_expenditure_per_capita":"1,804.00"
+			}
+		];
+
+		// Incluimos los datos en el array 
+
+		for(var e in datosIniciales_PovertyRisks){
+			poverty_risks_array.push(datosIniciales_PovertyRisks[e]);
+		}
+		
+		//Indicamos al usuario que se han cargado exitosamente los datos
+		
+		res.send(200,`<!DOCTYPE html>
+					<html>
+						<head>
+							<title>Education expenditures initial data</title>
+						</head>
+						<body>
+							<h3>Initial data loaded successfully RIESGOS DE POBREZA</h3>
+						</body>
+					</html>`);
+		
+		
+	});
+
+	//Get para tomar elementos por pais
+	
+	app.get(BASE_API_PATH+"/risk_poverty/:country", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+		
+		//Crearemos un nuevo array resultado de filtrar el array completo
+		var filtraPaises = poverty_risks_array.filter(function(e){ 
+			return e.country===String(req.country);
+		});
+
+		console.log(filtraPaises);
+		
+		//Debemos enviar el objeto pero pasandolo a JSON
+		res.send(200,JSON.stringify(filtraPaises,null,2));		
+	});
+
+	//Get para tomar elementos por pais y año
+	
+	app.get(BASE_API_PATH+"/risk_poverty/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+		
+		//Crearemos un nuevo array resultado de filtrar el array completo
+		var filtraPA = poverty_risks_array.filter(function(e){ 
+			return e.country===String(req.country) && e.year===String(req.year);
+		});
+		
+		//Debemos enviar el objeto pero pasandolo a JSON
+		res.send(200,JSON.stringify(filtraPA,null,2));
+	});
+
+	//Post al array completo para incluir datos como los de la ficha de propuestas
+
+	app.post(BASE_API_PATH+"/risk_poverty", (req,res)=>{
+		
+		var newData = req.body; //Se toma el cuerpo de la peticion donde estan los datos
+		poverty_risks_array.push(newData); //Se introduce el nuevo elemento
+		res.sendStatus(201);
+		console.log(JSON.stringify(newData,null,2));
+	
+	});
+
+	//Post ERRONEO de elemento
+
+	app.post(BASE_API_PATH+"/risk_poverty/:country/:year", function(req, res) { 
+
+		res.send(405); //Method not allowed
+	});
+
+	//Delete del array completo
+
+	app.delete(BASE_API_PATH+"/risk_poverty", (req,res)=>{
+		
+		poverty_risks_array = []; // vaciamos el array
+		res.send(200);
+	
+	});
+
+	//Delete de elementos por pais
+
+	app.delete(BASE_API_PATH+"/risk_poverty/:country", function(req, res) { 
+
+		//Se hace un filtrado por pais, eliminando aquellos que coinciden con el pais dado
+		poverty_risks_array = poverty_risks_array.filter(function(e){ 
+			return e.country!==String(req.country);
+		});
+		res.send(200);
+	});
+
+	//Delete elemento por pais y año
+
+	app.delete(BASE_API_PATH+"/risk_poverty/:country/:year", function(req, res) { 
+
+		//Se hace un filtrado por pais y año, eliminando aquellos que coinciden con el pais y año dado
+		poverty_risks_array = poverty_risks_array.filter(function(e){ 
+			return e.country!==String(req.country) && e.year!==String(req.year);
+		});
+		res.send(200);
+	});
+
+	//Put modificar elemento
+
+	app.put(BASE_API_PATH+"/risk_poverty/:country/:year", function(req, res) { 
+
+		//Recorremos el array en busca del elemento a modificar
+		for(var e in poverty_risks_array){
+			if(poverty_risks_array[e].country === String(req.country) &&
+				poverty_risks_array[e].year === String(req.year)){
+					var newData = req.body;
+					poverty_risks_array[e] = newData;
+					break;
+			}
+		}
+
+		res.send(200);
+	});
+
+	//Put ERRONEO array de elementos
+
+	app.put(BASE_API_PATH+"/risk_poverty", function(req, res) { 
+
+		res.send(405); //Method not allowed
+	});
 
 
 
