@@ -290,7 +290,7 @@ var BASE_API_PATH = "/api/v1";
 	app.get(BASE_API_PATH+"/illiteracy_rate/:country", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
 		
 		//Crearemos un nuevo array resultado de filtrar el array completo
-		var filtraPaises = illiteracy_array.filter(function(e){ 
+		var filtraPaises = illiteracy_array[0].filter(function(e){ 
 			return e.country==String(req.country);
 		});
 		console.log(filtraPaises);
