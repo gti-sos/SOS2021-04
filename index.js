@@ -6,6 +6,7 @@
 
 // Creamos una variable express para el desarrollo web
 
+const e = require("express");
 var express = require("express");
 
 var app = express();
@@ -333,6 +334,21 @@ var BASE_API_PATH = "/api/v1";
 	app.delete(BASE_API_PATH+"/illiteracy_rate", (req,res)=>{
 		
 		education_expenditure_array = []; // vaciamos el array
+		res.send(200);
+	
+	});
+	// Delete de un pais y un año
+	app.delete(BASE_API_PATH+"/illiteracy_rate/:country/:year", (req,res)=>{
+		/*var borraPaisyaño = illiteracy_array.filter(function(e){ 
+			return e.country===String(req.country) && e.year===String(req.year);
+		});
+		console.log(borraPaisyaño);
+		*/
+		for(e in illiteracy_array){
+			if(req.country===e.country && req.year===e.year){
+				delete e;
+			}
+		}
 		res.send(200);
 	
 	});
