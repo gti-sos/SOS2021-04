@@ -226,7 +226,7 @@ var BASE_API_PATH = "/api/v1";
 		
 		//Definimos los datos iniciales
 		
-		var datosIniciales_EE =  [
+		var datosIniciales_miguel =  [
 			{
 				"year":"2016",
 				"country":"Spain",
@@ -257,14 +257,14 @@ var BASE_API_PATH = "/api/v1";
 
 		// Incluimos los datos en el array 
 
-		for(var e in datosIniciales_EE){
+		for(var e in datosIniciales_miguel){
 			//illiteracy_array.pop(datosIniciales_EE[e]);
-			var condicion = datosIniciales_EE[e] in illiteracy_array;
+			var condicion = datosIniciales_miguel[e] in illiteracy_array;
 			if(condicion){
 				console.log(condicion+ e);
 			}
 			else{
-				illiteracy_array.push(datosIniciales_EE[e]);
+				illiteracy_array.push(datosIniciales_miguel[e]);
 			}
 			
 		}
@@ -299,6 +299,17 @@ var BASE_API_PATH = "/api/v1";
 		res.send(200,JSON.stringify(filtraPaises,null,2));		
 	});
 
+
+	
+	app.post(BASE_API_PATH+"/illiteracy_rate", (req,res)=>{
+
+		var newline = req.body;
+		console.log(`new line to be added: <${JSON.stringify(newline, null, 2)}>`);
+	
+		datosIniciales_miguel.push(newline);
+	
+		res.sendStatus(201);
+	});
 
 
 
