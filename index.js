@@ -26,7 +26,7 @@ var path = require("path");
 
 app.use("/", express.static(path.join(__dirname,"./public"))); //La variable __dirname encadena la carpeta actual con la public
 
-app.use(body_parser.json());
+app.use(express.json());
 
 //Definimos el path inicial de la API
 
@@ -216,6 +216,11 @@ var BASE_API_PATH = "/api/v1";
 
 
 
+
+
+
+
+// Api Javier Carmona Andrés - poverty_risks
 
 
 
