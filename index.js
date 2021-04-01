@@ -89,7 +89,7 @@ var BASE_API_PATH = "/api/v1";
 		// Incluimos los datos en el array 
 
 		for(var e in datosIniciales_EE){
-			poverty_risks_array.push(datosIniciales_EE[e]);
+			education_expenditure_array.push(datosIniciales_EE[e]);
 		}
 
 		//Eliminamos repetidos en caso de que se hayan cargado previamente
