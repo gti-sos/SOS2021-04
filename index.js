@@ -284,6 +284,21 @@ var BASE_API_PATH = "/api/v1";
 		
 	});
 
+	//Get para tomar elementos por pais
+
+	app.get(BASE_API_PATH+"/illiteracy/:country", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+		
+		//Crearemos un nuevo array resultado de filtrar el array completo
+		var filtraPaises = illiteracy_array.filter(function(e){ 
+			return e.country===String(req.country);
+		});
+
+		console.log(filtraPaises);
+		
+		//Debemos enviar el objeto pero pasandolo a JSON
+		res.send(200,JSON.stringify(filtraPaises,null,2));		
+	});
+
 
 
 
