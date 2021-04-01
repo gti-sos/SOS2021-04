@@ -10,7 +10,6 @@ var express = require("express");
 
 var app = express();
 
-
 //Definimos el puerto al que estará asociado el servidor web
 
 var port = process.env.PORT || 10000;
@@ -210,7 +209,71 @@ var BASE_API_PATH = "/api/v1";
 
 
 // Api Miguel Gómez Vázquez - illiteracy
+	var illiteracy_array = [];
 
+	//Generamos las distintas peticiones
+
+	//Get del array completo
+	app.get(BASE_API_PATH+"/illiteracy", (req,res)=>{ //Cuando llamen a /api/v1/illiteracy
+		//Debemos enviar el objeto pero pasandolo a JSON
+		
+		res.send(200, JSON.stringify(illiteracy_array,null,2));
+	});
+
+	//Get para incluir los elementos iniciales
+	app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
+		
+		//Definimos los datos iniciales
+		
+		var datosIniciales_EE =  [
+			{
+				"year":"2016",
+				"country":"Spain",
+				"education_expenditure_per_millions": "46.882,8" ,
+				"education_expenditure_per_public_expenditure":"9,97",
+				"education_expenditure_gdp":"4,21",
+				"education_expenditure_per_capita":"1,009.00"
+			},
+
+			{
+				"year":"2016",
+				"country":"Germany",
+				"education_expenditure_per_millions": "150.496,7" ,
+				"education_expenditure_per_public_expenditure":"10,93",
+				"education_expenditure_gdp":"4,8",
+				"education_expenditure_per_capita":"1,828.00"
+			},
+
+			{
+				"year":"2015",
+				"country":"France",
+				"education_expenditure_per_millions": "118.496,3" ,
+				"education_expenditure_per_public_expenditure":"9,66",
+				"education_expenditure_gdp":"5,46",
+				"education_expenditure_per_capita":"1,804.00"
+			}
+		];
+
+		// Incluimos los datos en el array 
+
+		for(var e in datosIniciales_EE){
+			illiteracy_array.push(datosIniciales_EE[e]);
+		}
+		
+		//Indicamos al usuario que se han cargado exitosamente los datos
+		
+		res.send(200,`<!DOCTYPE html>
+					<html>
+						<head>
+							<title>illiteracy initial data</title>
+						</head>
+						<body>
+							<h3>Initial data loaded successfully</h3>
+						</body>
+					</html>`);
+		
+		
+	});
 
 
 
