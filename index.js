@@ -333,7 +333,7 @@ var BASE_API_PATH = "/api/v1";
 
 	app.delete(BASE_API_PATH+"/illiteracy_rate", (req,res)=>{
 		
-		education_expenditure_array = []; // vaciamos el array
+		illiteracy_array = []; // vaciamos el array
 		res.send(200);
 	
 	});
