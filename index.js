@@ -344,11 +344,17 @@ var BASE_API_PATH = "/api/v1";
 		});
 		console.log(borraPaisyaño);
 		*/
-		for(var e in illiteracy_array){
-			if(req.country===e.country && req.year===e.year){
-				 illiteracy_array.splice(e-1,1);
+		let found = -1;
+		for(let e in illiteracy_array){
+			if(req.country===illiteracy_array[e].country && req.year===illiteracy_array[e].year){
+				found = e;
+				break;
 			}
 		}
+		if(found>-1){
+			illiteracy_array.splice(e,1);
+		}
+		
 		res.send(200);
 	
 	
