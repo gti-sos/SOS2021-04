@@ -346,7 +346,7 @@ var BASE_API_PATH = "/api/v1";
 		*/
 		for(var e in illiteracy_array){
 			if(req.country===e.country && req.year===e.year){
-				 illiteracy_array.splice(e-1,e-1);
+				 illiteracy_array.splice(e,1);
 			}
 		}
 		res.send(200);
