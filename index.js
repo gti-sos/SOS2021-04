@@ -292,9 +292,8 @@ var BASE_API_PATH = "/api/v1";
 		var filtraPaises = illiteracy_array.filter(function(e){ 
 			return e.country===String(req.country);
 		});
-
 		console.log(filtraPaises);
-		
+
 		//Debemos enviar el objeto pero pasandolo a JSON
 		res.send(200,JSON.stringify(filtraPaises,null,2));		
 	});
@@ -309,6 +308,26 @@ var BASE_API_PATH = "/api/v1";
 		illiteracy_array.push(newline);
 	
 		res.sendStatus(201);
+	});
+
+	app.delete(BASE_API_PATH+"/illiteracy_rate/:country", (req,res)=>{
+
+		var newline = req.body;
+		console.log(`new line to be added: <${JSON.stringify(newline, null, 2)}>`);
+	
+		illiteracy_array.push(newline);
+	
+		res.sendStatus(201);
+	});
+
+
+	//Delete del array completo
+
+	app.delete(BASE_API_PATH+"/education_expenditures", (req,res)=>{
+		
+		education_expenditure_array = []; // vaciamos el array
+		res.send(200);
+	
 	});
 
 
