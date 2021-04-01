@@ -198,7 +198,7 @@ var BASE_API_PATH = "/api/v1";
 	app.delete(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
 
 		//Se hace un filtrado por pais y año, eliminando aquellos que coinciden con el pais y año dado
-		education_expenditure_array = education_expenditure_array.filter(e => (e.country!==String(req.params.country) && e.year!==String(req.params.year)));
+		education_expenditure_array = education_expenditure_array.filter(e => (e.country!=String(req.params.country) && e.year!=String(req.params.year)));
 		res.status(200).send("Eliminacion correcta");
 	});
 
