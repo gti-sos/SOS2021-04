@@ -211,7 +211,7 @@ var BASE_API_PATH = "/api/v1";
 			if(education_expenditure_array[e].country == String(req.params.country) &&
 				education_expenditure_array[e].year == String(req.params.year)){
 					var newData = req.body;
-					poverty_risks_array[e] = newData;
+					education_expenditure_array[e] = newData;
 					break;
 			}
 		}
