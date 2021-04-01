@@ -344,9 +344,9 @@ var BASE_API_PATH = "/api/v1";
 		});
 		console.log(borraPaisyaño);
 		*/
-		for(e in illiteracy_array){
+		for(var e in illiteracy_array){
 			if(req.country===e.country && req.year===e.year){
-				delete e;
+				delete illiteracy_array[e];
 			}
 		}
 		res.send(200);
