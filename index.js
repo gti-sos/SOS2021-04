@@ -300,13 +300,13 @@ var BASE_API_PATH = "/api/v1";
 	});
 
 
-	
+
 	app.post(BASE_API_PATH+"/illiteracy_rate", (req,res)=>{
 
 		var newline = req.body;
 		console.log(`new line to be added: <${JSON.stringify(newline, null, 2)}>`);
 	
-		datosIniciales_miguel.push(newline);
+		illiteracy_array.push(newline);
 	
 		res.sendStatus(201);
 	});
