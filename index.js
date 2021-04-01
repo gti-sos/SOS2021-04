@@ -49,7 +49,7 @@ var BASE_API_PATH = "/api/v1";
 	app.get(BASE_API_PATH+"/education_expenditures", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures
 		//Debemos enviar el objeto pero pasandolo a JSON
 		
-		res.status(200).send(JSON.stringify(education_expenditure_array,null,2));
+		res.send(JSON.stringify(education_expenditure_array,null,2));
 	});
 
 	//Get para incluir los elementos iniciales
