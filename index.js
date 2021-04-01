@@ -10,9 +10,6 @@ var express = require("express");
 
 var app = express();
 
-//Creamos la variable usada para parsear el cuerpo de las peticiones post con json
-
-var body_parser = require("body-parser");
 
 //Definimos el puerto al que estará asociado el servidor web
 
