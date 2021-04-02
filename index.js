@@ -250,14 +250,14 @@ var BASE_API_PATH = "/api/v1";
 	//Generamos las distintas peticiones
 
 	//Get del array completo
-	app.get(BASE_API_PATH+"/illiteracy_rate", (req,res)=>{ //Cuando llamen a /api/v1/illiteracy
+	app.get(BASE_API_PATH+"/illiteracy", (req,res)=>{ //Cuando llamen a /api/v1/illiteracy
 		//Debemos enviar el objeto pero pasandolo a JSON
 		
 		res.send(200, JSON.stringify(illiteracy_array,null,2));
 	});
 
 	//Get para incluir los elementos iniciales
-	app.get(BASE_API_PATH+"/illiteracy_rate/loadInitialData", (req,res)=>{ 
+	app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
 		
 		//Definimos los datos iniciales
 		
@@ -292,17 +292,23 @@ var BASE_API_PATH = "/api/v1";
 
 		// Incluimos los datos en el array 
 
-		for(var e in datosIniciales_miguel){
-			//illiteracy_array.pop(datosIniciales_EE[e]);
-			var condicion = datosIniciales_miguel[e] in illiteracy_array;
-			if(condicion){
-				console.log(condicion+ e);
-			}
-			else{
-				illiteracy_array.push(datosIniciales_miguel[e]);
-			}
-			
+		for(var e in datosIniciales_PovertyRisks){
+			poverty_risks_array.push(datosIniciales_PovertyRisks[e]);
 		}
+
+		//Eliminamos repetidos en caso de que se hayan cargado previamente
+		//Lo pasamos a JSON para poder compararlos
+		poverty_risks_array = poverty_risks_array.map(e => JSON.stringify(e));
+		
+		//Lo convertimos a conjunto para eliminar repetidos
+		poverty_risks_array = new Set(poverty_risks_array); 
+		
+		//Lo convertimos de nuevo a array
+		poverty_risks_array = [...poverty_risks_array] 
+		
+		//Lo pasamos de nuevo a objetos
+		poverty_risks_array = poverty_risks_array.map(e => JSON.parse(e));
+		
 		
 		//Indicamos al usuario que se han cargado exitosamente los datos
 		
@@ -312,102 +318,124 @@ var BASE_API_PATH = "/api/v1";
 							<title>illiteracy initial data</title>
 						</head>
 						<body>
-							<h3>Initial data loaded successfully</h3>
+							<h3>Initial data loaded successfully illiteracy</h3>
 						</body>
 					</html>`);
 		
 		
 	});
 
-	//Get para tomar elementos por pais
-
-	app.get(BASE_API_PATH+"/illiteracy_rate/:country", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+	//Get para tomar elementos por pais y año
+	
+	app.get(BASE_API_PATH+"/illiteracy/:country/:year", (req,res)=>{ 
+		//Cuando llamen a /api/v1/poverty_risks/(pais)/(año)
 		
 		//Crearemos un nuevo array resultado de filtrar el array completo
-		var filtraPaises = illiteracy_array[0].filter(function(e){ 
-			return e.country==String(req.params.country);
+		var filtraPA = poverty_risks_array.filter(function(e){ 
+			return e.country===String(req.params.country) && e.year===String(req.params.year);
 		});
-		console.log(filtraPaises);
-
+		
 		//Debemos enviar el objeto pero pasandolo a JSON
-		res.send(200,JSON.stringify(filtraPaises,null,2));		
+		res.status(200).send(JSON.stringify(filtraPA,null,2));
 	});
 
+	//Post al array completo para incluir datos como los de la ficha de propuestas
 
-	//Post para añadir una linea
-	app.post(BASE_API_PATH+"/illiteracy_rate", (req,res)=>{
+	app.post(BASE_API_PATH+"/illiteracy", (req,res)=>{
+		
+		var newData = req.body; //Se toma el cuerpo de la peticion donde estan los datos
+		poverty_risks_array.push(newData); //Se introduce el nuevo elemento
 
-		var newline = req.body;
-		console.log(`new line to be added: <${JSON.stringify(newline, null, 2)}>`);
-	
-		illiteracy_array.push(newline);
-	
+		//Eliminamos repetidos en caso de que se hayan cargado previamente
+		//Lo pasamos a JSON para poder compararlos
+		poverty_risks_array = poverty_risks_array.map(e => JSON.stringify(e));
+
+		//Lo convertimos a conjunto para eliminar repetidos
+		poverty_risks_array = new Set(poverty_risks_array);
+
+		//Lo convertimos de nuevo a array
+		poverty_risks_array = [...poverty_risks_array]
+
+		//Lo pasamos de nuevo a objetos
+		poverty_risks_array = poverty_risks_array.map(e => JSON.parse(e)) 
+
+		//Devolvemos el estado
 		res.sendStatus(201);
+		console.log(JSON.stringify(newData,null,2));
+	
 	});
 
 	//Post ERRONEO de elemento
 
-	app.post(BASE_API_PATH+"/illiteracy_rate/:country/:year", function(req, res) { 
+	app.post(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
 
-		res.send(405); //Method not allowed
+		res.status(405).send("Metodo no permitido"); //Method not allowed
 	});
-
-	app.delete(BASE_API_PATH+"/illiteracy_rate/:country", (req,res)=>{
-
-		var newline = req.body;
-		console.log(`new line to be added: <${JSON.stringify(newline, null, 2)}>`);
-	
-		illiteracy_array.push(newline);
-	
-		res.sendStatus(201);
-	});
-
 
 	//Delete del array completo
 
-	app.delete(BASE_API_PATH+"/illiteracy_rate", (req,res)=>{
+	app.delete(BASE_API_PATH+"/illiteracy", (req,res)=>{
 		
-		illiteracy_array = []; // vaciamos el array
-		res.send(200);
+		poverty_risks_array = []; // vaciamos el array
+		res.status(200).send("Eliminacion correcta");
 	
 	});
-	// Delete de un pais y un año
-	app.delete(BASE_API_PATH+"/illiteracy_rate/:country/:year", (req,res)=>{
-		/*var borraPaisyaño = illiteracy_array.filter(function(e){ 
-			return e.country===String(req.country) && e.year===String(req.year);
-		});
-		console.log(borraPaisyaño);
+
+	//Delete elemento por pais y año
+
+	app.delete(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
+
+		//Recorremos el array en busca del elemento a eliminar
+		for(var e in poverty_risks_array){
+			if(poverty_risks_array[e].country == String(req.params.country) &&
+			poverty_risks_array[e].year == String(req.params.year)){
+				//Eliminamos 1 elemento desde la posicion e
+					poverty_risks_array.splice(e,1);
+					break;
+			}
+		}
+		res.status(200).send("Eliminacion correcta");
+	});
+
+	//Put modificar elemento
+
+	app.put(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
+
+		//Recorremos el array en busca del elemento a modificar
+		for(var e in poverty_risks_array){
+			if(poverty_risks_array[e].country === String(req.params.country) &&
+				poverty_risks_array[e].year === String(req.params.year)){
+					var newData = req.body;
+					poverty_risks_array[e] = newData;
+					break;
+			}
+		}
+
+		//Eliminamos repetidos en caso de que se haya realizado un cambio para añadirlo
+		//Lo pasamos a JSON para poder compararlos
+		poverty_risks_array = poverty_risks_array.map(e => JSON.stringify(e));
+
+		//Lo convertimos a conjunto para eliminar repetidos
+		poverty_risks_array = new Set(poverty_risks_array); 
 		
-		let found = -1;
-		for(let e in illiteracy_array){
-			if(req.country==illiteracy_array[e].country && req.year==illiteracy_array[e].year){
-				found = e;
-				break;
-			}
-		}
-		if(found>-1){
-			illiteracy_array.splice(e,1);
-		}
-		*/
-		var pais = req.params("country");
-		var año = req.params("year");
-		for(let e in illiteracy_array){
-			if(illiteracy_array[e].params.country==pais){
-				let numindex= illiteracy_array.indexOf(illiteracy_array[e]);
-				illiteracy_array.splice(numindex,1);
-			}
-			
-		}
-		res.send(200);
-	
+		//Lo convertimos de nuevo a array
+		poverty_risks_array = [...poverty_risks_array] 
+
+		//Lo pasamos de nuevo a objetos
+		poverty_risks_array = poverty_risks_array.map(e => JSON.parse(e)) 
+
+
+		res.status(200).send("Modificacion correcta");
 	});
 
 	//Put ERRONEO array de elementos
 
-	app.put(BASE_API_PATH+"/illiteracy_rate", function(req, res) { 
+	app.put(BASE_API_PATH+"/illiteracy", function(req, res) { 
 
-		res.send(405); //Method not allowed
+		res.status(405).send("Metodo no permitido"); //Method not allowed
 	});
+
+
 
 
 
