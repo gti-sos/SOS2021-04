@@ -197,13 +197,14 @@ var BASE_API_PATH = "/api/v1";
 
 	app.delete(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
 
-		//Se hace un filtrado por pais y año, eliminando aquellos que coinciden con el pais y año dado
-		education_expenditure_array = education_expenditure_array.filter(function(e){
-			if(e.country!==String(req.params.country) && e.year!==String(req.params.year)){
-				return e;
+		//Recorremos el array en busca del elemento a eliminar
+		for(var e in education_expenditure_array){
+			if(education_expenditure_array[e].country == String(req.params.country) &&
+				education_expenditure_array[e].year == String(req.params.year)){
+					education_expenditure_array.splice(e,1);//Eliminamos 1 elemento desde la posicion e
+					break;
 			}
-
-		});
+		}
 		res.status(200).send("Eliminacion correcta");
 	});
 
