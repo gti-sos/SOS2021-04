@@ -428,31 +428,29 @@ var BASE_API_PATH = "/api/v1";
 		
 		var datosIniciales_PovertyRisks =  [
 			{
-				"year":"2016",
+				"year":"2019",
 				"country":"Spain",
-				"education_expenditure_per_millions": "46.882,8" ,
-				"education_expenditure_per_public_expenditure":"9,97",
-				"education_expenditure_gdp":"4,21",
-				"education_expenditure_per_capita":"1,009.00"
+				"people_in_risk_of_poverty": "9610000" ,
+				"people_poverty_line":"9010",
+				"home_poverty_line":"18920",
+				"percentage_risk_of_poverty":"20,7"
 			},
-
 			{
-				"year":"2016",
+				"year":"2015",
 				"country":"Germany",
-				"education_expenditure_per_millions": "150.496,7" ,
-				"education_expenditure_per_public_expenditure":"10,93",
-				"education_expenditure_gdp":"4,8",
-				"education_expenditure_per_capita":"1,828.00"
+				"people_in_risk_of_poverty": "13428000" ,
+				"people_poverty_line":"12400",
+				"home_poverty_line":"26040",
+				"percentage_risk_of_poverty":"16,7"
 			},
-
 			{
 				"year":"2015",
 				"country":"France",
-				"education_expenditure_per_millions": "118.496,3" ,
-				"education_expenditure_per_public_expenditure":"9,66",
-				"education_expenditure_gdp":"5,46",
-				"education_expenditure_per_capita":"1,804.00"
-			}
+				"people_in_risk_of_poverty": "8474000" ,
+				"people_poverty_line":"12850",
+				"home_poverty_line":"26980",
+				"percentage_risk_of_poverty":"13,6"
+			},
 		];
 
 		// Incluimos los datos en el array 
@@ -476,7 +474,7 @@ var BASE_API_PATH = "/api/v1";
 		
 		//Indicamos al usuario que se han cargado exitosamente los datos
 		
-		res.send(200,`<!DOCTYPE html>
+		res.status(200).send(`<!DOCTYPE html>
 					<html>
 						<head>
 							<title>Education expenditures initial data</title>
@@ -500,7 +498,7 @@ var BASE_API_PATH = "/api/v1";
 		});
 		
 		//Debemos enviar el objeto pero pasandolo a JSON
-		res.send(200,JSON.stringify(filtraPA,null,2));
+		res.status(200).send(JSON.stringify(filtraPA,null,2));
 	});
 
 	//Post al array completo para incluir datos como los de la ficha de propuestas
@@ -533,7 +531,7 @@ var BASE_API_PATH = "/api/v1";
 
 	app.post(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
 
-		res.send(405); //Method not allowed
+		res.status(405).send("Metodo no permitido"); //Method not allowed
 	});
 
 	//Delete del array completo
@@ -547,12 +545,17 @@ var BASE_API_PATH = "/api/v1";
 
 	//Delete elemento por pais y año
 
-	app.delete(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
+	app.delete(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
 
-		//Se hace un filtrado por pais y año, eliminando aquellos que coinciden con el pais y año dado
-		poverty_risks_array = poverty_risks_array.filter(function(e){ 
-			return e.country!==String(req.params.country) && e.year!==String(req.params.year);
-		});
+		//Recorremos el array en busca del elemento a eliminar
+		for(var e in poverty_risks_array){
+			if(poverty_risks_array[e].country == String(req.params.country) &&
+			poverty_risks_array[e].year == String(req.params.year)){
+				//Eliminamos 1 elemento desde la posicion e
+					poverty_risks_array.splice(e,1);
+					break;
+			}
+		}
 		res.status(200).send("Eliminacion correcta");
 	});
 
@@ -562,8 +565,8 @@ var BASE_API_PATH = "/api/v1";
 
 		//Recorremos el array en busca del elemento a modificar
 		for(var e in poverty_risks_array){
-			if(poverty_risks_array[e].country === String(req.country) &&
-				poverty_risks_array[e].year === String(req.year)){
+			if(poverty_risks_array[e].country === String(req.params.country) &&
+				poverty_risks_array[e].year === String(req.params.year)){
 					var newData = req.body;
 					poverty_risks_array[e] = newData;
 					break;
@@ -572,16 +575,16 @@ var BASE_API_PATH = "/api/v1";
 
 		//Eliminamos repetidos en caso de que se haya realizado un cambio para añadirlo
 		//Lo pasamos a JSON para poder compararlos
-		education_expenditure_array = education_expenditure_array.map(e => JSON.stringify(e));
+		poverty_risks_array = poverty_risks_array.map(e => JSON.stringify(e));
 
 		//Lo convertimos a conjunto para eliminar repetidos
-		education_expenditure_array = new Set(education_expenditure_array); 
+		poverty_risks_array = new Set(poverty_risks_array); 
 		
 		//Lo convertimos de nuevo a array
-		education_expenditure_array = [...education_expenditure_array] 
+		poverty_risks_array = [...poverty_risks_array] 
 
 		//Lo pasamos de nuevo a objetos
-		education_expenditure_array = education_expenditure_array.map(e => JSON.parse(e)) 
+		poverty_risks_array = poverty_risks_array.map(e => JSON.parse(e)) 
 
 
 		res.status(200).send("Modificacion correcta");
@@ -591,7 +594,7 @@ var BASE_API_PATH = "/api/v1";
 
 	app.put(BASE_API_PATH+"/poverty_risks", function(req, res) { 
 
-		res.send(405); //Method not allowed
+		res.status(405).send("Metodo no permitido"); //Method not allowed
 	});
 
 
