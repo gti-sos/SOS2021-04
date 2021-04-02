@@ -49,7 +49,7 @@ var BASE_API_PATH = "/api/v1";
 	app.get(BASE_API_PATH+"/education_expenditures", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures
 		//Debemos enviar el objeto pero pasandolo a JSON
 		
-		res.status(200).send(JSON.stringify(education_expenditure_array,null,2));
+		res.send(JSON.stringify(education_expenditure_array,null,2));
 	});
 
 	//Get para incluir los elementos iniciales
@@ -198,8 +198,11 @@ var BASE_API_PATH = "/api/v1";
 	app.delete(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
 
 		//Se hace un filtrado por pais y año, eliminando aquellos que coinciden con el pais y año dado
-		education_expenditure_array = education_expenditure_array.filter(function(e){ 
-			return e.country!==String(req.params.country) && e.year!==String(req.params.year);
+		education_expenditure_array = education_expenditure_array.filter(function(e){
+			if(e.country!==String(req.params.country) && e.year!==String(req.params.year)){
+				return e;
+			}
+
 		});
 		res.status(200).send("Eliminacion correcta");
 	});
