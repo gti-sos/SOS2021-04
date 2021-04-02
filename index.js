@@ -325,7 +325,7 @@ var BASE_API_PATH = "/api/v1";
 		
 		//Crearemos un nuevo array resultado de filtrar el array completo
 		var filtraPaises = illiteracy_array[0].filter(function(e){ 
-			return e.country==String(req.country);
+			return e.country==String(req.params.country);
 		});
 		console.log(filtraPaises);
 
@@ -334,7 +334,7 @@ var BASE_API_PATH = "/api/v1";
 	});
 
 
-
+	//Post para añadir una linea
 	app.post(BASE_API_PATH+"/illiteracy_rate", (req,res)=>{
 
 		var newline = req.body;
