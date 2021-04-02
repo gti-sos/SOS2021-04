@@ -263,30 +263,30 @@ var BASE_API_PATH = "/api/v1";
 		
 		var datosIniciales_miguel =  [
 			{
-				"year":"2016",
+				"year":"2018",
 				"country":"Spain",
-				"education_expenditure_per_millions": "46.882,8" ,
-				"education_expenditure_per_public_expenditure":"9,97",
-				"education_expenditure_gdp":"4,21",
-				"education_expenditure_per_capita":"1,009.00"
+				"female_illiteracy_rate": "97,97%" ,
+				"male_illiteracy_rate":"98,93%",
+				"adult_illiteracy_rate":"98,44%",
+				"young_illiteracy_rate":"99,72%"
 			},
 
 			{
-				"year":"2016",
-				"country":"Germany",
-				"education_expenditure_per_millions": "150.496,7" ,
-				"education_expenditure_per_public_expenditure":"10,93",
-				"education_expenditure_gdp":"4,8",
-				"education_expenditure_per_capita":"1,828.00"
+				"year":"2018",
+				"country":"Italy",
+				"female_illiteracy_rate": "98.97%" ,
+				"male_illiteracy_rate":"99,35%",
+				"adult_illiteracy_rate":"99,16%",
+				"young_illiteracy_rate":"99,93%"
 			},
 
 			{
-				"year":"2015",
-				"country":"France",
-				"education_expenditure_per_millions": "118.496,3" ,
-				"education_expenditure_per_public_expenditure":"9,66",
-				"education_expenditure_gdp":"5,46",
-				"education_expenditure_per_capita":"1,804.00"
+				"year":"2018",
+				"country":"Portugal",
+				"female_illiteracy_rate": "95,05%" ,
+				"male_illiteracy_rate":"97,35%",
+				"adult_illiteracy_rate":"96,14%",
+				"young_illiteracy_rate":"99,66%"
 			}
 		];
 
