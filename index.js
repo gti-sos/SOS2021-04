@@ -377,7 +377,7 @@ var BASE_API_PATH = "/api/v1";
 			return e.country===String(req.country) && e.year===String(req.year);
 		});
 		console.log(borraPaisyaño);
-		*/
+		
 		let found = -1;
 		for(let e in illiteracy_array){
 			if(req.country==illiteracy_array[e].country && req.year==illiteracy_array[e].year){
@@ -388,9 +388,17 @@ var BASE_API_PATH = "/api/v1";
 		if(found>-1){
 			illiteracy_array.splice(e,1);
 		}
-		
+		*/
+		var pais = req.params("country");
+		var año = req.params("year");
+		for(let e in illiteracy_array){
+			if(illiteracy_array[e].params.country==pais){
+				let numindex= illiteracy_array.indexOf(illiteracy_array[e]);
+				illiteracy_array.splice(numindex,1);
+			}
+			
+		}
 		res.send(200);
-	
 	
 	});
 
