@@ -307,7 +307,7 @@ var BASE_API_PATH = "/api/v1";
 		poverty_risks_array = [...poverty_risks_array] 
 		
 		//Lo pasamos de nuevo a objetos
-		poverty_risks_array = poverty_risks_array.map(e => JSON.parse(e));
+		poverty_risks_array = poverty_risks_array.map(e => JSON.parse(e))
 		
 		
 		//Indicamos al usuario que se han cargado exitosamente los datos
