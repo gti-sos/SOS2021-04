@@ -393,7 +393,7 @@ var BASE_API_PATH = "/api/v1";
 	//Delete elemento por pais y año
 
 	app.delete(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
-		/*
+		
 		//Recorremos el array en busca del elemento a eliminar
 		for(var e in illiteracy_array){
 			if(illiteracy_array[e].country == String(req.params.country) &&
@@ -404,22 +404,8 @@ var BASE_API_PATH = "/api/v1";
 			}
 		}
 		return res.sendStatus(200);
-		*/
-		var oldCountry;
-	 	console.log("[!] Deletion requested for resource: /"+request.params.country+"/"+request.params.year+"\n [?] Checking existence.");
-		 illiteracy_array.forEach(function(obj) {
-		if (obj.country == request.params.country && obj.year == request.params.year) {
-			oldCountry = obj;
-			}
-		});
-		if (oldCountry != null) {
-			console.log("[-] Delete: "+ JSON.stringify(oldCountry,null));
-			delete illiteracy_array[oldCountry];
-			response.status(200).send("<p>Resource deleted</p>");	
-		} else {
-			console.log("[!] Someone has tried to delete a non-existent resource: \n-->" + JSON.stringify(oldCountry, null));
-			response.status(400).send("<p>Resource not found, can't delete.</p>");
-	}
+		
+		
 	});
 	/*
 	aapp.delete(BASE_API_PATH_EDU+"/:country/:year", (request, response) => {
