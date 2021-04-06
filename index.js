@@ -412,7 +412,7 @@ var BASE_API_PATH = "/api/v1";
 	*/
 	app.delete(BASE_API_PATH + "/illiteracy/:country/:year", (req, res) => {
 	var country = req.params.country;
-	var year = parseInt(req.body.year);
+	var year = parseInt(req.params.year);
 
 	console.log(`DELETE by country <${country}> and year: <${year}>`);
 
