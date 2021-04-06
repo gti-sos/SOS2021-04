@@ -392,7 +392,7 @@ var BASE_API_PATH = "/api/v1";
 
 	//Delete elemento por pais y año
 
-	app.delete(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
+	/*app.delete(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
 
 		//Recorremos el array en busca del elemento a eliminar
 		for(var e in illiteracy_array){
@@ -401,33 +401,31 @@ var BASE_API_PATH = "/api/v1";
 			if(a){
 				//Eliminamos 1 elemento desde la posicion e
 				illiteracy_array.splice(e,1);
-				res.status(200).send("Eliminacion correcta");
-					break;
+				return res.sendStatus(200);
+				break;
 			}
 		}
 		res.status(404);
 		
 		
 	});
-	/*
-	app.delete(BASE_API_PATH + "/depression_stats/:country/:year", (req, res) => {
-	var country = 
-req.params.country
-;
+	*/
+	app.delete(BASE_API_PATH + "/illiteracy/:country/:year", (req, res) => {
+	var country = req.params.country;
 	var year = parseInt(req.body.year);
 
 	console.log(`DELETE by country <${country}> and year: <${year}>`);
 
-	for (var i = 0; i < depression_stats_data.length; i++) {
-		if (depression_stats_data[i]["country"] === country && depression_stats_data[i]["year"] === year) {
-			depression_stats_data.splice(i, 1);
+	for (var i = 0; i < illiteracy_array.length; i++) {
+		if (illiteracy_array[i]["country"] === country && illiteracy_array[i]["year"] === year) {
+			illiteracy_array.splice(i, 1);
 			return res.sendStatus(200);
 		}
 	}
 
 	return res.sendStatus(404);
 });
-	 */
+	 
 
 	//Put modificar elemento
 
