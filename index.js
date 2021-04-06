@@ -401,10 +401,10 @@ var BASE_API_PATH = "/api/v1";
 			if(a){
 				//Eliminamos 1 elemento desde la posicion e
 				illiteracy_array.splice(e,1);
-				return res.sendStatus(200);
+				
 			}
 		}
-		
+		return res.sendStatus(200);
 		
 	});
 	/*
@@ -421,6 +421,21 @@ var BASE_API_PATH = "/api/v1";
 		}
 		
 	}
+
+	app.delete(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
+
+		//Recorremos el array en busca del elemento a eliminar
+		for(var e in poverty_risks_array){
+			if(poverty_risks_array[e].country == String(req.params.country) &&
+			poverty_risks_array[e].year == String(req.params.year)){
+				//Eliminamos 1 elemento desde la posicion e
+					poverty_risks_array.splice(e,1);
+					break;
+			}
+		}
+		res.status(200).send("Eliminacion correcta");
+	});
+
 	
 
 	
