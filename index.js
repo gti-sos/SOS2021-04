@@ -392,7 +392,7 @@ var BASE_API_PATH = "/api/v1";
 
 	//Delete elemento por pais y año
 
-	/*app.delete(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
+	app.delete(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
 
 		//Recorremos el array en busca del elemento a eliminar
 		for(var e in illiteracy_array){
@@ -405,11 +405,10 @@ var BASE_API_PATH = "/api/v1";
 				break;
 			}
 		}
-		res.status(404);
 		
 		
 	});
-	*/
+	/*
 	app.delete(BASE_API_PATH + "/illiteracy/:country/:year", (req, res) => {
 	var country = req.params.country;
 	var year = parseInt(req.params.year);
@@ -427,7 +426,7 @@ var BASE_API_PATH = "/api/v1";
 
 	
 });
-	 
+	*/ 
 
 	//Put modificar elemento
 
