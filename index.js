@@ -393,7 +393,7 @@ var BASE_API_PATH = "/api/v1";
 	//Delete elemento por pais y año
 
 	app.delete(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
-
+		/*
 		//Recorremos el array en busca del elemento a eliminar
 		for(var e in illiteracy_array){
 			if(illiteracy_array[e].country == String(req.params.country) &&
@@ -404,40 +404,40 @@ var BASE_API_PATH = "/api/v1";
 			}
 		}
 		return res.sendStatus(200);
-		
+		*/
+		var oldCountry;
+	 	console.log("[!] Deletion requested for resource: /"+request.params.country+"/"+request.params.year+"\n [?] Checking existence.");
+		 illiteracy_array.forEach(function(obj) {
+		if (obj.country == request.params.country && obj.year == request.params.year) {
+			oldCountry = obj;
+			}
+		});
+		if (oldCountry != null) {
+			console.log("[-] Delete: "+ JSON.stringify(oldCountry,null));
+			delete illiteracy_array[oldCountry];
+			response.status(200).send("<p>Resource deleted</p>");	
+		} else {
+			console.log("[!] Someone has tried to delete a non-existent resource: \n-->" + JSON.stringify(oldCountry, null));
+			response.status(400).send("<p>Resource not found, can't delete.</p>");
+	}
 	});
 	/*
-	app.delete(BASE_API_PATH + "/illiteracy/:country/:year", (req, res) => {
-	var country = req.params.country;
-	var year = parseInt(req.params.year);
-
-	console.log(`DELETE by country <${country}> and year: <${year}>`);
-
-	for (var i = 0; i < illiteracy_array.length; i++) {
-		if (illiteracy_array[i]["country"] === country && illiteracy_array[i]["year"] === year) {
-			illiteracy_array.splice(i, 1);
-			return res.sendStatus(200);
+	aapp.delete(BASE_API_PATH_EDU+"/:country/:year", (request, response) => {
+	var oldCountry;
+	console.log("[!] Deletion requested for resource: /"+request.params.country+"/"+request.params.year+"\n [?] Checking existence.");
+		mh_countries.forEach(function(obj) {
+		if (obj.country == request.params.country && obj.year == request.params.year) {
+			oldCountry = obj;
 		}
-		
-	}
-
-	app.delete(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
-
-		//Recorremos el array en busca del elemento a eliminar
-		for(var e in poverty_risks_array){
-			if(poverty_risks_array[e].country == String(req.params.country) &&
-			poverty_risks_array[e].year == String(req.params.year)){
-				//Eliminamos 1 elemento desde la posicion e
-					poverty_risks_array.splice(e,1);
-					break;
-			}
-		}
-		res.status(200).send("Eliminacion correcta");
 	});
-
-	
-
-	
+	if (oldCountry != null) {
+		console.log("[-] Delete: "+ JSON.stringify(oldCountry,null));
+		delete mh_countries[oldCountry];
+		response.status(200).send("<p>Resource deleted</p>");	
+	} else {
+		console.log("[!] Someone has tried to delete a non-existent resource: \n-->" + JSON.stringify(oldCountry, null));
+		response.status(400).send("<p>Resource not found, can't delete.</p>");
+	}
 });
 	*/ 
 
