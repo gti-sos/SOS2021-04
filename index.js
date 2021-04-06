@@ -336,7 +336,13 @@ var BASE_API_PATH = "/api/v1";
 		});
 		
 		//Debemos enviar el objeto pero pasandolo a JSON
-		res.status(200).send(JSON.stringify(filtraPA,null,2));
+		if(illiteracy_array==[]){
+			res.status(404).send(JSON.stringify(filtraPA,null,2));
+		}
+		else{
+			res.status(200).send(JSON.stringify(filtraPA,null,2));
+		}
+		
 	});
 
 	//Post al array completo para incluir datos como los de la ficha de propuestas
