@@ -336,7 +336,7 @@ var BASE_API_PATH = "/api/v1";
 		});
 		
 		//Debemos enviar el objeto pero pasandolo a JSON
-		if(illiteracy_array==[]){
+		if(filtraPA==[]){
 			res.status(404).send(JSON.stringify(filtraPA,null,2));
 		}
 		else{
