@@ -374,8 +374,11 @@ var BASE_API_PATH = "/api/v1";
 	//Post ERRONEO de elemento
 
 	app.post(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
-
+		
 		res.status(405).send("Metodo no permitido"); //Method not allowed
+		
+
+		
 	});
 
 	//Delete del array completo
@@ -400,7 +403,14 @@ var BASE_API_PATH = "/api/v1";
 					break;
 			}
 		}
-		res.status(200).send("Eliminacion correcta");
+
+		if(illiteracy_array.length==0){
+			res.sendStatus(404);
+		}
+		else{
+			res.status(200).send("Eliminacion correcta");
+		}
+		
 	});
 
 	//Put modificar elemento
@@ -431,7 +441,13 @@ var BASE_API_PATH = "/api/v1";
 		illiteracy_array = illiteracy_array.map(e => JSON.parse(e)) 
 
 
-		res.status(200).send("Modificacion correcta");
+		
+		if(illiteracy_array.length==0){
+			res.sendStatus(404);
+		}
+		else{
+			res.status(200).send("Modificacion correcta");
+		}
 	});
 
 	//Put ERRONEO array de elementos
