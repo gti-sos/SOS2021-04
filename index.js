@@ -421,9 +421,7 @@ var BASE_API_PATH = "/api/v1";
 			illiteracy_array.splice(i, 1);
 			return res.sendStatus(200);
 		}
-		else{
-			return res.sendStatus(404);
-		}
+		
 	}
 	
 
