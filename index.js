@@ -396,15 +396,16 @@ var BASE_API_PATH = "/api/v1";
 
 		//Recorremos el array en busca del elemento a eliminar
 		for(var e in illiteracy_array){
-			if(illiteracy_array[e].country == String(req.params.country) &&
-			illiteracy_array[e].year == String(req.params.year)){
+			var a = illiteracy_array[e].country == String(req.params.country) &&
+			illiteracy_array[e].year == String(req.params.year);
+			if(a){
 				//Eliminamos 1 elemento desde la posicion e
 				illiteracy_array.splice(e,1);
 					break;
 			}
 		}
 
-		if(illiteracy_array.length==0){
+		if(a.length==0){
 			res.sendStatus(404);
 		}
 		else{
