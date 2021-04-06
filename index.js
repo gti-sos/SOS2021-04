@@ -402,7 +402,6 @@ var BASE_API_PATH = "/api/v1";
 				//Eliminamos 1 elemento desde la posicion e
 				illiteracy_array.splice(e,1);
 				return res.sendStatus(200);
-				break;
 			}
 		}
 		
