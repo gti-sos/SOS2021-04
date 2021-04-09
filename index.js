@@ -126,9 +126,18 @@ var BASE_API_PATH = "/api/v1";
 		var filtraPaises = education_expenditure_array.filter(function(e){ 
 			return e.country==String(req.params.country);
 		});
+
+		if (filtraPaises.length==0){
+			//Debemos enviar el objeto pero pasandolo a JSON
+			res.status(404);
+		}
+		else{
+			//Debemos enviar el objeto pero pasandolo a JSON
+			res.status(200).send(JSON.stringify(filtraPaises,null,2));
+		}
 		
-		//Debemos enviar el objeto pero pasandolo a JSON
-		res.status(200).send(JSON.stringify(filtraPaises,null,2));		
+		
+				
 	});
 
 	//Get para tomar elementos por pais y año
@@ -139,9 +148,16 @@ var BASE_API_PATH = "/api/v1";
 		var filtraPA = education_expenditure_array.filter(function(e){ 
 			return e.country==String(req.params.country) && e.year==String(req.params.year);
 		});
+
+		if (filtraPA.length==0){
+			//No se encuentra el archivo
+			res.sendStatus(404);
+		}
+		else{
+			//Debemos enviar el objeto pero pasandolo a JSON
+			res.status(200).send(JSON.stringify(filtraPA,null,2));
+		}
 		
-		//Debemos enviar el objeto pero pasandolo a JSON
-		res.status(200).send(JSON.stringify(filtraPA,null,2));
 	});
 
 	//Post al array completo para incluir datos como los de la ficha de propuestas
@@ -187,25 +203,47 @@ var BASE_API_PATH = "/api/v1";
 	app.delete(BASE_API_PATH+"/education_expenditures/:country", function(req, res) { 
 
 		//Se hace un filtrado por pais, eliminando aquellos que coinciden con el pais dado
+		var tamIni = education_expenditure_array.length;
+		
 		education_expenditure_array = education_expenditure_array.filter(function(e){ 
 			return e.country!==String(req.params.country);
 		});
-		res.status(200).send("Eliminacion correcta");
+
+		var tamFin = education_expenditure_array; 
+
+		if (tamFin === tamIni){
+			//No se encuentra el archivo
+			res.sendStatus(404);
+		}
+		else{
+			res.status(200).send("Eliminacion correcta");
+		}
+
 	});
 
 	//Delete elemento por pais y año
 
 	app.delete(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
-
+		//Tomamos una variable para indicar si se encuentra el elemento
+		var encontrado = false;
 		//Recorremos el array en busca del elemento a eliminar
 		for(var e in education_expenditure_array){
 			if(education_expenditure_array[e].country == String(req.params.country) &&
 				education_expenditure_array[e].year == String(req.params.year)){
 					education_expenditure_array.splice(e,1);//Eliminamos 1 elemento desde la posicion e
+					encontrado = true;
 					break;
 			}
 		}
-		res.status(200).send("Eliminacion correcta");
+		//Tomamos una variable para el codigo y cadena
+		var codigo = 200;
+		var cadena = "Eliminacion correcta";
+
+		if(!encontrado){
+			codigo = 404;
+			cadena = "Recurso no encontrado";
+		}
+		res.status(codigo).send(cadena);
 	});
 
 	//Put modificar elemento
@@ -232,7 +270,7 @@ var BASE_API_PATH = "/api/v1";
 
 		education_expenditure_array = education_expenditure_array.map(e => JSON.parse(e)) //Lo pasamos de nuevo a objetos
 
-		res.status(200).send("Modificacion correcta");
+		res.status(200).send("Modificacion/Inserción correcta");
 	});
 
 	//Put ERRONEO array de elementos
@@ -394,16 +432,28 @@ var BASE_API_PATH = "/api/v1";
 
 	app.delete(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
 		
+		//variable para indicar si se ha enconrado el elemento
+		var encontrado = false;
+
 		//Recorremos el array en busca del elemento a eliminar
+
 		for(var e in illiteracy_array){
 			if(illiteracy_array[e].country == String(req.params.country) &&
 			illiteracy_array[e].year == String(req.params.year)){
 				//Eliminamos 1 elemento desde la posicion e
 				illiteracy_array.splice(e,1);
 				
+				
 			}
 		}
-		return res.sendStatus(200);
+
+		//creamos variable de codigo
+		var codigo = 200;
+
+		if(!encontrado){
+			codigo = 404;
+		}
+		return res.sendStatus(codigo);
 		
 		
 	});
