@@ -448,12 +448,15 @@ var BASE_API_PATH = "/api/v1";
 		}
 
 		//creamos variable de codigo
-		var codigo = 200;
+		var tamFin = illiteracy_array; 
 
-		if(!encontrado){
-			codigo = 404;
+		if (tamFin === tamIni){
+			//No se encuentra el archivo
+			res.sendStatus(404);
 		}
-		return res.sendStatus(codigo);
+		else{
+			res.status(200).send("Eliminacion correcta");
+		}
 		
 		
 	});
