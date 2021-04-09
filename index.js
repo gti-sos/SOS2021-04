@@ -442,6 +442,7 @@ var BASE_API_PATH = "/api/v1";
 			illiteracy_array[e].year == String(req.params.year)){
 				//Eliminamos 1 elemento desde la posicion e
 				illiteracy_array.splice(e,1);
+				encontrado = true;
 				
 				
 			}
