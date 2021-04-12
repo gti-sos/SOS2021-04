@@ -4,7 +4,6 @@
 *	    MILESTONE F04      *
 *   LAB 07-MODULARIZACIÓN  *
 ****************************
-
 */
 
 // Api Manuel González Regadera - education_expenditures
