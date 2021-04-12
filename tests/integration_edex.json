@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "886072bb-e09c-4f4e-a820-56e595cdf35e",
-		"name": "SOS2021_04_TESTS",
+		"name": "SOS2021_04_TESTS_Education_Expenditures",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -9,7 +9,7 @@
 			"name": "F04_BIS",
 			"item": [
 				{
-					"name": "Get todos elementos _ check1",
+					"name": "Get todos elementos check_1",
 					"event": [
 						{
 							"listen": "test",
@@ -43,7 +43,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Elemento unico _ add Italy",
+					"name": "Get Elemento unico add_Italy",
 					"event": [
 						{
 							"listen": "test",
@@ -86,7 +86,7 @@
 					"response": []
 				},
 				{
-					"name": "Get todos elementos _ check 2",
+					"name": "Get todos elementos check_2",
 					"event": [
 						{
 							"listen": "test",
@@ -120,7 +120,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Elemento Copy _ delete Italy",
+					"name": "Delete Elemento Copy delete_Italy",
 					"event": [
 						{
 							"listen": "test",
