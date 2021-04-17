@@ -14,5 +14,5 @@
 
 -  **POSTMAN DOCUMENTATION**:
     - [https://documenter.getpostman.com/view/14947441/TzJoCztp](https://documenter.getpostman.com/view/14947441/TzJoCztp) (developed by [Manuel González Regadera](https://github.com/mangonreg))
-    - [#](#) (developed by [Javier Carmona Andrés](https://github.com/JavierCarmona16))
+    - [https://documenter.getpostman.com/view/14968173/TzJsedV1](https://documenter.getpostman.com/view/14968173/TzJsedV1) (developed by [Javier Carmona Andrés](https://github.com/JavierCarmona16))
     - [#](#) (developed by [Miguel Gómez Vázquez](https://github.com/migueclon98))
