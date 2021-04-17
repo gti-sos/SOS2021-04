@@ -9,7 +9,15 @@
 const e = require("express");
 var express = require("express");
 
+
+
 var app = express();
+
+// Creamos una variable dataBase para la gestion de bases de datos
+
+var dataBase = require("nedb");
+
+var educationExpenditures_DB = new dataBase();
 
 //Definimos el puerto al que estará asociado el servidor web
 
@@ -31,16 +39,16 @@ var BASE_API_PATH = "/api/v1";
 
 /*
 
-****************************
-*	    MILESTONE F04      *
-****************************
+*****************************
+*	  MILESTONE F04-F05     *
+*****************************
 
 */
 
 // Api Manuel González Regadera - education_expenditures
 
 var education_expenditures_api = require("./education_expenditures_API");
-education_expenditures_api.register(app,BASE_API_PATH);
+education_expenditures_api.register(app,BASE_API_PATH, educationExpenditures_DB);
 
 // Api Miguel Gómez Vázquez - illiteracy
 
