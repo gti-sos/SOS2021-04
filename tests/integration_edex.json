@@ -1,165 +1,718 @@
 {
 	"info": {
-		"_postman_id": "886072bb-e09c-4f4e-a820-56e595cdf35e",
-		"name": "SOS2021_04_TESTS_Education_Expenditures",
+		"_postman_id": "e13b4ac6-e000-40ae-aaac-55789dc04a08",
+		"name": "Education_Expenditures_Tests_F06",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "F04_BIS",
-			"item": [
+			"name": "Get Todos los elementos Inicial",
+			"event": [
 				{
-					"name": "Get todos elementos check_1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures",
-							"protocol": "https",
-							"host": [
-								"sos2021-04",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"education_expenditures"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Elemento unico add_Italy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Successful POST request\", function () {\r",
-									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\t\t\t\"year\":\"2016\",\r\n\t\t\t\t\"country\":\"Italy\",\r\n\t\t\t\t\"education_expenditure_per_millions\": \"64.936,1\" ,\r\n\t\t\t\t\"education_expenditure_per_public_expenditure\":\"7,81\",\r\n\t\t\t\t\"education_expenditure_gdp\":\"3,83\",\r\n\t\t\t\t\"education_expenditure_per_capita\":\"1,071.00\"\r\n\t\t\t}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures",
-							"protocol": "https",
-							"host": [
-								"sos2021-04",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"education_expenditures"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get todos elementos check_2",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures",
-							"protocol": "https",
-							"host": [
-								"sos2021-04",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"education_expenditures"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Elemento Copy delete_Italy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures/Italy/2016",
-							"protocol": "https",
-							"host": [
-								"sos2021-04",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"api",
-								"v1",
-								"education_expenditures",
-								"Italy",
-								"2016"
-							]
-						}
-					},
-					"response": []
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cargar elementos Iniciales",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tomar Todos elementos (despues de carga)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tomar 1 elemento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures/France/2015",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures",
+						"France",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tomar elemento que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures/England/2015",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures",
+						"England",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Toma elementos que cumplen restricciones de parametros",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures?apm=50000&upp=7.5",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures"
+					],
+					"query": [
+						{
+							"key": "apm",
+							"value": "50000"
+						},
+						{
+							"key": "upp",
+							"value": "7.5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tomar elementos con Limit y Skip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures?skip=2&limit=3",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures"
+					],
+					"query": [
+						{
+							"key": "skip",
+							"value": "2"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tomar Grupo de elementos por Pais",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures/Spain",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures",
+						"Spain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Anadir elemento Italia 2016",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\t\t\"year\":2016,\r\n\t\t\t\t\"country\":\"Italy\",\r\n\t\t\t\t\"education_expenditure_per_millions\": 64936.1 ,\r\n\t\t\t\t\"education_expenditure_per_public_expenditure\":7.81,\r\n\t\t\t\t\"education_expenditure_gdp\":3.83,\r\n\t\t\t\t\"education_expenditure_per_capita\":1071.00\r\n\t\t\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Anadir elemento Italia 2016 - Error Duplicado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\t\t\"year\":2016,\r\n\t\t\t\t\"country\":\"Italy\",\r\n\t\t\t\t\"education_expenditure_per_millions\": 64936.1 ,\r\n\t\t\t\t\"education_expenditure_per_public_expenditure\":7.81,\r\n\t\t\t\t\"education_expenditure_gdp\":3.83,\r\n\t\t\t\t\"education_expenditure_per_capita\":1071.00\r\n\t\t\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post No permitido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\t\t\"year\":\"2016\",\r\n\t\t\t\t\"country\":\"Italy\",\r\n\t\t\t\t\"education_expenditure_per_millions\": \"64.936,1\" ,\r\n\t\t\t\t\"education_expenditure_per_public_expenditure\":\"7,81\",\r\n\t\t\t\t\"education_expenditure_gdp\":\"3,83\",\r\n\t\t\t\t\"education_expenditure_per_capita\":\"1,071.00\"\r\n\t\t\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures/France/2015",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures",
+						"France",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post de elemento erroneo (Bad Request)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\t\t\r\n\t\t\t\t\"country\":\"Italy\",\r\n\t\t\t\t\"education_expenditure_per_millions\": 64936.1 ,\r\n\t\t\t\t\"education_expenditure_per_public_expenditure\":7.81,\r\n\t\t\t\t\"education_expenditure_gdp\":3.83,\r\n\t\t\t\t\"education_expenditure_per_capita\":1071.00\r\n\t\t\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar Elemento Francia2016-Francia2018",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "            {\"year\":2018,\r\n            \"country\":\"France\",\r\n            \"education_expenditure_per_millions\": 120127.6 ,\r\n            \"education_expenditure_per_public_expenditure\":9.66,\r\n            \"education_expenditure_gdp\":5.46,\r\n            \"education_expenditure_per_capita\":1804.00  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures/France/2015",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures",
+						"France",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put erroneo - Metodo No permitido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar elemento Espana 2016",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures/Spain/2016",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures",
+						"Spain",
+						"2016"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar elemento No existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures/England/2015",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures",
+						"England",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar todos los elementos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get todos los elementos final",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures",
+					"protocol": "https",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"education_expenditures"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

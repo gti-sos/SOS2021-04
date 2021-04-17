@@ -13,6 +13,6 @@
     - [https://sos2021-04.herokuapp.com/api/v1/illiteracy](https://sos2021-04.herokuapp.com/api/v1/illiteracy) (developed by [Miguel Gómez Vázquez](https://github.com/migueclon98))
 
 -  **POSTMAN DOCUMENTATION**:
-    - [https://documenter.getpostman.com/view/14947441/TzJoCztp](https://documenter.getpostman.com/view/14947441/TzJoCztp) (developed by [Manuel González Regadera](https://github.com/mangonreg))
+    - [https://documenter.getpostman.com/view/14947441/TzJsexSA](https://documenter.getpostman.com/view/14947441/TzJsexSA) (developed by [Manuel González Regadera](https://github.com/mangonreg))
     - [https://documenter.getpostman.com/view/14968173/TzJsedV1](https://documenter.getpostman.com/view/14968173/TzJsedV1) (developed by [Javier Carmona Andrés](https://github.com/JavierCarmona16))
     - [#](#) (developed by [Miguel Gómez Vázquez](https://github.com/migueclon98))
