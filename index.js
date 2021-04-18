@@ -13,7 +13,7 @@ var express = require("express");
 
 var app = express();
 
-// Creamos una variable dataBase para la gestion de bases de datos
+// Creamos una variable dataBase para la gestion de bases de datosV2
 
 var dataBase = require("nedb");
 
