@@ -1,30 +1,68 @@
 /*
-****************************
-*	    MILESTONE F04      *
-*   LAB 07-MODULARIZACIÓN  *
-****************************
+*******************************
+*	    MILESTONE F06      *
+*   LAB 07/08 - MODULARIZACIÓN *
+*******************************
 */
 
 // Api Javier Carmona Andrés - poverty_risks
 
-//Cuando alguien invoque a register me pasa un objeto app y con ese objeto app es con el que yo puedo registrar los métodos de mi API
+/* Cuando alguien invoque a register me pasa un objeto app y
+con ese objeto app es con la que yo puedo registrar los métodos de mi API.*/
 module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 
-    //Creamos el array de objetos relativos al riesgo de pobreza, inicialmente vacío.
+    //Definimos el array de datos iniciales relativos al riesgo de pobreza.
 
-	var poverty_risks_array = [];
+	var initialData_povertyRisks = [
 
-	//Generamos las distintas peticiones
+		{
+			"year": 2019,
+			"country":"Spain",
+			"people_in_risk_of_poverty": 9610000,
+			"people_poverty_line": 9010,
+			"home_poverty_line": 18920,
+			"percentage_risk_of_poverty": 20.7
+		},
+		{
+			"year": 2015,
+			"country":"Germany",
+			"people_in_risk_of_poverty": 13428000 ,
+			"people_poverty_line": 12400,
+			"home_poverty_line": 26040,
+			"percentage_risk_of_poverty": 16.7
+		},
+		{
+			"year": 2015,
+			"country":"France",
+			"people_in_risk_of_poverty": 8474000 ,
+			"people_poverty_line": 12850,
+			"home_poverty_line": 26980,
+			"percentage_risk_of_poverty": 13.6
+		}
 
-	//Get del array completo
-	app.get(BASE_API_PATH+"/poverty_risks", (req,res)=>{
-		//Cuando llamen a /api/v1/poverty_risks
-		//Debemos enviar el objeto pero pasandolo a JSON
-		
-		res.send(200, JSON.stringify(poverty_risks_array,null,2));
+	];
+
+	
+	// GET para insertar los datos iniciales en la base de datos
+
+	app.get(BASE_API_PATH+"/poverty_risks/loadInitialData", (req,res)=>{ 
+            
+		// Cuando llamen a /api/v1/poverty_risks/loadInitialData
+		// Comprobamos si los elementos están
+		povertyRisks_DB.find({}, (error,resultFind)=>{ 
+
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get all");
+					res.sendStatus(500); //Error de servidor
+				}
+				else{
+					povertyRisks_DB.insert(initialData_povertyRisks);
+					res.sendStatus(200);                        
+				}
+			});          
 	});
 
-	//Get para incluir los elementos iniciales
+	/*
 	app.get(BASE_API_PATH+"/poverty_risks/loadInitialData", (req,res)=>{ 
 		
 		//Definimos los datos iniciales
@@ -88,6 +126,18 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 					</html>`);
 		
 		
+	});
+	*/
+
+	
+	//Generamos las distintas peticiones
+
+	//Get del array completo
+	app.get(BASE_API_PATH+"/poverty_risks", (req,res)=>{
+		//Cuando llamen a /api/v1/poverty_risks
+		//Debemos enviar el objeto pero pasandolo a JSON
+		
+		res.send(200, JSON.stringify(poverty_risks_array,null,2));
 	});
 
 	//Get para tomar elementos por pais y año
