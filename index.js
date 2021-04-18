@@ -18,6 +18,7 @@ var app = express();
 var dataBase = require("nedb");
 
 var educationExpenditures_DB = new dataBase();
+var povertyRisks_DB = new dataBase();
 var  illiteracy_DB= new dataBase();
 
 //Definimos el puerto al que estará asociado el servidor web
@@ -61,7 +62,7 @@ illiteracy_api.register(app,BASE_API_PATH, illiteracy_DB);
 	 de mi carpeta, de mi módulo. Función register que tiene como parámetro la aplicación.*/
 
 	var poverty_risks_api = require("./poverty_risks_API");
-	poverty_risks_api.register(app,BASE_API_PATH);
+	poverty_risks_api.register(app,BASE_API_PATH,povertyRisks_DB);
 
 
 

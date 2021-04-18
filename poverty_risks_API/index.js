@@ -8,7 +8,7 @@
 // Api Javier Carmona Andrés - poverty_risks
 
 //Cuando alguien invoque a register me pasa un objeto app y con ese objeto app es con el que yo puedo registrar los métodos de mi API
-module.exports.register = (app, BASE_API_PATH) => {
+module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 
     //Creamos el array de objetos relativos al riesgo de pobreza, inicialmente vacío.
 
