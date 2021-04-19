@@ -163,48 +163,48 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 
 		//Hacemos uso de bases de datos
 		povertyRisks_DB.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}}]})
-		.skip(skip).limit(limit)
-		.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
+			.skip(skip).limit(limit)
+			.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
 
-		if(error){
-			console.log("Se ha producido un error de servdor al hacer petición Get all");
-			res.sendStatus(500); //Error de servidor
-		}
-		else{
-			if(resultFind.length == 1){
-				var dataToSend = resultFind.map((objeto) =>
-					{
-						//Ocultamos el atributo id
-						return {year:objeto.year,
-						country:objeto.country,
-						people_in_risk_of_poverty: objeto.people_in_risk_of_poverty,
-						people_poverty_line:objeto.people_poverty_line,
-						home_poverty_line:objeto.home_poverty_line,
-						percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
-
-					});
-				res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
-			
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get all");
+				res.sendStatus(500); //Error de servidor
 			}
 			else{
-				var dataToSend = resultFind.map((objeto) =>
-					{
-						//Ocultamos el atributo id
-						return {year:objeto.year,
-						country:objeto.country,
-						people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
-						people_poverty_line:objeto.people_poverty_line,
-						home_poverty_line:objeto.home_poverty_line,
-						percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+				if(resultFind.length == 1){
+					var dataToSend = resultFind.map((objeto) =>
+						{
+							//Ocultamos el atributo id
+							return {year:objeto.year,
+							country:objeto.country,
+							people_in_risk_of_poverty: objeto.people_in_risk_of_poverty,
+							people_poverty_line:objeto.people_poverty_line,
+							home_poverty_line:objeto.home_poverty_line,
+							percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
 
-					});
-				res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
-			}
+						});
+					res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
 			
-		}
+				}
+				else{
+					var dataToSend = resultFind.map((objeto) =>
+						{
+							//Ocultamos el atributo id
+							return {year:objeto.year,
+							country:objeto.country,
+							people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
+							people_poverty_line:objeto.people_poverty_line,
+							home_poverty_line:objeto.home_poverty_line,
+							percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+						});
+					res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+				}
+			
+			}
 
 		
-	});
+		});
 
 
 
