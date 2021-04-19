@@ -139,6 +139,9 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
 		var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
 
+		console.log(skip);
+		console.log(limit);
+
 		//Definimos los distintos parametros de búsqueda
 		
 		// aquellos que están por encima de un nº de personas en riesgo de pobreza
@@ -159,7 +162,16 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		//aquellos que están por encima del porcentaje del riesgo de pobreza
 		var apercnt = req.query.apercnt!=undefined?parseFloat(req.query.apercnt):0;
 		//aquellos que están por debajo del porcentaje del riesgo de pobreza
-		var upercnt = req.query.upercnt!=undefined?parseFloat(req.query.upercnt):1000000000; 
+		var upercnt = req.query.upercnt!=undefined?parseFloat(req.query.upercnt):1000000000;
+
+		console.log(aprp);
+		console.log(uprp);
+		console.log(appl);
+		console.log(uppl);
+		console.log(ahpl);
+		console.log(uhpl);
+		console.log(apercnt);
+		console.log(upercnt);
 
 		//Hacemos uso de bases de datos
 		povertyRisks_DB.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}}]})
