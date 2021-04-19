@@ -129,6 +129,8 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 		});
 	});
 
+	
+};
 
 
 
@@ -409,4 +411,3 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 
 */
 
-};
