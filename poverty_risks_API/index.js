@@ -412,6 +412,29 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		res.status(405).send("Metodo no permitido"); //Method not allowed
 	});
 
+
+
+	//Delete del array completo
+
+	app.delete(BASE_API_PATH+"/poverty_risks", (req,res)=>{
+		//Elimina todos los elementos de la base de datos
+            
+		povertyRisks_DB.remove({},{multi: true},(error, numRemov)=>{
+			//numRemov indica el nº de elementos borrados
+
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+				res.sendStatus(500); //Error de servidor
+
+			}else {
+				res.sendStatus(200);
+			}
+		});
+	
+	});
+
+
+	/*
 	//Delete del array completo
 
 	app.delete(BASE_API_PATH+"/poverty_risks", (req,res)=>{
@@ -420,7 +443,73 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		res.status(200).send("Eliminacion correcta");
 	
 	});
+	*/
 
+	//Delete de elementos por pais
+
+	app.delete(BASE_API_PATH+"/poverty_risks/:country", function(req, res) { 
+
+		//Se hace un filtrado por pais, eliminando aquellos que coinciden con el pais dado
+		povertyRisks_DB.find({country : String(req.params.country)}, (error, resultFind)=>{ //Comprobamos si existe el elemento ya
+
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+				res.sendStatus(500); //Error de servidor
+			}
+			else{
+				if(resultFind.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
+					res.sendStatus(404); //No se han encontrado elementos
+				}
+				else{
+					povertyRisks_DB.remove({country : String(req.params.country)},{multi: true},(error, numRemov)=>{
+						if(error){
+							console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+							res.sendStatus(500); //Error de servidor
+
+						}else {
+							res.sendStatus(200);
+						} 
+					});
+				}
+			   
+			}
+		});
+
+	});
+
+	//Delete elemento por pais y año
+
+	app.delete(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
+		povertyRisks_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, resultFind)=>{
+			//Comprobamos si existe el elemento ya
+
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+				res.sendStatus(500); //Error de servidor
+			}
+			else{
+				if(resultFind.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
+					res.sendStatus(404); //No se han encontrado elementos
+				}
+				else{
+					povertyRisks_DB.remove({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{},(error, numRemov)=>{
+					//Se elimina aquel cuyo país y año coincida
+						
+						if(error){
+							console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+							res.sendStatus(500); //Error de servidor
+
+						}else {
+							res.sendStatus(200);
+						}
+					});
+				}
+			}
+		});
+	});
+
+
+	/*
 	//Delete elemento por pais y año
 
 	app.delete(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
@@ -436,7 +525,43 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		}
 		res.status(200).send("Eliminacion correcta");
 	});
+	*/
 
+	//Put modificar elemento
+
+	app.put(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
+		povertyRisks_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, resultFind)=>{
+			//Comprobamos si existe el elemento ya
+
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+				res.sendStatus(500); //Error de servidor
+			}
+			else{
+				if(resultFind.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
+					povertyRisks_DB.insert(req.body); //Si no existe el elemento se crea
+					res.sendStatus(201);
+				}
+				else{ 
+					dataBase.update({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{$set: req.body},{},(error, numReplaced)=>{
+						if(error){
+							console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+							res.sendStatus(500); //Error de servidor
+
+						}else {
+							res.sendStatus(200); //Elemento Modificado
+						}
+
+					});
+					
+				}
+			}
+		});
+		
+	});
+
+
+	/*
 	//Put modificar elemento
 
 	app.put(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
@@ -467,6 +592,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 
 		res.status(200).send("Modificacion correcta");
 	});
+	*/
 
 	//Put ERRONEO array de elementos
 
