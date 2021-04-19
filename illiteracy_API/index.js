@@ -49,7 +49,7 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 					res.sendStatus(500); //Error de servidor
 				}
 				else{
-					dataBase.insert(datos_EE);
+					dataBase.insert(datos_Illiteracy);
 					res.sendStatus(200);                        
 				}
 			});          
