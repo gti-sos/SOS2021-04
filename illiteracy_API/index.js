@@ -1,4 +1,4 @@
-module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
+module.exports.register = (app, BASE_API_PATH,dataBase) => {
     // Api Miguel Gómez Vázquez - illiteracy
 
 
@@ -15,7 +15,7 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 		},
 
 		{
-			"year":"2018",
+			"year":2018,
 			"country":"Italy",
 			"female_illiteracy_rate": 98.97 ,
 			"male_illiteracy_rate":99.35,
@@ -24,7 +24,7 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 		},
 
 		{
-			"year":"2018",
+			"year":2018,
 			"country":"Portugal",
 			"female_illiteracy_rate": 95.05 ,
 			"male_illiteracy_rate":97.35,
@@ -114,7 +114,7 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 							//Ocultamos el atributo id
 							return {year:objeto.year,
 								country:objeto.country,
-								education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+								education_expenditure_per_millions: objeto.education_expenditure_per_millions,
 								male_illiteracy_rate:objeto.male_illiteracy_rate,
 								adult_illiteracy_rate:objeto.adult_illiteracy_rate,
 								young_illiteracy_rate:objeto.young_illiteracy_rate};
@@ -129,6 +129,8 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 		});
 	});
 
+
+};
 
 
 
@@ -409,4 +411,3 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 
 */
 
-};
