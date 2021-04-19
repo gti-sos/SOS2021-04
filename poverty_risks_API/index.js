@@ -306,7 +306,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 	app.get(BASE_API_PATH+"/poverty_risks/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
 
 		//Crearemos un nuevo array resultado de filtrar el array completo
-		povertyRisks_DB.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, ee_db)=>{ //Se establece patron por país y año
+		povertyRisks_DB.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, resultFind)=>{ //Se establece patron por país y año
 
 			if(error){
 				console.log("Se ha producido un error de servdor al hacer petición Get country");
@@ -566,7 +566,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 					res.sendStatus(201);
 				}
 				else{ 
-					dataBase.update({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{$set: req.body},{},(error, numReplaced)=>{
+					povertyRisks_DB.update({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{$set: req.body},{},(error, numReplaced)=>{
 						if(error){
 							console.log("Se ha producido un error de servdor al hacer petición Get elemento");
 							res.sendStatus(500); //Error de servidor
