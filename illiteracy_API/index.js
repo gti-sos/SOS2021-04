@@ -124,6 +124,96 @@ module.exports.register = (app, BASE_API_PATH,dataBase) => {
 		});
 	});
 
+	 //Get para tomar elementos por pais
+        
+	 app.get(BASE_API_PATH+'/illiteracy/:country', (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+            
+		//Permitimos búsquedas con skip y limit
+		var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
+		var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
+
+		//Crearemos un nuevo array resultado de filtrar el array completo
+		dataBase.find({country : String(req.params.country)}).skip(skip).limit(limit).exec((error, ee_db)=>{ //Se establece patron por país
+
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get country");
+				res.sendStatus(500); //Error de servidor
+			}
+			else{
+				if(ee_db.length == 0){
+					res.sendStatus(404); //No se encuentra el elemento 
+				}
+				else{
+					if(ee_db.length == 1){
+						var dataToSend = ee_db.map((objeto) =>
+							{
+								//Ocultamos el atributo id
+								return {year:objeto.year,
+									country:objeto.country,
+									education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+									male_illiteracy_rate:objeto.male_illiteracy_rate,
+									adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+									young_illiteracy_rate:objeto.young_illiteracy_rate};
+
+							});
+						res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+					
+					}
+					else{
+						var dataToSend = ee_db.map((objeto) =>
+							{
+								//Ocultamos el atributo id
+								return {year:objeto.year,
+									country:objeto.country,
+									education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+									male_illiteracy_rate:objeto.male_illiteracy_rate,
+									adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+									young_illiteracy_rate:objeto.young_illiteracy_rate};
+
+							});
+						res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+					}
+				}
+			}
+		});    
+	});
+
+
+	//Get para tomar elementos por pais y año
+	
+	app.get(BASE_API_PATH+"/illiteracy/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/illiteracy/(pais)
+
+		//Crearemos un nuevo array resultado de filtrar el array completo
+		dataBase.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, ee_db)=>{ //Se establece patron por país y año
+
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get country");
+				res.sendStatus(500); //Error de servidor
+			}
+			else{
+				if(ee_db.length == 0){
+					res.sendStatus(404); //No se encuentra el elemento 
+				}
+				else{
+					var dataToSend = ee_db.map((objeto) =>
+							{
+								//Ocultamos el atributo id
+								return {year:objeto.year,
+									country:objeto.country,
+									education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+									male_illiteracy_rate:objeto.male_illiteracy_rate,
+									adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+									young_illiteracy_rate:objeto.young_illiteracy_rate};
+
+							});
+						res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+					
+				}
+			}
+		});
+		
+	});
+
 	
 };
 
