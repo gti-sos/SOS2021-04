@@ -68,7 +68,7 @@
 
         // Insertamos los datos iniciales en la base de datos
 
-        app.get(BASE_API_PATH+"/education_expenditures/loadInitialData", (req,res)=>{ 
+        app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
             
             //Cuando llamen a /api/v1/education_expenditures
             //Debemos enviar el objeto pero pasandolo a JSON
@@ -93,7 +93,7 @@
         //Generamos las distintas peticiones
 
         //Get del array completo
-        app.get(BASE_API_PATH+"/education_expenditures", (req,res)=>{ 
+        app.get(BASE_API_PATH+"/illiteracy", (req,res)=>{ 
             
             //Cuando llamen a /api/v1/education_expenditures
             //Debemos enviar el objeto pero pasandolo a JSON
