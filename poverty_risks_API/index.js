@@ -137,6 +137,8 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		//Cuando llamen a /api/v1/poverty_risks
 
 		var query = req.query;
+		var skip = query.skip;
+		var limit = query.limit;
 		
 		//Permitimos búsquedas con skip y limit
 		if (query.hasOwnProperty("skip")) {
