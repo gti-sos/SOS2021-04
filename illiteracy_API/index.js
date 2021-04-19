@@ -84,10 +84,7 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 		console.log(uyi);
 
 		//Hacemos uso de bases de datos
-		dataBase.find({$and:[{female_illiteracy_rate : {$gt : afi,$lt:ufi}},
-			 {male_illiteracy_rate: {$gt : ami,$lt:umi}},
-			 {adult_illiteracy_rate:{$gt : aai,$lt:uai}},
-			  {young_illiteracy_rate:{$gt : ayi,$lt: uyi}}]})
+		dataBase.find({$and:[{female_illiteracy_rate : {$gt : afi,$lt:ufi}},{male_illiteracy_rate: {$gt : ami,$lt:umi}},{adult_illiteracy_rate:{$gt : aai,$lt:uai}},{young_illiteracy_rate:{$gt : ayi,$lt: uyi}}]})
 			.skip(skip).limit(limit)
 			.exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
 
