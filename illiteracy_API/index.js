@@ -4,35 +4,65 @@ module.exports.register = (app, BASE_API_PATH,dataBase) => {
 
 
 
-	var datos_miguel=[
-		{
-			"year":2018,
-			"country":"Spain",
-			"female_illiteracy_rate": 97.97,
-			"male_illiteracy_rate":98.93,
-			"adult_illiteracy_rate":98.44,
-			"young_illiteracy_rate":99.72
-		},
 
-		{
-			"year":2018,
-			"country":"Italy",
-			"female_illiteracy_rate": 98.97 ,
-			"male_illiteracy_rate":99.35,
-			"adult_illiteracy_rate":99.16,
-			"young_illiteracy_rate":99.99
-		},
 
-		{
-			"year":2018,
-			"country":"Portugal",
-			"female_illiteracy_rate": 95.05 ,
-			"male_illiteracy_rate":97.35,
-			"adult_illiteracy_rate":96.14,
-			"young_illiteracy_rate":99.66
-		}
+    var datos_EE =  [
+        {
+            "year": 2016,
+            "country":"Spain",
+            "education_expenditure_per_millions": 46882.8 ,
+            "education_expenditure_per_public_expenditure":9.97,
+            "education_expenditure_gdp":4.21,
+            "education_expenditure_per_capita":1009.00
+        },
 
-	];
+        {
+            "year": 2016,
+            "country":"Germany",
+            "education_expenditure_per_millions": 150496.7,
+            "education_expenditure_per_public_expenditure":10.93,
+            "education_expenditure_gdp":4.8,
+            "education_expenditure_per_capita":1828.00
+        },
+
+        {
+            "year":2015,
+            "country":"France",
+            "education_expenditure_per_millions": 120127.6 ,
+            "education_expenditure_per_public_expenditure":9.66,
+            "education_expenditure_gdp":5.46,
+            "education_expenditure_per_capita":1804.00
+        },
+
+        {
+            "year":2015,
+            "country":"Spain",
+            "education_expenditure_per_millions": 46038.8 ,
+            "education_expenditure_per_public_expenditure":9.77,
+            "education_expenditure_gdp":4.27,
+            "education_expenditure_per_capita":992.00
+        },
+
+        {
+            "year":2015,
+            "country":"Germany",
+            "education_expenditure_per_millions": 145413.4 ,
+            "education_expenditure_per_public_expenditure":10.98,
+            "education_expenditure_gdp":4.81,
+            "education_expenditure_per_capita":1780.00
+        },
+        
+        {
+            "year":2014,
+            "country":"France",
+            "education_expenditure_per_millions": 118496.3 ,
+            "education_expenditure_per_public_expenditure":9.66,
+            "education_expenditure_gdp":5.51,
+            "education_expenditure_per_capita":1787.00
+        }
+
+    ];
+	
 
 	 // Insertamos los datos iniciales en la base de datos
 
@@ -174,6 +204,36 @@ module.exports.register = (app, BASE_API_PATH,dataBase) => {
 
 
 	/*
+
+	var datos_miguel=[
+		{
+			"year":2018,
+			"country":"Spain",
+			"female_illiteracy_rate": 97.97,
+			"male_illiteracy_rate":98.93,
+			"adult_illiteracy_rate":98.44,
+			"young_illiteracy_rate":99.72
+		},
+
+		{
+			"year":2018,
+			"country":"Italy",
+			"female_illiteracy_rate": 98.97 ,
+			"male_illiteracy_rate":99.35,
+			"adult_illiteracy_rate":99.16,
+			"young_illiteracy_rate":99.99
+		},
+
+		{
+			"year":2018,
+			"country":"Portugal",
+			"female_illiteracy_rate": 95.05 ,
+			"male_illiteracy_rate":97.35,
+			"adult_illiteracy_rate":96.14,
+			"young_illiteracy_rate":99.66
+		}
+
+	];
 	 // Insertamos los datos iniciales en la base de datos
 
 	 app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
