@@ -11,31 +11,58 @@
             
     var datos_EE =  [
         {
-			"year":2018,
-			"country":"Spain",
-			"female_illiteracy_rate":97.97,
-			"male_illiteracy_rate":98.93,
-			"adult_illiteracy_rate":98.44,
-			"young_illiteracy_rate":99.72
-		},
+            "year": 2016,
+            "country":"Spain",
+            "education_expenditure_per_millions": 46882.8 ,
+            "education_expenditure_per_public_expenditure":9.97,
+            "education_expenditure_gdp":4.21,
+            "education_expenditure_per_capita":1009.00
+        },
 
-		{
-			"year":2018,
-			"country":"Italy",
-			"female_illiteracy_rate":98.97,
-			"male_illiteracy_rate":99.35,
-			"adult_illiteracy_rate":99.16,
-			"young_illiteracy_rate":99.99
-		},
+        {
+            "year": 2016,
+            "country":"Germany",
+            "education_expenditure_per_millions": 150496.7,
+            "education_expenditure_per_public_expenditure":10.93,
+            "education_expenditure_gdp":4.8,
+            "education_expenditure_per_capita":1828.00
+        },
 
-		{
-			"year":2018,
-			"country":"Portugal",
-			"female_illiteracy_rate":95.05,
-			"male_illiteracy_rate":97.35,
-			"adult_illiteracy_rate":96.14,
-			"young_illiteracy_rate":99.66
-		}
+        {
+            "year":2015,
+            "country":"France",
+            "education_expenditure_per_millions": 120127.6 ,
+            "education_expenditure_per_public_expenditure":9.66,
+            "education_expenditure_gdp":5.46,
+            "education_expenditure_per_capita":1804.00
+        },
+
+        {
+            "year":2015,
+            "country":"Spain",
+            "education_expenditure_per_millions": 46038.8 ,
+            "education_expenditure_per_public_expenditure":9.77,
+            "education_expenditure_gdp":4.27,
+            "education_expenditure_per_capita":992.00
+        },
+
+        {
+            "year":2015,
+            "country":"Germany",
+            "education_expenditure_per_millions": 145413.4 ,
+            "education_expenditure_per_public_expenditure":10.98,
+            "education_expenditure_gdp":4.81,
+            "education_expenditure_per_capita":1780.00
+        },
+        
+        {
+            "year":2014,
+            "country":"France",
+            "education_expenditure_per_millions": 118496.3 ,
+            "education_expenditure_per_public_expenditure":9.66,
+            "education_expenditure_gdp":5.51,
+            "education_expenditure_per_capita":1787.00
+        }
 
     ];
 
@@ -67,43 +94,73 @@
 
         //Get del array completo
         app.get(BASE_API_PATH+"/illiteracy", (req,res)=>{ 
-			console.log("patata");
-			var query=req.query;
             
             //Cuando llamen a /api/v1/education_expenditures
             //Debemos enviar el objeto pero pasandolo a JSON
 
             //Permitimos búsquedas con skip y limit
-			var offset = query.offset;
-			var limit = query.limit
-	
-			delete query.offset;
-			delete query.limit;
-	
-			//Si la query contiene alguno de los atributos numericos, tenemos que pasar estos atributos de string a integer o double
-			//Comprobamos primero que la query tiene alguno de esos atributos
-	
-			if (query.hasOwnProperty("year")) {
-				query.year = parseInt(query.year);
-			}
-			if (query.hasOwnProperty("female_illiteracy_rate")) {
-				query.offences_use = parseFloat(query.female_illiteracy_rate);
-			}
-			if (query.hasOwnProperty("adult_illiteracy_rate")) {
-				query.adult_illiteracy_rate = parseFloat(query.adult_illiteracy_rate);
-			}
-			if (query.hasOwnProperty("young_illiteracy_rate")) {
-				query.young_illiteracy_rate = parseFloat(query.young_illiteracy_rate);
-			}
+            var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
+            var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
+
+            //Definimos los distintos parametros de búsqueda
+
+            var apm = req.query.apm!=undefined?parseFloat(req.query.apm):0; // aquellos que están por encima de un gasto de x millones en educacion
+            var upm = req.query.upm!=undefined?parseFloat(req.query.apm):100000000;// aquellos que están por debajo de un gasto de x millones en educacion
+            
+            var app= req.query.app!=undefined?parseFloat(req.query.app):0; //aquellos que están por encima de un porcentaje x de gasto publico en educacion
+            var upp= req.query.upp!=undefined?parseFloat(req.query.upp):1000000000; //aquellos que están por debajo de un porcentaje x de gasto publico en educacion
+            
+            var agdp = req.query.agdp!=undefined?parseFloat(req.query.agdp):0;//aquellos que están por encima de un porcentaje x de pib en gasto publico en educacion
+            var ugdp = req.query.ugdp!=undefined?parseFloat(req.query.ugdp):100000000;//aquellos que están por debajo de un porcentaje x de pib en gasto publico en educacion
+            
+            var apc = req.query.apc!=undefined?parseFloat(req.query.apc):0; //aquellos que están por encima de una cantidad x per capita de gasto en educacion
+            var upc = req.query.upc!=undefined?parseFloat(req.query.upc):1000000000; //aquellos que están por debajo de una cantidad x per capita de gasto en educacion
+
+            
+            console.log(agdp);
+            console.log(upc);
+
             //Hacemos uso de bases de datos
-            dataBase.find(query)
-                .skip(offset).limit(limit)
+            dataBase.find({$and:[{education_expenditure_per_millions : {$gt : apm,$lt:upm}},{education_expenditure_per_public_expenditure:{$gt : app,$lt:upp}},{education_expenditure_gdp:{$gt : agdp,$lt:ugdp}},{education_expenditure_per_capita:{$gt : apc,$lt:upc}}]})
+                .skip(skip).limit(limit)
                 .exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
-				ee_db.forEach((c)=>{
-					delete c._id;
-				});
-				res.status(200).send(JSON.stringify(ee_db,null,2));
-				
+
+                if(error){
+                    console.log("Se ha producido un error de servdor al hacer petición Get all");
+                    res.sendStatus(500); //Error de servidor
+                }
+                else{
+                    if(ee_db.length == 1){
+                        var dataToSend = ee_db.map((objeto) =>
+                            {
+                                //Ocultamos el atributo id
+                                return {year:objeto.year,
+                                country:objeto.country,
+                                education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+                                education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
+                                education_expenditure_gdp:objeto.education_expenditure_gdp,
+                                education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+
+                            });
+                        res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+                    
+                    }
+                    else{
+                        var dataToSend = ee_db.map((objeto) =>
+                            {
+                                //Ocultamos el atributo id
+                                return {year:objeto.year,
+                                country:objeto.country,
+                                education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+                                education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
+                                education_expenditure_gdp:objeto.education_expenditure_gdp,
+                                education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+
+                            });
+                        res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+                    }
+                }
+
                 
             });
         });
