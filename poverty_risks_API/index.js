@@ -280,7 +280,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 
 	//Get para tomar elementos por pais y año
 	
-	app.get(BASE_API_PATH+"/education_expenditures/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+	app.get(BASE_API_PATH+"/poverty_risks/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
 
 		//Crearemos un nuevo array resultado de filtrar el array completo
 		povertyRisks_DB.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, ee_db)=>{ //Se establece patron por país y año
@@ -330,6 +330,55 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 	});
 	*/
 
+
+	//Post al array completo para incluir datos como los de la ficha de propuestas
+
+	app.post(BASE_API_PATH+"/poverty_risks", (req,res)=>{
+
+		var elemRepetido = false;
+		
+		povertyRisks_DB.find({}, (error, resultFind)=>{ //Comprobamos si existe el elemento ya
+
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+				res.sendStatus(500); //Error de servidor
+			}
+			else{
+				//Comprobamos que se cumple la estructura JSON predefinida
+
+				var country = req.body.country!=undefined;
+				var year = req.body.year!=undefined;
+				var prp = req.body.education_expenditure_per_millions!=undefined;
+				var ppl= req.body.education_expenditure_per_public_expenditure!=undefined;
+				var hpl = req.body.education_expenditure_gdp!=undefined;
+				var percentrp = req.body.education_expenditure_per_capita!=undefined;
+
+				var condicion = country && year && prp && ppl && hpl && percentrp;
+
+				if(condicion){
+
+					for(elemento in resultFind){
+						elemRepetido = elemRepetido || (resultFind[elemento].country===String(req.body.country) && resultFind[elemento].year===parseInt(req.body.year));
+					}
+
+					if(elemRepetido){
+						res.sendStatus(409);
+						console.log("Elemento Repetido");
+					}
+					else{
+						povertyRisks_DB.insert(req.body);
+						res.sendStatus(201);
+					}
+				}
+				else{
+					res.sendStatus(400); //BAD REQUEST
+				}                  
+			}
+		});        
+	});
+
+
+	/*
 	//Post al array completo para incluir datos como los de la ficha de propuestas
 
 	app.post(BASE_API_PATH+"/poverty_risks", (req,res)=>{
@@ -354,7 +403,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		res.sendStatus(201);
 		console.log(JSON.stringify(newData,null,2));
 	
-	});
+	});*/
 
 	//Post ERRONEO de elemento
 
