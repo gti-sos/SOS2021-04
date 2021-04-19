@@ -1,10 +1,10 @@
-module.exports.register = (app, BASE_API_PATH,dataBase) => {
+module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
     // Api Miguel Gómez Vázquez - illiteracy
 	var datos_Illiteracy=[
 		{
 			"year":2018,
 			"country":"Spain",
-			"female_illiteracy_rate": 97.97,
+			"female_illiteracy_rate":97.97,
 			"male_illiteracy_rate":98.93,
 			"adult_illiteracy_rate":98.44,
 			"young_illiteracy_rate":99.72
@@ -13,7 +13,7 @@ module.exports.register = (app, BASE_API_PATH,dataBase) => {
 		{
 			"year":2018,
 			"country":"Italy",
-			"female_illiteracy_rate": 98.97 ,
+			"female_illiteracy_rate":98.97,
 			"male_illiteracy_rate":99.35,
 			"adult_illiteracy_rate":99.16,
 			"young_illiteracy_rate":99.99
@@ -22,7 +22,7 @@ module.exports.register = (app, BASE_API_PATH,dataBase) => {
 		{
 			"year":2018,
 			"country":"Portugal",
-			"female_illiteracy_rate": 95.05 ,
+			"female_illiteracy_rate":95.05,
 			"male_illiteracy_rate":97.35,
 			"adult_illiteracy_rate":96.14,
 			"young_illiteracy_rate":99.66
@@ -37,14 +37,14 @@ module.exports.register = (app, BASE_API_PATH,dataBase) => {
 		//Debemos enviar el objeto pero pasandolo a JSON
 
 		
-		dataBase.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
+		illiteracy_DB.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
 
 				if(error){
 					console.log("Se ha producido un error de servdor al hacer petición Get all");
 					res.sendStatus(500); //Error de servidor
 				}
 				else{
-					dataBase.insert(datos_Illiteracy);
+					illiteracy_DB.insert(datos_Illiteracy);
 					res.sendStatus(200);                        
 				}
 			});          
