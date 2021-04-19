@@ -19,7 +19,7 @@ var dataBase = require("nedb");
 
 var educationExpenditures_DB = new dataBase();
 var povertyRisks_DB = new dataBase();
-var  illiteracy_DB= new dataBase();
+var illiteracy_DB = new dataBase();
 
 //Definimos el puerto al que estará asociado el servidor web
 
