@@ -1,10 +1,10 @@
-module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
+module.exports.register = (app, BASE_API_PATH,dataBase) => {
     // Api Miguel Gómez Vázquez - illiteracy
 
 
 
 
-	var datos_Illiteracy=[
+	var datos_miguel=[
 		{
 			"year":2018,
 			"country":"Spain",
@@ -34,6 +34,146 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 
 	];
 
+	 // Insertamos los datos iniciales en la base de datos
+
+	 app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
+            
+		//Cuando llamen a /api/v1/education_expenditures
+		//Debemos enviar el objeto pero pasandolo a JSON
+
+		
+			dataBase.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
+
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get all");
+					res.sendStatus(500); //Error de servidor
+				}
+				else{
+					dataBase.insert(datos_miguel);
+					res.sendStatus(200);                        
+				}
+			});          
+	});
+
+	
+
+	//Generamos las distintas peticiones
+
+	//Get del array completo
+	app.get(BASE_API_PATH+"/education_expenditures", (req,res)=>{ 
+		
+		//Cuando llamen a /api/v1/education_expenditures
+		//Debemos enviar el objeto pero pasandolo a JSON
+
+		//Permitimos búsquedas con skip y limit
+		var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
+		var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
+
+		//Definimos los distintos parametros de búsqueda
+
+		var apm = req.query.apm!=undefined?parseFloat(req.query.apm):0; // aquellos que están por encima de un gasto de x millones en educacion
+		var upm = req.query.upm!=undefined?parseFloat(req.query.apm):100000000;// aquellos que están por debajo de un gasto de x millones en educacion
+		
+		var app= req.query.app!=undefined?parseFloat(req.query.app):0; //aquellos que están por encima de un porcentaje x de gasto publico en educacion
+		var upp= req.query.upp!=undefined?parseFloat(req.query.upp):1000000000; //aquellos que están por debajo de un porcentaje x de gasto publico en educacion
+		
+		var agdp = req.query.agdp!=undefined?parseFloat(req.query.agdp):0;//aquellos que están por encima de un porcentaje x de pib en gasto publico en educacion
+		var ugdp = req.query.ugdp!=undefined?parseFloat(req.query.ugdp):100000000;//aquellos que están por debajo de un porcentaje x de pib en gasto publico en educacion
+		
+		var apc = req.query.apc!=undefined?parseFloat(req.query.apc):0; //aquellos que están por encima de una cantidad x per capita de gasto en educacion
+		var upc = req.query.upc!=undefined?parseFloat(req.query.upc):1000000000; //aquellos que están por debajo de una cantidad x per capita de gasto en educacion
+
+		
+		console.log(agdp);
+		console.log(upc);
+
+		//Hacemos uso de bases de datos
+		dataBase.find({$and:[{education_expenditure_per_millions : {$gt : apm,$lt:upm}}, {education_expenditure_per_public_expenditure: {$gt : app,$lt:upp}},{education_expenditure_gdp:{$gt : agdp,$lt:ugdp}}, {education_expenditure_per_capita:{$gt : apc,$lt:upc}}]})
+			.skip(skip).limit(limit)
+			.exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
+
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get all");
+				res.sendStatus(500); //Error de servidor
+			}
+			else{
+				if(ee_db.length == 1){
+					var dataToSend = ee_db.map((objeto) =>
+						{
+							//Ocultamos el atributo id
+							return {year:objeto.year,
+							country:objeto.country,
+							education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+							education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
+							education_expenditure_gdp:objeto.education_expenditure_gdp,
+							education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+
+						});
+					res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+				
+				}
+				else{
+					var dataToSend = ee_db.map((objeto) =>
+						{
+							//Ocultamos el atributo id
+							return {year:objeto.year,
+							country:objeto.country,
+							education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+							education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
+							education_expenditure_gdp:objeto.education_expenditure_gdp,
+							education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+
+						});
+					res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+				}
+				
+			}
+
+			
+		});
+	});
+
+	
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
 	 // Insertamos los datos iniciales en la base de datos
 
 	 app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
@@ -129,46 +269,51 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 		});
 	});
 
-
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/*var illiteracy_array = [];
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	var illiteracy_array = [];
 
 	//Generamos las distintas peticiones
 
