@@ -174,11 +174,11 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		//Hacemos uso de bases de datos
 		povertyRisks_DB.find({query}).skip(skip).limit(limit)
 			.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
-
+				console.log("Query: "+query);
 			if(error){
 				console.log("Se ha producido un error de servdor al hacer petición Get all");
 				res.sendStatus(500); //Error de servidor
-				console.log(error);
+				console.log("Error GET general: "+error);
 			}
 			else{
 				if(resultFind.length == 1){
@@ -194,7 +194,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 
 						});
 					res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
-			
+					console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
 				}
 				else{
 					var dataToSend = resultFind.map((objeto) =>
@@ -209,6 +209,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 
 						});
 					res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+					console.log(("Resultados GET general: ")+resultFind);
 				}
 			
 			}
@@ -233,10 +234,18 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
         
 	app.get(BASE_API_PATH+'/poverty_risks/:country', (req,res)=>{ 
 		//Cuando llamen a /api/v1/poverty_risks/(pais)
-            
+
+		var query = req.query;
+		var skip = query.skip;
+		var limit = query.limit;
+		
 		//Permitimos búsquedas con skip y limit
-		var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
-		var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
+		if (query.hasOwnProperty("skip")) {
+			query.skip = parseInt(query.skip);
+		}
+		if (query.hasOwnProperty("limit")) {
+			query.limit = parseInt(query.limit);
+		}
 
 		//Crearemos un nuevo array resultado de filtrar el array completo
 		povertyRisks_DB.find({country : String(req.params.country)}).skip(skip).limit(limit).exec((error, resultFind)=>{
@@ -280,6 +289,8 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 							});
 						res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
 					}
+					console.log(("Query GET para tomar elementos por pais: ")+query);
+					console.log(("Resultados GET para tomar elementos por pais: ")+dataToSend); 
 				}
 			}
 		});    
@@ -356,10 +367,12 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 
 				var country = req.body.country!=undefined;
 				var year = req.body.year!=undefined;
-				var prp = req.body.education_expenditure_per_millions!=undefined;
-				var ppl= req.body.education_expenditure_per_public_expenditure!=undefined;
-				var hpl = req.body.education_expenditure_gdp!=undefined;
-				var percentrp = req.body.education_expenditure_per_capita!=undefined;
+				var prp = req.body.people_in_risk_of_poverty!=undefined;
+				var ppl= req.body.people_poverty_line!=undefined;
+				var hpl = req.body.home_poverty_line!=undefined;
+				var percentrp = req.body.percentage_risk_of_poverty!=undefined;
+
+				console.log(country);console.log(year);console.log(prp);console.log(ppl);console.log(hpl);console.log(percentrp);
 
 				var condicion = country && year && prp && ppl && hpl && percentrp;
 
