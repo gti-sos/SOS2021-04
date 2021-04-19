@@ -35,7 +35,7 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 	];
 	 // Insertamos los datos iniciales en la base de datos
 
-	 app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
+	app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
             
 		//Cuando llamen a /api/v1/illiteracy
 		//Debemos enviar el objeto pero pasandolo a JSON
@@ -53,7 +53,8 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 					illiteracy_DB.insert(datos_Illiteracy);
 					res.sendStatus(200);                        
 				}
-			});          
+			});
+		          
 	});
 
 	//Get del array completo
