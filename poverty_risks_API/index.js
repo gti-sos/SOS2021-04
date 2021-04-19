@@ -181,6 +181,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 			if(error){
 				console.log("Se ha producido un error de servdor al hacer petición Get all");
 				res.sendStatus(500); //Error de servidor
+				console.log(error);
 			}
 			else{
 				if(resultFind.length == 1){
