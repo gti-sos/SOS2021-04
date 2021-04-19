@@ -153,26 +153,40 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		mostrarte los datos que cumplan dichos parámetros si no hay ninguno,
 		no mostrará nada.
 		*/
+		
+			// aquellos que están por encima de un nº de personas en riesgo de pobreza
+			var aprp = req.query.aprp!=undefined?parseInt(req.query.aprp):0; 
+			// aquellos que están por debajo de un nº de personas en riesgo de pobreza
+			var uprp = req.query.uprp!=undefined?parseInt(req.query.uprp):100000000;
 
-		if (query.hasOwnProperty("year")) {
-			query.year = parseInt(query.year);
-		}
-		if (query.hasOwnProperty("people_in_risk_of_poverty")) {
-			query.people_in_risk_of_poverty = parseInt(query.people_in_risk_of_poverty);
-		}
-		if (query.hasOwnProperty("people_poverty_line")) {
-			query.people_poverty_line = parseInt(query.people_poverty_line);
-		}
-		if (query.hasOwnProperty("home_poverty_line")) {
-			query.home_poverty_line = parseInt(query.home_poverty_line);
-		}
-		if (query.hasOwnProperty("percentage_risk_of_poverty")) {
-			query.percentage_risk_of_poverty = parseFloat(query.percentage_risk_of_poverty);
-		}
+			//aquellos que están por encima del índice de pobreza de las personas
+			var appl= req.query.appl!=undefined?parseInt(req.query.appl):0; 
+			//aquellos que están por debajo del índice de pobreza de las personas
+			var uppl= req.query.uppl!=undefined?parseInt(req.query.uppl):1000000000; 
+
+			//aquellos que están por encima del índice de pobreza de los hogares
+			var ahpl = req.query.ahpl!=undefined?parseInt(req.query.ahpl):0;
+			//aquellos que están por debajo del índice de pobreza de los hogares
+			var uhpl = req.query.uhpl!=undefined?parseInt(req.query.uhpl):100000000;
+
+			//aquellos que están por encima del porcentaje del riesgo de pobreza
+			var apercnt = req.query.apercnt!=undefined?parseFloat(req.query.apercnt):0;
+			//aquellos que están por debajo del porcentaje del riesgo de pobreza
+			var upercnt = req.query.upercnt!=undefined?parseFloat(req.query.upercnt):100;
+
+			console.log(aprp);
+			console.log(uprp);
+			console.log(appl);
+			console.log(uppl);
+			console.log(ahpl);
+			console.log(uhpl);
+			console.log(apercnt);
+			console.log(upercnt);
 
 		
 		//Hacemos uso de bases de datos
-		povertyRisks_DB.find({query}).skip(skip).limit(limit)
+		povertyRisks_DB.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}}]})
+			.skip(skip).limit(limit)
 			.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
 				console.log("Query: "+query);
 			if(error){
