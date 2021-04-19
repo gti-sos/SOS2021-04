@@ -142,19 +142,19 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		//Definimos los distintos parametros de búsqueda
 		
 		// aquellos que están por encima de un nº de personas en riesgo de pobreza
-		var aprp = req.query.aprp!=undefined?parseFloat(req.query.aprp):0; 
+		var aprp = req.query.aprp!=undefined?parseInt(req.query.aprp):0; 
 		// aquellos que están por debajo de un nº de personas en riesgo de pobreza
-		var uprp = req.query.uprp!=undefined?parseFloat(req.query.uprp):100000000;
+		var uprp = req.query.uprp!=undefined?parseInt(req.query.uprp):100000000;
 		
 		//aquellos que están por encima del índice de pobreza de las personas
-		var appl= req.query.appl!=undefined?parseFloat(req.query.appl):0; 
+		var appl= req.query.appl!=undefined?parseInt(req.query.appl):0; 
 		//aquellos que están por debajo del índice de pobreza de las personas
-		var uppl= req.query.uppl!=undefined?parseFloat(req.query.uppl):1000000000; 
+		var uppl= req.query.uppl!=undefined?parseInt(req.query.uppl):1000000000; 
 		
 		//aquellos que están por encima del índice de pobreza de los hogares
-		var ahpl = req.query.ahpl!=undefined?parseFloat(req.query.ahpl):0;
+		var ahpl = req.query.ahpl!=undefined?parseInt(req.query.ahpl):0;
 		//aquellos que están por debajo del índice de pobreza de los hogares
-		var uhpl = req.query.uhpl!=undefined?parseFloat(req.query.uhpl):100000000;
+		var uhpl = req.query.uhpl!=undefined?parseInt(req.query.uhpl):100000000;
 
 		//aquellos que están por encima del porcentaje del riesgo de pobreza
 		var apercnt = req.query.apercnt!=undefined?parseFloat(req.query.apercnt):0;
