@@ -128,13 +128,15 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 	});
 	*/
 	
-	var query = req.query;
+	
 	
 	//Generamos las distintas peticiones
 
 	//Get del array completo
 	app.get(BASE_API_PATH+"/poverty_risks", (req,res)=>{
 		//Cuando llamen a /api/v1/poverty_risks
+
+		var query = req.query;
 		
 		//Permitimos búsquedas con skip y limit
 		if (query.hasOwnProperty("skip")) {
