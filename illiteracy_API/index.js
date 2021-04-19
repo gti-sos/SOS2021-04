@@ -1,4 +1,4 @@
-module.exports.register = (app, BASE_API_PATH,dataBase) => {
+module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
     // Api Miguel Gómez Vázquez - illiteracy
 
 
@@ -38,18 +38,18 @@ module.exports.register = (app, BASE_API_PATH,dataBase) => {
 
 	 app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
             
-		//Cuando llamen a /api/v1/education_expenditures
+		//Cuando llamen a /api/v1/illiteracy
 		//Debemos enviar el objeto pero pasandolo a JSON
 
 		
-			dataBase.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
+		illiteracy_DB.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
 
 				if(error){
 					console.log("Se ha producido un error de servdor al hacer petición Get all");
 					res.sendStatus(500); //Error de servidor
 				}
 				else{
-					dataBase.insert(datos_Illiteracy);
+					illiteracy_DB.insert(datos_Illiteracy);
 					res.sendStatus(200);                        
 				}
 			});          
