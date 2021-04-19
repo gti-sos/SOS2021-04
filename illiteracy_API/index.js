@@ -5,7 +5,7 @@
 
 
 
-	module.exports.register = (app, BASE_API_PATH,dataBase) => {
+	module.exports.register = (app,BASE_API_PATH,dataBase) => {
 
         //Definimos los datos iniciales
             
@@ -121,7 +121,7 @@
             console.log(upc);
 
             //Hacemos uso de bases de datos
-            dataBase.find({$and:[{education_expenditure_per_millions : {$gt : apm,$lt:upm}}, {education_expenditure_per_public_expenditure: {$gt : app,$lt:upp}},{education_expenditure_gdp:{$gt : agdp,$lt:ugdp}}, {education_expenditure_per_capita:{$gt : apc,$lt:upc}}]})
+            dataBase.find({$and:[{education_expenditure_per_millions : {$gt : apm,$lt:upm}},{education_expenditure_per_public_expenditure:{$gt : app,$lt:upp}},{education_expenditure_gdp:{$gt : agdp,$lt:ugdp}},{education_expenditure_per_capita:{$gt : apc,$lt:upc}}]})
                 .skip(skip).limit(limit)
                 .exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
 

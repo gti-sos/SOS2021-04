@@ -25,7 +25,7 @@ var povertyRisks_DB = new dataBase({ filename: path.join(__dirname,"./poverty_ri
 /* Quiero que se asocie la base de datos a ese fichero, y todas las operaciones
 / se hacen en ese fichero*/
 
-var illiteracy_DB = new dataBase();
+var illiteracy_DB = new dataBase({ filename: path.join(__dirname,"./illiteracy_API/datos.db"), autoload: true });
 
 //Definimos el puerto al que estará asociado el servidor web
 
