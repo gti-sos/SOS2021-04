@@ -39,21 +39,17 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
             
 		//Cuando llamen a /api/v1/illiteracy
 		//Debemos enviar el objeto pero pasandolo a JSON
-
-		
 		illiteracy_DB.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
-
-				if(error){
-					console.log("Se ha producido un error de servdor al hacer petición Get all");
-					window.alert(error);
-					res.sendStatus(500); //Error de servidor
-
-				}
-				else{
-					illiteracy_DB.insert(datos_Illiteracy);
-					res.sendStatus(200);                        
-				}
-			});
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get all");
+				window.alert(error);
+				res.sendStatus(500); //Error de servidor
+			}
+			else{
+				illiteracy_DB.insert(datos_Illiteracy);
+				res.sendStatus(200);                        
+			}
+		});
 		          
 	});
 
