@@ -17,19 +17,19 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 		{
 			"year":"2018",
 			"country":"Italy",
-			"female_illiteracy_rate": "98.97%" ,
-			"male_illiteracy_rate":"99,35%",
-			"adult_illiteracy_rate":"99,16%",
-			"young_illiteracy_rate":"99,93%"
+			"female_illiteracy_rate": 98.97 ,
+			"male_illiteracy_rate":99.35,
+			"adult_illiteracy_rate":99.16,
+			"young_illiteracy_rate":99.99
 		},
 
 		{
 			"year":"2018",
 			"country":"Portugal",
-			"female_illiteracy_rate": "95,05%" ,
-			"male_illiteracy_rate":"97,35%",
-			"adult_illiteracy_rate":"96,14%",
-			"young_illiteracy_rate":"99,66%"
+			"female_illiteracy_rate": 95.05 ,
+			"male_illiteracy_rate":97.35,
+			"adult_illiteracy_rate":96.14,
+			"young_illiteracy_rate":99.66
 		}
 
 	];
@@ -49,7 +49,7 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 					res.sendStatus(500); //Error de servidor
 				}
 				else{
-					dataBase.insert(datos_EE);
+					dataBase.insert(datos_Illiteracy);
 					res.sendStatus(200);                        
 				}
 			});          
@@ -84,10 +84,7 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 		console.log(uyi);
 
 		//Hacemos uso de bases de datos
-		dataBase.find({$and:[{female_illiteracy_rate : {$gt : afi,$lt:ufi}},
-			 {male_illiteracy_rate: {$gt : ami,$lt:umi}},
-			 {adult_illiteracy_rate:{$gt : aai,$lt:uai}},
-			  {young_illiteracy_rate:{$gt : ayi,$lt: uyi}}]})
+		dataBase.find({$and:[{female_illiteracy_rate : {$gt : afi,$lt:ufi}},{male_illiteracy_rate: {$gt : ami,$lt:umi}},{adult_illiteracy_rate:{$gt : aai,$lt:uai}},{young_illiteracy_rate:{$gt : ayi,$lt: uyi}}]})
 			.skip(skip).limit(limit)
 			.exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
 
