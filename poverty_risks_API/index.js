@@ -127,7 +127,8 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		
 	});
 	*/
-
+	
+	var query = req.query;
 	
 	//Generamos las distintas peticiones
 
@@ -136,44 +137,18 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		//Cuando llamen a /api/v1/poverty_risks
 		
 		//Permitimos búsquedas con skip y limit
-		var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
-		var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
+		if (query.hasOwnProperty("skip")) {
+			query.skip = parseInt(query.skip);
+		}
+		if (query.hasOwnProperty("limit")) {
+			query.limit = parseInt(query.limit);
+		}
 
-		console.log(skip);
-		console.log(limit);
-
-		var query = req.query;
-
-		//Definimos los distintos parametros de búsqueda
-		
-		// aquellos que están por encima de un nº de personas en riesgo de pobreza
-		var aprp = req.query.aprp!=undefined?parseInt(req.query.aprp):0; 
-		// aquellos que están por debajo de un nº de personas en riesgo de pobreza
-		var uprp = req.query.uprp!=undefined?parseInt(req.query.uprp):100000000;
-		
-		//aquellos que están por encima del índice de pobreza de las personas
-		var appl= req.query.appl!=undefined?parseInt(req.query.appl):0; 
-		//aquellos que están por debajo del índice de pobreza de las personas
-		var uppl= req.query.uppl!=undefined?parseInt(req.query.uppl):1000000000; 
-		
-		//aquellos que están por encima del índice de pobreza de los hogares
-		var ahpl = req.query.ahpl!=undefined?parseInt(req.query.ahpl):0;
-		//aquellos que están por debajo del índice de pobreza de los hogares
-		var uhpl = req.query.uhpl!=undefined?parseInt(req.query.uhpl):100000000;
-
-		//aquellos que están por encima del porcentaje del riesgo de pobreza
-		var apercnt = req.query.apercnt!=undefined?parseFloat(req.query.apercnt):0;
-		//aquellos que están por debajo del porcentaje del riesgo de pobreza
-		var upercnt = req.query.upercnt!=undefined?parseFloat(req.query.upercnt):1000000000;
-
-		console.log(aprp);
-		console.log(uprp);
-		console.log(appl);
-		console.log(uppl);
-		console.log(ahpl);
-		console.log(uhpl);
-		console.log(apercnt);
-		console.log(upercnt);
+		/*Definimos los distintos parametros de búsqueda.
+		Si le marcas unos parámetros de búsqueda el db.find intentará
+		mostrarte los datos que cumplan dichos parámetros si no hay ninguno,
+		no mostrará nada.
+		*/
 
 		if (query.hasOwnProperty("year")) {
 			query.year = parseInt(query.year);
@@ -193,8 +168,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 
 		
 		//Hacemos uso de bases de datos
-		povertyRisks_DB.find({query})
-			.skip(skip).limit(limit)
+		povertyRisks_DB.find({query}).skip(skip).limit(limit)
 			.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
 
 			if(error){
