@@ -56,6 +56,7 @@ education_expenditures_api.register(app,BASE_API_PATH, educationExpenditures_DB)
 var illiteracy_api = require("./illiteracy_API");
 illiteracy_api.register(app,BASE_API_PATH, illiteracy_DB);
 
+
 // API Javier Carmona Andrés - poverty_risks
 
 	/*Necesario para crear la modularidad adecuada de la API. El require se usa para "importar lo necesario"
