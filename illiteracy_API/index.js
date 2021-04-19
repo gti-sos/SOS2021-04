@@ -15,7 +15,7 @@ module.exports.register = (app, BASE_API_PATH,dataBase) => {
 		},
 
 		{
-			"year":"2018",
+			"year":2018,
 			"country":"Italy",
 			"female_illiteracy_rate": 98.97 ,
 			"male_illiteracy_rate":99.35,
@@ -24,7 +24,7 @@ module.exports.register = (app, BASE_API_PATH,dataBase) => {
 		},
 
 		{
-			"year":"2018",
+			"year":2018,
 			"country":"Portugal",
 			"female_illiteracy_rate": 95.05 ,
 			"male_illiteracy_rate":97.35,
