@@ -62,28 +62,27 @@ module.exports.register = (app, BASE_API_PATH,dataBase) => {
         }
 
     ];
-	
 
-	 // Insertamos los datos iniciales en la base de datos
+        // Insertamos los datos iniciales en la base de datos
 
-	 app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
+        app.get(BASE_API_PATH+"/education_expenditures/loadInitialData", (req,res)=>{ 
             
-		//Cuando llamen a /api/v1/education_expenditures
-		//Debemos enviar el objeto pero pasandolo a JSON
+            //Cuando llamen a /api/v1/education_expenditures
+            //Debemos enviar el objeto pero pasandolo a JSON
 
-		
-			dataBase.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
+            
+                dataBase.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
 
-				if(error){
-					console.log("Se ha producido un error de servdor al hacer petición Get all");
-					res.sendStatus(500); //Error de servidor
-				}
-				else{
-					dataBase.insert(datos_miguel);
-					res.sendStatus(200);                        
-				}
-			});          
-	});
+                    if(error){
+                        console.log("Se ha producido un error de servdor al hacer petición Get all");
+                        res.sendStatus(500); //Error de servidor
+                    }
+                    else{
+                        dataBase.insert(datos_EE);
+                        res.sendStatus(200);                        
+                    }
+                });          
+        });
 
 	
 
