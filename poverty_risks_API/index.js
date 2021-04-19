@@ -162,7 +162,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		var upercnt = req.query.upercnt!=undefined?parseFloat(req.query.upercnt):1000000000; 
 
 		//Hacemos uso de bases de datos
-		dataBase.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}}]})
+		povertyRisks_DB.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}}]})
 		.skip(skip).limit(limit)
 		.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
 
