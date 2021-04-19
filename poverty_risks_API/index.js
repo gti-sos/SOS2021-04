@@ -135,10 +135,91 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 	//Get del array completo
 	app.get(BASE_API_PATH+"/poverty_risks", (req,res)=>{
 		//Cuando llamen a /api/v1/poverty_risks
+		
+		//Permitimos búsquedas con skip y limit
+		var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
+		var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
+
+		//Definimos los distintos parametros de búsqueda
+		
+		// aquellos que están por encima de un nº de personas en riesgo de pobreza
+		var aprp = req.query.aprp!=undefined?parseFloat(req.query.aprp):0; 
+		// aquellos que están por debajo de un nº de personas en riesgo de pobreza
+		var uprp = req.query.uprp!=undefined?parseFloat(req.query.uprp):100000000;
+		
+		//aquellos que están por encima del índice de pobreza de las personas
+		var appl= req.query.appl!=undefined?parseFloat(req.query.appl):0; 
+		//aquellos que están por debajo del índice de pobreza de las personas
+		var uppl= req.query.uppl!=undefined?parseFloat(req.query.uppl):1000000000; 
+		
+		//aquellos que están por encima del índice de pobreza de los hogares
+		var ahpl = req.query.ahpl!=undefined?parseFloat(req.query.ahpl):0;
+		//aquellos que están por debajo del índice de pobreza de los hogares
+		var uhpl = req.query.uhpl!=undefined?parseFloat(req.query.uhpl):100000000;
+
+		//aquellos que están por encima del porcentaje del riesgo de pobreza
+		var apercnt = req.query.apercnt!=undefined?parseFloat(req.query.apercnt):0;
+		//aquellos que están por debajo del porcentaje del riesgo de pobreza
+		var upercnt = req.query.upercnt!=undefined?parseFloat(req.query.upercnt):1000000000; 
+
+		//Hacemos uso de bases de datos
+		dataBase.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}}]})
+		.skip(skip).limit(limit)
+		.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
+
+		if(error){
+			console.log("Se ha producido un error de servdor al hacer petición Get all");
+			res.sendStatus(500); //Error de servidor
+		}
+		else{
+			if(resultFind.length == 1){
+				var dataToSend = resultFind.map((objeto) =>
+					{
+						//Ocultamos el atributo id
+						return {year:objeto.year,
+						country:objeto.country,
+						people_in_risk_of_poverty: objeto.people_in_risk_of_poverty,
+						people_poverty_line:objeto.people_poverty_line,
+						home_poverty_line:objeto.home_poverty_line,
+						percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+					});
+				res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+			
+			}
+			else{
+				var dataToSend = resultFind.map((objeto) =>
+					{
+						//Ocultamos el atributo id
+						return {year:objeto.year,
+						country:objeto.country,
+						people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
+						people_poverty_line:objeto.people_poverty_line,
+						home_poverty_line:objeto.home_poverty_line,
+						percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+					});
+				res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+			}
+			
+		}
+
+		
+	});
+
+
+
+	});
+
+	/*
+	//Get del array completo
+	app.get(BASE_API_PATH+"/poverty_risks", (req,res)=>{
+		//Cuando llamen a /api/v1/poverty_risks
 		//Debemos enviar el objeto pero pasandolo a JSON
 		
 		res.send(200, JSON.stringify(poverty_risks_array,null,2));
 	});
+	*/
 
 	//Get para tomar elementos por pais y año
 	
