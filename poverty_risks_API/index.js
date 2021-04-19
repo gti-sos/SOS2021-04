@@ -14,7 +14,6 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
     //Definimos el array de datos iniciales relativos al riesgo de pobreza.
 
 	var initialData_povertyRisks = [
-
 		{
 			"year": 2019,
 			"country":"Spain",
