@@ -220,6 +220,101 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 	});
 	*/
 
+
+	//Get para tomar elementos por pais
+        
+	app.get(BASE_API_PATH+'/poverty_risks/:country', (req,res)=>{ 
+		//Cuando llamen a /api/v1/poverty_risks/(pais)
+            
+		//Permitimos búsquedas con skip y limit
+		var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
+		var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
+
+		//Crearemos un nuevo array resultado de filtrar el array completo
+		povertyRisks_DB.find({country : String(req.params.country)}).skip(skip).limit(limit).exec((error, resultFind)=>{
+			//Se establece patron por país
+
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get country");
+				res.sendStatus(500); //Error de servidor
+			}
+			else{
+				if(resultFind.length == 0){
+					res.sendStatus(404); //No se encuentra el elemento 
+				}
+				else{
+					if(resultFind.length == 1){
+						var dataToSend = resultFind.map((objeto) =>
+							{
+								//Ocultamos el atributo id
+								return {year:objeto.year,
+								country:objeto.country,
+								people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
+								people_poverty_line:objeto.people_poverty_line,
+								home_poverty_line:objeto.home_poverty_line,
+								percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+							});
+						res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+					
+					}
+					else{
+						var dataToSend = resultFind.map((objeto) =>
+							{
+								//Ocultamos el atributo id
+								return {year:objeto.year,
+								country:objeto.country,
+								people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
+								people_poverty_line:objeto.people_poverty_line,
+								home_poverty_line:objeto.home_poverty_line,
+								percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+							});
+						res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+					}
+				}
+			}
+		});    
+	});
+
+
+	//Get para tomar elementos por pais y año
+	
+	app.get(BASE_API_PATH+"/education_expenditures/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+
+		//Crearemos un nuevo array resultado de filtrar el array completo
+		povertyRisks_DB.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, ee_db)=>{ //Se establece patron por país y año
+
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get country");
+				res.sendStatus(500); //Error de servidor
+			}
+			else{
+				if(resultFind.length == 0){
+					res.sendStatus(404); //No se encuentra el elemento 
+				}
+				else{
+					var dataToSend = resultFind.map((objeto) =>
+							{
+								//Ocultamos el atributo id
+								return {year:objeto.year,
+								country:objeto.country,
+								people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
+								people_poverty_line:objeto.people_poverty_line,
+								home_poverty_line:objeto.home_poverty_line,
+								percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+							});
+						res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+					
+				}
+			}
+		});
+		
+	});
+
+
+	/*
 	//Get para tomar elementos por pais y año
 	
 	app.get(BASE_API_PATH+"/poverty_risks/:country/:year", (req,res)=>{ 
@@ -233,6 +328,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		//Debemos enviar el objeto pero pasandolo a JSON
 		res.status(200).send(JSON.stringify(filtraPA,null,2));
 	});
+	*/
 
 	//Post al array completo para incluir datos como los de la ficha de propuestas
 
