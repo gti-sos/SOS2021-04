@@ -72,6 +72,7 @@
             
             //Cuando llamen a /api/v1/education_expenditures
             //Debemos enviar el objeto pero pasandolo a JSON
+			console.log("patata");
 
             
                 dataBase.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
