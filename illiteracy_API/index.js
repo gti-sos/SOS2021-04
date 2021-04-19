@@ -45,7 +45,7 @@ module.exports.register = (app, BASE_API_PATH,illiteracy_DB) => {
 
 				if(error){
 					console.log("Se ha producido un error de servdor al hacer petición Get all");
-					console.log(error);
+					window.alert(error);
 					res.sendStatus(500); //Error de servidor
 
 				}
