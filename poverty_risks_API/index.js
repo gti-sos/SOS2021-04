@@ -173,7 +173,6 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		console.log(apercnt);
 		console.log(upercnt);
 		
-		/*
 		//Hacemos uso de bases de datos
 		povertyRisks_DB.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}}]})
 			.skip(skip).limit(limit)
@@ -218,17 +217,6 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 			}
 
 		
-		});*/
-
-		povertyRisks_DB.find({}, (error,resultFind)=>{ 
-
-			if(error){
-				console.log("Se ha producido un error de servdor al hacer petición Get all");
-				res.sendStatus(500); //Error de servidor
-			}
-			else{
-				res.sendStatus(200);                        
-			}
 		});
 
 	});

@@ -9,25 +9,27 @@
 const e = require("express");
 var express = require("express");
 
-
-
 var app = express();
+
+//Para jugar con rutas usamos el modulo path
+
+var path = require("path");
 
 // Creamos una variable dataBase para la gestion de bases de datosV2
 
 var dataBase = require("nedb");
 
 var educationExpenditures_DB = new dataBase();
-var povertyRisks_DB = new dataBase();
+
+var povertyRisks_DB = new dataBase({ filename: path.join(__dirname,"./poverty_risks_API/dataDB.db"), autoload: true });
+/* Quiero que se asocie la base de datos a ese fichero, y todas las operaciones
+/ se hacen en ese fichero*/
+
 var illiteracy_DB = new dataBase();
 
 //Definimos el puerto al que estará asociado el servidor web
 
 var port = process.env.PORT || 10000;
-
-//Para jugar con rutas usamos el modulo path
-
-var path = require("path");
 
 //Definimos las rutas de recursos y el uso de bodyParser
 
