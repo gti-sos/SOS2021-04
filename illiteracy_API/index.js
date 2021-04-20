@@ -8,33 +8,7 @@
 		//Definimos el array de datos iniciales relativos al riesgo de pobreza.
 	
 		var initialData_illiteracy = [
-			{
-				"year":2018,
-				"country":"Spain",
-				"female_illiteracy_rate":97.97,
-				"male_illiteracy_rate":98.93,
-				"adult_illiteracy_rate":98.44,
-				"young_illiteracy_rate":99.72
-			},
-	
-			{
-				"year":2018,
-				"country":"Italy",
-				"female_illiteracy_rate":98.97,
-				"male_illiteracy_rate":99.35,
-				"adult_illiteracy_rate":99.16,
-				"young_illiteracy_rate":99.99
-			},
-	
-			{
-				"year":2018,
-				"country":"Portugal",
-				"female_illiteracy_rate":95.05,
-				"male_illiteracy_rate":97.35,
-				"adult_illiteracy_rate":96.14,
-				"young_illiteracy_rate":99.66
-			}
-	
+			
 		];
 	
 		
