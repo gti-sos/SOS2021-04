@@ -99,7 +99,7 @@
 								//Ocultamos el atributo id
 								return {year:objeto.year,
 									country:objeto.country,
-									education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+									female_illiteracy_rate:objeto.female_illiteracy_rate,
 									male_illiteracy_rate:objeto.male_illiteracy_rate,
 									adult_illiteracy_rate:objeto.adult_illiteracy_rate,
 									young_illiteracy_rate:objeto.young_illiteracy_rate};
@@ -114,7 +114,7 @@
 								//Ocultamos el atributo id
 								return {year:objeto.year,
 									country:objeto.country,
-									education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+									female_illiteracy_rate:objeto.female_illiteracy_rate,
 									male_illiteracy_rate:objeto.male_illiteracy_rate,
 									adult_illiteracy_rate:objeto.adult_illiteracy_rate,
 									young_illiteracy_rate:objeto.young_illiteracy_rate};
@@ -168,7 +168,7 @@
 									//Ocultamos el atributo id
 									return {year:objeto.year,
 										country:objeto.country,
-										education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+										female_illiteracy_rate:objeto.female_illiteracy_rate,
 										male_illiteracy_rate:objeto.male_illiteracy_rate,
 										adult_illiteracy_rate:objeto.adult_illiteracy_rate,
 										young_illiteracy_rate:objeto.young_illiteracy_rate};
