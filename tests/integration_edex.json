@@ -204,7 +204,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures?apm=50000&upp=7.5",
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures?agdp=5&upc=1800",
 					"protocol": "https",
 					"host": [
 						"sos2021-04",
