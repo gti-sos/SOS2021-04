@@ -3,427 +3,448 @@
 
 
 
+	module.exports.register = (app, BASE_API_PATH, illiteracy_DB) => {
 
+		//Definimos el array de datos iniciales relativos al riesgo de pobreza.
+	
+		var initialData_illiteracy = [
+			{
+				"year":2018,
+				"country":"Spain",
+				"female_illiteracy_rate":97.97,
+				"male_illiteracy_rate":98.93,
+				"adult_illiteracy_rate":98.44,
+				"young_illiteracy_rate":99.72
+			},
+	
+			{
+				"year":2018,
+				"country":"Italy",
+				"female_illiteracy_rate":98.97,
+				"male_illiteracy_rate":99.35,
+				"adult_illiteracy_rate":99.16,
+				"young_illiteracy_rate":99.99
+			},
+	
+			{
+				"year":2018,
+				"country":"Portugal",
+				"female_illiteracy_rate":95.05,
+				"male_illiteracy_rate":97.35,
+				"adult_illiteracy_rate":96.14,
+				"young_illiteracy_rate":99.66
+			}
+	
+		];
+	
+		
+		// GET para insertar los datos iniciales en la base de datos
+	
+		app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
+				
+			// Cuando llamen a /api/v1/illiteracy/loadInitialData
+			// Comprobamos si los elementos están
+			illiteracy_DB.find({}, (error,resultFind)=>{ 
+	
+					if(error){
+						console.log("Se ha producido un error de servdor al hacer petición Get all");
+						res.sendStatus(500); //Error de servidor
+					}
+					else{
+						illiteracy_DB.insert(initialData_illiteracy);
+						res.sendStatus(200)                  
+					}
+				});          
+		});
+	
+		
+		
+		
+		//Generamos las distintas peticiones
+	
+		//Get del array completo
+		app.get(BASE_API_PATH+"/poverty_risks", (req,res)=>{
+			//Cuando llamen a /api/v1/poverty_risks
+	
+			var query = req.query;
+			var skip = query.skip;
+			var limit = query.limit;
+			
+			//Permitimos búsquedas con skip y limit
+			if (query.hasOwnProperty("skip")) {
+				query.skip = parseInt(query.skip);
+			}
+			if (query.hasOwnProperty("limit")) {
+				query.limit = parseInt(query.limit);
+			}
+	
+			/*Definimos los distintos parametros de búsqueda.
+			Si le marcas unos parámetros de búsqueda el db.find intentará
+			mostrarte los datos que cumplan dichos parámetros si no hay ninguno,
+			no mostrará nada.
+			*/
+			
+			var afi = req.query.afi!=undefined?parseFloat(req.query.afi):0; // aquellos que están por encima de un gasto de x millones en educacion
+			var ufi = req.query.ufi!=undefined?parseFloat(req.query.afi):100000000;// aquellos que están por debajo de un gasto de x millones en educacion
+			
+			var ami= req.query.ami!=undefined?parseFloat(req.query.ami):0; //aquellos que están por encima de un porcentaje x de gasto publico en educacion
+			var umi= req.query.umi!=undefined?parseFloat(req.query.umi):1000000000; //aquellos que están por debajo de un porcentaje x de gasto publico en educacion
+			
+			var aai = req.query.aai!=undefined?parseFloat(req.query.aai):0;//aquellos que están por encima de un porcentaje x de pib en gasto publico en educacion
+			var uai = req.query.uai!=undefined?parseFloat(req.query.uai):100000000;//aquellos que están por debajo de un porcentaje x de pib en gasto publico en educacion
+			
+			var ayi = req.query.ayi!=undefined?parseFloat(req.query.ayi):0; //aquellos que están por encima de una cantidad x per capita de gasto en educacion
+			var uyi = req.query.uyi!=undefined?parseFloat(req.query.uyi):1000000000; //aquellos que están por debajo de una cantidad x per capita de gasto en educacion
+	
+		
+	
+				console.log(afi);
+				console.log(ufi);
+				console.log(ami);
+				console.log(umi);
+				console.log(aai);
+				console.log(uai);
+				console.log(ayi);
+				console.log(uyi);
+	
+			
+			//Hacemos uso de bases de datos
+			illiteracy_DB.find({$and:[{female_illiteracy_rate : {$gt : afi,$lt:ufi}},{male_illiteracy_rate: {$gt : ami,$lt:umi}},{adult_illiteracy_rate:{$gt : aai,$lt:uai}},{young_illiteracy_rate:{$gt : ayi,$lt: uyi}}]})
+				.skip(skip).limit(limit)
+				.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
+					console.log("Query: "+query);
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get all");
+					res.sendStatus(500); //Error de servidor
+					console.log("Error GET general: "+error);
+				}
+				else{
+					if(resultFind.length == 1){
+						var dataToSend = resultFind.map((objeto) =>
+							{
+								//Ocultamos el atributo id
+								return {year:objeto.year,
+									country:objeto.country,
+									education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+									male_illiteracy_rate:objeto.male_illiteracy_rate,
+									adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+									young_illiteracy_rate:objeto.young_illiteracy_rate};
+	
+							});
+						res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+						console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
+					}
+					else{
+						var dataToSend = resultFind.map((objeto) =>
+							{
+								//Ocultamos el atributo id
+								return {year:objeto.year,
+									country:objeto.country,
+									education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+									male_illiteracy_rate:objeto.male_illiteracy_rate,
+									adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+									young_illiteracy_rate:objeto.young_illiteracy_rate};
+	
+							});
+						res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+						console.log(("Resultados GET general: ")+resultFind);
+					}
+				
+				}
+	
+			
+			});
+	
+		});
+	
+	/*
+		//Get para tomar elementos por pais
+			
+		app.get(BASE_API_PATH+'/poverty_risks/:country', (req,res)=>{ 
+			//Cuando llamen a /api/v1/poverty_risks/(pais)
+	
+			var query = req.query;
+			var skip = query.skip;
+			var limit = query.limit;
+			
+			//Permitimos búsquedas con skip y limit
+			if (query.hasOwnProperty("skip")) {
+				query.skip = parseInt(query.skip);
+			}
+			if (query.hasOwnProperty("limit")) {
+				query.limit = parseInt(query.limit);
+			}
+	
+			//Crearemos un nuevo array resultado de filtrar el array completo
+			povertyRisks_DB.find({country : String(req.params.country)}).skip(skip).limit(limit).exec((error, resultFind)=>{
+				//Se establece patron por país
+	
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get country");
+					res.sendStatus(500); //Error de servidor
+				}
+				else{
+					if(resultFind.length == 0){
+						res.sendStatus(404); //No se encuentra el elemento 
+					}
+					else{
+						if(resultFind.length == 1){
+							var dataToSend = resultFind.map((objeto) =>
+								{
+									//Ocultamos el atributo id
+									return {year:objeto.year,
+									country:objeto.country,
+									people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
+									people_poverty_line:objeto.people_poverty_line,
+									home_poverty_line:objeto.home_poverty_line,
+									percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+	
+								});
+							res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+						
+						}
+						else{
+							var dataToSend = resultFind.map((objeto) =>
+								{
+									//Ocultamos el atributo id
+									return {year:objeto.year,
+									country:objeto.country,
+									people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
+									people_poverty_line:objeto.people_poverty_line,
+									home_poverty_line:objeto.home_poverty_line,
+									percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+	
+								});
+							res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+						}
+						console.log(("Query GET para tomar elementos por pais: ")+query);
+						console.log(("Resultados GET para tomar elementos por pais: ")+dataToSend); 
+					}
+				}
+			});    
+		});
+	
+	
+		//Get para tomar elementos por pais y año
+		
+		app.get(BASE_API_PATH+"/poverty_risks/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+	
+			//Crearemos un nuevo array resultado de filtrar el array completo
+			povertyRisks_DB.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, resultFind)=>{ //Se establece patron por país y año
+	
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get country");
+					res.sendStatus(500); //Error de servidor
+				}
+				else{
+					if(resultFind.length == 0){
+						res.sendStatus(404); //No se encuentra el elemento 
+					}
+					else{
+						var dataToSend = resultFind.map((objeto) =>
+								{
+									//Ocultamos el atributo id
+									return {year:objeto.year,
+									country:objeto.country,
+									people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
+									people_poverty_line:objeto.people_poverty_line,
+									home_poverty_line:objeto.home_poverty_line,
+									percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+	
+								});
+							res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+						
+					}
+				}
+			});
+			
+		});
+	
+	
+		//Post al array completo para incluir datos como los de la ficha de propuestas
+	
+		app.post(BASE_API_PATH+"/poverty_risks", (req,res)=>{
+	
+			var elemRepetido = false;
+			
+			povertyRisks_DB.find({}, (error, resultFind)=>{ //Comprobamos si existe el elemento ya
+	
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+					res.sendStatus(500); //Error de servidor
+				}
+				else{
+					//Comprobamos que se cumple la estructura JSON predefinida
+	
+					var country = req.body.country!=undefined;
+					var year = req.body.year!=undefined;
+					var prp = req.body.people_in_risk_of_poverty!=undefined;
+					var ppl= req.body.people_poverty_line!=undefined;
+					var hpl = req.body.home_poverty_line!=undefined;
+					var percentrp = req.body.percentage_risk_of_poverty!=undefined;
+	
+					console.log(country);console.log(year);console.log(prp);console.log(ppl);console.log(hpl);console.log(percentrp);
+	
+					var condicion = country && year && prp && ppl && hpl && percentrp;
+	
+					if(condicion){
+	
+						for(elemento in resultFind){
+							elemRepetido = elemRepetido || (resultFind[elemento].country===String(req.body.country) && resultFind[elemento].year===parseInt(req.body.year));
+						}
+	
+						if(elemRepetido){
+							res.sendStatus(409);
+							console.log("Elemento Repetido");
+						}
+						else{
+							povertyRisks_DB.insert(req.body);
+							res.sendStatus(201);
+						}
+					}
+					else{
+						res.sendStatus(400); //BAD REQUEST
+					}                  
+				}
+			});        
+		});
 
-	module.exports.register = (app,BASE_API_PATH,dataBase) => {
-
-        //Definimos los datos iniciales
-            
-    var datos_EE =  [
-        {
-            "year": 2016,
-            "country":"Spain",
-            "education_expenditure_per_millions": 46882.8 ,
-            "education_expenditure_per_public_expenditure":9.97,
-            "education_expenditure_gdp":4.21,
-            "education_expenditure_per_capita":1009.00
-        },
-
-        {
-            "year": 2016,
-            "country":"Germany",
-            "education_expenditure_per_millions": 150496.7,
-            "education_expenditure_per_public_expenditure":10.93,
-            "education_expenditure_gdp":4.8,
-            "education_expenditure_per_capita":1828.00
-        },
-
-        {
-            "year":2015,
-            "country":"France",
-            "education_expenditure_per_millions": 120127.6 ,
-            "education_expenditure_per_public_expenditure":9.66,
-            "education_expenditure_gdp":5.46,
-            "education_expenditure_per_capita":1804.00
-        },
-
-        {
-            "year":2015,
-            "country":"Spain",
-            "education_expenditure_per_millions": 46038.8 ,
-            "education_expenditure_per_public_expenditure":9.77,
-            "education_expenditure_gdp":4.27,
-            "education_expenditure_per_capita":992.00
-        },
-
-        {
-            "year":2015,
-            "country":"Germany",
-            "education_expenditure_per_millions": 145413.4 ,
-            "education_expenditure_per_public_expenditure":10.98,
-            "education_expenditure_gdp":4.81,
-            "education_expenditure_per_capita":1780.00
-        },
-        
-        {
-            "year":2014,
-            "country":"France",
-            "education_expenditure_per_millions": 118496.3 ,
-            "education_expenditure_per_public_expenditure":9.66,
-            "education_expenditure_gdp":5.51,
-            "education_expenditure_per_capita":1787.00
-        }
-
-    ];
-
-        // Insertamos los datos iniciales en la base de datos
-
-        app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
-            
-            //Cuando llamen a /api/v1/education_expenditures
-            //Debemos enviar el objeto pero pasandolo a JSON
-			console.log("patata");
-
-            
-                dataBase.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
-
-                    if(error){
-                        console.log("Se ha producido un error de servdor al hacer petición Get all");
-                        res.sendStatus(500); //Error de servidor
-                    }
-                    else{
-                        dataBase.insert(datos_EE);
-                        res.sendStatus(200);                        
-                    }
-                });          
-        });
-
-        
-
-        //Generamos las distintas peticiones
-
-        //Get del array completo
-        app.get(BASE_API_PATH+"/illiteracy", (req,res)=>{ 
-            
-            //Cuando llamen a /api/v1/education_expenditures
-            //Debemos enviar el objeto pero pasandolo a JSON
-
-            //Permitimos búsquedas con skip y limit
-            var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
-            var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
-
-            //Definimos los distintos parametros de búsqueda
-
-            var apm = req.query.apm!=undefined?parseFloat(req.query.apm):0; // aquellos que están por encima de un gasto de x millones en educacion
-            var upm = req.query.upm!=undefined?parseFloat(req.query.apm):100000000;// aquellos que están por debajo de un gasto de x millones en educacion
-            
-            var app= req.query.app!=undefined?parseFloat(req.query.app):0; //aquellos que están por encima de un porcentaje x de gasto publico en educacion
-            var upp= req.query.upp!=undefined?parseFloat(req.query.upp):1000000000; //aquellos que están por debajo de un porcentaje x de gasto publico en educacion
-            
-            var agdp = req.query.agdp!=undefined?parseFloat(req.query.agdp):0;//aquellos que están por encima de un porcentaje x de pib en gasto publico en educacion
-            var ugdp = req.query.ugdp!=undefined?parseFloat(req.query.ugdp):100000000;//aquellos que están por debajo de un porcentaje x de pib en gasto publico en educacion
-            
-            var apc = req.query.apc!=undefined?parseFloat(req.query.apc):0; //aquellos que están por encima de una cantidad x per capita de gasto en educacion
-            var upc = req.query.upc!=undefined?parseFloat(req.query.upc):1000000000; //aquellos que están por debajo de una cantidad x per capita de gasto en educacion
-
-            
-            console.log(agdp);
-            console.log(upc);
-
-            //Hacemos uso de bases de datos
-            dataBase.find({$and:[{education_expenditure_per_millions : {$gt : apm,$lt:upm}},{education_expenditure_per_public_expenditure:{$gt : app,$lt:upp}},{education_expenditure_gdp:{$gt : agdp,$lt:ugdp}},{education_expenditure_per_capita:{$gt : apc,$lt:upc}}]})
-                .skip(skip).limit(limit)
-                .exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get all");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 1){
-                        var dataToSend = ee_db.map((objeto) =>
-                            {
-                                //Ocultamos el atributo id
-                                return {year:objeto.year,
-                                country:objeto.country,
-                                education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
-                                education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
-                                education_expenditure_gdp:objeto.education_expenditure_gdp,
-                                education_expenditure_per_capita:objeto.education_expenditure_per_capita};
-
-                            });
-                        res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
-                    
-                    }
-                    else{
-                        var dataToSend = ee_db.map((objeto) =>
-                            {
-                                //Ocultamos el atributo id
-                                return {year:objeto.year,
-                                country:objeto.country,
-                                education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
-                                education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
-                                education_expenditure_gdp:objeto.education_expenditure_gdp,
-                                education_expenditure_per_capita:objeto.education_expenditure_per_capita};
-
-                            });
-                        res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
-                    }
-                }
-
-                
-            });
-        });
-
-        //Get para tomar elementos por pais
-        
-        app.get(BASE_API_PATH+'/education_expenditures/:country', (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
-            
-            //Permitimos búsquedas con skip y limit
-            var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
-            var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
-
-            //Crearemos un nuevo array resultado de filtrar el array completo
-            dataBase.find({country : String(req.params.country)}).skip(skip).limit(limit).exec((error, ee_db)=>{ //Se establece patron por país
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get country");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 0){
-                        res.sendStatus(404); //No se encuentra el elemento 
-                    }
-                    else{
-                        if(ee_db.length == 1){
-                            var dataToSend = ee_db.map((objeto) =>
-                                {
-                                    //Ocultamos el atributo id
-                                    return {year:objeto.year,
-                                    country:objeto.country,
-                                    education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
-                                    education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
-                                    education_expenditure_gdp:objeto.education_expenditure_gdp,
-                                    education_expenditure_per_capita:objeto.education_expenditure_per_capita};
-    
-                                });
-                            res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
-                        
-                        }
-                        else{
-                            var dataToSend = ee_db.map((objeto) =>
-                                {
-                                    //Ocultamos el atributo id
-                                    return {year:objeto.year,
-                                    country:objeto.country,
-                                    education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
-                                    education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
-                                    education_expenditure_gdp:objeto.education_expenditure_gdp,
-                                    education_expenditure_per_capita:objeto.education_expenditure_per_capita};
-    
-                                });
-                            res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
-                        }
-                    }
-                }
-            });    
-        });
-
-
-        //Get para tomar elementos por pais y año
-        
-        app.get(BASE_API_PATH+"/education_expenditures/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
-
-            //Crearemos un nuevo array resultado de filtrar el array completo
-            dataBase.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, ee_db)=>{ //Se establece patron por país y año
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get country");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 0){
-                        res.sendStatus(404); //No se encuentra el elemento 
-                    }
-                    else{
-                        var dataToSend = ee_db.map((objeto) =>
-                                {
-                                    //Ocultamos el atributo id
-                                    return {year:objeto.year,
-                                    country:objeto.country,
-                                    education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
-                                    education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
-                                    education_expenditure_gdp:objeto.education_expenditure_gdp,
-                                    education_expenditure_per_capita:objeto.education_expenditure_per_capita};
-    
-                                });
-                            res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
-                        
-                    }
-                }
-            });
-            
-        });
-
-        //Post al array completo para incluir datos como los de la ficha de propuestas
-
-        app.post(BASE_API_PATH+"/education_expenditures", (req,res)=>{
-
-            var rep = false;
-            
-            dataBase.find({}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    //Comprobamos que se cumple la estructura JSON predefinida
-
-                    var c = req.body.country!=undefined;
-                    var p = req.body.year!=undefined;
-                    var pm = req.body.education_expenditure_per_millions!=undefined;
-                    var pp= req.body.education_expenditure_per_public_expenditure!=undefined;
-                    var gdp = req.body.education_expenditure_gdp!=undefined;
-                    var pc = req.body.education_expenditure_per_capita!=undefined;
-
-                    var cumple = c && p && pm && pp && gdp && pc;
-
-                    if(cumple){
-
-                        for(elemento in ee_db){
-                            rep = rep || (ee_db[elemento].country===String(req.body.country) && ee_db[elemento].year===parseInt(req.body.year));
-                        }
-    
-                        if(rep){
-                            res.sendStatus(409);
-                            console.log("Elemento Repetido");
-                        }
-                        else{
-                            dataBase.insert(req.body);
-                            res.sendStatus(201);
-                        }
-                    }
-                    else{
-                        res.sendStatus(400); //BAD REQUEST
-                    }                  
-                }
-            });        
-        });
-
-        //Post ERRONEO de elemento
-
-        app.post(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
-
-            res.status(405).send("Metodo no permitido"); //Method not allowed
-        });
-
-        //Delete del array completo
-
-        app.delete(BASE_API_PATH+"/education_expenditures", (req,res)=>{ //Elimina todos los elementos de la base de datos
-            
-            dataBase.remove({},{multi: true},(error, numRemov)=>{
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                    res.sendStatus(500); //Error de servidor
-
-                }else {
-                    res.sendStatus(200);
-                }
-            });
-        
-        });
-
-        //Delete de elementos por pais
-
-        app.delete(BASE_API_PATH+"/education_expenditures/:country", function(req, res) { 
-
-            //Se hace un filtrado por pais, eliminando aquellos que coinciden con el pais dado
-            dataBase.find({country : String(req.params.country)}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
-                        res.sendStatus(404); //No se han encontrado elementos
-                    }
-                    else{
-                        dataBase.remove({country : String(req.params.country)},{multi: true},(error, numRemov)=>{
-                            if(error){
-                                console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                                res.sendStatus(500); //Error de servidor
-
-                            }else {
-                                res.sendStatus(200);
-                            } 
-                        });
-                    }
-                   
-                }
-            });
-
-        });
-
-        //Delete elemento por pais y año
-
-        app.delete(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
-            dataBase.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
-                        res.sendStatus(404); //No se han encontrado elementos
-                    }
-                    else{
-                        dataBase.remove({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{},(error, numRemov)=>{ //Se elimina aquel cuyo país y año coincida
-                            
-                            if(error){
-                                console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                                res.sendStatus(500); //Error de servidor
-
-                            }else {
-                                res.sendStatus(200);
-                            }
-                        });
-                    }
-                }
-            });
-        });
-
-        //Put modificar elemento
-
-        app.put(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
-            dataBase.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
-                        dataBase.insert(req.body); //Si no existe el elemento se crea
-                        res.sendStatus(201);
-                    }
-                    else{ 
-                        dataBase.update({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{$set: req.body},{},(error, numReplaced)=>{
-                            if(error){
-                                console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                                res.sendStatus(500); //Error de servidor
-
-                            }else {
-                                res.sendStatus(200); //Elemento Modificado
-                            }
-
-                        });
-                        
-                    }
-                }
-            });
-            
-        });
-
-        //Put ERRONEO array de elementos
-
-        app.put(BASE_API_PATH+"/education_expenditures", function(req, res) { 
-
-            res.status(405).send("Metodo no permitido"); //Method not allowed
-        });
-    };
+	
+		//Post ERRONEO de elemento
+	
+		app.post(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
+	
+			res.status(405).send("Metodo no permitido"); //Method not allowed
+		});
+	
+	
+	
+		//Delete del array completo
+	
+		app.delete(BASE_API_PATH+"/poverty_risks", (req,res)=>{
+			//Elimina todos los elementos de la base de datos
+				
+			povertyRisks_DB.remove({},{multi: true},(error, numRemov)=>{
+				//numRemov indica el nº de elementos borrados
+	
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+					res.sendStatus(500); //Error de servidor
+	
+				}else {
+					res.sendStatus(200);
+				}
+			});
+		
+		});
+	
+		//Delete de elementos por pais
+	
+		app.delete(BASE_API_PATH+"/poverty_risks/:country", function(req, res) { 
+	
+			//Se hace un filtrado por pais, eliminando aquellos que coinciden con el pais dado
+			povertyRisks_DB.find({country : String(req.params.country)}, (error, resultFind)=>{ //Comprobamos si existe el elemento ya
+	
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+					res.sendStatus(500); //Error de servidor
+				}
+				else{
+					if(resultFind.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
+						res.sendStatus(404); //No se han encontrado elementos
+					}
+					else{
+						povertyRisks_DB.remove({country : String(req.params.country)},{multi: true},(error, numRemov)=>{
+							if(error){
+								console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+								res.sendStatus(500); //Error de servidor
+	
+							}else {
+								res.sendStatus(200);
+							} 
+						});
+					}
+				   
+				}
+			});
+	
+		});
+	
+		//Delete elemento por pais y año
+	
+		app.delete(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
+			povertyRisks_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, resultFind)=>{
+				//Comprobamos si existe el elemento ya
+	
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+					res.sendStatus(500); //Error de servidor
+				}
+				else{
+					if(resultFind.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
+						res.sendStatus(404); //No se han encontrado elementos
+					}
+					else{
+						povertyRisks_DB.remove({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{},(error, numRemov)=>{
+						//Se elimina aquel cuyo país y año coincida
+							
+							if(error){
+								console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+								res.sendStatus(500); //Error de servidor
+	
+							}else {
+								res.sendStatus(200);
+							}
+						});
+					}
+				}
+			});
+		});
+	
+	
+		//Put modificar elemento
+	
+		app.put(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
+			povertyRisks_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, resultFind)=>{
+				//Comprobamos si existe el elemento ya
+	
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+					res.sendStatus(500); //Error de servidor
+				}
+				else{
+					if(resultFind.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
+						povertyRisks_DB.insert(req.body); //Si no existe el elemento se crea
+						res.sendStatus(201);
+					}
+					else{ 
+						povertyRisks_DB.update({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{$set: req.body},{},(error, numReplaced)=>{
+							if(error){
+								console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+								res.sendStatus(500); //Error de servidor
+	
+							}else {
+								res.sendStatus(200); //Elemento Modificado
+							}
+	
+						});
+						
+					}
+				}
+			});
+			
+		});
+	
+		
+	
+		//Put ERRONEO array de elementos
+	
+		app.put(BASE_API_PATH+"/poverty_risks", function(req, res) { 
+	
+			res.status(405).send("Metodo no permitido"); //Method not allowed
+		});
+	*/
+	};
 
 
 
