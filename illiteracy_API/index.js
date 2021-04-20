@@ -84,17 +84,17 @@
 			no mostrará nada.
 			*/
 			
-			var afi = req.query.afi!=undefined?parseFloat(req.query.afi):0; // aquellos que están por encima de un gasto de x millones en educacion
-			var ufi = req.query.ufi!=undefined?parseFloat(req.query.afi):100000000;// aquellos que están por debajo de un gasto de x millones en educacion
+			var afi = req.query.afi!=undefined?parseFloat(req.query.afi):0; 
+			var ufi = req.query.ufi!=undefined?parseFloat(req.query.afi):100000000;
 			
-			var ami= req.query.ami!=undefined?parseFloat(req.query.ami):0; //aquellos que están por encima de un porcentaje x de gasto publico en educacion
-			var umi= req.query.umi!=undefined?parseFloat(req.query.umi):1000000000; //aquellos que están por debajo de un porcentaje x de gasto publico en educacion
+			var ami= req.query.ami!=undefined?parseFloat(req.query.ami):0; 
+			var umi= req.query.umi!=undefined?parseFloat(req.query.umi):1000000000; 
+
+			var aai = req.query.aai!=undefined?parseFloat(req.query.aai):0;
+			var uai = req.query.uai!=undefined?parseFloat(req.query.uai):100000000;
 			
-			var aai = req.query.aai!=undefined?parseFloat(req.query.aai):0;//aquellos que están por encima de un porcentaje x de pib en gasto publico en educacion
-			var uai = req.query.uai!=undefined?parseFloat(req.query.uai):100000000;//aquellos que están por debajo de un porcentaje x de pib en gasto publico en educacion
-			
-			var ayi = req.query.ayi!=undefined?parseFloat(req.query.ayi):0; //aquellos que están por encima de una cantidad x per capita de gasto en educacion
-			var uyi = req.query.uyi!=undefined?parseFloat(req.query.uyi):1000000000; //aquellos que están por debajo de una cantidad x per capita de gasto en educacion
+			var ayi = req.query.ayi!=undefined?parseFloat(req.query.ayi):0; 
+			var uyi = req.query.uyi!=undefined?parseFloat(req.query.uyi):1000000000;
 	
 		
 	
