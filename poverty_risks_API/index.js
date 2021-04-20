@@ -153,7 +153,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		mostrarte los datos que cumplan dichos parámetros si no hay ninguno,
 		no mostrará nada.
 		*/
-		/*
+		
 			// aquellos que están por encima de un nº de personas en riesgo de pobreza
 			var aprp = req.query.aprp!=undefined?parseInt(req.query.aprp):0; 
 			// aquellos que están por debajo de un nº de personas en riesgo de pobreza
@@ -182,27 +182,10 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 			console.log(uhpl);
 			console.log(apercnt);
 			console.log(upercnt);
-			*/
-		//$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}}]
-		
-		if (query.hasOwnProperty("year")) {
-			query.year = parseInt(query.year);
-		}
-		if (query.hasOwnProperty("people_in_risk_of_poverty")) {
-			query.people_in_risk_of_poverty = parseInt(query.people_in_risk_of_poverty);
-		}
-		if (query.hasOwnProperty("people_poverty_line")) {
-			query.people_poverty_line = parseInt(query.people_poverty_line);
-		}
-		if (query.hasOwnProperty("home_poverty_line")) {
-			query.home_poverty_line = parseInt(query.home_poverty_line);
-		}
-		if (query.hasOwnProperty("percentage_risk_of_poverty")) {
-			query.percentage_risk_of_poverty = parseFloat(query.percentage_risk_of_poverty);
-		}
+
 		
 		//Hacemos uso de bases de datos
-		povertyRisks_DB.find({query})
+		povertyRisks_DB.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}}]})
 			.skip(skip).limit(limit)
 			.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
 				console.log("Query: "+query);
