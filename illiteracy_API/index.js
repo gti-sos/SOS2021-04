@@ -63,7 +63,7 @@
 		//Generamos las distintas peticiones
 	
 		//Get del array completo
-		app.get(BASE_API_PATH+"/poverty_risks", (req,res)=>{
+		app.get(BASE_API_PATH+"/illiteracy", (req,res)=>{
 			//Cuando llamen a /api/v1/poverty_risks
 	
 			var query = req.query;
@@ -160,7 +160,7 @@
 	
 		//Get para tomar elementos por pais
 			
-		app.get(BASE_API_PATH+'/poverty_risks/:country', (req,res)=>{ 
+		app.get(BASE_API_PATH+'/illiteracy/:country', (req,res)=>{ 
 			//Cuando llamen a /api/v1/poverty_risks/(pais)
 	
 			var query = req.query;
@@ -263,7 +263,7 @@
 	
 		//Post al array completo para incluir datos como los de la ficha de propuestas
 	
-		app.post(BASE_API_PATH+"/poverty_risks", (req,res)=>{
+		app.post(BASE_API_PATH+"/illiteracy", (req,res)=>{
 	
 			var elemRepetido = false;
 			
