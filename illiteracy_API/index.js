@@ -157,7 +157,7 @@
 	
 		});
 	
-	/*
+	
 		//Get para tomar elementos por pais
 			
 		app.get(BASE_API_PATH+'/poverty_risks/:country', (req,res)=>{ 
@@ -176,7 +176,7 @@
 			}
 	
 			//Crearemos un nuevo array resultado de filtrar el array completo
-			povertyRisks_DB.find({country : String(req.params.country)}).skip(skip).limit(limit).exec((error, resultFind)=>{
+			illiteracy_DB.find({country : String(req.params.country)}).skip(skip).limit(limit).exec((error, resultFind)=>{
 				//Se establece patron por país
 	
 				if(error){
@@ -193,11 +193,11 @@
 								{
 									//Ocultamos el atributo id
 									return {year:objeto.year,
-									country:objeto.country,
-									people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
-									people_poverty_line:objeto.people_poverty_line,
-									home_poverty_line:objeto.home_poverty_line,
-									percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+										country:objeto.country,
+										education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+										male_illiteracy_rate:objeto.male_illiteracy_rate,
+										adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+										young_illiteracy_rate:objeto.young_illiteracy_rate};
 	
 								});
 							res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
@@ -208,11 +208,11 @@
 								{
 									//Ocultamos el atributo id
 									return {year:objeto.year,
-									country:objeto.country,
-									people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
-									people_poverty_line:objeto.people_poverty_line,
-									home_poverty_line:objeto.home_poverty_line,
-									percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+										country:objeto.country,
+										education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+										male_illiteracy_rate:objeto.male_illiteracy_rate,
+										adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+										young_illiteracy_rate:objeto.young_illiteracy_rate};
 	
 								});
 							res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
@@ -227,10 +227,10 @@
 	
 		//Get para tomar elementos por pais y año
 		
-		app.get(BASE_API_PATH+"/poverty_risks/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+		app.get(BASE_API_PATH+"/illiteracy/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
 	
 			//Crearemos un nuevo array resultado de filtrar el array completo
-			povertyRisks_DB.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, resultFind)=>{ //Se establece patron por país y año
+			illiteracy_DB.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, resultFind)=>{ //Se establece patron por país y año
 	
 				if(error){
 					console.log("Se ha producido un error de servdor al hacer petición Get country");
@@ -267,7 +267,7 @@
 	
 			var elemRepetido = false;
 			
-			povertyRisks_DB.find({}, (error, resultFind)=>{ //Comprobamos si existe el elemento ya
+			illiteracy_DB.find({}, (error, resultFind)=>{ //Comprobamos si existe el elemento ya
 	
 				if(error){
 					console.log("Se ha producido un error de servdor al hacer petición Get elemento");
@@ -298,7 +298,7 @@
 							console.log("Elemento Repetido");
 						}
 						else{
-							povertyRisks_DB.insert(req.body);
+							illiteracy_DB.insert(req.body);
 							res.sendStatus(201);
 						}
 					}
@@ -324,7 +324,7 @@
 		app.delete(BASE_API_PATH+"/poverty_risks", (req,res)=>{
 			//Elimina todos los elementos de la base de datos
 				
-			povertyRisks_DB.remove({},{multi: true},(error, numRemov)=>{
+			illiteracy_DB.remove({},{multi: true},(error, numRemov)=>{
 				//numRemov indica el nº de elementos borrados
 	
 				if(error){
@@ -343,7 +343,7 @@
 		app.delete(BASE_API_PATH+"/poverty_risks/:country", function(req, res) { 
 	
 			//Se hace un filtrado por pais, eliminando aquellos que coinciden con el pais dado
-			povertyRisks_DB.find({country : String(req.params.country)}, (error, resultFind)=>{ //Comprobamos si existe el elemento ya
+			illiteracy_DB.find({country : String(req.params.country)}, (error, resultFind)=>{ //Comprobamos si existe el elemento ya
 	
 				if(error){
 					console.log("Se ha producido un error de servdor al hacer petición Get elemento");
@@ -354,7 +354,7 @@
 						res.sendStatus(404); //No se han encontrado elementos
 					}
 					else{
-						povertyRisks_DB.remove({country : String(req.params.country)},{multi: true},(error, numRemov)=>{
+						illiteracy_DB.remove({country : String(req.params.country)},{multi: true},(error, numRemov)=>{
 							if(error){
 								console.log("Se ha producido un error de servdor al hacer petición Get elemento");
 								res.sendStatus(500); //Error de servidor
@@ -373,7 +373,7 @@
 		//Delete elemento por pais y año
 	
 		app.delete(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
-			povertyRisks_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, resultFind)=>{
+			illiteracy_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, resultFind)=>{
 				//Comprobamos si existe el elemento ya
 	
 				if(error){
@@ -385,7 +385,7 @@
 						res.sendStatus(404); //No se han encontrado elementos
 					}
 					else{
-						povertyRisks_DB.remove({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{},(error, numRemov)=>{
+						illiteracy_DB.remove({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{},(error, numRemov)=>{
 						//Se elimina aquel cuyo país y año coincida
 							
 							if(error){
@@ -405,7 +405,7 @@
 		//Put modificar elemento
 	
 		app.put(BASE_API_PATH+"/poverty_risks/:country/:year", function(req, res) { 
-			povertyRisks_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, resultFind)=>{
+			illiteracy_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, resultFind)=>{
 				//Comprobamos si existe el elemento ya
 	
 				if(error){
@@ -414,11 +414,11 @@
 				}
 				else{
 					if(resultFind.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
-						povertyRisks_DB.insert(req.body); //Si no existe el elemento se crea
+						illiteracy_DB.insert(req.body); //Si no existe el elemento se crea
 						res.sendStatus(201);
 					}
 					else{ 
-						povertyRisks_DB.update({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{$set: req.body},{},(error, numReplaced)=>{
+						illiteracy_DB.update({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{$set: req.body},{},(error, numReplaced)=>{
 							if(error){
 								console.log("Se ha producido un error de servdor al hacer petición Get elemento");
 								res.sendStatus(500); //Error de servidor
@@ -443,7 +443,7 @@
 	
 			res.status(405).send("Metodo no permitido"); //Method not allowed
 		});
-	*/
+	
 	};
 
 
