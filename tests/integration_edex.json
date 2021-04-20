@@ -85,7 +85,12 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							"\r",
+							"pm.test(\"There are 6 entries\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(6);\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}
@@ -120,7 +125,9 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -218,12 +225,12 @@
 					],
 					"query": [
 						{
-							"key": "apm",
-							"value": "50000"
+							"key": "agdp",
+							"value": "5"
 						},
 						{
-							"key": "upp",
-							"value": "7.5"
+							"key": "upc",
+							"value": "1800"
 						}
 					]
 				}
