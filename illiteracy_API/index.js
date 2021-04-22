@@ -5,7 +5,7 @@
 
 
 
-	module.exports.register = (app,BASE_API_PATH,dataBase) => {
+	module.exports.register = (app,BASE_API_PATH,illiteracy_DB) => {
 
         //Definimos los datos iniciales
             
@@ -48,14 +48,14 @@
 			console.log("patata");
 
             
-                dataBase.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
+			illiteracy_DB.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
 
                     if(error){
                         console.log("Se ha producido un error de servdor al hacer petición Get all");
                         res.sendStatus(500); //Error de servidor
                     }
                     else{
-                        dataBase.insert(datos_EE);
+                        illiteracy_DB.insert(datos_EE);
                         res.sendStatus(200);                        
                     }
                 });          
@@ -94,7 +94,7 @@
             console.log(upc);
 
             //Hacemos uso de bases de datos
-            dataBase.find({$and:[{education_expenditure_per_millions : {$gt : apm,$lt:upm}},{education_expenditure_per_public_expenditure:{$gt : app,$lt:upp}},{education_expenditure_gdp:{$gt : agdp,$lt:ugdp}},{education_expenditure_per_capita:{$gt : apc,$lt:upc}}]})
+            illiteracy_DB.find({$and:[{female_illiteracy_rate : {$gt : apm,$lt:upm}},{male_illiteracy_rate:{$gt : app,$lt:upp}},{adult_illiteracy_rate:{$gt : agdp,$lt:ugdp}},{young_illiteracy_rate:{$gt : apc,$lt:upc}}]})
                 .skip(skip).limit(limit)
                 .exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
 
@@ -109,10 +109,10 @@
                                 //Ocultamos el atributo id
                                 return {year:objeto.year,
                                 country:objeto.country,
-                                education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
-                                education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
-                                education_expenditure_gdp:objeto.education_expenditure_gdp,
-                                education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+                                female_illiteracy_rate: objeto.female_illiteracy_rate ,
+                                male_illiteracy_rate:objeto.male_illiteracy_rate,
+                                adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+                                young_illiteracy_rate:objeto.young_illiteracy_rate};
 
                             });
                         res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
@@ -123,12 +123,11 @@
                             {
                                 //Ocultamos el atributo id
                                 return {year:objeto.year,
-                                country:objeto.country,
-                                education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
-                                education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
-                                education_expenditure_gdp:objeto.education_expenditure_gdp,
-                                education_expenditure_per_capita:objeto.education_expenditure_per_capita};
-
+									country:objeto.country,
+									female_illiteracy_rate: objeto.female_illiteracy_rate ,
+									male_illiteracy_rate:objeto.male_illiteracy_rate,
+									adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+									young_illiteracy_rate:objeto.young_illiteracy_rate};
                             });
                         res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
                     }
@@ -140,14 +139,14 @@
 
         //Get para tomar elementos por pais
         
-        app.get(BASE_API_PATH+'/education_expenditures/:country', (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+        app.get(BASE_API_PATH+'/illiteracy/:country', (req,res)=>{ //Cuando llamen a /api/v1/illiteracy/(pais)
             
             //Permitimos búsquedas con skip y limit
             var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
             var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
 
             //Crearemos un nuevo array resultado de filtrar el array completo
-            dataBase.find({country : String(req.params.country)}).skip(skip).limit(limit).exec((error, ee_db)=>{ //Se establece patron por país
+            illiteracy_DB.find({country : String(req.params.country)}).skip(skip).limit(limit).exec((error, ee_db)=>{ //Se establece patron por país
 
                 if(error){
                     console.log("Se ha producido un error de servdor al hacer petición Get country");
@@ -162,12 +161,12 @@
                             var dataToSend = ee_db.map((objeto) =>
                                 {
                                     //Ocultamos el atributo id
-                                    return {year:objeto.year,
-                                    country:objeto.country,
-                                    education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
-                                    education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
-                                    education_expenditure_gdp:objeto.education_expenditure_gdp,
-                                    education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+                                    return{year:objeto.year,
+										country:objeto.country,
+										female_illiteracy_rate: objeto.female_illiteracy_rate ,
+										male_illiteracy_rate:objeto.male_illiteracy_rate,
+										adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+										young_illiteracy_rate:objeto.young_illiteracy_rate};
     
                                 });
                             res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
@@ -178,11 +177,11 @@
                                 {
                                     //Ocultamos el atributo id
                                     return {year:objeto.year,
-                                    country:objeto.country,
-                                    education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
-                                    education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
-                                    education_expenditure_gdp:objeto.education_expenditure_gdp,
-                                    education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+										country:objeto.country,
+										female_illiteracy_rate: objeto.female_illiteracy_rate ,
+										male_illiteracy_rate:objeto.male_illiteracy_rate,
+										adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+										young_illiteracy_rate:objeto.young_illiteracy_rate};
     
                                 });
                             res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
@@ -195,10 +194,10 @@
 
         //Get para tomar elementos por pais y año
         
-        app.get(BASE_API_PATH+"/education_expenditures/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/education_expenditures/(pais)
+        app.get(BASE_API_PATH+"/illiteracy/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/illiteracy/(pais)
 
             //Crearemos un nuevo array resultado de filtrar el array completo
-            dataBase.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, ee_db)=>{ //Se establece patron por país y año
+            illiteracy_DB.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, ee_db)=>{ //Se establece patron por país y año
 
                 if(error){
                     console.log("Se ha producido un error de servdor al hacer petición Get country");
@@ -213,11 +212,11 @@
                                 {
                                     //Ocultamos el atributo id
                                     return {year:objeto.year,
-                                    country:objeto.country,
-                                    education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
-                                    education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
-                                    education_expenditure_gdp:objeto.education_expenditure_gdp,
-                                    education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+										country:objeto.country,
+										female_illiteracy_rate: objeto.female_illiteracy_rate ,
+										male_illiteracy_rate:objeto.male_illiteracy_rate,
+										adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+										young_illiteracy_rate:objeto.young_illiteracy_rate};
     
                                 });
                             res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
@@ -230,11 +229,11 @@
 
         //Post al array completo para incluir datos como los de la ficha de propuestas
 
-        app.post(BASE_API_PATH+"/education_expenditures", (req,res)=>{
+        app.post(BASE_API_PATH+"/illiteracy", (req,res)=>{
 
             var rep = false;
             
-            dataBase.find({}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
+            illiteracy_DB.find({}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
 
                 if(error){
                     console.log("Se ha producido un error de servdor al hacer petición Get elemento");
@@ -245,10 +244,10 @@
 
                     var c = req.body.country!=undefined;
                     var p = req.body.year!=undefined;
-                    var pm = req.body.education_expenditure_per_millions!=undefined;
-                    var pp= req.body.education_expenditure_per_public_expenditure!=undefined;
-                    var gdp = req.body.education_expenditure_gdp!=undefined;
-                    var pc = req.body.education_expenditure_per_capita!=undefined;
+                    var pm = req.body.female_illiteracy_rate!=undefined;
+                    var pp= req.body.male_illiteracy_rate!=undefined;
+                    var gdp = req.body.adult_illiteracy_rate!=undefined;
+                    var pc = req.body.young_illiteracy_rate!=undefined;
 
                     var cumple = c && p && pm && pp && gdp && pc;
 
@@ -263,7 +262,7 @@
                             console.log("Elemento Repetido");
                         }
                         else{
-                            dataBase.insert(req.body);
+                            illiteracy_DB.insert(req.body);
                             res.sendStatus(201);
                         }
                     }
@@ -276,16 +275,16 @@
 
         //Post ERRONEO de elemento
 
-        app.post(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
+        app.post(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
 
             res.status(405).send("Metodo no permitido"); //Method not allowed
         });
 
         //Delete del array completo
 
-        app.delete(BASE_API_PATH+"/education_expenditures", (req,res)=>{ //Elimina todos los elementos de la base de datos
+        app.delete(BASE_API_PATH+"/illiteracy", (req,res)=>{ //Elimina todos los elementos de la base de datos
             
-            dataBase.remove({},{multi: true},(error, numRemov)=>{
+            illiteracy_DB.remove({},{multi: true},(error, numRemov)=>{
                 if(error){
                     console.log("Se ha producido un error de servdor al hacer petición Get elemento");
                     res.sendStatus(500); //Error de servidor
@@ -299,10 +298,10 @@
 
         //Delete de elementos por pais
 
-        app.delete(BASE_API_PATH+"/education_expenditures/:country", function(req, res) { 
+        app.delete(BASE_API_PATH+"/illiteracy/:country", function(req, res) { 
 
             //Se hace un filtrado por pais, eliminando aquellos que coinciden con el pais dado
-            dataBase.find({country : String(req.params.country)}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
+            illiteracy_DB.find({country : String(req.params.country)}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
 
                 if(error){
                     console.log("Se ha producido un error de servdor al hacer petición Get elemento");
@@ -313,7 +312,7 @@
                         res.sendStatus(404); //No se han encontrado elementos
                     }
                     else{
-                        dataBase.remove({country : String(req.params.country)},{multi: true},(error, numRemov)=>{
+                        illiteracy_DB.remove({country : String(req.params.country)},{multi: true},(error, numRemov)=>{
                             if(error){
                                 console.log("Se ha producido un error de servdor al hacer petición Get elemento");
                                 res.sendStatus(500); //Error de servidor
@@ -331,8 +330,8 @@
 
         //Delete elemento por pais y año
 
-        app.delete(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
-            dataBase.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
+        app.delete(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
+            illiteracy_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
 
                 if(error){
                     console.log("Se ha producido un error de servdor al hacer petición Get elemento");
@@ -343,7 +342,7 @@
                         res.sendStatus(404); //No se han encontrado elementos
                     }
                     else{
-                        dataBase.remove({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{},(error, numRemov)=>{ //Se elimina aquel cuyo país y año coincida
+                        illiteracy_DB.remove({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{},(error, numRemov)=>{ //Se elimina aquel cuyo país y año coincida
                             
                             if(error){
                                 console.log("Se ha producido un error de servdor al hacer petición Get elemento");
@@ -360,8 +359,8 @@
 
         //Put modificar elemento
 
-        app.put(BASE_API_PATH+"/education_expenditures/:country/:year", function(req, res) { 
-            dataBase.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
+        app.put(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
+            illiteracy_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
 
                 if(error){
                     console.log("Se ha producido un error de servdor al hacer petición Get elemento");
@@ -369,11 +368,11 @@
                 }
                 else{
                     if(ee_db.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
-                        dataBase.insert(req.body); //Si no existe el elemento se crea
+                        illiteracy_DB.insert(req.body); //Si no existe el elemento se crea
                         res.sendStatus(201);
                     }
                     else{ 
-                        dataBase.update({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{$set: req.body},{},(error, numReplaced)=>{
+                        illiteracy_DB.update({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{$set: req.body},{},(error, numReplaced)=>{
                             if(error){
                                 console.log("Se ha producido un error de servdor al hacer petición Get elemento");
                                 res.sendStatus(500); //Error de servidor
@@ -392,7 +391,7 @@
 
         //Put ERRONEO array de elementos
 
-        app.put(BASE_API_PATH+"/education_expenditures", function(req, res) { 
+        app.put(BASE_API_PATH+"/illiteracy", function(req, res) { 
 
             res.status(405).send("Metodo no permitido"); //Method not allowed
         });
