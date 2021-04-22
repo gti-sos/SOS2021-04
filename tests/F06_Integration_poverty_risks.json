@@ -89,6 +89,10 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"There are 3 sources\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(3);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -203,7 +207,9 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							""
+							"pm.test(\"Body matches France\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Germany\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -213,7 +219,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks?appl=12300&uhpl=27000&upercent=90",
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks?appl=12300&c=Germany&y=2015&upercent=90",
 					"protocol": "http",
 					"host": [
 						"sos2021-04",
@@ -231,8 +237,12 @@
 							"value": "12300"
 						},
 						{
-							"key": "uhpl",
-							"value": "27000"
+							"key": "c",
+							"value": "Germany"
+						},
+						{
+							"key": "y",
+							"value": "2015"
 						},
 						{
 							"key": "upercent",
@@ -252,6 +262,10 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"There are 2 sources\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(2);\r",
 							"});"
 						],
 						"type": "text/javascript"
