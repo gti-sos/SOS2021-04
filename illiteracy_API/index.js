@@ -91,6 +91,8 @@
 
             
             console.log(agdp);
+			console.log(skip);
+			console.log(limit);
             console.log(upc);
 
             //Hacemos uso de bases de datos
