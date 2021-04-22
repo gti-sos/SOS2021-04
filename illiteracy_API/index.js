@@ -8,393 +8,155 @@
 	module.exports.register = (app,BASE_API_PATH,illiteracy_DB) => {
 
         //Definimos los datos iniciales
-            
-    var datos_EE =  [
-        {
-			"year":2018,
-			"country":"Spain",
-			"female_illiteracy_rate":97.97,
-			"male_illiteracy_rate":98.93,
-			"adult_illiteracy_rate":98.44,
-			"young_illiteracy_rate":99.72
-		},
+		var initialData_illiteracy = [
+			{
+				"year":2018,
+				"country":"Spain",
+				"female_illiteracy_rate":97.97,
+				"male_illiteracy_rate":98.93,
+				"adult_illiteracy_rate":98.44,
+				"young_illiteracy_rate":99.72
+			},
 
-		{
-			"year":2018,
-			"country":"Italy",
-			"female_illiteracy_rate":98.97,
-			"male_illiteracy_rate":99.35,
-			"adult_illiteracy_rate":99.16,
-			"young_illiteracy_rate":99.99
-		},
+			{
+				"year":2018,
+				"country":"Italy",
+				"female_illiteracy_rate":98.97,
+				"male_illiteracy_rate":99.35,
+				"adult_illiteracy_rate":99.16,
+				"young_illiteracy_rate":99.99
+			},
 
-		{
-			"year":2018,
-			"country":"Portugal",
-			"female_illiteracy_rate":95.05,
-			"male_illiteracy_rate":97.35,
-			"adult_illiteracy_rate":96.14,
-			"young_illiteracy_rate":99.66
-		}
+			{
+				"year":2018,
+				"country":"Portugal",
+				"female_illiteracy_rate":95.05,
+				"male_illiteracy_rate":97.35,
+				"adult_illiteracy_rate":96.14,
+				"young_illiteracy_rate":99.66
+			}
 
-    ];
+		];
 
-        // Insertamos los datos iniciales en la base de datos
 
-        app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
-            
-            //Cuando llamen a /api/v1/education_expenditures
-            //Debemos enviar el objeto pero pasandolo a JSON
-			console.log("patata");
+		// GET para insertar los datos iniciales en la base de datos
 
-            
-			illiteracy_DB.find({}, (error, ee_db)=>{ // Comprobamos si los elementos están
+		app.get(BASE_API_PATH+"/illiteracy/loadInitialData", (req,res)=>{ 
 
-                    if(error){
-                        console.log("Se ha producido un error de servdor al hacer petición Get all");
-                        res.sendStatus(500); //Error de servidor
-                    }
-                    else{
-                        illiteracy_DB.insert(datos_EE);
-                        res.sendStatus(200);                        
-                    }
-                });          
-        });
+			// Cuando llamen a /api/v1/illiteracy/loadInitialData
+			// Comprobamos si los elementos están
+			illiteracy_DB.find({}, (error,resultFind)=>{ 
 
-        
+					if(error){
+						console.log("Se ha producido un error de servdor al hacer petición Get all");
+						res.sendStatus(500); //Error de servidor
+					}
+					else{
+						illiteracy_DB.insert(initialData_illiteracy);
+						res.sendStatus(200)                  
+					}
+				});          
+		});
 
-        //Generamos las distintas peticiones
 
-        //Get del array completo
-        app.get(BASE_API_PATH+"/illiteracy", (req,res)=>{ 
-            
-            //Cuando llamen a /api/v1/education_expenditures
-            //Debemos enviar el objeto pero pasandolo a JSON
 
-            //Permitimos búsquedas con skip y limit
-            var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
-            var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
 
-            //Definimos los distintos parametros de búsqueda
+		//Generamos las distintas peticiones
 
-            var apm = req.query.apm!=undefined?parseFloat(req.query.apm):0; // aquellos que están por encima de un gasto de x millones en educacion
-            var upm = req.query.upm!=undefined?parseFloat(req.query.apm):100000000;// aquellos que están por debajo de un gasto de x millones en educacion
-            
-            var app= req.query.app!=undefined?parseFloat(req.query.app):0; //aquellos que están por encima de un porcentaje x de gasto publico en educacion
-            var upp= req.query.upp!=undefined?parseFloat(req.query.upp):1000000000; //aquellos que están por debajo de un porcentaje x de gasto publico en educacion
-            
-            var agdp = req.query.agdp!=undefined?parseFloat(req.query.agdp):0;//aquellos que están por encima de un porcentaje x de pib en gasto publico en educacion
-            var ugdp = req.query.ugdp!=undefined?parseFloat(req.query.ugdp):100000000;//aquellos que están por debajo de un porcentaje x de pib en gasto publico en educacion
-            
-            var apc = req.query.apc!=undefined?parseFloat(req.query.apc):0; //aquellos que están por encima de una cantidad x per capita de gasto en educacion
-            var upc = req.query.upc!=undefined?parseFloat(req.query.upc):1000000000; //aquellos que están por debajo de una cantidad x per capita de gasto en educacion
+		//Get del array completo
+		app.get(BASE_API_PATH+"/illiteracy", (req,res)=>{
+			//Cuando llamen a /api/v1/poverty_risks
 
-            
-            console.log(agdp);
-            console.log(upc);
+			var query = req.query;
+			var skip = query.skip;
+			var limit = query.limit;
 
-            //Hacemos uso de bases de datos
-            illiteracy_DB.find({$and:[{female_illiteracy_rate : {$gt : apm,$lt:upm}},{male_illiteracy_rate:{$gt : app,$lt:upp}},{adult_illiteracy_rate:{$gt : agdp,$lt:ugdp}},{young_illiteracy_rate:{$gt : apc,$lt:upc}}]})
-                .skip(skip).limit(limit)
-                .exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
+			//Permitimos búsquedas con skip y limit
+			if (query.hasOwnProperty("skip")) {
+				query.skip = parseInt(query.skip);
+			}
+			if (query.hasOwnProperty("limit")) {
+				query.limit = parseInt(query.limit);
+			}
 
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get all");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 1){
-                        var dataToSend = ee_db.map((objeto) =>
-                            {
-                                //Ocultamos el atributo id
-                                return {year:objeto.year,
-                                country:objeto.country,
-                                female_illiteracy_rate: objeto.female_illiteracy_rate ,
-                                male_illiteracy_rate:objeto.male_illiteracy_rate,
-                                adult_illiteracy_rate:objeto.adult_illiteracy_rate,
-                                young_illiteracy_rate:objeto.young_illiteracy_rate};
+			/*Definimos los distintos parametros de búsqueda.
+			Si le marcas unos parámetros de búsqueda el db.find intentará
+			mostrarte los datos que cumplan dichos parámetros si no hay ninguno,
+			no mostrará nada.
+			*/
 
-                            });
-                        res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
-                    
-                    }
-                    else{
-                        var dataToSend = ee_db.map((objeto) =>
-                            {
-                                //Ocultamos el atributo id
-                                return {year:objeto.year,
+			var afi = req.query.afi!=undefined?parseFloat(req.query.afi):0; // aquellos que están por encima de un gasto de x millones en educacion
+			var ufi = req.query.ufi!=undefined?parseFloat(req.query.afi):100000000;// aquellos que están por debajo de un gasto de x millones en educacion
+
+			var ami= req.query.ami!=undefined?parseFloat(req.query.ami):0; //aquellos que están por encima de un porcentaje x de gasto publico en educacion
+			var umi= req.query.umi!=undefined?parseFloat(req.query.umi):1000000000; //aquellos que están por debajo de un porcentaje x de gasto publico en educacion
+
+			var aai = req.query.aai!=undefined?parseFloat(req.query.aai):0;//aquellos que están por encima de un porcentaje x de pib en gasto publico en educacion
+			var uai = req.query.uai!=undefined?parseFloat(req.query.uai):100000000;//aquellos que están por debajo de un porcentaje x de pib en gasto publico en educacion
+
+			var ayi = req.query.ayi!=undefined?parseFloat(req.query.ayi):0; //aquellos que están por encima de una cantidad x per capita de gasto en educacion
+			var uyi = req.query.uyi!=undefined?parseFloat(req.query.uyi):1000000000; //aquellos que están por debajo de una cantidad x per capita de gasto en educacion
+
+
+
+				console.log(afi);
+				console.log(ufi);
+				console.log(ami);
+				console.log(umi);
+				console.log(aai);
+				console.log(uai);
+				console.log(ayi);
+				console.log(uyi);
+
+
+			//Hacemos uso de bases de datos
+			illiteracy_DB.find({$and:[{female_illiteracy_rate : {$gt : afi,$lt:ufi}},{male_illiteracy_rate: {$gt : ami,$lt:umi}},{adult_illiteracy_rate:{$gt : aai,$lt:uai}},{young_illiteracy_rate:{$gt : ayi,$lt: uyi}}]})
+				.skip(skip).limit(limit)
+				.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
+					console.log("Query: "+query);
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get all");
+					res.sendStatus(500); //Error de servidor
+					console.log("Error GET general: "+error);
+				}
+				else{
+					if(resultFind.length == 1){
+						var dataToSend = resultFind.map((objeto) =>
+							{
+								//Ocultamos el atributo id
+								return {year:objeto.year,
 									country:objeto.country,
 									female_illiteracy_rate: objeto.female_illiteracy_rate ,
 									male_illiteracy_rate:objeto.male_illiteracy_rate,
 									adult_illiteracy_rate:objeto.adult_illiteracy_rate,
 									young_illiteracy_rate:objeto.young_illiteracy_rate};
-                            });
-                        res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
-                    }
-                }
 
-                
-            });
-        });
+							});
+						res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+						console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
+					}
+					else{
+						var dataToSend = resultFind.map((objeto) =>
+							{
+								//Ocultamos el atributo id
+								return {year:objeto.year,
+									country:objeto.country,
+									female_illiteracy_rate: objeto.female_illiteracy_rate ,
+									male_illiteracy_rate:objeto.male_illiteracy_rate,
+									adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+									young_illiteracy_rate:objeto.young_illiteracy_rate};
 
-        //Get para tomar elementos por pais
-        
-        app.get(BASE_API_PATH+'/illiteracy/:country', (req,res)=>{ //Cuando llamen a /api/v1/illiteracy/(pais)
-            
-            //Permitimos búsquedas con skip y limit
-            var skip = req.query.skip!=undefined?parseInt(req.query.skip):0 ;
-            var limit = req.query.limit!=undefined?parseInt(req.query.limit):Infinity;
+							});
+						res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+						console.log(("Resultados GET general: ")+resultFind);
+					}
 
-            //Crearemos un nuevo array resultado de filtrar el array completo
-            illiteracy_DB.find({country : String(req.params.country)}).skip(skip).limit(limit).exec((error, ee_db)=>{ //Se establece patron por país
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get country");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 0){
-                        res.sendStatus(404); //No se encuentra el elemento 
-                    }
-                    else{
-                        if(ee_db.length == 1){
-                            var dataToSend = ee_db.map((objeto) =>
-                                {
-                                    //Ocultamos el atributo id
-                                    return{year:objeto.year,
-										country:objeto.country,
-										female_illiteracy_rate: objeto.female_illiteracy_rate ,
-										male_illiteracy_rate:objeto.male_illiteracy_rate,
-										adult_illiteracy_rate:objeto.adult_illiteracy_rate,
-										young_illiteracy_rate:objeto.young_illiteracy_rate};
-    
-                                });
-                            res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
-                        
-                        }
-                        else{
-                            var dataToSend = ee_db.map((objeto) =>
-                                {
-                                    //Ocultamos el atributo id
-                                    return {year:objeto.year,
-										country:objeto.country,
-										female_illiteracy_rate: objeto.female_illiteracy_rate ,
-										male_illiteracy_rate:objeto.male_illiteracy_rate,
-										adult_illiteracy_rate:objeto.adult_illiteracy_rate,
-										young_illiteracy_rate:objeto.young_illiteracy_rate};
-    
-                                });
-                            res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
-                        }
-                    }
-                }
-            });    
-        });
+				}
 
 
-        //Get para tomar elementos por pais y año
-        
-        app.get(BASE_API_PATH+"/illiteracy/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/illiteracy/(pais)
+			});
 
-            //Crearemos un nuevo array resultado de filtrar el array completo
-            illiteracy_DB.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, ee_db)=>{ //Se establece patron por país y año
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get country");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 0){
-                        res.sendStatus(404); //No se encuentra el elemento 
-                    }
-                    else{
-                        var dataToSend = ee_db.map((objeto) =>
-                                {
-                                    //Ocultamos el atributo id
-                                    return {year:objeto.year,
-										country:objeto.country,
-										female_illiteracy_rate: objeto.female_illiteracy_rate ,
-										male_illiteracy_rate:objeto.male_illiteracy_rate,
-										adult_illiteracy_rate:objeto.adult_illiteracy_rate,
-										young_illiteracy_rate:objeto.young_illiteracy_rate};
-    
-                                });
-                            res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
-                        
-                    }
-                }
-            });
-            
-        });
-
-        //Post al array completo para incluir datos como los de la ficha de propuestas
-
-        app.post(BASE_API_PATH+"/illiteracy", (req,res)=>{
-
-            var rep = false;
-            
-            illiteracy_DB.find({}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    //Comprobamos que se cumple la estructura JSON predefinida
-
-                    var c = req.body.country!=undefined;
-                    var p = req.body.year!=undefined;
-                    var pm = req.body.female_illiteracy_rate!=undefined;
-                    var pp= req.body.male_illiteracy_rate!=undefined;
-                    var gdp = req.body.adult_illiteracy_rate!=undefined;
-                    var pc = req.body.young_illiteracy_rate!=undefined;
-
-                    var cumple = c && p && pm && pp && gdp && pc;
-
-                    if(cumple){
-
-                        for(elemento in ee_db){
-                            rep = rep || (ee_db[elemento].country===String(req.body.country) && ee_db[elemento].year===parseInt(req.body.year));
-                        }
-    
-                        if(rep){
-                            res.sendStatus(409);
-                            console.log("Elemento Repetido");
-                        }
-                        else{
-                            illiteracy_DB.insert(req.body);
-                            res.sendStatus(201);
-                        }
-                    }
-                    else{
-                        res.sendStatus(400); //BAD REQUEST
-                    }                  
-                }
-            });        
-        });
-
-        //Post ERRONEO de elemento
-
-        app.post(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
-
-            res.status(405).send("Metodo no permitido"); //Method not allowed
-        });
-
-        //Delete del array completo
-
-        app.delete(BASE_API_PATH+"/illiteracy", (req,res)=>{ //Elimina todos los elementos de la base de datos
-            
-            illiteracy_DB.remove({},{multi: true},(error, numRemov)=>{
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                    res.sendStatus(500); //Error de servidor
-
-                }else {
-                    res.sendStatus(200);
-                }
-            });
-        
-        });
-
-        //Delete de elementos por pais
-
-        app.delete(BASE_API_PATH+"/illiteracy/:country", function(req, res) { 
-
-            //Se hace un filtrado por pais, eliminando aquellos que coinciden con el pais dado
-            illiteracy_DB.find({country : String(req.params.country)}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
-                        res.sendStatus(404); //No se han encontrado elementos
-                    }
-                    else{
-                        illiteracy_DB.remove({country : String(req.params.country)},{multi: true},(error, numRemov)=>{
-                            if(error){
-                                console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                                res.sendStatus(500); //Error de servidor
-
-                            }else {
-                                res.sendStatus(200);
-                            } 
-                        });
-                    }
-                   
-                }
-            });
-
-        });
-
-        //Delete elemento por pais y año
-
-        app.delete(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
-            illiteracy_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
-                        res.sendStatus(404); //No se han encontrado elementos
-                    }
-                    else{
-                        illiteracy_DB.remove({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{},(error, numRemov)=>{ //Se elimina aquel cuyo país y año coincida
-                            
-                            if(error){
-                                console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                                res.sendStatus(500); //Error de servidor
-
-                            }else {
-                                res.sendStatus(200);
-                            }
-                        });
-                    }
-                }
-            });
-        });
-
-        //Put modificar elemento
-
-        app.put(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
-            illiteracy_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, ee_db)=>{ //Comprobamos si existe el elemento ya
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
-                        illiteracy_DB.insert(req.body); //Si no existe el elemento se crea
-                        res.sendStatus(201);
-                    }
-                    else{ 
-                        illiteracy_DB.update({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{$set: req.body},{},(error, numReplaced)=>{
-                            if(error){
-                                console.log("Se ha producido un error de servdor al hacer petición Get elemento");
-                                res.sendStatus(500); //Error de servidor
-
-                            }else {
-                                res.sendStatus(200); //Elemento Modificado
-                            }
-
-                        });
-                        
-                    }
-                }
-            });
-            
-        });
-
-        //Put ERRONEO array de elementos
-
-        app.put(BASE_API_PATH+"/illiteracy", function(req, res) { 
-
-            res.status(405).send("Metodo no permitido"); //Method not allowed
-        });
+		});
     };
 
 
