@@ -121,6 +121,9 @@
 
             //Definimos los distintos parametros de búsqueda
 
+            var c = req.query.c!=undefined?String(req.query.c):"";
+            var y = req.query.y!=undefined?parseFloat(req.query.y):0;
+
             var apm = req.query.apm!=undefined?parseFloat(req.query.apm):0; // aquellos que están por encima de un gasto de x millones en educacion
             var upm = req.query.upm!=undefined?parseFloat(req.query.apm):100000000;// aquellos que están por debajo de un gasto de x millones en educacion
             
@@ -133,54 +136,197 @@
             var apc = req.query.apc!=undefined?parseFloat(req.query.apc):0; //aquellos que están por encima de una cantidad x per capita de gasto en educacion
             var upc = req.query.upc!=undefined?parseFloat(req.query.upc):1000000000; //aquellos que están por debajo de una cantidad x per capita de gasto en educacion
 
-            
-            console.log(agdp);
-            console.log(upc);
+            console.log(c);
+            console.log(y);
 
             //Hacemos uso de bases de datos
-            dataBase.find({$and:[{education_expenditure_per_millions : {$gt : apm,$lt:upm}}, {education_expenditure_per_public_expenditure: {$gt : app,$lt:upp}},{education_expenditure_gdp:{$gt : agdp,$lt:ugdp}}, {education_expenditure_per_capita:{$gt : apc,$lt:upc}}]})
-                .skip(skip).limit(limit)
-                .exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
-
-                if(error){
-                    console.log("Se ha producido un error de servdor al hacer petición Get all");
-                    res.sendStatus(500); //Error de servidor
-                }
-                else{
-                    if(ee_db.length == 1){
-                        var dataToSend = ee_db.map((objeto) =>
-                            {
-                                //Ocultamos el atributo id
-                                return {year:objeto.year,
-                                country:objeto.country,
-                                education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
-                                education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
-                                education_expenditure_gdp:objeto.education_expenditure_gdp,
-                                education_expenditure_per_capita:objeto.education_expenditure_per_capita};
-
-                            });
-                        res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
-                    
-                    }
-                    else{
-                        var dataToSend = ee_db.map((objeto) =>
-                            {
-                                //Ocultamos el atributo id
-                                return {year:objeto.year,
-                                country:objeto.country,
-                                education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
-                                education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
-                                education_expenditure_gdp:objeto.education_expenditure_gdp,
-                                education_expenditure_per_capita:objeto.education_expenditure_per_capita};
-
-                            });
-                        res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
-                    }
-                    
-                }
-
-                
-            });
+            if(c!="" && y!=0){
+                dataBase.find({$and:[{education_expenditure_per_millions : {$gt : apm,$lt:upm}}, {education_expenditure_per_public_expenditure: {$gt : app,$lt:upp}},{education_expenditure_gdp:{$gt : agdp,$lt:ugdp}}, {education_expenditure_per_capita:{$gt : apc,$lt:upc}},{country : c}, {year: y}]})
+                        .skip(skip).limit(limit)
+                        .exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
+        
+                        if(error){
+                            console.log("Se ha producido un error de servdor al hacer petición Get all, todos definidos");
+                            res.sendStatus(500); //Error de servidor
+                        }
+                            else{if(ee_db.length==0){
+                                res.sendStatus(404);
+                            }
+                            else if(ee_db.length == 1){
+                                var dataToSend = ee_db.map((objeto) =>
+                                    {
+                                        //Ocultamos el atributo id
+                                        return {year:objeto.year,
+                                        country:objeto.country,
+                                        education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+                                        education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
+                                        education_expenditure_gdp:objeto.education_expenditure_gdp,
+                                        education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+        
+                                    });
+                                res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+                            
+                            }
+                            else{
+                                var dataToSend = ee_db.map((objeto) =>
+                                    {
+                                        //Ocultamos el atributo id
+                                        return {year:objeto.year,
+                                        country:objeto.country,
+                                        education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+                                        education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
+                                        education_expenditure_gdp:objeto.education_expenditure_gdp,
+                                        education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+        
+                                    });
+                                res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+                            }
+                            
+                        }
+        
+                        
+                    });
+            }
+            else if(c!="" && y==0){
+                dataBase.find({$and:[{education_expenditure_per_millions : {$gt : apm,$lt:upm}}, {education_expenditure_per_public_expenditure: {$gt : app,$lt:upp}},{education_expenditure_gdp:{$gt : agdp,$lt:ugdp}}, {education_expenditure_per_capita:{$gt : apc,$lt:upc}},{country : c}]})
+                        .skip(skip).limit(limit)
+                        .exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
+        
+                        if(error){
+                            console.log("Se ha producido un error de servdor al hacer petición Get all, c definido");
+                            res.sendStatus(500); //Error de servidor
+                        }
+                        else{
+                            if(ee_db.length==0){
+                                res.sendStatus(404);
+                            }
+                            else if(ee_db.length == 1){
+                                var dataToSend = ee_db.map((objeto) =>
+                                    {
+                                        //Ocultamos el atributo id
+                                        return {year:objeto.year,
+                                        country:objeto.country,
+                                        education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+                                        education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
+                                        education_expenditure_gdp:objeto.education_expenditure_gdp,
+                                        education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+        
+                                    });
+                                res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+                            
+                            }
+                            else{
+                                var dataToSend = ee_db.map((objeto) =>
+                                    {
+                                        //Ocultamos el atributo id
+                                        return {year:objeto.year,
+                                        country:objeto.country,
+                                        education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+                                        education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
+                                        education_expenditure_gdp:objeto.education_expenditure_gdp,
+                                        education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+        
+                                    });
+                                res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+                            }
+                            
+                        }
+        
+                        
+                    });
+            } else if(c=="" && y!=0){
+                dataBase.find({$and:[{education_expenditure_per_millions : {$gt : apm,$lt:upm}}, {education_expenditure_per_public_expenditure: {$gt : app,$lt:upp}},{education_expenditure_gdp:{$gt : agdp,$lt:ugdp}}, {education_expenditure_per_capita:{$gt : apc,$lt:upc}},{year:y}]})
+                        .skip(skip).limit(limit)
+                        .exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
+        
+                        if(error){
+                            console.log("Se ha producido un error de servdor al hacer petición Get all, y definido");
+                            res.sendStatus(500); //Error de servidor
+                        }
+                        else{
+                            if(ee_db.length==0){
+                                res.sendStatus(404);
+                            }
+                            else if(ee_db.length == 1){
+                                    var dataToSend = ee_db.map((objeto) =>
+                                        {
+                                        //Ocultamos el atributo id
+                                        return {year:objeto.year,
+                                        country:objeto.country,
+                                        education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+                                        education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
+                                        education_expenditure_gdp:objeto.education_expenditure_gdp,
+                                        education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+        
+                                    });
+                                res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+                            
+                            }
+                            else{
+                                var dataToSend = ee_db.map((objeto) =>
+                                    {
+                                        //Ocultamos el atributo id
+                                        return {year:objeto.year,
+                                        country:objeto.country,
+                                        education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+                                        education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
+                                        education_expenditure_gdp:objeto.education_expenditure_gdp,
+                                        education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+        
+                                    });
+                                res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+                            }
+                            
+                        }
+        
+                        
+                    });
+            } else{
+                dataBase.find({$and:[{education_expenditure_per_millions : {$gt : apm,$lt:upm}}, {education_expenditure_per_public_expenditure: {$gt : app,$lt:upp}},{education_expenditure_gdp:{$gt : agdp,$lt:ugdp}}, {education_expenditure_per_capita:{$gt : apc,$lt:upc}}]})
+                        .skip(skip).limit(limit)
+                        .exec( (error, ee_db)=>{ //No establecemos patrón, por lo que se toman todos
+        
+                        if(error){
+                            console.log("Se ha producido un error de servdor al hacer petición Get all, nada defnido");
+                            res.sendStatus(500); //Error de servidor
+                        }
+                        else{
+                            if(ee_db.length == 1){
+                                var dataToSend = ee_db.map((objeto) =>
+                                    {
+                                        //Ocultamos el atributo id
+                                        return {year:objeto.year,
+                                        country:objeto.country,
+                                        education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+                                        education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
+                                        education_expenditure_gdp:objeto.education_expenditure_gdp,
+                                        education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+        
+                                    });
+                                res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+                            
+                            }
+                            else{
+                                var dataToSend = ee_db.map((objeto) =>
+                                    {
+                                        //Ocultamos el atributo id
+                                        return {year:objeto.year,
+                                        country:objeto.country,
+                                        education_expenditure_per_millions: objeto.education_expenditure_per_millions ,
+                                        education_expenditure_per_public_expenditure:objeto.education_expenditure_per_public_expenditure,
+                                        education_expenditure_gdp:objeto.education_expenditure_gdp,
+                                        education_expenditure_per_capita:objeto.education_expenditure_per_capita};
+        
+                                    });
+                                res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+                            }
+                            
+                        }
+        
+                        
+                    });
+            }
+            
         });
 
         //Get para tomar elementos por pais
