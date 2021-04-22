@@ -1,8 +1,8 @@
 /*
-*******************************
+********************************
 *	    MILESTONE F06      *
 *   LAB 07/08 - MODULARIZACIÓN *
-*******************************
+********************************
 */
 
 // Api Javier Carmona Andrés - poverty_risks
@@ -152,8 +152,10 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		Si le marcas unos parámetros de búsqueda el db.find intentará
 		mostrarte los datos que cumplan dichos parámetros si no hay ninguno,
 		no mostrará nada.
-		*/
-		
+		*/	// Sino es undefined, úsalo, si es undefined pon "", para un mejor manejo posterior.
+			var c = req.query.c!=undefined?String(req.query.c):"";
+			var y = req.query.y!=undefined?parseFloat(req.query.y):0;
+
 			// aquellos que están por encima de un nº de personas en riesgo de pobreza
 			var aprp = req.query.aprp!=undefined?parseInt(req.query.aprp):0; 
 			// aquellos que están por debajo de un nº de personas en riesgo de pobreza
@@ -183,53 +185,207 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 			console.log(apercnt);
 			console.log(upercnt);
 
-		
-		//Hacemos uso de bases de datos
-		povertyRisks_DB.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}}]})
-			.skip(skip).limit(limit)
-			.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
-				console.log("Query: "+query);
-			if(error){
-				console.log("Se ha producido un error de servdor al hacer petición Get all");
-				res.sendStatus(500); //Error de servidor
-				console.log("Error GET general: "+error);
+			if(c!="" && y!=0){
+
+				//Hacemos uso de bases de datos
+		povertyRisks_DB.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}},{country : c}, {year: y}]})
+		.skip(skip).limit(limit)
+		.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
+			console.log("Query: "+query);
+		if(error){
+			console.log("Se ha producido un error de servdor al hacer petición Get all");
+			res.sendStatus(500); //Error de servidor
+			console.log("Error GET general: "+error);
+		}
+		else{
+			if(resultFind.length == 1){
+				var dataToSend = resultFind.map((objeto) =>
+					{
+						//Ocultamos el atributo id
+						return {year:objeto.year,
+						country:objeto.country,
+						people_in_risk_of_poverty: objeto.people_in_risk_of_poverty,
+						people_poverty_line:objeto.people_poverty_line,
+						home_poverty_line:objeto.home_poverty_line,
+						percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+					});
+				res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+				console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
 			}
 			else{
-				if(resultFind.length == 1){
-					var dataToSend = resultFind.map((objeto) =>
-						{
-							//Ocultamos el atributo id
-							return {year:objeto.year,
-							country:objeto.country,
-							people_in_risk_of_poverty: objeto.people_in_risk_of_poverty,
-							people_poverty_line:objeto.people_poverty_line,
-							home_poverty_line:objeto.home_poverty_line,
-							percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+				var dataToSend = resultFind.map((objeto) =>
+					{
+						//Ocultamos el atributo id
+						return {year:objeto.year,
+						country:objeto.country,
+						people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
+						people_poverty_line:objeto.people_poverty_line,
+						home_poverty_line:objeto.home_poverty_line,
+						percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
 
-						});
-					res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
-					console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
-				}
-				else{
-					var dataToSend = resultFind.map((objeto) =>
-						{
-							//Ocultamos el atributo id
-							return {year:objeto.year,
-							country:objeto.country,
-							people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
-							people_poverty_line:objeto.people_poverty_line,
-							home_poverty_line:objeto.home_poverty_line,
-							percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
-
-						});
-					res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
-					console.log(("Resultados GET general: ")+resultFind);
-				}
-			
+					});
+				res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+				console.log(("Resultados GET general: ")+resultFind);
 			}
-
 		
-		});
+		}
+
+	
+	});
+
+
+			} else if(c!="" && y==0){
+
+				//Hacemos uso de bases de datos
+		povertyRisks_DB.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}},{country : c}]})
+		.skip(skip).limit(limit)
+		.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
+			console.log("Query: "+query);
+		if(error){
+			console.log("Se ha producido un error de servdor al hacer petición Get all");
+			res.sendStatus(500); //Error de servidor
+			console.log("Error GET general: "+error);
+		}
+		else{
+			if(resultFind.length == 1){
+				var dataToSend = resultFind.map((objeto) =>
+					{
+						//Ocultamos el atributo id
+						return {year:objeto.year,
+						country:objeto.country,
+						people_in_risk_of_poverty: objeto.people_in_risk_of_poverty,
+						people_poverty_line:objeto.people_poverty_line,
+						home_poverty_line:objeto.home_poverty_line,
+						percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+					});
+				res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+				console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
+			}
+			else{
+				var dataToSend = resultFind.map((objeto) =>
+					{
+						//Ocultamos el atributo id
+						return {year:objeto.year,
+						country:objeto.country,
+						people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
+						people_poverty_line:objeto.people_poverty_line,
+						home_poverty_line:objeto.home_poverty_line,
+						percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+					});
+				res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+				console.log(("Resultados GET general: ")+resultFind);
+			}
+		
+		}
+
+	
+	});
+
+
+			}else if(c=="" && y!=0){
+
+				//Hacemos uso de bases de datos
+		povertyRisks_DB.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}}, {year: y}]})
+		.skip(skip).limit(limit)
+		.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
+			console.log("Query: "+query);
+		if(error){
+			console.log("Se ha producido un error de servdor al hacer petición Get all");
+			res.sendStatus(500); //Error de servidor
+			console.log("Error GET general: "+error);
+		}
+		else{
+			if(resultFind.length == 1){
+				var dataToSend = resultFind.map((objeto) =>
+					{
+						//Ocultamos el atributo id
+						return {year:objeto.year,
+						country:objeto.country,
+						people_in_risk_of_poverty: objeto.people_in_risk_of_poverty,
+						people_poverty_line:objeto.people_poverty_line,
+						home_poverty_line:objeto.home_poverty_line,
+						percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+					});
+				res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+				console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
+			}
+			else{
+				var dataToSend = resultFind.map((objeto) =>
+					{
+						//Ocultamos el atributo id
+						return {year:objeto.year,
+						country:objeto.country,
+						people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
+						people_poverty_line:objeto.people_poverty_line,
+						home_poverty_line:objeto.home_poverty_line,
+						percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+					});
+				res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+				console.log(("Resultados GET general: ")+resultFind);
+			}
+		
+		}
+
+	
+	});
+
+
+			}else{
+
+				//Hacemos uso de bases de datos
+		povertyRisks_DB.find({$and:[{people_in_risk_of_poverty : {$gt : aprp,$lt:uprp}}, {people_poverty_line: {$gt : appl,$lt:uppl}},{home_poverty_line:{$gt : ahpl,$lt:uhpl}}, {percentage_risk_of_poverty:{$gt : apercnt,$lt:upercnt}}]})
+		.skip(skip).limit(limit)
+		.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
+			console.log("Query: "+query);
+		if(error){
+			console.log("Se ha producido un error de servdor al hacer petición Get all");
+			res.sendStatus(500); //Error de servidor
+			console.log("Error GET general: "+error);
+		}
+		else{
+			if(resultFind.length == 1){
+				var dataToSend = resultFind.map((objeto) =>
+					{
+						//Ocultamos el atributo id
+						return {year:objeto.year,
+						country:objeto.country,
+						people_in_risk_of_poverty: objeto.people_in_risk_of_poverty,
+						people_poverty_line:objeto.people_poverty_line,
+						home_poverty_line:objeto.home_poverty_line,
+						percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+					});
+				res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+				console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
+			}
+			else{
+				var dataToSend = resultFind.map((objeto) =>
+					{
+						//Ocultamos el atributo id
+						return {year:objeto.year,
+						country:objeto.country,
+						people_in_risk_of_poverty: objeto.people_in_risk_of_poverty ,
+						people_poverty_line:objeto.people_poverty_line,
+						home_poverty_line:objeto.home_poverty_line,
+						percentage_risk_of_poverty:objeto.percentage_risk_of_poverty};
+
+					});
+				res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+				console.log(("Resultados GET general: ")+resultFind);
+			}
+		
+		}
+
+	
+	});
+
+
+			}
 
 	});
 
