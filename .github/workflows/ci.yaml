@@ -21,4 +21,12 @@ jobs:
       - run: npm install
       - run: npm start &
       - run: npx newman run tests/F06_Integration_poverty_risks.json
+
+  integration_poverty_risks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm start &
+      - run: npx newman run tests/illiteracy-tests.json
   

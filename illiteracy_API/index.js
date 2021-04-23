@@ -66,11 +66,11 @@
 		//Get del array completo
 		app.get(BASE_API_PATH+"/illiteracy", (req,res)=>{
 			//Cuando llamen a /api/v1/poverty_risks
-
+	
 			var query = req.query;
 			var skip = query.skip;
 			var limit = query.limit;
-
+			
 			//Permitimos búsquedas con skip y limit
 			if (query.hasOwnProperty("skip")) {
 				query.skip = parseInt(query.skip);
@@ -78,13 +78,15 @@
 			if (query.hasOwnProperty("limit")) {
 				query.limit = parseInt(query.limit);
 			}
-
+	
 			/*Definimos los distintos parametros de búsqueda.
 			Si le marcas unos parámetros de búsqueda el db.find intentará
 			mostrarte los datos que cumplan dichos parámetros si no hay ninguno,
 			no mostrará nada.
-			*/
-
+			*/	// Sino es undefined, úsalo, si es undefined pon "", para un mejor manejo posterior.
+				var c = req.query.c!=undefined?String(req.query.c):"";
+				var y = req.query.y!=undefined?parseFloat(req.query.y):0;
+	
 			var afi = req.query.afi!=undefined?parseFloat(req.query.afi):0; // aquellos que están por encima de un gasto de x millones en educacion
 			var ufi = req.query.ufi!=undefined?parseFloat(req.query.afi):100000000;// aquellos que están por debajo de un gasto de x millones en educacion
 
@@ -107,17 +109,238 @@
 				console.log(uai);
 				console.log(ayi);
 				console.log(uyi);
-
-
-			//Hacemos uso de bases de datos
+	
+				if(c!="" && y!=0){
+	
+					//Hacemos uso de bases de datos
+					illiteracy_DB.find({$and:[{female_illiteracy_rate : {$gt : afi,$lt:ufi}},{male_illiteracy_rate: {$gt : ami,$lt:umi}},{adult_illiteracy_rate:{$gt : aai,$lt:uai}},{young_illiteracy_rate:{$gt : ayi,$lt: uyi}},{country : c}, {year: y}]})
+			.skip(skip).limit(limit)
+			.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
+				console.log("Query: "+query);
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get all");
+				res.sendStatus(500); //Error de servidor
+				console.log("Error GET general: "+error);
+			}
+			else{
+				if(resultFind.length == 1){
+					var dataToSend = resultFind.map((objeto) =>
+						{
+							//Ocultamos el atributo id
+							return {year:objeto.year,
+								country:objeto.country,
+								female_illiteracy_rate: objeto.female_illiteracy_rate ,
+								male_illiteracy_rate:objeto.male_illiteracy_rate,
+								adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+								young_illiteracy_rate:objeto.young_illiteracy_rate};
+	
+						});
+					res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+					console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
+				}
+				else{
+					var dataToSend = resultFind.map((objeto) =>
+						{
+							//Ocultamos el atributo id
+							return {year:objeto.year,
+								country:objeto.country,
+								female_illiteracy_rate: objeto.female_illiteracy_rate ,
+								male_illiteracy_rate:objeto.male_illiteracy_rate,
+								adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+								young_illiteracy_rate:objeto.young_illiteracy_rate};
+	
+						});
+					res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+					console.log(("Resultados GET general: ")+resultFind);
+				}
+			
+			}
+	
+		
+		});
+	
+	
+				} else if(c!="" && y==0){
+	
+					//Hacemos uso de bases de datos
+			illiteracy_DB.find({$and:[{female_illiteracy_rate : {$gt : afi,$lt:ufi}},{male_illiteracy_rate: {$gt : ami,$lt:umi}},{adult_illiteracy_rate:{$gt : aai,$lt:uai}},{young_illiteracy_rate:{$gt : ayi,$lt: uyi}},{country : c}]})
+			.skip(skip).limit(limit)
+			.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
+				console.log("Query: "+query);
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get all");
+				res.sendStatus(500); //Error de servidor
+				console.log("Error GET general: "+error);
+			}
+			else{
+				if(resultFind.length == 1){
+					var dataToSend = resultFind.map((objeto) =>
+						{
+							//Ocultamos el atributo id
+							return {year:objeto.year,
+								country:objeto.country,
+								female_illiteracy_rate: objeto.female_illiteracy_rate ,
+								male_illiteracy_rate:objeto.male_illiteracy_rate,
+								adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+								young_illiteracy_rate:objeto.young_illiteracy_rate};;
+	
+						});
+					res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+					console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
+				}
+				else{
+					var dataToSend = resultFind.map((objeto) =>
+						{
+							//Ocultamos el atributo id
+							return {year:objeto.year,
+								country:objeto.country,
+								female_illiteracy_rate: objeto.female_illiteracy_rate ,
+								male_illiteracy_rate:objeto.male_illiteracy_rate,
+								adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+								young_illiteracy_rate:objeto.young_illiteracy_rate};
+	
+						});
+					res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+					console.log(("Resultados GET general: ")+resultFind);
+				}
+			
+			}
+	
+		
+		});
+	
+	
+				}else if(c=="" && y!=0){
+	
+					//Hacemos uso de bases de datos
+			illiteracy_DB.find({$and:[{female_illiteracy_rate : {$gt : afi,$lt:ufi}},{male_illiteracy_rate: {$gt : ami,$lt:umi}},{adult_illiteracy_rate:{$gt : aai,$lt:uai}},{young_illiteracy_rate:{$gt : ayi,$lt: uyi}},{year: y}]})
+			.skip(skip).limit(limit)
+			.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
+				console.log("Query: "+query);
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get all");
+				res.sendStatus(500); //Error de servidor
+				console.log("Error GET general: "+error);
+			}
+			else{
+				if(resultFind.length == 1){
+					var dataToSend = resultFind.map((objeto) =>
+						{
+							//Ocultamos el atributo id
+							return {year:objeto.year,
+								country:objeto.country,
+								female_illiteracy_rate: objeto.female_illiteracy_rate ,
+								male_illiteracy_rate:objeto.male_illiteracy_rate,
+								adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+								young_illiteracy_rate:objeto.young_illiteracy_rate};
+	
+						});
+					res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+					console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
+				}
+				else{
+					var dataToSend = resultFind.map((objeto) =>
+						{
+							//Ocultamos el atributo id
+							return {year:objeto.year,
+								country:objeto.country,
+								female_illiteracy_rate: objeto.female_illiteracy_rate ,
+								male_illiteracy_rate:objeto.male_illiteracy_rate,
+								adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+								young_illiteracy_rate:objeto.young_illiteracy_rate};
+	
+						});
+					res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+					console.log(("Resultados GET general: ")+resultFind);
+				}
+			
+			}
+	
+		
+		});
+	
+	
+				}else{
+	
+					//Hacemos uso de bases de datos
 			illiteracy_DB.find({$and:[{female_illiteracy_rate : {$gt : afi,$lt:ufi}},{male_illiteracy_rate: {$gt : ami,$lt:umi}},{adult_illiteracy_rate:{$gt : aai,$lt:uai}},{young_illiteracy_rate:{$gt : ayi,$lt: uyi}}]})
-				.skip(skip).limit(limit)
-				.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
-					console.log("Query: "+query);
-				if(error){
-					console.log("Se ha producido un error de servdor al hacer petición Get all");
-					res.sendStatus(500); //Error de servidor
-					console.log("Error GET general: "+error);
+			.skip(skip).limit(limit)
+			.exec( (error, resultFind)=>{ //No establecemos patrón, por lo que se toman todos
+				console.log("Query: "+query);
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get all");
+				res.sendStatus(500); //Error de servidor
+				console.log("Error GET general: "+error);
+			}
+			else{
+				if(resultFind.length == 1){
+					var dataToSend = resultFind.map((objeto) =>
+						{
+							//Ocultamos el atributo id
+							return {year:objeto.year,
+								country:objeto.country,
+								female_illiteracy_rate: objeto.female_illiteracy_rate ,
+								male_illiteracy_rate:objeto.male_illiteracy_rate,
+								adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+								young_illiteracy_rate:objeto.young_illiteracy_rate};
+	
+						});
+					res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+					console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
+				}
+				else{
+					var dataToSend = resultFind.map((objeto) =>
+						{
+							//Ocultamos el atributo id
+							return {year:objeto.year,
+								country:objeto.country,
+								female_illiteracy_rate: objeto.female_illiteracy_rate ,
+								male_illiteracy_rate:objeto.male_illiteracy_rate,
+								adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+								young_illiteracy_rate:objeto.young_illiteracy_rate};
+	
+						});
+					res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
+					console.log(("Resultados GET general: ")+resultFind);
+				}
+			
+			}
+	
+		
+		});
+	
+	
+				}
+	
+		});
+
+		//Get para tomar elementos por pais
+		app.get(BASE_API_PATH+'/illiteracy/:country', (req,res)=>{ 
+		//Cuando llamen a /api/v1/illiteracy/(pais)
+
+		var query = req.query;
+		var skip = query.skip;
+		var limit = query.limit;
+		
+		//Permitimos búsquedas con skip y limit
+		if (query.hasOwnProperty("skip")) {
+			query.skip = parseInt(query.skip);
+		}
+		if (query.hasOwnProperty("limit")) {
+			query.limit = parseInt(query.limit);
+		}
+
+		//Crearemos un nuevo array resultado de filtrar el array completo
+		illiteracy_DB.find({country : String(req.params.country)}).skip(skip).limit(limit).exec((error, resultFind)=>{
+			//Se establece patron por país
+
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get country");
+				res.sendStatus(500); //Error de servidor
+			}
+			else{
+				if(resultFind.length == 0){
+					res.sendStatus(404); //No se encuentra el elemento 
 				}
 				else{
 					if(resultFind.length == 1){
@@ -133,7 +356,7 @@
 
 							});
 						res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
-						console.log("Sólo 1 resultado GET general: "+dataToSend[0]);
+					
 					}
 					else{
 						var dataToSend = resultFind.map((objeto) =>
@@ -148,15 +371,219 @@
 
 							});
 						res.status(200).send(JSON.stringify(dataToSend,null,2)); //Tamaño de la página y salto;
-						console.log(("Resultados GET general: ")+resultFind);
 					}
-
+					console.log(("Query GET para tomar elementos por pais: ")+query);
+					console.log(("Resultados GET para tomar elementos por pais: ")+dataToSend); 
 				}
-
-
-			});
-
+			}
+		});    
 		});
+
+		//Get para tomar elementos por pais y año
+		app.get(BASE_API_PATH+"/illiteracy/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/illiteracy/(pais)
+
+		//Crearemos un nuevo array resultado de filtrar el array completo
+		illiteracy_DB.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, resultFind)=>{ //Se establece patron por país y año
+
+			if(error){
+				console.log("Se ha producido un error de servdor al hacer petición Get country");
+				res.sendStatus(500); //Error de servidor
+			}
+			else{
+				if(resultFind.length == 0){
+					res.sendStatus(404); //No se encuentra el elemento 
+				}
+				else{
+					var dataToSend = resultFind.map((objeto) =>
+							{
+								//Ocultamos el atributo id
+								return {year:objeto.year,
+									country:objeto.country,
+									female_illiteracy_rate: objeto.female_illiteracy_rate ,
+									male_illiteracy_rate:objeto.male_illiteracy_rate,
+									adult_illiteracy_rate:objeto.adult_illiteracy_rate,
+									young_illiteracy_rate:objeto.young_illiteracy_rate};
+
+
+							});
+						res.status(200).send(JSON.stringify(dataToSend[0],null,2)); //Tamaño de la página y salto;
+					
+				}
+			}
+		});
+		
+		});
+
+		//Post al array completo para incluir datos como los de la ficha de propuestas
+		app.post(BASE_API_PATH+"/illiteracy", (req,res)=>{
+
+			var elemRepetido = false;
+			
+			illiteracy_DB.find({}, (error, resultFind)=>{ //Comprobamos si existe el elemento ya
+	
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+					res.sendStatus(500); //Error de servidor
+				}
+				else{
+					//Comprobamos que se cumple la estructura JSON predefinida
+	
+					var country = req.body.country!=undefined;
+					var year = req.body.year!=undefined;
+					var prp = req.body.female_illiteracy_rate!=undefined;
+					var ppl= req.body.male_illiteracy_rate!=undefined;
+					var hpl = req.body.adult_illiteracy_rate!=undefined;
+					var percentrp = req.body.young_illiteracy_rate!=undefined;
+	
+					console.log(country);console.log(year);console.log(prp);console.log(ppl);console.log(hpl);console.log(percentrp);
+	
+					var condicion = country && year && prp && ppl && hpl && percentrp;
+	
+					if(condicion){
+	
+						for(elemento in resultFind){
+							elemRepetido = elemRepetido || (resultFind[elemento].country===String(req.body.country) && resultFind[elemento].year===parseInt(req.body.year));
+						}
+	
+						if(elemRepetido){
+							res.sendStatus(409);
+							console.log("Elemento Repetido");
+						}
+						else{
+							illiteracy_DB.insert(req.body);
+							res.sendStatus(201);
+						}
+					}
+					else{
+						res.sendStatus(400); //BAD REQUEST
+					}                  
+				}
+			});        
+		});
+		
+		//Post ERRONEO de elemento
+		app.post(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
+
+			res.status(405).send("Metodo no permitido"); //Method not allowed
+		});
+		
+		//Delete del array completo
+		app.delete(BASE_API_PATH+"/illiteracy", (req,res)=>{
+			//Elimina todos los elementos de la base de datos
+				
+			illiteracy_DB.remove({},{multi: true},(error, numRemov)=>{
+				//numRemov indica el nº de elementos borrados
+	
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+					res.sendStatus(500); //Error de servidor
+	
+				}else {
+					res.sendStatus(200);
+				}
+			});
+		
+		});
+
+		//Delete de elementos por pais
+		app.delete(BASE_API_PATH+"/illiteracy/:country", function(req, res) { 
+
+			//Se hace un filtrado por pais, eliminando aquellos que coinciden con el pais dado
+			illiteracy_DB.find({country : String(req.params.country)}, (error, resultFind)=>{ //Comprobamos si existe el elemento ya
+	
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+					res.sendStatus(500); //Error de servidor
+				}
+				else{
+					if(resultFind.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
+						res.sendStatus(404); //No se han encontrado elementos
+					}
+					else{
+						illiteracy_DB.remove({country : String(req.params.country)},{multi: true},(error, numRemov)=>{
+							if(error){
+								console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+								res.sendStatus(500); //Error de servidor
+	
+							}else {
+								res.sendStatus(200);
+							} 
+						});
+					}
+				   
+				}
+			});
+	
+		});
+		
+		//Delete elemento por pais y año
+		app.delete(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
+			illiteracy_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, resultFind)=>{
+				//Comprobamos si existe el elemento ya
+	
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+					res.sendStatus(500); //Error de servidor
+				}
+				else{
+					if(resultFind.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
+						res.sendStatus(404); //No se han encontrado elementos
+					}
+					else{
+						illiteracy_DB.remove({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{},(error, numRemov)=>{
+						//Se elimina aquel cuyo país y año coincida
+							
+							if(error){
+								console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+								res.sendStatus(500); //Error de servidor
+	
+							}else {
+								res.sendStatus(200);
+							}
+						});
+					}
+				}
+			});
+		});
+
+		//Put modificar elemento
+		app.put(BASE_API_PATH+"/illiteracy/:country/:year", function(req, res) { 
+			illiteracy_DB.find({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]}, (error, resultFind)=>{
+				//Comprobamos si existe el elemento ya
+	
+				if(error){
+					console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+					res.sendStatus(500); //Error de servidor
+				}
+				else{
+					if(resultFind.length == 0){  //Comprobamos si existen aquellos elementos que se desean eliminar
+						illiteracy_DB.insert(req.body); //Si no existe el elemento se crea
+						res.sendStatus(201);
+					}
+					else{ 
+						illiteracy_DB.update({$and: [{country : String(req.params.country)}, {year : parseInt(req.params.year)}]},{$set: req.body},{},(error, numReplaced)=>{
+							if(error){
+								console.log("Se ha producido un error de servdor al hacer petición Get elemento");
+								res.sendStatus(500); //Error de servidor
+	
+							}else {
+								res.sendStatus(200); //Elemento Modificado
+							}
+	
+						});
+						
+					}
+				}
+			});
+			
+		});
+
+		//Put ERRONEO array de elementos
+		app.put(BASE_API_PATH+"/illiteracy", function(req, res) { 
+
+		res.status(405).send("Metodo no permitido"); //Method not allowed
+		});
+	
     };
 
 

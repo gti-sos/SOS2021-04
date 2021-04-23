@@ -1,0 +1,748 @@
+{
+	"info": {
+		"_postman_id": "60d5ace0-0283-41b2-a4a2-5d6a6a4bbb13",
+		"name": "SOS2021_04_TESTS_illiteracy-good",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Todos los elementos Inicial Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"There are 0 sources\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cargar elementos Iniciales Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy/loadInitialData",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tomar Todos elementos (despues de carga) Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"There are 3 sources\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(3);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tomar 1 elemento Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches France\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Spain\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy/Spain/2018",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy",
+						"Spain",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tomar elemento que no existe Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy/England/2015",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy",
+						"England",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Toma elementos que cumplen restricciones de parametros Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"There are 2 sources\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(2);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy?ami=98.00",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy"
+					],
+					"query": [
+						{
+							"key": "ami",
+							"value": "98.00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tomar elementos con Limit y Skip Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"There are 2 sources\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(2);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy?skip=1&limit=2",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy"
+					],
+					"query": [
+						{
+							"key": "skip",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tomar Grupo de elementos por Pais Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches Spain\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Spain\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy/Spain",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy",
+						"Spain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Anadir elemento papua new guinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\t\t\"year\":2006,\r\n\t\t\t\t\"country\":\"Papua New Guinea\",\r\n\t\t\t\t\"female_illiteracy_rate\":67.54,\r\n\t\t\t\t\"male_illiteracy_rate\":77.08,\r\n\t\t\t\t\"adult_illiteracy_rate\":70.34,\r\n\t\t\t\t\"young_illiteracy_rate\":88.57\r\n\t\t\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Anadir elemento portugal 2018 - repetido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"year\": 2018,\r\n\"country\": \"Portugal\",\r\n\"female_illiteracy_rate\": 95.05,\r\n\"male_illiteracy_rate\": 97.35,\r\n\"adult_illiteracy_rate\": 96.14,\r\n\"young_illiteracy_rate\": 99.66\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post No permitido Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\t\t\"year\":2016,\r\n\t\t\t\t\"country\":\"Italy\",\r\n\t\t\t\t\"people_in_risk_of_poverty\": 3333333 ,\r\n\t\t\t    \"people_poverty_line\": 33333,\r\n\t\t\t    \"home_poverty_line\": 300330,\r\n\t\t\t    \"percentage_risk_of_poverty\": 3.3\r\n\t\t\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy/France/2015",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy",
+						"France",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post de elemento erroneo (Bad Request) Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\t\t\r\n\t\t\t\t\"country\":\"Italy\",\r\n\t\t\t\t\"people_in_risk_of_poverty\": 3333333 ,\r\n\t\t\t    \"people_poverty_line\": 33333,\r\n\t\t\t    \"home_poverty_line\": 300330,\r\n\t\t\t    \"percentage_risk_of_poverty\": 3.3\r\n\t\t\t}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar Elemento Italy 2018",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"year\": 2018,\r\n\"country\": \"Italy\",\r\n\"female_illiteracy_rate\": 100.00,\r\n\"male_illiteracy_rate\": 100.00,\r\n\"adult_illiteracy_rate\":100.00,\r\n\"young_illiteracy_rate\": 100.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy/Italy/2018",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy",
+						"Italy",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put erroneo - Metodo No permitido Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar elemento Espana 2016 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy/Spain/2018",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy",
+						"Spain",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar elemento No existente Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy/England/2015",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy",
+						"England",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar todos los elementos Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get todos los elementos final Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"There are 0 sources\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"illiteracy"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
