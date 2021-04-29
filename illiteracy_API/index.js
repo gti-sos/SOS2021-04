@@ -317,7 +317,7 @@
 		//Get para tomar elementos por pais
 		app.get(BASE_API_PATH+'/illiteracy/:country', (req,res)=>{ 
 		//Cuando llamen a /api/v1/illiteracy/(pais)
-
+		console.log("se ejecuta buscar por pais");
 		var query = req.query;
 		var skip = query.skip;
 		var limit = query.limit;
