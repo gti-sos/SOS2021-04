@@ -1,13 +1,14 @@
 <script>
 	import Router from 'svelte-spa-router';
 	
-	import NotFound from "./Pages/NotFound.svelte";
-	import Home from "./Pages/Home.svelte";
-	import Info from "./Pages/Info.svelte";
+	import NotFound from "./pages/NotFound.svelte";
+	import Home from "./pages/Home.svelte";
+	import Info from "./pages/Info.svelte";
 	const routes = {
 		"/":Home,
 		"/info":Info,
-		'*': NotFound};
+		'*': NotFound
+		};
 </script>
 
 <main>
