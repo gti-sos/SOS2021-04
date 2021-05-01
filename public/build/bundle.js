@@ -4125,7 +4125,7 @@ var app = (function () {
     		c: function create() {
     			i = element("i");
     			set_attributes(i, i_data);
-    			add_location(i, file$5, 10, 0, 189);
+    			add_location(i, file$5, 14, 0, 301);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
