@@ -14,7 +14,7 @@
     
     <style>
         main {
-        text-align: center;
+        text-align: left;
         padding: 1em;
         margin: 0 auto;
         max-width: 380px;
