@@ -377,7 +377,7 @@
 		});
 
 		//Get para tomar elementos por pais y año
-		app.get(BASE_API_PATH+"/illiteracy/:country/:year", (req,res)=>{ //Cuando llamen a /api/v1/illiteracy/(pais)
+		app.get(BASE_API_PATH+"/illiteracy/:country/:year", (req,res)=>{ 
 		console.log("entra en pais y año");
 		//Crearemos un nuevo array resultado de filtrar el array completo
 		illiteracy_DB.find({country : String(req.params.country), year: parseInt(req.params.year)}).exec((error, resultFind)=>{ //Se establece patron por país y año
