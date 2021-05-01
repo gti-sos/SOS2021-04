@@ -51,11 +51,11 @@ var BASE_API_PATH = "/api/v1";
 
 // Api Manuel González Regadera - education_expenditures
 
-var education_expenditures_api = require("./education_expenditures_API");
+var education_expenditures_api = require("./src/back/education_expenditures");
 education_expenditures_api.register(app,BASE_API_PATH, educationExpenditures_DB);
 
  // Api Miguel Gómez Vázquez - illiteracy
-var illiteracy_api = require("./illiteracy_API");
+var illiteracy_api = require("./src/back/illiteracy");
 illiteracy_api.register(app,BASE_API_PATH, illiteracy_DB);
 
 
@@ -64,7 +64,7 @@ illiteracy_api.register(app,BASE_API_PATH, illiteracy_DB);
 	/*Necesario para crear la modularidad adecuada de la API. El require se usa para "importar lo necesario"
 	 de mi carpeta, de mi módulo. Función register que tiene como parámetro la aplicación.*/
 
-	var poverty_risks_api = require("./poverty_risks_API");
+	var poverty_risks_api = require("./src/back/poverty_risks");
 	poverty_risks_api.register(app,BASE_API_PATH,povertyRisks_DB);
 
 

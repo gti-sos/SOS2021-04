@@ -1,30 +1,20 @@
 <script>
-	export let name;
+	import Router from 'svelte-spa-router';
+	
+	import NotFound from "./pages/NotFound.svelte";
+	import Home from "./pages/Home.svelte";
+	import Info from "./pages/Info.svelte";
+	
+	const routes = {
+		"/":Home,
+		"/info":Info,
+		'*': NotFound
+		};
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<Router {routes}> </Router>
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
 </style>
