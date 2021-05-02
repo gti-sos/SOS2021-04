@@ -5,23 +5,30 @@
     </script>
     
     <main>
-    <h2>404 - Not Found</h2>
-    <p>La página que está buscando no está disponible</p>
-      <a href="/">
-        <Button color="primary">Volver a la página principal</Button></a>
+    <tr>
+        <td>
+            <h1>404 - Not Found</h1>
+            <p>La página que está buscando no está disponible</p>
+            <a href="/">
+            <Button color="success">Volver a la página principal</Button></a>
+        </td>
+        <td>
+            <!-- svelte-ignore a11y-img-redundant-alt -->
+            <img src="images/notfoundtobot.jpg" alt="not found image" />
+        </td>
     
+    </tr>
     </main>
     
     <style>
-        main {
-        text-align: left;
-        padding: 1em;
-        margin: 0 auto;
-        max-width: 380px;
-      }
-      h2{
-        font-size: 100px;
+    main{
+        text-align: center;
+        padding: 4.5%;
+        margin-left: 18%;
+    }
+    
+    h1{
         color: red;
-      }
+    }
       
     </style>
