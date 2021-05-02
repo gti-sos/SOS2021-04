@@ -127,14 +127,11 @@
             <CardText>
               Expresa la magnitud relativa de la población analfabeta.
             </CardText>
-            <a href="/api/v1/illiteracy"
-              ><Button color="primary">API v1</Button></a
-            >
-            <a href="/#/illiteracy"
-              ><Button color="primary">Interfaz</Button></a
-            >
-            <a href="https://documenter.getpostman.com/view/14948423/TzJsfJT1"><Button color="info">Documentación v1</Button></a
-            >
+            <a href="/api/v1/illiteracy"><Button color="primary">API v1</Button></a>
+
+            <a href="/#/illiteracy"><Button color="primary">Interfaz</Button></a>
+
+            <a href="https://documenter.getpostman.com/view/14948423/TzJsfJT1"><Button color="info">Documentación v1</Button></a>
           </CardBody>
           <CardFooter
             >Desarrollado por
