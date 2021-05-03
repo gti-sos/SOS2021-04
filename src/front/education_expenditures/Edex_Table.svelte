@@ -60,12 +60,43 @@
 		});
 	}
 
+    /*
+    async function insertStat() {
+        console.log("Inserting stat: " + JSON.stringify(newStat));
+        newStat.date = parseInt(newStat.date);
+        newStat.born = parseInt(newStat.born);
+        newStat["men-born"] = parseInt(newStat["men-born"]);
+        newStat["women-born"] = parseInt(newStat["women-born"]);
+        newStat["natality-rate"] = parseFloat(newStat["natality-rate"]);
+        newStat["fertility-rate"] = parseFloat(newStat["fertility-rate"]);
+        const res = await fetch(BASE_CONTACT_API_PATH + "/natality-stats/", {
+        method: "POST",
+        body: JSON.stringify(newStat),
+        headers: {
+            "Content-Type": "application/json",
+        },
+        }).then(function (res) {
+        if (res.ok) {            
+        } else {
+            if(res.status===409){
+            console.log("Los valores introducidos no conforman un dato valido")
+            }else if(res.status ===500){
+            console.log("No se han podido acceder a la base de datos");
+            }
+            else{
+                console.log("Error desconocido. Vuelva a intentarlo")
+            }        
+        }
+        });
+  }
+    */
+    
 
 </script>
 
 <main>
     <!-- Creamos un div para incluir dentro dos botones, uno para cargar datos y otro para borrarlos todos -->
-    <div>
+    <div style="padding:1%">
             <Row>
                 <Col>
                     {#if charged}
@@ -137,7 +168,15 @@
     </div>
     
     
-    <div class="foot">
+    <div class="foot" style="min-width: 100%;
+    color: white;
+    background-color:#343c44;
+    min-width: 100%;
+    
+    margin-bottom: 0;
+    background-color:#343c44;
+    left: 0;
+    position: relative;">
     <footer>
        
 
@@ -161,10 +200,12 @@
     background-color:#343c44;
     left: 0;
     
+    
+    
 }
 footer{
     
-    padding: 2%;
+    padding: 1%;
     width: 100%;
 
     
