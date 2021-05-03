@@ -249,7 +249,7 @@
                     <th>{stat.education_expenditure_gdp}</th>
                     <th>{stat.education_expenditure_per_capita}</th>
                     <th><button class="btn btn-danger" on:click={deleteElement(stat.year,stat.country)}>Eliminar</button></th>
-                    <th><button class="btn btn-warning">Modificar</button></th>
+                    <th><a href='#/education_expenditures/{stat.country}/{stat.year}'><button class="btn btn-warning">Modificar</button></a></th>
 
                 </tr>
                 {/each}
@@ -286,7 +286,7 @@
     background-color:#343c44;
     min-width: 100%;
     
-    margin-bottom: 0;
+    bottom: 0;
     background-color:#343c44;
     left: 0;
     position: relative;">
