@@ -5,6 +5,7 @@
     
     const BASE_API_PATH = "api/v1/education_expenditures";
     
+    
     //Creamos un elemento de tipo Json para insertar nuevos datos
 
     let nuevoElemento = {
@@ -23,15 +24,36 @@
 
     //Cargamos los datos iniciales
 
-    var charged = true;
+    var charged = false;
     var edex_data = [];
+    console.log(edex_data.length);
+    getStats();
 
     //Función asincrona para la carga de datos
 
+    async function getStats() {
+    console.log("Fetching data...");
+    const res = await fetch(
+     BASE_API_PATH
+    );
+    if (res.ok) {
+      const json = await res.json();
+      edex_data = json;
+      mensajeError="";
+    } else {
+      if (edex_data.length != 0) {
+        mensajeError = "No hay datos disponibles";
+      }
+      if (res.status === 500) {
+        mensajeError = "No se ha podido acceder a la base de datos";
+      }
+    }
+  }
+
     async function loadInitialData(){
         //Para cargarlos hacemos un fetch a la direccion donde está el método de carga inicial
-        if(edex_data.length==0){
-        charged = true;
+        
+        
         const peticionCarga = await fetch(BASE_API_PATH + '/loadInitialData'); //Se espera hasta que termine la peticion
         
         if(peticionCarga.ok){
@@ -50,12 +72,18 @@
         }
         else{
             console.log("Error loading data.");
-        }}
+        }
+        charged = true;
+        console.log(edex_data.length);
         
+    
     }
+        
+    
 
     async function deleteAll() {
-        charged = false;
+        console.log(edex_data.length);
+        
 		
         const peticion = await fetch(BASE_API_PATH, {
 			method: "DELETE"
@@ -63,6 +91,7 @@
 			
             if (peticion.ok){
                 edex_data = [];
+                charged = false;
 			} 
             
             else if (peticion.status==404){ //no data found
@@ -72,6 +101,7 @@
             else  { 
 				console.log("Error deleting DB stats");
 			}
+            console.log(edex_data.length);
 			
 		});
 	}
@@ -114,6 +144,27 @@
         }
       }
       removeDataInserted();
+    });
+  }
+
+  async function deleteElement(year, country) {
+    
+    const res = await fetch(
+      BASE_API_PATH + "/" + country + "/" + year,
+      {
+        method: "DELETE",
+      }
+    ).then(function (res) {
+      if (res.ok) {
+        console.log("OK");
+        getStats();
+      } else {
+        if (res.status === 404) {
+          mensajeError = `No se puede eliminar, la entrada ${year}/${country} no existe`;
+        } else if (res.status === 500) {
+          mensajeError = "No se ha podido acceder a la base de datos";
+        }
+      }
     });
   }
 
@@ -197,7 +248,7 @@
                     <th>{stat.education_expenditure_per_public_expenditure}</th>
                     <th>{stat.education_expenditure_gdp}</th>
                     <th>{stat.education_expenditure_per_capita}</th>
-                    <th><button class="btn btn-danger">Eliminar</button></th>
+                    <th><button class="btn btn-danger" on:click={deleteElement(stat.year,stat.country)}>Eliminar</button></th>
                     <th><button class="btn btn-warning">Modificar</button></th>
 
                 </tr>
