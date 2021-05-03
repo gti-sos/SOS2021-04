@@ -19,7 +19,7 @@ var path = require("path");
 
 var dataBase = require("nedb");
 
-var educationExpenditures_DB = new dataBase();
+var educationExpenditures_DB = new dataBase({filename: path.join(__dirname,"./src/back/education_expenditures/dataBaseEdex.db"), autoload: true});
 
 var povertyRisks_DB = new dataBase({ filename: path.join(__dirname,"./poverty_risks_API/dataDB.db"), autoload: true });
 /* Quiero que se asocie la base de datos a ese fichero, y todas las operaciones

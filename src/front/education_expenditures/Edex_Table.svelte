@@ -4,6 +4,22 @@
     //Incluimos la ruta donde se ejecuta el backend de la Api
     
     const BASE_API_PATH = "api/v1/education_expenditures";
+    
+    //Creamos un elemento de tipo Json para insertar nuevos datos
+
+    let nuevoElemento = {
+        "year" : "",
+        "country" : "",
+        "education_expenditure_per_millions":"",
+        "education_expenditure_per_public_expenditure":"",
+        "education_expenditure_gdp":"",
+        "education_expenditure_per_capita":""
+    };
+
+    //Variables auxiliares para la muestra de errores
+    let mensajeError = ""
+
+    //Creamos variables para almacenar datos para la actualización de un elemento
 
     //Cargamos los datos iniciales
 
@@ -60,36 +76,47 @@
 		});
 	}
 
-    /*
-    async function insertStat() {
-        console.log("Inserting stat: " + JSON.stringify(newStat));
-        newStat.date = parseInt(newStat.date);
-        newStat.born = parseInt(newStat.born);
-        newStat["men-born"] = parseInt(newStat["men-born"]);
-        newStat["women-born"] = parseInt(newStat["women-born"]);
-        newStat["natality-rate"] = parseFloat(newStat["natality-rate"]);
-        newStat["fertility-rate"] = parseFloat(newStat["fertility-rate"]);
-        const res = await fetch(BASE_CONTACT_API_PATH + "/natality-stats/", {
-        method: "POST",
-        body: JSON.stringify(newStat),
-        headers: {
-            "Content-Type": "application/json",
-        },
-        }).then(function (res) {
-        if (res.ok) {            
-        } else {
-            if(res.status===409){
-            console.log("Los valores introducidos no conforman un dato valido")
-            }else if(res.status ===500){
-            console.log("No se han podido acceder a la base de datos");
-            }
-            else{
-                console.log("Error desconocido. Vuelva a intentarlo")
-            }        
+    function removeDataInserted(){
+        nuevoElemento = {
+        "year" : "",
+        "country" : "",
+        "education_expenditure_per_millions":"",
+        "education_expenditure_per_public_expenditure":"",
+        "education_expenditure_gdp":"",
+        "education_expenditure_per_capita":""
+        };
+
+    };
+
+    async function insertData() {
+    
+    nuevoElemento.year = parseInt(nuevoElemento.year);
+    nuevoElemento.country = String(nuevoElemento.country);
+    nuevoElemento.education_expenditure_per_millions = parseFloat(nuevoElemento.education_expenditure_per_millions);
+    nuevoElemento.education_expenditure_per_public_expenditure = parseFloat(nuevoElemento.education_expenditure_per_public_expenditure);
+    nuevoElemento.education_expenditure_gdp = parseFloat(nuevoElemento.education_expenditure_gdp);
+    nuevoElemento.education_expenditure_per_capita = parseFloat(nuevoElemento.education_expenditure_per_capita);
+    const res = await fetch(BASE_API_PATH, {
+      method: "POST",
+      body: JSON.stringify(nuevoElemento),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(function (res) {
+      if (res.ok) {
+      } else {
+        if (res.status === 409) {
+          mensajeError = `Ya existe un dato con valores idénticos para los mismos campos.`;
+        } else if (res.status === 500) {
+          mensajeError = "No se ha podido acceder a la base de datos.";
+        }else if(res.status === 400){
+          mensajeError = "Todos los campos deben estar rellenados según el patron predefinido.";
         }
-        });
+      }
+      removeDataInserted();
+    });
   }
-    */
+
     
 
 </script>
@@ -108,8 +135,23 @@
                     {/if}
                 </Col>           
             </Row>
+            <Row>
+                <Col md=4>
+                </Col>
+                <Col md=4 style="text-align: center;">
+                    {#if mensajeError.length!=0}
+                    <p style="color:tomato">Se ha producido un error:<b> {mensajeError} </b></p>
+                    {/if}
+                </Col>
+                <Col md=4>
+                </Col>
+                
+            </Row>
 
     </div>
+
+
+
    <br>
     <!--Introducimos salto para separar contenido-->
     <div>
@@ -117,19 +159,36 @@
         <Table>
             <!-- Incluye los nombres de los atributos -->
             <thead>  
-                <tr style="text-align: center;">
-                    <th>Año</th>
-                    <th>País</th>
-                    <th>Gasto en millones de euros</th>
-                    <th>Porcentaje del gasto público</th>
-                    <th>Porcentaje del PIB</th>
-                    <th>Gasto per capita</th>
+                <tr style="text-align: center; " valign="middle">
+                    <td valign="middle">Año</td>
+                    <td valign="middle">País</td>
+                    <td valign="middle">Gasto en millones de euros</td>
+                    <td valign="middle">Porcentaje del gasto público</td>
+                    <td valign="middle">Porcentaje del PIB</td>
+                    <td valign="middle">Gasto per capita</td>
+                    <td valign="middle"colspan="2"> Acciones </td>
                 </tr>
             </thead>
+            <tbody>
+
+            <!--Incluimos el espacio de inserts--> 
+
+                <tr>
+                    <!--Por cada campo haremos un input-->
+                    <td><input type="number" placeholder="2010" min=1900 bind:value={nuevoElemento.year}/></td>
+                    <td><input type="text" placeholder="Francia" bind:value={nuevoElemento.country}/></td>
+                    <td><input type="number" placeholder="250.4"  bind:value={nuevoElemento.education_expenditure_per_millions}/></td>
+                    <td><input type="number" placeholder="112.3"  bind:value={nuevoElemento.education_expenditure_per_public_expenditure}/></td>
+                    <td><input type="number" placeholder="2.5"  bind:value={nuevoElemento.education_expenditure_gdp}/></td>
+                    <td><input type="number" placeholder="2010"  bind:value={nuevoElemento.education_expenditure_per_capita}/></td>
+                    <td><button on:click={insertData} class="btn btn-success">Insertar</button></td>
+                    <td></td>
+                </tr>
+
     
             <!-- Incluye cada uno de los elementos en el vector-->
 
-            <tbody>
+            
                 {#each edex_data as stat}
                 <tr  style="text-align: center;">
                     <th>{stat.year}</th>
@@ -138,6 +197,9 @@
                     <th>{stat.education_expenditure_per_public_expenditure}</th>
                     <th>{stat.education_expenditure_gdp}</th>
                     <th>{stat.education_expenditure_per_capita}</th>
+                    <th><button class="btn btn-danger">Eliminar</button></th>
+                    <th><button class="btn btn-warning">Modificar</button></th>
+
                 </tr>
                 {/each}
             </tbody>
