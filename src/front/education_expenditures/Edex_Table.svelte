@@ -23,7 +23,7 @@
 
     //Cargamos los datos iniciales
 
-    var charged = false;
+    var charged = true;
     var edex_data = [];
 
     //Función asincrona para la carga de datos
@@ -126,7 +126,7 @@
     <div style="padding:1%">
             <Row>
                 <Col>
-                    {#if charged}
+                    {#if edex_data.length==0}
                     <Button style="background-color: green;" disabled>Cargar datos</Button>
                     <Button style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
                     {:else}
@@ -155,7 +155,7 @@
    <br>
     <!--Introducimos salto para separar contenido-->
     <div>
-        {#if charged}
+        {#if edex_data.length!=0}
         <Table>
             <!-- Incluye los nombres de los atributos -->
             <thead>  
