@@ -16111,12 +16111,12 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	button0.$on("click", /*loadInitialData*/ ctx[4]);
+    	button0.$on("click", /*loadInitialData*/ ctx[3]);
 
     	button1 = new Button({
     			props: {
     				style: "background-color: red;",
-    				disable: true,
+    				disabled: true,
     				$$slots: { default: [create_default_slot_12$2] },
     				$$scope: { ctx }
     			},
@@ -16180,7 +16180,7 @@ var app = (function () {
     	return block;
     }
 
-    // (129:20) {#if charged}
+    // (129:20) {#if edex_data.length!=0}
     function create_if_block_2$2(ctx) {
     	let button0;
     	let t;
@@ -16206,7 +16206,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	button1.$on("click", /*deleteAll*/ ctx[5]);
+    	button1.$on("click", /*deleteAll*/ ctx[4]);
 
     	const block = {
     		c: function create() {
@@ -16258,7 +16258,7 @@ var app = (function () {
     		block,
     		id: create_if_block_2$2.name,
     		type: "if",
-    		source: "(129:20) {#if charged}",
+    		source: "(129:20) {#if edex_data.length!=0}",
     		ctx
     	});
 
@@ -16292,7 +16292,7 @@ var app = (function () {
     	return block;
     }
 
-    // (134:20) <Button style="background-color: red;" disable>
+    // (134:20) <Button style="background-color: red;" disabled>
     function create_default_slot_12$2(ctx) {
     	let t;
 
@@ -16312,7 +16312,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_12$2.name,
     		type: "slot",
-    		source: "(134:20) <Button style=\\\"background-color: red;\\\" disable>",
+    		source: "(134:20) <Button style=\\\"background-color: red;\\\" disabled>",
     		ctx
     	});
 
@@ -16383,7 +16383,7 @@ var app = (function () {
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*charged*/ ctx[2]) return 0;
+    		if (/*edex_data*/ ctx[2].length != 0) return 0;
     		return 1;
     	}
 
@@ -16477,7 +16477,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const col_changes = {};
 
-    			if (dirty & /*$$scope, charged*/ 131076) {
+    			if (dirty & /*$$scope, edex_data*/ 131076) {
     				col_changes.$$scope = { dirty, ctx };
     			}
 
@@ -16521,9 +16521,9 @@ var app = (function () {
     			t0 = text("Se ha producido un error:");
     			b = element("b");
     			t1 = text(/*mensajeError*/ ctx[1]);
-    			add_location(b, file$4, 142, 69, 5106);
+    			add_location(b, file$4, 142, 69, 5118);
     			set_style(p, "color", "tomato");
-    			add_location(p, file$4, 142, 20, 5057);
+    			add_location(p, file$4, 142, 20, 5069);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -16707,7 +16707,7 @@ var app = (function () {
     			create_component(row1.$$.fragment);
     			set_style(div, "aling-items", "center");
     			set_style(div, "justify-content", "center");
-    			add_location(div, file$4, 210, 12, 7975);
+    			add_location(div, file$4, 210, 12, 7999);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -16761,7 +16761,7 @@ var app = (function () {
     	return block;
     }
 
-    // (158:8) {#if charged}
+    // (158:8) {#if edex_data.length!=0}
     function create_if_block$2(ctx) {
     	let table;
     	let current;
@@ -16785,7 +16785,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const table_changes = {};
 
-    			if (dirty & /*$$scope, edex_data, nuevoElemento*/ 131081) {
+    			if (dirty & /*$$scope, edex_data, nuevoElemento*/ 131077) {
     				table_changes.$$scope = { dirty, ctx };
     			}
 
@@ -16809,7 +16809,7 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(158:8) {#if charged}",
+    		source: "(158:8) {#if edex_data.length!=0}",
     		ctx
     	});
 
@@ -16824,7 +16824,7 @@ var app = (function () {
     		c: function create() {
     			h2 = element("h2");
     			h2.textContent = "No existen datos cargados. Por favor, pulse el botón \"Cargar datos\"";
-    			add_location(h2, file$4, 213, 24, 8142);
+    			add_location(h2, file$4, 213, 24, 8166);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h2, anchor);
@@ -16912,7 +16912,7 @@ var app = (function () {
     			img = element("img");
     			if (img.src !== (img_src_value = "images/noDatos.jpg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "noDatos");
-    			add_location(img, file$4, 220, 24, 8411);
+    			add_location(img, file$4, 220, 24, 8435);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -17075,20 +17075,20 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Modificar";
     			t15 = space();
-    			add_location(th0, file$4, 193, 20, 7332);
-    			add_location(th1, file$4, 194, 20, 7374);
-    			add_location(th2, file$4, 195, 20, 7419);
-    			add_location(th3, file$4, 196, 20, 7491);
-    			add_location(th4, file$4, 197, 20, 7573);
-    			add_location(th5, file$4, 198, 20, 7636);
+    			add_location(th0, file$4, 193, 20, 7356);
+    			add_location(th1, file$4, 194, 20, 7398);
+    			add_location(th2, file$4, 195, 20, 7443);
+    			add_location(th3, file$4, 196, 20, 7515);
+    			add_location(th4, file$4, 197, 20, 7597);
+    			add_location(th5, file$4, 198, 20, 7660);
     			attr_dev(button0, "class", "btn btn-danger");
-    			add_location(button0, file$4, 199, 24, 7710);
-    			add_location(th6, file$4, 199, 20, 7706);
+    			add_location(button0, file$4, 199, 24, 7734);
+    			add_location(th6, file$4, 199, 20, 7730);
     			attr_dev(button1, "class", "btn btn-warning");
-    			add_location(button1, file$4, 200, 24, 7789);
-    			add_location(th7, file$4, 200, 20, 7785);
+    			add_location(button1, file$4, 200, 24, 7813);
+    			add_location(th7, file$4, 200, 20, 7809);
     			set_style(tr, "text-align", "center");
-    			add_location(tr, file$4, 192, 16, 7277);
+    			add_location(tr, file$4, 192, 16, 7301);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -17118,12 +17118,12 @@ var app = (function () {
     			append_dev(tr, t15);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*edex_data*/ 8 && t0_value !== (t0_value = /*stat*/ ctx[14].year + "")) set_data_dev(t0, t0_value);
-    			if (dirty & /*edex_data*/ 8 && t2_value !== (t2_value = /*stat*/ ctx[14].country + "")) set_data_dev(t2, t2_value);
-    			if (dirty & /*edex_data*/ 8 && t4_value !== (t4_value = /*stat*/ ctx[14].education_expenditure_per_millions + "")) set_data_dev(t4, t4_value);
-    			if (dirty & /*edex_data*/ 8 && t6_value !== (t6_value = /*stat*/ ctx[14].education_expenditure_per_public_expenditure + "")) set_data_dev(t6, t6_value);
-    			if (dirty & /*edex_data*/ 8 && t8_value !== (t8_value = /*stat*/ ctx[14].education_expenditure_gdp + "")) set_data_dev(t8, t8_value);
-    			if (dirty & /*edex_data*/ 8 && t10_value !== (t10_value = /*stat*/ ctx[14].education_expenditure_per_capita + "")) set_data_dev(t10, t10_value);
+    			if (dirty & /*edex_data*/ 4 && t0_value !== (t0_value = /*stat*/ ctx[14].year + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*edex_data*/ 4 && t2_value !== (t2_value = /*stat*/ ctx[14].country + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*edex_data*/ 4 && t4_value !== (t4_value = /*stat*/ ctx[14].education_expenditure_per_millions + "")) set_data_dev(t4, t4_value);
+    			if (dirty & /*edex_data*/ 4 && t6_value !== (t6_value = /*stat*/ ctx[14].education_expenditure_per_public_expenditure + "")) set_data_dev(t6, t6_value);
+    			if (dirty & /*edex_data*/ 4 && t8_value !== (t8_value = /*stat*/ ctx[14].education_expenditure_gdp + "")) set_data_dev(t8, t8_value);
+    			if (dirty & /*edex_data*/ 4 && t10_value !== (t10_value = /*stat*/ ctx[14].education_expenditure_per_capita + "")) set_data_dev(t10, t10_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(tr);
@@ -17186,7 +17186,7 @@ var app = (function () {
     	let t22;
     	let mounted;
     	let dispose;
-    	let each_value = /*edex_data*/ ctx[3];
+    	let each_value = /*edex_data*/ ctx[2];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -17251,55 +17251,55 @@ var app = (function () {
     			}
 
     			attr_dev(td0, "valign", "middle");
-    			add_location(td0, file$4, 162, 20, 5579);
+    			add_location(td0, file$4, 162, 20, 5603);
     			attr_dev(td1, "valign", "middle");
-    			add_location(td1, file$4, 163, 20, 5629);
+    			add_location(td1, file$4, 163, 20, 5653);
     			attr_dev(td2, "valign", "middle");
-    			add_location(td2, file$4, 164, 20, 5680);
+    			add_location(td2, file$4, 164, 20, 5704);
     			attr_dev(td3, "valign", "middle");
-    			add_location(td3, file$4, 165, 20, 5753);
+    			add_location(td3, file$4, 165, 20, 5777);
     			attr_dev(td4, "valign", "middle");
-    			add_location(td4, file$4, 166, 20, 5828);
+    			add_location(td4, file$4, 166, 20, 5852);
     			attr_dev(td5, "valign", "middle");
-    			add_location(td5, file$4, 167, 20, 5893);
+    			add_location(td5, file$4, 167, 20, 5917);
     			attr_dev(td6, "valign", "middle");
     			attr_dev(td6, "colspan", "2");
-    			add_location(td6, file$4, 168, 20, 5956);
+    			add_location(td6, file$4, 168, 20, 5980);
     			set_style(tr0, "text-align", "center");
     			attr_dev(tr0, "valign", "middle");
-    			add_location(tr0, file$4, 161, 16, 5508);
-    			add_location(thead, file$4, 160, 12, 5481);
+    			add_location(tr0, file$4, 161, 16, 5532);
+    			add_location(thead, file$4, 160, 12, 5505);
     			attr_dev(input0, "type", "number");
     			attr_dev(input0, "placeholder", "2010");
     			attr_dev(input0, "min", "1900");
-    			add_location(input0, file$4, 177, 24, 6233);
-    			add_location(td7, file$4, 177, 20, 6229);
+    			add_location(input0, file$4, 177, 24, 6257);
+    			add_location(td7, file$4, 177, 20, 6253);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "placeholder", "Francia");
-    			add_location(input1, file$4, 178, 24, 6346);
-    			add_location(td8, file$4, 178, 20, 6342);
+    			add_location(input1, file$4, 178, 24, 6370);
+    			add_location(td8, file$4, 178, 20, 6366);
     			attr_dev(input2, "type", "number");
     			attr_dev(input2, "placeholder", "250.4");
-    			add_location(input2, file$4, 179, 24, 6454);
-    			add_location(td9, file$4, 179, 20, 6450);
+    			add_location(input2, file$4, 179, 24, 6478);
+    			add_location(td9, file$4, 179, 20, 6474);
     			attr_dev(input3, "type", "number");
     			attr_dev(input3, "placeholder", "112.3");
-    			add_location(input3, file$4, 180, 24, 6590);
-    			add_location(td10, file$4, 180, 20, 6586);
+    			add_location(input3, file$4, 180, 24, 6614);
+    			add_location(td10, file$4, 180, 20, 6610);
     			attr_dev(input4, "type", "number");
     			attr_dev(input4, "placeholder", "2.5");
-    			add_location(input4, file$4, 181, 24, 6736);
-    			add_location(td11, file$4, 181, 20, 6732);
+    			add_location(input4, file$4, 181, 24, 6760);
+    			add_location(td11, file$4, 181, 20, 6756);
     			attr_dev(input5, "type", "number");
     			attr_dev(input5, "placeholder", "2010");
-    			add_location(input5, file$4, 182, 24, 6861);
-    			add_location(td12, file$4, 182, 20, 6857);
+    			add_location(input5, file$4, 182, 24, 6885);
+    			add_location(td12, file$4, 182, 20, 6881);
     			attr_dev(button, "class", "btn btn-success");
-    			add_location(button, file$4, 183, 24, 6994);
-    			add_location(td13, file$4, 183, 20, 6990);
-    			add_location(td14, file$4, 184, 20, 7092);
-    			add_location(tr1, file$4, 175, 16, 6143);
-    			add_location(tbody, file$4, 171, 12, 6061);
+    			add_location(button, file$4, 183, 24, 7018);
+    			add_location(td13, file$4, 183, 20, 7014);
+    			add_location(td14, file$4, 184, 20, 7116);
+    			add_location(tr1, file$4, 175, 16, 6167);
+    			add_location(tbody, file$4, 171, 12, 6085);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, thead, anchor);
@@ -17356,13 +17356,13 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[7]),
-    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[8]),
-    					listen_dev(input2, "input", /*input2_input_handler*/ ctx[9]),
-    					listen_dev(input3, "input", /*input3_input_handler*/ ctx[10]),
-    					listen_dev(input4, "input", /*input4_input_handler*/ ctx[11]),
-    					listen_dev(input5, "input", /*input5_input_handler*/ ctx[12]),
-    					listen_dev(button, "click", /*insertData*/ ctx[6], false, false, false)
+    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[6]),
+    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[7]),
+    					listen_dev(input2, "input", /*input2_input_handler*/ ctx[8]),
+    					listen_dev(input3, "input", /*input3_input_handler*/ ctx[9]),
+    					listen_dev(input4, "input", /*input4_input_handler*/ ctx[10]),
+    					listen_dev(input5, "input", /*input5_input_handler*/ ctx[11]),
+    					listen_dev(button, "click", /*insertData*/ ctx[5], false, false, false)
     				];
 
     				mounted = true;
@@ -17393,8 +17393,8 @@ var app = (function () {
     				set_input_value(input5, /*nuevoElemento*/ ctx[0].education_expenditure_per_capita);
     			}
 
-    			if (dirty & /*edex_data*/ 8) {
-    				each_value = /*edex_data*/ ctx[3];
+    			if (dirty & /*edex_data*/ 4) {
+    				each_value = /*edex_data*/ ctx[2];
     				validate_each_argument(each_value);
     				let i;
 
@@ -17505,7 +17505,7 @@ var app = (function () {
     	const if_blocks = [];
 
     	function select_block_type_1(ctx, dirty) {
-    		if (/*charged*/ ctx[2]) return 0;
+    		if (/*edex_data*/ ctx[2].length != 0) return 0;
     		return 1;
     	}
 
@@ -17540,14 +17540,14 @@ var app = (function () {
     			a = element("a");
     			create_component(button.$$.fragment);
     			set_style(div0, "padding", "1%");
-    			add_location(div0, file$4, 125, 4, 4245);
-    			add_location(br, file$4, 154, 3, 5299);
-    			add_location(div1, file$4, 156, 4, 5363);
+    			add_location(div0, file$4, 125, 4, 4244);
+    			add_location(br, file$4, 154, 3, 5311);
+    			add_location(div1, file$4, 156, 4, 5375);
     			attr_dev(a, "href", "/");
-    			add_location(a, file$4, 245, 12, 8917);
-    			add_location(div2, file$4, 244, 9, 8898);
+    			add_location(a, file$4, 245, 12, 8941);
+    			add_location(div2, file$4, 244, 9, 8922);
     			attr_dev(footer, "class", "svelte-1eplfbf");
-    			add_location(footer, file$4, 241, 4, 8868);
+    			add_location(footer, file$4, 241, 4, 8892);
     			attr_dev(div3, "class", "foot svelte-1eplfbf");
     			set_style(div3, "min-width", "100%");
     			set_style(div3, "color", "white");
@@ -17557,8 +17557,8 @@ var app = (function () {
     			set_style(div3, "background-color", "#343c44");
     			set_style(div3, "left", "0");
     			set_style(div3, "position", "relative");
-    			add_location(div3, file$4, 232, 4, 8648);
-    			add_location(main, file$4, 123, 0, 4121);
+    			add_location(div3, file$4, 232, 4, 8672);
+    			add_location(main, file$4, 123, 0, 4120);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -17585,7 +17585,7 @@ var app = (function () {
     		p: function update(ctx, [dirty]) {
     			const row0_changes = {};
 
-    			if (dirty & /*$$scope, charged*/ 131076) {
+    			if (dirty & /*$$scope, edex_data*/ 131076) {
     				row0_changes.$$scope = { dirty, ctx };
     			}
 
@@ -17686,7 +17686,7 @@ var app = (function () {
 
     	//Creamos variables para almacenar datos para la actualización de un elemento
     	//Cargamos los datos iniciales
-    	var charged = false;
+    	var charged = true;
 
     	var edex_data = [];
 
@@ -17694,7 +17694,7 @@ var app = (function () {
     	async function loadInitialData() {
     		//Para cargarlos hacemos un fetch a la direccion donde está el método de carga inicial
     		if (edex_data.length == 0) {
-    			$$invalidate(2, charged = true);
+    			charged = true;
     			const peticionCarga = await fetch(BASE_API_PATH + "/loadInitialData"); //Se espera hasta que termine la peticion
 
     			if (peticionCarga.ok) {
@@ -17703,7 +17703,7 @@ var app = (function () {
     				if (peticionMuestra.ok) {
     					console.log(" Receiving data, wait a moment ...");
     					const data = await peticionMuestra.json();
-    					$$invalidate(3, edex_data = data);
+    					$$invalidate(2, edex_data = data);
     					console.log(`Done! Received ${data.length} stats.`);
     					console.log(edex_data);
     				} else {
@@ -17716,11 +17716,11 @@ var app = (function () {
     	}
 
     	async function deleteAll() {
-    		$$invalidate(2, charged = false);
+    		charged = false;
 
     		await fetch(BASE_API_PATH, { method: "DELETE" }).then(function (peticion) {
     			if (peticion.ok) {
-    				$$invalidate(3, edex_data = []);
+    				$$invalidate(2, edex_data = []);
     			} else if (peticion.status == 404) {
     				//no data found
     				console.log("No data found"); //Posibilidad de redirigir a una ventana similar a la de error 404
@@ -17829,8 +17829,8 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ("nuevoElemento" in $$props) $$invalidate(0, nuevoElemento = $$props.nuevoElemento);
     		if ("mensajeError" in $$props) $$invalidate(1, mensajeError = $$props.mensajeError);
-    		if ("charged" in $$props) $$invalidate(2, charged = $$props.charged);
-    		if ("edex_data" in $$props) $$invalidate(3, edex_data = $$props.edex_data);
+    		if ("charged" in $$props) charged = $$props.charged;
+    		if ("edex_data" in $$props) $$invalidate(2, edex_data = $$props.edex_data);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -17840,7 +17840,6 @@ var app = (function () {
     	return [
     		nuevoElemento,
     		mensajeError,
-    		charged,
     		edex_data,
     		loadInitialData,
     		deleteAll,
