@@ -1,5 +1,5 @@
 <script>
-    import { Table , Button, Toast, ToastBody, ToastHeader } from 'sveltestrap';
+    import { Table , Button, Toast, ToastBody, ToastHeader, Col, Row, Container } from 'sveltestrap';
 
     //Incluimos la ruta donde se ejecuta el backend de la Api
     
@@ -14,16 +14,19 @@
 
     async function loadInitialData(){
         //Para cargarlos hacemos un fetch a la direccion donde está el método de carga inicial
+        if(edex_data.length==0){
+        charged = true;
         const peticionCarga = await fetch(BASE_API_PATH + '/loadInitialData'); //Se espera hasta que termine la peticion
-
+        
         if(peticionCarga.ok){
             const peticionMuestra = await fetch(BASE_API_PATH); //Se accede a la toma de todos los elementos
 
             if(peticionMuestra.ok){
                 console.log(" Receiving data, wait a moment ...")
-                const data = await res.json();
-                lifeStats = data;
-                console.log('Done! Received ${data.length} stats.');
+                const data = await peticionMuestra.json();
+                edex_data = data;
+                console.log(`Done! Received ${data.length} stats.`);
+                console.log(edex_data)
             }
             else{
                 console.log("No data loaded.");
@@ -31,13 +34,14 @@
         }
         else{
             console.log("Error loading data.");
-        }
+        }}
+        
     }
 
     async function deleteAll() {
         charged = false;
 		
-        const peticion = await fetch(BASE_API_URL, {
+        const peticion = await fetch(BASE_API_PATH, {
 			method: "DELETE"
 		}).then(function (peticion) {
 			
@@ -56,26 +60,33 @@
 		});
 	}
 
+
 </script>
 
 <main>
-    <!-- Creamos un div para incluir dentro dos botones, uno para cargar datos y otro para borrarlos todos -->>
+    <!-- Creamos un div para incluir dentro dos botones, uno para cargar datos y otro para borrarlos todos -->
     <div>
-        {#if charged}
-        <Button style="background-color: green;" disabled>Cargar datos</Button>
-        <Button style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
-        {:else}
-        <Button style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
-        <Button style="background-color: red;" disable>Borrar datos</Button>
-        {/if}
+            <Row>
+                <Col>
+                    {#if charged}
+                    <Button style="background-color: green;" disabled>Cargar datos</Button>
+                    <Button style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
+                    {:else}
+                    <Button style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
+                    <Button style="background-color: red;" disable>Borrar datos</Button>
+                    {/if}
+                </Col>           
+            </Row>
+
     </div>
+   <br>
     <!--Introducimos salto para separar contenido-->
     <div>
         {#if charged}
         <Table>
             <!-- Incluye los nombres de los atributos -->
             <thead>  
-                <tr>
+                <tr style="text-align: center;">
                     <th>Año</th>
                     <th>País</th>
                     <th>Gasto en millones de euros</th>
@@ -88,14 +99,14 @@
             <!-- Incluye cada uno de los elementos en el vector-->
 
             <tbody>
-                {#each edex_data as data}
-                <tr>
-                    <th>{data.year}</th>
-                    <th>{data.country}}</th>
-                    <th>{data["education_expenditure_per_millions"]}</th>
-                    <th>{data["education_expenditure_per_public_expenditure"]}</th>
-                    <th>{data["education_expenditure_gdp"]}</th>
-                    <th>{data["education_expenditure_per_capita"]}</th>
+                {#each edex_data as stat}
+                <tr  style="text-align: center;">
+                    <th>{stat.year}</th>
+                    <th>{stat.country}</th>
+                    <th>{stat.education_expenditure_per_millions}</th>
+                    <th>{stat.education_expenditure_per_public_expenditure}</th>
+                    <th>{stat.education_expenditure_gdp}</th>
+                    <th>{stat.education_expenditure_per_capita}</th>
                 </tr>
                 {/each}
             </tbody>
@@ -105,21 +116,58 @@
 
         {:else}
             <div style="aling-items:center; justify-content:center;">
-                <h2>No existen datos cargados. Por favor, pulse el botón "Cargar datos"</h2>
-            </div>
-            <div style="aling-items:center; justify-content:center;">
-                <img src="images/noDatos.jpg" alt="noDatos">
+                <Row>
+                    <Col md=12 style="text-align: center;">
+                        <h2>No existen datos cargados. Por favor, pulse el botón "Cargar datos"</h2>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md=3>
+                    </Col>
+                    <Col md=4>
+                        <img src="images/noDatos.jpg" alt="noDatos">
+                    </Col>
+                    <Col md=4>
+                    </Col>
+                </Row>
             </div>
             
         {/if}
 
     </div>
-    <div>
-        <a href="/"><Button style="background-color: blue;">Página Principal</Button></a>
-    </div>
+    
+    
+    <div class="foot">
+    <footer>
+       
+
+         <div>
+            <a href="/"><Button style="background-color: blue;">Página Principal</Button></a>
+        </div>
+         
+     </footer>
+     </div>
     
 </main>
 
 <style>
+    .foot{
+    min-width: 100%;
+    color: white;
+    background-color:#343c44;
+    width: 100%;
+    
+    bottom: 0;
+    background-color:#343c44;
+    left: 0;
+    
+}
+footer{
+    
+    padding: 2%;
+    width: 100%;
+
+    
+}
 
 </style>

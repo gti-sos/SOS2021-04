@@ -4,18 +4,22 @@
 	import NotFound from "./pages/NotFound.svelte";
 	import Home from "./pages/Home.svelte";
 	import Info from "./pages/Info.svelte";
-	import Education_Expenditures from "./front/education_expenditures/App.svelte";
+	import App_edex from "./front/education_expenditures/App_edex.svelte";
 	
 	const routes = {
 		"/":Home,
 		"/info":Info,
-		'*': NotFound,
-		"/education_expenditures":Education_Expenditures
+		"/education_expenditures":App_edex,
+		
+		'*': NotFound //Debe ir la última o se ejecutará antes y la tomará como no encontrada
+		
 		};
 </script>
 
 <main>
 	<Router {routes}> </Router>
+
+	
 </main>
 
 <style>
