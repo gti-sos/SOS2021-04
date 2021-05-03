@@ -262,7 +262,7 @@
             <div style="aling-items:center; justify-content:center;">
                 <Row>
                     <Col md=12 style="text-align: center;">
-                        <h2>No existen datos cargados. Por favor, pulse el botón "Cargar datos"</h2>
+                        <h2>No existen datos cargados. Por favor, pulse el botón "Cargar datos".</h2>
                     </Col>
                 </Row>
                 <Row>
