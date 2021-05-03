@@ -126,12 +126,14 @@
     <div style="padding:1%">
             <Row>
                 <Col>
-                    {#if edex_data.length==0}
-                    <Button style="background-color: green;" disabled>Cargar datos</Button>
-                    <Button style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
-                    {:else}
+                    {#if edex_data.length!=0}
                     <Button style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
                     <Button style="background-color: red;" disable>Borrar datos</Button>
+                    
+                    {:else}
+                    <Button style="background-color: green;" disabled>Cargar datos</Button>
+                    <Button style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
+                   
                     {/if}
                 </Col>           
             </Row>
