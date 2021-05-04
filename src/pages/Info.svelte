@@ -28,6 +28,12 @@
 		·<a href="https://github.com/JavierCarmona1">Javier Carmona Andrés</a> : <a href="http://sos2021-04.herokuapp.com/api/v1/poverty_risks">http://sos2021-04.herokuapp.com/api/v1/poverty_risks </a><br>
 		·<a href="https://github.com/migueclon98">Miguel Gómez Vázquez</a> : <a href="http://sos2021-04.herokuapp.com/api/v1/illiteracy">http://sos2021-04.herokuapp.com/api/v1/illiteracy</a>
 		
+		<u><b><h3>Front-End</h3></b></u>
+
+		·<a href="https://github.com/mangonreg">Manuel González Regadera</a> : <a href="/#/education_expenditures">Education Expenditures</a><br>
+		·<a href="https://github.com/JavierCarmona1">Javier Carmona Andrés</a> : <a href="/#/poverty_risks">Poverty Risks </a><br>
+		·<a href="https://github.com/migueclon98">Miguel Gómez Vázquez</a> : <a href="/#/illiteracy">Illiteracy</a>
+		
 		<br>
 
 		<u><b><h3>Documentacion</h3></b></u>
