@@ -37,7 +37,7 @@
 
     getStats(); // Se carga la función cuando se cargan los scripts.
 
-
+    //Creamos un elemento de tipo Json para insertar nuevos datos
     let nuevoElemento = {
         "year" : "",
         "country" : "",
