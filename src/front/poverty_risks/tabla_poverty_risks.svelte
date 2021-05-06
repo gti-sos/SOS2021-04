@@ -36,9 +36,167 @@
     }
 
     getStats(); // Se carga la función cuando se cargan los scripts.
+
+
+    let nuevoElemento = {
+        "year" : "",
+        "country" : "",
+        "people_in_risk_of_poverty":"",
+        "people_poverty_line":"",
+        "home_poverty_line":"",
+        "percentage_risk_of_poverty":""
+    };
+
+    function removeDataInserted(){
+        nuevoElemento = {
+        "year" : "",
+        "country" : "",
+        "people_in_risk_of_poverty":"",
+        "people_poverty_line":"",
+        "home_poverty_line":"",
+        "percentage_risk_of_poverty":""
+        };
+
+    };
+
+    async function insertData() {
+    
+    nuevoElemento.year = parseInt(nuevoElemento.year);
+    nuevoElemento.country = String(nuevoElemento.country);
+    nuevoElemento.people_in_risk_of_poverty = parseFloat(nuevoElemento.people_in_risk_of_poverty);
+    nuevoElemento.people_poverty_line = parseFloat(nuevoElemento.people_poverty_line);
+    nuevoElemento.home_poverty_line = parseFloat(nuevoElemento.home_poverty_line);
+    nuevoElemento.percentage_risk_of_poverty = parseFloat(nuevoElemento.percentage_risk_of_poverty);
+    const res = await fetch(BASE_API_PATH, {
+      method: "POST",
+      body: JSON.stringify(nuevoElemento),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(function (res) {
+      if (res.ok) {
+      } else {
+        if (res.status === 409) {
+          mensajeError = `Ya existe un dato con valores idénticos para los mismos campos.`;
+        } else if (res.status === 500) {
+          mensajeError = "No se ha podido acceder a la base de datos.";
+        }else if(res.status === 400){
+          mensajeError = "Todos los campos deben estar rellenados según el patron predefinido.";
+        }
+      }
+      removeDataInserted();
+      getStats();
+        });
+    }
+
+    async function loadInitialData(){
+        //Para cargarlos hacemos un fetch a la direccion donde está el método de carga inicial
+        
+        
+        const peticionCarga = await fetch(BASE_API_PATH + '/loadInitialData'); //Se espera hasta que termine la peticion
+        
+        if(peticionCarga.ok){
+            const peticionMuestra = await fetch(BASE_API_PATH); //Se accede a la toma de todos los elementos
+
+            if(peticionMuestra.ok){
+                console.log(" Receiving data, wait a moment ...")
+                const data = await peticionMuestra.json();
+                datosRecibidos = data;
+                console.log(`Done! Received ${data.length} stats.`);
+                console.log(datosRecibidos)
+            }
+            else{
+                console.log("No data loaded.");
+            }
+        }
+        else{
+            console.log("Error loading data.");
+        }
+        console.log(datosRecibidos.length);
+        
+    
+    }
+
+    async function deleteElement(year, country) {
+    
+    const res = await fetch(
+      BASE_API_PATH + "/" + country + "/" + year,
+      {
+        method: "DELETE",
+      }
+    ).then(function (res) {
+      if (res.ok) {
+        console.log("OK");
+        getStats();
+      } else {
+        if (res.status === 404) {
+          mensajeError = `No se puede eliminar, la entrada ${year}/${country} no existe`;
+        } else if (res.status === 500) {
+          mensajeError = "No se ha podido acceder a la base de datos";
+        }
+      }
+    });
+    }
+
+    async function deleteAll() {
+        console.log(datosRecibidos.length);
+        
+		
+        const peticion = await fetch(BASE_API_PATH, {
+			method: "DELETE"
+		}).then(function (peticion) {
+			
+            if (peticion.ok){
+                datosRecibidos = [];
+			} 
+            
+            else if (peticion.status==404){ //no data found
+                console.log("No data found"); //Posibilidad de redirigir a una ventana similar a la de error 404
+			} 
+            
+            else  { 
+				console.log("Error deleting DB stats");
+			}
+            console.log(datosRecibidos.length);
+			
+		});
+	}
+
 </script>
 
 <main>
+
+    <!-- Creamos un div para incluir dentro dos botones, uno para cargar datos y otro para borrarlos todos -->
+    <div style="padding:1%">
+            <Row>
+                <Col>
+                    {#if datosRecibidos.length!=0}
+                    <Button style="background-color: green;" disabled>Cargar datos</Button>
+                    <Button style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
+                    {:else}
+                    <Button style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
+                    <Button style="background-color: red;" disabled>Borrar datos</Button>
+                    {/if}
+                </Col>           
+            </Row>
+            <Row>
+                <Col md=4>
+                </Col>
+                <Col md=4 style="text-align: center;">
+                    {#if mensajeError.length!=0}
+                    <p style="color:tomato">Se ha producido un error:<b> {mensajeError} </b></p>
+                    {/if}
+                </Col>
+                <Col md=4>
+                </Col>
+                
+            </Row>
+
+    </div>
+
+   <br>
+    <!--Introducimos salto para separar contenido-->
+
     <!-- CREO LA ESTRUCTURA DE LA TABLA -->
     {#if datosRecibidos.length!=0}
         <Table>
@@ -58,7 +216,17 @@
 
             <!--Incluimos el espacio de inserts--> 
                 
-                
+            <tr>
+                <!--Por cada campo haremos un input-->
+                <td><input type="number" placeholder="2015" min=1900 bind:value={nuevoElemento.year}/></td>
+                <td><input type="text" placeholder="Francia" bind:value={nuevoElemento.country}/></td>
+                <td><input type="number" placeholder="8.474"  bind:value={nuevoElemento.people_in_risk_of_poverty}/></td>
+                <td><input type="number" placeholder="12.849"  bind:value={nuevoElemento.people_poverty_line}/></td>
+                <td><input type="number" placeholder="26.983"  bind:value={nuevoElemento.home_poverty_line}/></td>
+                <td><input type="number" placeholder="13.6"  bind:value={nuevoElemento.percentage_risk_of_poverty}/></td>
+                <td><button on:click={insertData} class="btn btn-success">Insertar</button></td>
+                <td></td>
+            </tr>
 
     
             <!-- Incluye cada uno de los elementos en el vector-->
@@ -72,7 +240,7 @@
                     <th>{stat.people_poverty_line}</th>
                     <th>{stat.home_poverty_line}</th>
                     <th>{stat.percentage_risk_of_poverty}</th>
-                    
+                    <th><button class="btn btn-danger" on:click={deleteElement(stat.year,stat.country)}>Eliminar</button></th>
 
                 </tr>
                 {/each}

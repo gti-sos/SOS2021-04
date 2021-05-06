@@ -16,7 +16,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 	var initialData_povertyRisks = [
 		{
 			"year": 2019,
-			"country":"Spain",
+			"country":"España",
 			"people_in_risk_of_poverty": 9610000,
 			"people_poverty_line": 9010,
 			"home_poverty_line": 18920,
@@ -24,7 +24,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		},
 		{
 			"year": 2015,
-			"country":"Germany",
+			"country":"Alemania",
 			"people_in_risk_of_poverty": 13428000 ,
 			"people_poverty_line": 12400,
 			"home_poverty_line": 26040,
@@ -32,7 +32,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		},
 		{
 			"year": 2015,
-			"country":"France",
+			"country":"Francia",
 			"people_in_risk_of_poverty": 8474000 ,
 			"people_poverty_line": 12850,
 			"home_poverty_line": 26980,
