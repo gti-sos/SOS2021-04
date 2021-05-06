@@ -8,6 +8,8 @@
 	import Edit_data_edex from "./front/education_expenditures/Edit_data_edex.svelte";
 	import illiteracy from "./front/illiteracy/illiteracyApp.svelte";
 	import illiteracy_edit from "./front/illiteracy/Edit_Tables.svelte";
+
+	import tabla_poverty_risks from "./front/poverty_risks/tabla_poverty_risks.svelte";
 	
 	const routes = {
 		"/":Home,
@@ -16,6 +18,7 @@
 		"/illiteracy":illiteracy,
 		"/illiteracy/:country/:date":illiteracy_edit,
 		"/education_expenditures/:country/:year": Edit_data_edex,
+		"/poverty_risks":tabla_poverty_risks,
 		
 		'*': NotFound //Debe ir la última o se ejecutará antes y la tomará como no encontrada
 		
