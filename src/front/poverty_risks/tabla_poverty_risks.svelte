@@ -175,6 +175,7 @@
                     {#if datosRecibidos.length!=0}
                     <Button style="background-color: green;" disabled>Cargar datos</Button>
                     <Button style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
+                    <a href="#/poverty_risks"><Button style="background-color: blue;">Página principal</Button></a>
                     {:else}
                     <Button style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
                     <Button style="background-color: red;" disabled>Borrar datos</Button>
@@ -198,6 +199,47 @@
 
    <br>
     <!--Introducimos salto para separar contenido-->
+
+    <h3>Búsqueda</h3>
+
+    <!-- CREO LA ESTRUCTURA DE LA TABLA DE BÚSQUEDAS -->
+        <Table>
+            <!-- Incluye los nombres de los atributos -->
+            <thead>  
+                <tr style="text-align: center; " valign="middle">
+                    <td valign="middle">Año</td>
+                    <td valign="middle">País</td>
+                    <td valign="middle">Personas en riesgo de pobreza</td>
+                    <td valign="middle">Índice de riesgo de pobreza (persona)</td>
+                    <td valign="middle">Índice de riesgo de pobreza (hogar)</td>
+                    <td valign="middle">Porcentaje población en riesgo de pobreza</td>
+                    <td valign="middle"colspan="2"> Acciones </td>
+                </tr>
+            </thead>
+            <tbody>
+
+            <!--Incluimos el espacio de inserts--> 
+                
+            <tr>
+                <!--Por cada campo haremos un input-->
+                <td><input type="number" placeholder="2015" min=1900 bind:value={nuevoElemento.year}/></td>
+                <td><input type="text" placeholder="Francia" bind:value={nuevoElemento.country}/></td>
+                <td><input type="number" placeholder="8.474"  bind:value={nuevoElemento.people_in_risk_of_poverty}/></td>
+                <td><input type="number" placeholder="12.849"  bind:value={nuevoElemento.people_poverty_line}/></td>
+                <td><input type="number" placeholder="26.983"  bind:value={nuevoElemento.home_poverty_line}/></td>
+                <td><input type="number" placeholder="13.6"  bind:value={nuevoElemento.percentage_risk_of_poverty}/></td>
+                <td><button on:click={insertData} class="btn btn-primary">Buscar</button></td>
+                <td></td>
+            </tr>
+
+            </tbody>
+
+    
+        </Table>
+
+    <!--Introducimos salto para separar contenido-->
+
+    <h3>Listado de datos</h3>
 
     <!-- CREO LA ESTRUCTURA DE LA TABLA -->
     {#if datosRecibidos.length!=0}
@@ -265,4 +307,11 @@
 </main>
 
 <style>
+
+main {
+    text-align: center;
+    padding: 1em;
+    margin: 0 auto;
+  }
+
 </style>
