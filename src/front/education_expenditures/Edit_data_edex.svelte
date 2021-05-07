@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import { Table, Button, Nav, NavItem, NavLink } from "sveltestrap";
+    import { Table, Button} from "sveltestrap";
     const BASE_API_PATH = "/api/v1/education_expenditures";
     export let params = {};
     
