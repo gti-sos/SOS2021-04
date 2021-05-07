@@ -8,7 +8,7 @@
 		<u><b><h3>Componentes</h3></b></u>
 		
 		·<a href="https://github.com/mangonreg">Manuel González Regadera - Gastos en educación</a><br>
-		·<a href="https://github.com/JavierCarmona1">Javier Carmona Andrés - Riesgos de pobreza</a><br>
+		·<a href="https://github.com/JavierCarmona16">Javier Carmona Andrés - Riesgos de pobreza</a><br>
 		·<a href="https://github.com/migueclon98">Miguel Gómez Vázquez - Analfabetismo</a><br>
 		
 		<u><b><h3>Descripción del proyecto</h3></b></u>
