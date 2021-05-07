@@ -50,12 +50,12 @@
 
     //Creamos variables para paginación
 
-    let offset_actual = 0;
-    let limit = 10; //Limite por defecto, opcional
-    let pagina_actual = 1;
-    let ultima_pagina = 1; //Se debe actualizar en función de los datos que tengamos
-    let totalDatos = 0;
-    let esBusqueda = false;
+    export let offset_actual = 0;
+    export let limit = 10; //Limite por defecto, opcional
+    export let pagina_actual = 1;
+    export let ultima_pagina = 1; //Se debe actualizar en función de los datos que tengamos
+    export let totalDatos = 0;
+    export let esBusqueda = false;
 
     //Cargamos los datos iniciales
 
