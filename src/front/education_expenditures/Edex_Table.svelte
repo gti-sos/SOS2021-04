@@ -70,7 +70,7 @@
       esBusqueda = false;
       console.log("Fetching data...");
       const res = await fetch(
-      BASE_API_PATH + "?&limit=" + limit + "&skip="+offset_actual
+      BASE_API_PATH + "?skip="+ offset_actual + "&limit=" +limit 
       );
       if (res.ok) {
         console.log(BASE_API_PATH + "?&limit=" + limit + "&skip="+offset_actual);
@@ -239,7 +239,7 @@
     if (fullQuery != "") {
       const res = await fetch(
         BASE_API_PATH +
-          fullQuery + "&limit=" + limit + "&skip="+offset_actual
+          fullQuery +  "&skip="+offset_actual +"&limit=" + limit 
       );
       if (res.ok) {
         console.log("OK");
