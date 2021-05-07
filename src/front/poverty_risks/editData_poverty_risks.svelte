@@ -2,8 +2,10 @@
     import { onMount } from "svelte";
     import { Table, Button, Nav, NavItem, NavLink } from "sveltestrap";
     const BASE_API_PATH = "/api/v1/poverty_risks";
+    /*De la URL expórtame los parámetros a este array llamado params,es un JSON ({})*/
     export let params = {};
     
+    //Viene un JSON y yo recojo los datos en el JSON stats.
     let stat = {};
     let updateCountry = "";
     let updateYear = 0;
@@ -21,6 +23,7 @@
     if (res.ok) {
       console.log("Ok:");
       const json = await res.json();
+      /*Guardo todos los datos de la petición y la guardo en mi plantilla JSON.*/
       stat = json;
       updateCountry = stat.country;
       updateYear = stat.year;

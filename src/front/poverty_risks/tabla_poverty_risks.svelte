@@ -37,7 +37,9 @@
 
     getStats(); // Se carga la función cuando se cargan los scripts.
 
-    //Creamos un elemento de tipo Json para insertar nuevos datos
+    //Creamos un elemento de tipo JSON para insertar nuevos datos,
+    //Porque mi API sólo funciona a partir de objetos JSON
+    //No lo puedo hacer de forma separada
     let nuevoElemento = {
         "year" : "",
         "country" : "",
