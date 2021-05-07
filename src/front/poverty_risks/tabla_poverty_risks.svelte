@@ -205,10 +205,10 @@
                 <tr style="text-align: center; " valign="middle">
                     <td valign="middle">Año</td>
                     <td valign="middle">País</td>
-                    <td valign="middle">Persona en riesgo de pobreza</td>
+                    <td valign="middle">Personas en riesgo de pobreza</td>
                     <td valign="middle">Índice de riesgo de pobreza (persona)</td>
-                    <td valign="middle">Índice de riesgo de pobreza (hogares)</td>
-                    <td valign="middle">Porcentaje de riesgo de pobreza</td>
+                    <td valign="middle">Índice de riesgo de pobreza (hogar)</td>
+                    <td valign="middle">Porcentaje población en riesgo de pobreza</td>
                     <td valign="middle"colspan="2"> Acciones </td>
                 </tr>
             </thead>
@@ -240,8 +240,8 @@
                     <th>{stat.people_poverty_line}</th>
                     <th>{stat.home_poverty_line}</th>
                     <th>{stat.percentage_risk_of_poverty}</th>
-                    <th><button class="btn btn-danger" on:click={deleteElement(stat.year,stat.country)}>Eliminar</button></th>
-
+                    <th><button class="btn btn-danger" on:click={deleteElement(stat.year,stat.country)}>Borrar</button></th>
+                    <th><a href='#/poverty_risks/{stat.country}/{stat.year}'><button class="btn btn-warning">Editar</button></a></th>
                 </tr>
                 {/each}
             </tbody>

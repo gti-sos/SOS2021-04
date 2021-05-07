@@ -8,9 +8,8 @@
 	import Edit_data_edex from "./front/education_expenditures/Edit_data_edex.svelte";
 	import illiteracy from "./front/illiteracy/illiteracyApp.svelte";
 	import illiteracy_edit from "./front/illiteracy/Edit_Tables.svelte";
-
-	import tabla_poverty_risks from "./front/poverty_risks/tabla_poverty_risks.svelte";
-import AppPovertyRisks from './front/poverty_risks/appPovertyRisks.svelte';
+	import AppPovertyRisks from './front/poverty_risks/appPovertyRisks.svelte';
+	import editData_poverty_risks from "./front/poverty_risks/editData_poverty_risks.svelte";
 	
 	const routes = {
 		"/":Home,
@@ -20,6 +19,7 @@ import AppPovertyRisks from './front/poverty_risks/appPovertyRisks.svelte';
 		"/illiteracy/:country/:date":illiteracy_edit,
 		"/education_expenditures/:country/:year": Edit_data_edex,
 		"/poverty_risks":AppPovertyRisks,
+		"/poverty_risks/:country/:year": editData_poverty_risks,
 		
 		'*': NotFound //Debe ir la última o se ejecutará antes y la tomará como no encontrada
 		
