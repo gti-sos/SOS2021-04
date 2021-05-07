@@ -1,5 +1,15 @@
 <script>
-    import { Table , Button, Toast, ToastBody, ToastHeader, Col, Row, Container } from 'sveltestrap';
+    import { Table , Button, Col, Row,
+    Nav,
+    Modal,
+    ModalBody,
+    ModalFooter,
+    ModalHeader,
+    NavItem,
+    NavLink,
+    Pagination,
+    PaginationItem,
+    PaginationLink, } from 'sveltestrap';
 
     //Incluimos la ruta donde se ejecuta el backend de la Api
     
@@ -38,29 +48,42 @@
     //Variables auxiliares para la muestra de errores
     let mensajeError = ""
 
-    //Creamos variables para almacenar datos para la actualización de un elemento
+    //Creamos variables para paginación
+
+    let offset_actual = 0;
+    let limit = 10; //Limite por defecto, opcional
+    let pagina_actual = 1;
+    let ultima_pagina = 1; //Se debe actualizar en función de los datos que tengamos
+    let totalDatos = 0;
+    let esBusqueda = false;
 
     //Cargamos los datos iniciales
 
     var charged = false;
     var edex_data = [];
 
+  
+
     //Función asincrona para la carga de datos
 
     async function getStats() {
+      esBusqueda = false;
       console.log("Fetching data...");
       const res = await fetch(
-      BASE_API_PATH
+      BASE_API_PATH + "?&limit=" + limit + "&skip="+offset_actual
       );
       if (res.ok) {
+        console.log(BASE_API_PATH + "?&limit=" + limit + "&skip="+offset_actual);
         const json = await res.json();
         if(json.length===undefined){
           edex_data = [];
           edex_data.push(json);
           console.log(edex_data.length + " Datos: "+edex_data);
+          ultima_pagina = 1;
         }
         else{
           edex_data = json;
+          ultima_pagina = Math.ceil(edex_data.length / limit);
         }
         mensajeError="";
       } else {
@@ -192,6 +215,8 @@
   }
 
   async function searchStat() {
+    esBusqueda = true;
+
     
     var parametros = new Map(
       Object.entries(query).filter((introducidos) => {
@@ -214,7 +239,7 @@
     if (fullQuery != "") {
       const res = await fetch(
         BASE_API_PATH +
-          fullQuery
+          fullQuery + "&limit=" + limit + "&skip="+offset_actual
       );
       if (res.ok) {
         console.log("OK");
@@ -223,9 +248,11 @@
           edex_data = [];
           edex_data.push(json);
           console.log(edex_data.length + " Datos: "+edex_data);
+          ultima_pagina = 1;
         }
         else{
           edex_data = json;
+          ultima_pagina = Math.ceil(edex_data.length / limit);
         }
       } else {
         if (res.status === 404) {
@@ -257,6 +284,21 @@
 
     getStats();
 
+  }
+
+  function cambiaPagina(pagina, offset, busqueda){
+    ultima_pagina = Math.ceil(totalDatos / limit); //Usamos la función matematica techo -> menor numero entero mayor que el resultado
+    offset_actual = offset;
+    pagina_actual = pagina;
+    if(busqueda){
+      searchStat()
+    }
+    else{
+      getStats();
+    }
+  }
+  function range(tamano, inicio = 0) {
+    return [...Array(tamano).keys()].map((i) => i + inicio);
   }
 
 </script>
@@ -415,6 +457,41 @@
 
 
         </Table>
+
+        <div>
+          <!-- Pagination -->
+          <Pagination ariaLabel="Web pagination">
+            <PaginationItem class={pagina_actual === 1 ? "disabled" : ""}>
+              <PaginationLink
+                previous
+                href="#/education_expenditures"
+                on:click={() =>
+                  cambiaPagina(pagina_actual - 1, offset_actual - 10, esBusqueda)}
+              />
+            </PaginationItem>
+            {#each range(ultima_pagina,1) as pagina}
+              <PaginationItem class={pagina_actual === pagina ? "active" : ""}>
+                <PaginationLink
+                  previous
+                  href="#/education_expenditures"
+                  on:click={() => cambiaPagina(pagina, (pagina - 1) * 10, esBusqueda)}
+                  >{pagina}</PaginationLink
+                >
+              </PaginationItem>
+            {/each}
+            <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
+              <PaginationLink
+                next
+                href="#/education_expenditures"
+                on:click={() =>
+                  cambiaPagina(pagina_actual + 1, offset_actual + 10, esBusqueda)}
+              />
+            </PaginationItem>
+          </Pagination>
+        </div>
+
+
+
       {/if}
       
 
@@ -536,7 +613,38 @@
                       <th><a href='#/education_expenditures/{edex_data[0].country}/{edex_data[0].year}'><button class="btn btn-warning">Modificar</button></a></th>
                           </tr>
                 </tbody>
-              </Table>                
+              </Table>
+              <div>
+                <!-- Pagination -->
+                <Pagination ariaLabel="Web pagination">
+                  <PaginationItem class={pagina_actual === 1 ? "disabled" : ""}>
+                    <PaginationLink
+                      previous
+                      href="#/education_expenditures"
+                      on:click={() =>
+                        cambiaPagina(pagina_actual - 1, offset_actual - 10, esBusqueda)}
+                    />
+                  </PaginationItem>
+                  {#each range(ultima_pagina,1) as pagina}
+                    <PaginationItem class={pagina_actual === pagina ? "active" : ""}>
+                      <PaginationLink
+                        previous
+                        href="#/education_expenditures"
+                        on:click={() => cambiaPagina(pagina, (pagina - 1) * 10, esBusqueda)}
+                        >{pagina}</PaginationLink
+                      >
+                    </PaginationItem>
+                  {/each}
+                  <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
+                    <PaginationLink
+                      next
+                      href="#/education_expenditures"
+                      on:click={() =>
+                        cambiaPagina(pagina_actual + 1, offset_actual + 10, esBusqueda)}
+                    />
+                  </PaginationItem>
+                </Pagination>
+              </div>                
 
       {/if}
 
