@@ -46,7 +46,8 @@
     };
 
     //Variables auxiliares para la muestra de errores
-    let mensajeError = ""
+    let mensajeError = "";
+    let mensajeCorrecto = "";
 
     //Creamos variables para paginación
 
@@ -79,12 +80,16 @@
           edex_data = [];
           edex_data.push(json);
           console.log(edex_data.length + " Datos: "+edex_data);
+          mensajeError = "";
+          mensajeCorrecto = "Datos cargados correctamente";
           
         }
         else{
           edex_data = json;
           ultima_pagina = Math.ceil((edex_data.length+1) / limit);
           totalDatos = edex_data.length +1;
+          mensajeError = "";
+          mensajeCorrecto = "Datos cargados correctamente";
         }
         mensajeError="";
       } else {
@@ -112,14 +117,19 @@
                 const data = await peticionMuestra.json();
                 edex_data = data;
                 console.log(`Done! Received ${data.length} stats.`);
-                console.log(edex_data)
+                console.log(edex_data);
+                mensajeError = "";
+                mensajeCorrecto = "Datos insertados correctamente";
             }
             else{
                 console.log("No data loaded.");
+                
+                mensajeError="Los datos no han podido cargarse";
             }
         }
         else{
             console.log("Error loading data.");
+            mensajeError = "Error de acceso a BD";
         }
         charged = true;
         console.log(edex_data.length);
@@ -129,6 +139,7 @@
     }
         
     async function deleteAll() {
+
         console.log(edex_data.length);
         
 		
@@ -139,14 +150,18 @@
             if (peticion.ok){
                 edex_data = [];
                 charged = false;
+                mensajeError = "";
+                mensajeCorrecto = "Datos eliminados correctamente";
 			} 
             
             else if (peticion.status==404){ //no data found
                 console.log("No data found"); //Posibilidad de redirigir a una ventana similar a la de error 404
+                mensajeError = "No se han encontrado datos para eliminar";
 			} 
             
             else  { 
-				console.log("Error deleting DB stats");
+              console.log("Error deleting DB stats");
+              mensajeError = "Error de acceso a BD";
 			}
             console.log(edex_data.length);
 			
@@ -181,9 +196,11 @@
         },
       }).then(function (res) {
         if (res.ok) {
+          mensajeError = "";
+          mensajeCorrecto = "Dato cargado correctamente";
         } else {
           if (res.status === 409) {
-            mensajeError = `Ya existe un dato con valores idénticos para los mismos campos.`;
+            mensajeError = `Ya existe un dato con valores idénticos para los campos año y país.`;
           } else if (res.status === 500) {
             mensajeError = "No se ha podido acceder a la base de datos.";
           }else if(res.status === 400){
@@ -196,6 +213,8 @@
   }
 
   async function deleteElement(year, country) {
+    let mensajeError = "";
+    let mensajeCorrecto = "";
     
     const res = await fetch(
       BASE_API_PATH + "/" + country + "/" + year,
@@ -206,6 +225,8 @@
       if (res.ok) {
         console.log("OK");
         getStats();
+        mensajeError = "";
+        mensajeCorrecto = "Dato eliminado correctamente";
       } else {
         if (res.status === 404) {
           mensajeError = `No se puede eliminar, la entrada ${year}/${country} no existe`;
@@ -246,15 +267,19 @@
       if (res.ok) {
         console.log("OK");
         const json = await res.json();
+        mensajeError = "";
+        mensajeCorrecto = "¡Se han encontrado coincidencias!";
         if(json.length===undefined){
           edex_data = [];
           edex_data.push(json);
           console.log(edex_data.length + " Datos: "+edex_data);
           ultima_pagina = Math.ceil((edex_data.length+1) / limit);
-        totalDatos = edex_data.length +1;
+          totalDatos = edex_data.length +1;
           
         }
         else{
+          mensajeError = "";
+          mensajeCorrecto = "¡Se han encontrado coincidencias!";
           edex_data = json;
         }
         
@@ -331,7 +356,10 @@
                 </Col>
                 <Col md=4 style="text-align: center;">
                     {#if mensajeError.length!=0}
-                    <p style="color:tomato">Se ha producido un error:<b> {mensajeError} </b></p>
+                    <p class="mensajeError">Se ha producido un error:<b> {mensajeError} </b></p>
+                    {:else if mensajeCorrecto.length!=0}
+                    <p class="mensajeCorrecto"><b> {mensajeCorrecto} </b></p>
+
                     {/if}
                 </Col>
                 <Col md=4>
@@ -389,14 +417,14 @@
                     <input type="number" placeholder="max"  bind:value={query.upp}/>
                   </td>
                   <td>
-                    <input type="number" placeholder="max"  bind:value={query.agdp}/>
-                    <input type="number" placeholder="min"  bind:value={query.ugdp}/>
+                    <input type="number" placeholder="min"  bind:value={query.agdp}/>
+                    <input type="number" placeholder="max"  bind:value={query.ugdp}/>
                   </td>
 
                   <td>
                     <div class ="row col-xs-12">
-                    <input type="number" placeholder="max"  bind:value={query.apc} class="col-xs-12"/>
-                    <input type="number" placeholder="min"  bind:value={query.upc} class="col-xs-12"/>
+                    <input type="number" placeholder="min"  bind:value={query.apc} class="col-xs-12"/>
+                    <input type="number" placeholder="max"  bind:value={query.upc} class="col-xs-12"/>
                   </div>
                   </td>
 
@@ -721,5 +749,85 @@ footer{
 
     
 }
+.mensajeError{
+  color:tomato;
+}
 
+.mensajeCorrecto{
+color:green;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-moz-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-o-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-ms-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+}
+}
 </style>
