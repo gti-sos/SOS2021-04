@@ -79,11 +79,12 @@
           edex_data = [];
           edex_data.push(json);
           console.log(edex_data.length + " Datos: "+edex_data);
-          ultima_pagina = 1;
+          
         }
         else{
           edex_data = json;
-          ultima_pagina = Math.ceil(edex_data.length / limit);
+          ultima_pagina = Math.ceil((edex_data.length+1) / limit);
+          totalDatos = edex_data.length +1;
         }
         mensajeError="";
       } else {
@@ -122,6 +123,7 @@
         }
         charged = true;
         console.log(edex_data.length);
+        getStats();
         
     
     }
@@ -248,12 +250,14 @@
           edex_data = [];
           edex_data.push(json);
           console.log(edex_data.length + " Datos: "+edex_data);
-          ultima_pagina = 1;
+          ultima_pagina = Math.ceil((edex_data.length+1) / limit);
+        totalDatos = edex_data.length +1;
+          
         }
         else{
           edex_data = json;
-          ultima_pagina = Math.ceil(edex_data.length / limit);
         }
+        
       } else {
         if (res.status === 404) {
           mensajeError = "No existen datos con esos parámetros";
@@ -297,8 +301,13 @@
       getStats();
     }
   }
-  function range(tamano, inicio = 0) {
-    return [...Array(tamano).keys()].map((i) => i + inicio);
+  function range(tamano, inicio = 1) {
+    var arrayPaginas = [];
+    for(var i=inicio;i<tamano+1;i++){
+      arrayPaginas.push(i);
+    }
+    console.log(arrayPaginas);
+    return arrayPaginas;
   }
 
 </script>
