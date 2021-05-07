@@ -16,27 +16,58 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 	var initialData_povertyRisks = [
 		{
 			"year": 2019,
-			"country":"Spain",
+			"country":"España",
 			"people_in_risk_of_poverty": 9610000,
-			"people_poverty_line": 9010,
-			"home_poverty_line": 18920,
+			"people_poverty_line": 9009,
+			"home_poverty_line": 18919,
 			"percentage_risk_of_poverty": 20.7
 		},
 		{
 			"year": 2015,
-			"country":"Germany",
+			"country":"Alemania",
 			"people_in_risk_of_poverty": 13428000 ,
-			"people_poverty_line": 12400,
-			"home_poverty_line": 26040,
+			"people_poverty_line": 12401,
+			"home_poverty_line": 26041,
 			"percentage_risk_of_poverty": 16.7
 		},
 		{
 			"year": 2015,
-			"country":"France",
+			"country":"Francia",
 			"people_in_risk_of_poverty": 8474000 ,
-			"people_poverty_line": 12850,
-			"home_poverty_line": 26980,
+			"people_poverty_line": 12849,
+			"home_poverty_line": 26983,
 			"percentage_risk_of_poverty": 13.6
+		},
+		{
+			"year": 2015,
+			"country":"Italia",
+			"people_in_risk_of_poverty": 12130000 ,
+			"people_poverty_line": 9508,
+			"home_poverty_line": 19966,
+			"percentage_risk_of_poverty": 19.9
+		},
+		{
+			"year": 2015,
+			"country":"Portugal",
+			"people_in_risk_of_poverty": 2019000 ,
+			"people_poverty_line": 5061,
+			"home_poverty_line": 10628,
+			"percentage_risk_of_poverty": 19.5
+		},
+		{
+			"year": 2015,
+			"country":"República Checa",
+			"people_in_risk_of_poverty": 1006000 ,
+			"people_poverty_line": 4454,
+			"home_poverty_line": 9353,
+			"percentage_risk_of_poverty": 9.7
+		},{
+			"year": 2015,
+			"country":"Dinamarca",
+			"people_in_risk_of_poverty": 686000 ,
+			"people_poverty_line": 17019,
+			"home_poverty_line": 35739,
+			"percentage_risk_of_poverty": 12.2
 		}
 
 	];

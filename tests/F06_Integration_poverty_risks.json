@@ -90,9 +90,9 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.test(\"There are 3 sources\", function () {\r",
+							"pm.test(\"There are 7 sources\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.length).to.eql(3);\r",
+							"    pm.expect(jsonData.length).to.eql(7);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -130,8 +130,8 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Body matches France\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"France\");\r",
+							"pm.test(\"Body matches Francia\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Francia\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -142,7 +142,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks/France/2015",
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks/Francia/2015",
 					"protocol": "http",
 					"host": [
 						"sos2021-04",
@@ -153,7 +153,7 @@
 						"api",
 						"v1",
 						"poverty_risks",
-						"France",
+						"Francia",
 						"2015"
 					]
 				}
@@ -207,8 +207,8 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.test(\"Body matches France\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"Germany\");\r",
+							"pm.test(\"Body matches Alemania\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Alemania\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -219,7 +219,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks?appl=12300&c=Germany&y=2015&upercent=90",
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks?appl=12300&c=Alemania&y=2015&upercent=90",
 					"protocol": "http",
 					"host": [
 						"sos2021-04",
@@ -238,7 +238,7 @@
 						},
 						{
 							"key": "c",
-							"value": "Germany"
+							"value": "Alemania"
 						},
 						{
 							"key": "y",
@@ -313,7 +313,7 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"pm.test(\"Body matches Spain\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"Spain\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"España\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -324,7 +324,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks/Spain",
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks/España",
 					"protocol": "http",
 					"host": [
 						"sos2021-04",
@@ -335,7 +335,7 @@
 						"api",
 						"v1",
 						"poverty_risks",
-						"Spain"
+						"España"
 					]
 				}
 			},
@@ -457,7 +457,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks/France/2015",
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks/Francia/2015",
 					"protocol": "http",
 					"host": [
 						"sos2021-04",
@@ -468,7 +468,7 @@
 						"api",
 						"v1",
 						"poverty_risks",
-						"France",
+						"Francia",
 						"2015"
 					]
 				}
@@ -539,7 +539,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "            {\"year\": 2021,\r\n\t\t\t\"country\":\"Germany\",\r\n\t\t\t\"people_in_risk_of_poverty\": 13428000 ,\r\n\t\t\t\"people_poverty_line\": 12400,\r\n\t\t\t\"home_poverty_line\": 26040,\r\n\t\t\t\"percentage_risk_of_poverty\": 16.7 }",
+					"raw": "            {\"year\": 2021,\r\n\t\t\t\"country\":\"Alemania\",\r\n\t\t\t\"people_in_risk_of_poverty\": 13428000 ,\r\n\t\t\t\"people_poverty_line\": 12400,\r\n\t\t\t\"home_poverty_line\": 26040,\r\n\t\t\t\"percentage_risk_of_poverty\": 16.7 }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -547,7 +547,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks/Germany/2015",
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks/Alemania/2015",
 					"protocol": "http",
 					"host": [
 						"sos2021-04",
@@ -558,7 +558,7 @@
 						"api",
 						"v1",
 						"poverty_risks",
-						"Germany",
+						"Alemania",
 						"2015"
 					]
 				}
@@ -601,7 +601,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrar elemento Espana 2016",
+			"name": "Borrar elemento Espana 2019",
 			"event": [
 				{
 					"listen": "test",
@@ -619,7 +619,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks/Spain/2019",
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks/España/2019",
 					"protocol": "http",
 					"host": [
 						"sos2021-04",
@@ -630,7 +630,7 @@
 						"api",
 						"v1",
 						"poverty_risks",
-						"Spain",
+						"España",
 						"2019"
 					]
 				}
@@ -656,7 +656,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks/England/2015",
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks/Inglaterra/2015",
 					"protocol": "http",
 					"host": [
 						"sos2021-04",
@@ -667,7 +667,7 @@
 						"api",
 						"v1",
 						"poverty_risks",
-						"England",
+						"Inglaterra",
 						"2015"
 					]
 				}
