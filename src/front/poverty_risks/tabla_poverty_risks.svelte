@@ -184,6 +184,7 @@
       } else {
         if (res.status === 409) {
           msjError = `Ya existe un dato con valores idénticos para los mismos campos.`;
+          alert("Ya existe un dato con valores idénticos para los mismos campos.");
         } else if (res.status === 500) {
           msjError = "No se ha podido acceder a la base de datos.";
         }else if(res.status === 400){
