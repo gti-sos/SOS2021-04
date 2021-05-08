@@ -297,7 +297,7 @@
         <tr>
           <th> País </th>
           <th>Año </th>
-          <th>Porcentaje de Mujeres </th>
+          <th>Porcentaje de Muujeres </th>
           <th>Porcentaje de Hombres </th>
           <th>Porcentaje de Adultos </th>
           <th>Porcentaje de Jovenes </th>
