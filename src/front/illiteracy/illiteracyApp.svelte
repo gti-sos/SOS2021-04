@@ -366,9 +366,9 @@
           <tr>
             <td>{stat.country}</td>
             <td>{stat.year}</td>
-            <td>{stat["female_illiteracy_rate"]}</td>
-            <td>{stat["male_illiteracy_rate"]}</td>
-            <td>{stat["adult_illiteracy_rate"]}</td>
+            <td>{stat["female_illiteracy_rate"]}%</td>
+            <td>{stat["male_illiteracy_rate"]}%</td>
+            <td>{stat["adult_illiteracy_rate"]}%</td>
             <td>{stat["young_illiteracy_rate"]}%</td>
   
             <td>
