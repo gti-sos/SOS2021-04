@@ -40,7 +40,7 @@
     let error = null;
     let newStat = {
       country: "",
-      date: "",
+      year: "",
       "female_illiteracy_rate": "",
       "male_illiteracy_rate": "",
       "adult_illiteracy_rate": "",
@@ -186,10 +186,10 @@
         }
       });
     }
-    async function deleteStat(country, date) {
-      console.log(`Deleting data with name ${country} and date ${date}`);
+    async function deleteStat(country, year) {
+      console.log(`Deleting data with name ${country} and year ${year}`);
       const res = await fetch(
-        BASE_CONTACT_API_PATH + "/illiteracy/" + country + "/" + date,
+        BASE_CONTACT_API_PATH + "/illiteracy/" + country + "/" + year,
         {
           method: "DELETE",
         }
@@ -205,7 +205,7 @@
           getStats();
         } else {
           if(res.status===404){
-            errorMsg = `No existe el dato ${country} con fecha ${date} para borrar`;
+            errorMsg = `No existe el dato ${country} con fecha ${year} para borrar`;
           }else if(res.status ===500){
             errorMsg = "No se han podido acceder a la base de datos";
           }        
@@ -217,7 +217,7 @@
     async function insertStat() {
       console.log("Inserting stat: " + JSON.stringify(newStat));
    
-      newStat.date = parseInt(newStat.date);
+      newStat.year = parseInt(newStat.year);
       newStat["female_illiteracy_rate"] = parseFloat(newStat["female_illiteracy_rate"]);
       newStat["male_illiteracy_rate"] = parseFloat(newStat["male_illiteracy_rate"]);
       newStat["adult_illiteracy_rate"] = parseFloat(newStat["adult_illiteracy_rate"]);
@@ -318,7 +318,7 @@
                 type="number"
                 placeholder="2019"
                 min="1900"
-                bind:value={newStat.date}
+                bind:value={newStat.year}
               /></td
             >
             <td
@@ -365,21 +365,21 @@
         {#each illiteracyStats as stat}
           <tr>
             <td>{stat.country}</td>
-            <td>{stat.date}</td>
+            <td>{stat.year}</td>
             <td>{stat["female_illiteracy_rate"]}</td>
             <td>{stat["male_illiteracy_rate"]}</td>
             <td>{stat["adult_illiteracy_rate"]}</td>
             <td>{stat["young_illiteracy_rate"]}%</td>
   
             <td>
-              <a href="#/illiteracy/{stat.country}/{stat.date}">
+              <a href="#/illiteracy/{stat.country}/{stat.year}">
                 <Button color="primary">Editar</Button>
               </a>
             </td>
             <td
               ><Button
                 color="danger"
-                on:click={deleteStat(stat.country, stat.date)}>Borrar</Button
+                on:click={deleteStat(stat.country, stat.year)}>Borrar</Button
               ></td
             >
           </tr>
