@@ -37,6 +37,33 @@
 
     getStats(); // Se carga la función cuando se cargan los scripts.
 
+    /*Creamos un elemento de tipo JSON para BUSCAR los datos,
+    Porque mi API sólo funciona a partir de objetos JSON
+    No lo puedo hacer de forma separada*/
+    let parametrosBusqueda = {
+        "year" : "",
+        "country" : "",
+        "aprp":"",
+        "uprp":"",
+        "appl":"",
+        "uppl":"",
+        "ahpl":"",
+        "uhpl":"",
+        "apercnt":"",
+        "upercnt":""
+    };
+
+    /* Creo un array para almacenar los datos
+    guardados de las BÚSQUEDAS*/
+    let datosBusqueda = [];
+
+    async function searchData() {
+        console.log("Searching stat...");
+        //Variable con la que luego crearemos las URL de las querys
+        let queryVar = "?";
+    }
+
+
     //Creamos un elemento de tipo JSON para insertar nuevos datos,
     //Porque mi API sólo funciona a partir de objetos JSON
     //No lo puedo hacer de forma separada
@@ -222,12 +249,24 @@
                 
             <tr>
                 <!--Por cada campo haremos un input-->
-                <td><input type="number" placeholder="2015" min=1900 bind:value={nuevoElemento.year}/></td>
-                <td><input type="text" placeholder="Francia" bind:value={nuevoElemento.country}/></td>
-                <td><input type="number" placeholder="8.474"  bind:value={nuevoElemento.people_in_risk_of_poverty}/></td>
-                <td><input type="number" placeholder="12.849"  bind:value={nuevoElemento.people_poverty_line}/></td>
-                <td><input type="number" placeholder="26.983"  bind:value={nuevoElemento.home_poverty_line}/></td>
-                <td><input type="number" placeholder="13.6"  bind:value={nuevoElemento.percentage_risk_of_poverty}/></td>
+                <td><input type="number" placeholder="2015" min=1900 bind:value={parametrosBusqueda.year}/></td>
+                <td><input type="text" placeholder="Francia" bind:value={parametrosBusqueda.country}/></td>
+                <td>
+                    <input type="number" placeholder="686000"  bind:value={parametrosBusqueda.aprp}/>
+                    <input type="number" placeholder="12130000"  bind:value={parametrosBusqueda.uprp}/>
+                </td>
+                <td>
+                    <input type="number" placeholder="4454"  bind:value={parametrosBusqueda.appl}/>
+                    <input type="number" placeholder="17019"  bind:value={parametrosBusqueda.uppl}/>
+                </td>
+                <td>
+                    <input type="number" placeholder="9353"  bind:value={parametrosBusqueda.ahpl}/>
+                    <input type="number" placeholder="35739"  bind:value={parametrosBusqueda.uhpl}/>
+                </td>
+                <td>
+                    <input type="number" placeholder="9.7"  bind:value={parametrosBusqueda.apercnt}/>
+                    <input type="number" placeholder="19.9"  bind:value={parametrosBusqueda.upercnt}/>
+                </td>
                 <td><button on:click={insertData} class="btn btn-primary">Buscar</button></td>
                 <td></td>
             </tr>
