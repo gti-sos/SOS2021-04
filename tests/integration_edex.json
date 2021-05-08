@@ -86,11 +86,7 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"\r",
-							"pm.test(\"There are 6 entries\", function(){\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.length).to.eql(6);\r",
-							"})"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -126,7 +122,9 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"\r",
+							"pm.test(\"Body matches France\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"France\");\r",
+							"});\r",
 							""
 						],
 						"type": "text/javascript"
@@ -246,7 +244,12 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							"\r",
+							"pm.test(\"There are 3 entries\", function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(3);\r",
+							"})"
 						],
 						"type": "text/javascript"
 					}

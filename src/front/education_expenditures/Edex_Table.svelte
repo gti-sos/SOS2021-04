@@ -1,5 +1,15 @@
 <script>
-    import { Table , Button, Toast, ToastBody, ToastHeader, Col, Row, Container } from 'sveltestrap';
+    import { Table , Button, Col, Row,
+    Nav,
+    Modal,
+    ModalBody,
+    ModalFooter,
+    ModalHeader,
+    NavItem,
+    NavLink,
+    Pagination,
+    PaginationItem,
+    PaginationLink, } from 'sveltestrap';
 
     //Incluimos la ruta donde se ejecuta el backend de la Api
     
@@ -36,31 +46,50 @@
     };
 
     //Variables auxiliares para la muestra de errores
-    let mensajeError = ""
+    let mensajeError = "";
+    let mensajeCorrecto = "";
 
-    //Creamos variables para almacenar datos para la actualización de un elemento
+    //Creamos variables para paginación
+
+    export let offset_actual = 0;
+    export let limit = 10; //Limite por defecto, opcional
+    export let pagina_actual = 1;
+    export let ultima_pagina = 1; //Se debe actualizar en función de los datos que tengamos
+    export let totalDatos = 0;
+    export let esBusqueda = false;
 
     //Cargamos los datos iniciales
 
     var charged = false;
     var edex_data = [];
 
+  
+
     //Función asincrona para la carga de datos
 
     async function getStats() {
+      esBusqueda = false;
       console.log("Fetching data...");
       const res = await fetch(
-      BASE_API_PATH
+      BASE_API_PATH + "?skip="+ offset_actual + "&limit=" +limit 
       );
       if (res.ok) {
+        console.log(BASE_API_PATH + "?&limit=" + limit + "&skip="+offset_actual);
         const json = await res.json();
         if(json.length===undefined){
           edex_data = [];
           edex_data.push(json);
           console.log(edex_data.length + " Datos: "+edex_data);
+          mensajeError = "";
+          mensajeCorrecto = "Datos cargados correctamente";
+          
         }
         else{
           edex_data = json;
+          ultima_pagina = Math.ceil((edex_data.length+1) / limit);
+          totalDatos = edex_data.length +1;
+          mensajeError = "";
+          mensajeCorrecto = "Datos cargados correctamente";
         }
         mensajeError="";
       } else {
@@ -88,22 +117,29 @@
                 const data = await peticionMuestra.json();
                 edex_data = data;
                 console.log(`Done! Received ${data.length} stats.`);
-                console.log(edex_data)
+                console.log(edex_data);
+                mensajeError = "";
+                mensajeCorrecto = "Datos insertados correctamente";
             }
             else{
                 console.log("No data loaded.");
+                
+                mensajeError="Los datos no han podido cargarse";
             }
         }
         else{
             console.log("Error loading data.");
+            mensajeError = "Error de acceso a BD";
         }
         charged = true;
         console.log(edex_data.length);
+        getStats();
         
     
     }
         
     async function deleteAll() {
+
         console.log(edex_data.length);
         
 		
@@ -114,14 +150,18 @@
             if (peticion.ok){
                 edex_data = [];
                 charged = false;
+                mensajeError = "";
+                mensajeCorrecto = "Datos eliminados correctamente";
 			} 
             
             else if (peticion.status==404){ //no data found
                 console.log("No data found"); //Posibilidad de redirigir a una ventana similar a la de error 404
+                mensajeError = "No se han encontrado datos para eliminar";
 			} 
             
             else  { 
-				console.log("Error deleting DB stats");
+              console.log("Error deleting DB stats");
+              mensajeError = "Error de acceso a BD";
 			}
             console.log(edex_data.length);
 			
@@ -156,9 +196,11 @@
         },
       }).then(function (res) {
         if (res.ok) {
+          mensajeError = "";
+          mensajeCorrecto = "Dato cargado correctamente";
         } else {
           if (res.status === 409) {
-            mensajeError = `Ya existe un dato con valores idénticos para los mismos campos.`;
+            mensajeError = `Ya existe un dato con valores idénticos para los campos año y país.`;
           } else if (res.status === 500) {
             mensajeError = "No se ha podido acceder a la base de datos.";
           }else if(res.status === 400){
@@ -171,6 +213,8 @@
   }
 
   async function deleteElement(year, country) {
+    let mensajeError = "";
+    let mensajeCorrecto = "";
     
     const res = await fetch(
       BASE_API_PATH + "/" + country + "/" + year,
@@ -181,6 +225,8 @@
       if (res.ok) {
         console.log("OK");
         getStats();
+        mensajeError = "";
+        mensajeCorrecto = "Dato eliminado correctamente";
       } else {
         if (res.status === 404) {
           mensajeError = `No se puede eliminar, la entrada ${year}/${country} no existe`;
@@ -192,6 +238,8 @@
   }
 
   async function searchStat() {
+    esBusqueda = true;
+
     
     var parametros = new Map(
       Object.entries(query).filter((introducidos) => {
@@ -214,19 +262,27 @@
     if (fullQuery != "") {
       const res = await fetch(
         BASE_API_PATH +
-          fullQuery
+          fullQuery +  "&skip="+offset_actual +"&limit=" + limit 
       );
       if (res.ok) {
         console.log("OK");
         const json = await res.json();
+        mensajeError = "";
+        mensajeCorrecto = "¡Se han encontrado coincidencias!";
         if(json.length===undefined){
           edex_data = [];
           edex_data.push(json);
           console.log(edex_data.length + " Datos: "+edex_data);
+          ultima_pagina = Math.ceil((edex_data.length+1) / limit);
+          totalDatos = edex_data.length +1;
+          
         }
         else{
+          mensajeError = "";
+          mensajeCorrecto = "¡Se han encontrado coincidencias!";
           edex_data = json;
         }
+        
       } else {
         if (res.status === 404) {
           mensajeError = "No existen datos con esos parámetros";
@@ -259,6 +315,26 @@
 
   }
 
+  function cambiaPagina(pagina, offset, busqueda){
+    ultima_pagina = Math.ceil(totalDatos / limit); //Usamos la función matematica techo -> menor numero entero mayor que el resultado
+    offset_actual = offset;
+    pagina_actual = pagina;
+    if(busqueda){
+      searchStat()
+    }
+    else{
+      getStats();
+    }
+  }
+  function range(tamano, inicio = 1) {
+    var arrayPaginas = [];
+    for(var i=inicio;i<tamano+1;i++){
+      arrayPaginas.push(i);
+    }
+    console.log(arrayPaginas);
+    return arrayPaginas;
+  }
+
 </script>
 
 <main>
@@ -280,7 +356,10 @@
                 </Col>
                 <Col md=4 style="text-align: center;">
                     {#if mensajeError.length!=0}
-                    <p style="color:tomato">Se ha producido un error:<b> {mensajeError} </b></p>
+                    <p class="mensajeError">Se ha producido un error:<b> {mensajeError} </b></p>
+                    {:else if mensajeCorrecto.length!=0}
+                    <p class="mensajeCorrecto"><b> {mensajeCorrecto} </b></p>
+
                     {/if}
                 </Col>
                 <Col md=4>
@@ -338,14 +417,14 @@
                     <input type="number" placeholder="max"  bind:value={query.upp}/>
                   </td>
                   <td>
-                    <input type="number" placeholder="max"  bind:value={query.agdp}/>
-                    <input type="number" placeholder="min"  bind:value={query.ugdp}/>
+                    <input type="number" placeholder="min"  bind:value={query.agdp}/>
+                    <input type="number" placeholder="max"  bind:value={query.ugdp}/>
                   </td>
 
                   <td>
                     <div class ="row col-xs-12">
-                    <input type="number" placeholder="max"  bind:value={query.apc} class="col-xs-12"/>
-                    <input type="number" placeholder="min"  bind:value={query.upc} class="col-xs-12"/>
+                    <input type="number" placeholder="min"  bind:value={query.apc} class="col-xs-12"/>
+                    <input type="number" placeholder="max"  bind:value={query.upc} class="col-xs-12"/>
                   </div>
                   </td>
 
@@ -415,6 +494,41 @@
 
 
         </Table>
+
+        <div>
+          <!-- Pagination -->
+          <Pagination ariaLabel="Web pagination">
+            <PaginationItem class={pagina_actual === 1 ? "disabled" : ""}>
+              <PaginationLink
+                previous
+                href="#/education_expenditures"
+                on:click={() =>
+                  cambiaPagina(pagina_actual - 1, offset_actual - 10, esBusqueda)}
+              />
+            </PaginationItem>
+            {#each range(ultima_pagina,1) as pagina}
+              <PaginationItem class={pagina_actual === pagina ? "active" : ""}>
+                <PaginationLink
+                  previous
+                  href="#/education_expenditures"
+                  on:click={() => cambiaPagina(pagina, (pagina - 1) * 10, esBusqueda)}
+                  >{pagina}</PaginationLink
+                >
+              </PaginationItem>
+            {/each}
+            <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
+              <PaginationLink
+                next
+                href="#/education_expenditures"
+                on:click={() =>
+                  cambiaPagina(pagina_actual + 1, offset_actual + 10, esBusqueda)}
+              />
+            </PaginationItem>
+          </Pagination>
+        </div>
+
+
+
       {/if}
       
 
@@ -536,7 +650,38 @@
                       <th><a href='#/education_expenditures/{edex_data[0].country}/{edex_data[0].year}'><button class="btn btn-warning">Modificar</button></a></th>
                           </tr>
                 </tbody>
-              </Table>                
+              </Table>
+              <div>
+                <!-- Pagination -->
+                <Pagination ariaLabel="Web pagination">
+                  <PaginationItem class={pagina_actual === 1 ? "disabled" : ""}>
+                    <PaginationLink
+                      previous
+                      href="#/education_expenditures"
+                      on:click={() =>
+                        cambiaPagina(pagina_actual - 1, offset_actual - 10, esBusqueda)}
+                    />
+                  </PaginationItem>
+                  {#each range(ultima_pagina,1) as pagina}
+                    <PaginationItem class={pagina_actual === pagina ? "active" : ""}>
+                      <PaginationLink
+                        previous
+                        href="#/education_expenditures"
+                        on:click={() => cambiaPagina(pagina, (pagina - 1) * 10, esBusqueda)}
+                        >{pagina}</PaginationLink
+                      >
+                    </PaginationItem>
+                  {/each}
+                  <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
+                    <PaginationLink
+                      next
+                      href="#/education_expenditures"
+                      on:click={() =>
+                        cambiaPagina(pagina_actual + 1, offset_actual + 10, esBusqueda)}
+                    />
+                  </PaginationItem>
+                </Pagination>
+              </div>                
 
       {/if}
 
@@ -604,5 +749,85 @@ footer{
 
     
 }
+.mensajeError{
+  color:tomato;
+}
 
+.mensajeCorrecto{
+color:green;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-moz-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-o-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-ms-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+}
+}
 </style>
