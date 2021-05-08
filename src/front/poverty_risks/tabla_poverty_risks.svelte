@@ -9,7 +9,8 @@
     let datosRecibidos = [];
 
     //Variables auxiliares para la muestra de errores
-    let mensajeError = ""
+    let msjError = ""
+    let msjOK = ""
 
     async function getStats() {
         console.log("Fetching data...");
@@ -23,13 +24,14 @@
             un JSON.*/
             datosRecibidos = json;
             /*Y ahora la guardas en el array datosRecibidos.*/
-            mensajeError = "";
+            msjError = "";
+            msjOK = "Datos cargados correctamente";
         } else {
             if (datosRecibidos.length == 0) {
-                mensajeError = "No hay datos disponibles";
+                msjError = "No hay datos disponibles";
             }
             if (res.status === 500) {
-                mensajeError = "No se ha podido acceder a la base de datos";
+                msjError = "No se ha podido acceder a la base de datos";
             }
         }
     }
@@ -40,8 +42,8 @@
     Porque mi API sólo funciona a partir de objetos JSON
     No lo puedo hacer de forma separada*/
     let parametrosBusqueda = {
-        "year" : "",
         "country" : "",
+        "year" : "",
         "aprp":"",
         "uprp":"",
         "appl":"",
@@ -76,6 +78,7 @@
             queryVar += clave + "=" + valor + "&";
         }
         var theQuery = queryVar.slice(0, -1);
+        console.log(theQuery);
 
         theQuery = (queryVar==="?")?"":queryVar;
         //Comprobamos si la query está vacía
@@ -87,6 +90,9 @@
       if (res.ok) {
         console.log("OK");
         const json = await res.json();
+        msjError = "";
+        msjOK = "Estos son los resultados de la búsqueda:";
+        console.log(JSON.stringify(json,null,2))
         if(json.length===undefined){
           datosBusqueda.push(json);
           console.log(datosBusqueda.length + " Datos: "+datosBusqueda);
@@ -96,13 +102,13 @@
             }
         } else {
             if (res.status === 404) {
-            mensajeError = "No existen datos con esos parámetros";
+            msjError = "No existen datos con esos parámetros";
             } else if (res.status === 500) {
-            mensajeError = "No se ha podido acceder a la base de datos";
+            msjError = "Error al acceder a la base de datos";
                     }
                 }
             } else {
-            mensajeError = "Debe existir al menos un parámetro para realizar la búsqueda";
+            msjError = "Debe introducir por lo menos 1 parámetro de búsqueda";
             }
 
         }
@@ -120,6 +126,9 @@
         "apercnt":"",
         "upercnt":""
     };
+
+    datosBusqueda = [];
+
     getStats();
   }
 
@@ -164,13 +173,15 @@
       },
     }).then(function (res) {
       if (res.ok) {
+        msjError = "";
+        msjOK = "Dato cargado correctamente";
       } else {
         if (res.status === 409) {
-          mensajeError = `Ya existe un dato con valores idénticos para los mismos campos.`;
+          msjError = `Ya existe un dato con valores idénticos para los mismos campos.`;
         } else if (res.status === 500) {
-          mensajeError = "No se ha podido acceder a la base de datos.";
+          msjError = "No se ha podido acceder a la base de datos.";
         }else if(res.status === 400){
-          mensajeError = "Todos los campos deben estar rellenados según el patron predefinido.";
+          msjError = "Todos los campos deben estar rellenados según el patron predefinido.";
         }
       }
       removeDataInserted();
@@ -193,13 +204,17 @@
                 datosRecibidos = data;
                 console.log(`Done! Received ${data.length} stats.`);
                 console.log(datosRecibidos)
+                msjError = "";
+                msjOK = "Datos insertados correctamente";
             }
             else{
                 console.log("No data loaded.");
+                msjError="Los datos no han podido cargarse";
             }
         }
         else{
             console.log("Error loading data.");
+            msjError = "Error de acceso a BD";
         }
         console.log(datosRecibidos.length);
         
@@ -207,7 +222,9 @@
     }
 
     async function deleteElement(year, country) {
-    
+    let msjError = "";
+    let msjOK = "";
+
     const res = await fetch(
       BASE_API_PATH + "/" + country + "/" + year,
       {
@@ -217,11 +234,13 @@
       if (res.ok) {
         console.log("OK");
         getStats();
+        msjError = "";
+        msjOK = "Dato eliminado correctamente";
       } else {
         if (res.status === 404) {
-          mensajeError = `No se puede eliminar, la entrada ${year}/${country} no existe`;
+          msjError = `No se puede eliminar, la entrada ${year}/${country} no existe`;
         } else if (res.status === 500) {
-          mensajeError = "No se ha podido acceder a la base de datos";
+          msjError = "Error al acceder a la base de datos";
         }
       }
     });
@@ -237,14 +256,18 @@
 			
             if (peticion.ok){
                 datosRecibidos = [];
+                msjError = "";
+                msjOK = "Datos eliminados correctamente";
 			} 
             
             else if (peticion.status==404){ //no data found
-                console.log("No data found"); //Posibilidad de redirigir a una ventana similar a la de error 404
+                console.log("No data found");
+                msjError = "No hay datos que eliminar";
 			} 
             
             else  { 
 				console.log("Error deleting DB stats");
+                msjError = "No se puede acceder a la base de datos";
 			}
             console.log(datosRecibidos.length);
 			
@@ -273,8 +296,11 @@
                 <Col md=4>
                 </Col>
                 <Col md=4 style="text-align: center;">
-                    {#if mensajeError.length!=0}
-                    <p style="color:tomato">Se ha producido un error:<b> {mensajeError} </b></p>
+                    {#if msjError.length!=0}
+                    <p style="color:tomato">Se ha producido un error:<b> {msjError} </b></p>
+                    {/if}
+                    {#if msjOK.length!=0}
+                    <p class="msjOK"><b> {msjOK} </b></p>
                     {/if}
                 </Col>
                 <Col md=4>
@@ -342,7 +368,57 @@
     <h3>Listado de datos</h3>
 
     <!-- CREO LA ESTRUCTURA DE LA TABLA -->
-    {#if datosRecibidos.length!=0}
+
+    {#if datosBusqueda.length!=0}
+        {#if datosBusqueda.length!=0}
+        <Table>
+            <!-- Incluye los nombres de los atributos -->
+            <thead>  
+                <tr style="text-align: center; " valign="middle">
+                    <td valign="middle">Año</td>
+                    <td valign="middle">País</td>
+                    <td valign="middle">Personas en riesgo de pobreza</td>
+                    <td valign="middle">Índice de riesgo de pobreza (persona)</td>
+                    <td valign="middle">Índice de riesgo de pobreza (hogar)</td>
+                    <td valign="middle">Porcentaje población en riesgo de pobreza</td>
+                    <td valign="middle"colspan="2"> Acciones </td>
+                </tr>
+            </thead>
+            <tbody>
+    
+            <!-- Incluye cada uno de los elementos en el vector-->
+
+            <!-- RELLENO LA TABLA CON DATOS -->
+                {#each datosBusqueda as stat}
+                <tr  style="text-align: center;">
+                    <th>{stat.year}</th>
+                    <th>{stat.country}</th>
+                    <th>{stat.people_in_risk_of_poverty}</th>
+                    <th>{stat.people_poverty_line}</th>
+                    <th>{stat.home_poverty_line}</th>
+                    <th>{stat.percentage_risk_of_poverty}</th>
+                    <th><button class="btn btn-danger" on:click={deleteElement(stat.year,stat.country)}>Borrar</button></th>
+                    <th><a href='#/poverty_risks/{stat.country}/{stat.year}'><button class="btn btn-warning">Editar</button></a></th>
+                </tr>
+                {/each}
+            </tbody>
+
+    
+        </Table>
+
+        {:else}
+            <div style="aling-items:center; justify-content:center;">
+                <Row>
+                    <Col md=12 style="text-align: center;">
+                        <h2>No existen datos cargados. Por favor, pulse el botón "Cargar datos".</h2>
+                    </Col>
+                </Row>
+            </div>
+            
+        {/if}
+    
+    {:else}
+    {#if datosRecibidos.length!=0} <!--Por el contrario si no se ha hecho ninguna búsqueda -->
         <Table>
             <!-- Incluye los nombres de los atributos -->
             <thead>  
@@ -403,6 +479,7 @@
             </div>
             
         {/if}
+    {/if}
 
 </main>
 

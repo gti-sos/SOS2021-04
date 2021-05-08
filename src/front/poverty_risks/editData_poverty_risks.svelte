@@ -133,7 +133,7 @@
        
 
         <div>
-           <a href="#/poverty_risks"><Button style="background-color: blue;">Datos</Button></a>
+           <a href="#/poverty_risks"><Button style="background-color: blue;">Volver</Button></a>
        </div>
         
     </footer>
