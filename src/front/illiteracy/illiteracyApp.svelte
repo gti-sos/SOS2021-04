@@ -77,42 +77,59 @@
       });
     }
     async function searchStat() {
-      console.log("Searching stat...");
-      var campos = new Map(
-        Object.entries(newStat).filter((o) => {
-          return o[1] != "";
-        })
+    console.log("Searching stat...");
+    var msg = "";
+    var campos = new Map(
+      Object.entries(newStat).filter((o) => {
+        return o[1] != "";
+      })
+    );
+    let querySymbol = "?";
+    for (var [clave, valor] of campos.entries()) {
+      if( valor != null){
+      msg += getClaveSpanish(clave) + "=" + valor + " ";
+      querySymbol += clave + "=" + valor + "&";
+    }
+  }
+    fullQuery = querySymbol.slice(0, -1);
+    if (fullQuery != "") {
+      const res = await fetch(
+        BASE_CONTACT_API_PATH +
+          "/divorce-stats/" +
+          fullQuery +
+          "&limit=" +
+          limit +
+          "&offset=" +
+          current_offset
       );
-      let querySymbol = "?";
-      for (var [clave, valor] of campos.entries()) {
-        querySymbol += clave + "=" + valor + "&";
-      }
-      fullQuery = querySymbol.slice(0, -1);
-      if (fullQuery != "") {
-        const res = await fetch(
-          BASE_CONTACT_API_PATH + "/illiteracy/" + fullQuery
-        );
-        if (res.ok) {
-          console.log("OK");
-          const json = await res.json();
-          illiteracyStats = json;
-          okMsg = "Búsqueda realizada con éxito";
-        } else {
-         illiteracyStats = [];
-          if (res.status === 404) {
-            errorMsg = "No se encuentra el dato solicitado";
-          } else if (res.status === 500) {
-            errorMsg = "No se han podido acceder a la base de datos";
-          }
-          okMsg = "";
-          console.log("ERROR!" + errorMsg);
+      if (res.ok) {
+        console.log("OK, busqueda realizada correctamente");
+        const json = await res.json();
+        divorceStats = json;
+        var cuerpo = json.length;
+        okMsg = " Resultado de la busqueda con " + msg;
+        errorMsg = "";
+        if (cuerpo === 0) {
+          okMsg1 = "No se ha encontrado" + okMsg;
+          okMsg = okMsg1;
         }
       } else {
-        errorMsg = "";
-        okMsg = "Búsqueda realizada con éxito";
-        getStats();
+        divorceStats = [];
+        if (res.status === 404) {
+          errorMsg = "No se encuentra el dato solicitado" + msg;
+        } else if (res.status === 500) {
+          errorMsg = "No se han podido acceder a la base de datos";
+        }
+        okMsg = "";
+        console.log("ERROR!" + errorMsg);
       }
+    } else {
+      errorMsg = "Se necesita un campo a buscar";
+      okMsg = "";
+      flag = true;
+      getStats();
     }
+  }
     function getClaveSpanish(clave) {
     switch (clave) {
       case "country":
