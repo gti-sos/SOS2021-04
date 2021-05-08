@@ -32,7 +32,7 @@
       updatemale_illiteracy_rate = stat.male_illiteracy_rate;
       updateadult_illiteracy_rate = stat.adult_illiteracy_rate;
       updateyoung_illiteracy_rate = stat.young_illiteracy_rate;
-      
+        
     } else {
       if(res.status===404){
           msjError = "No se encuentra el dato solicitado";
