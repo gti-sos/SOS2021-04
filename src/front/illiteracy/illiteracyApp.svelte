@@ -52,6 +52,8 @@
     let current_page = 1;
     let last_page = 1;
     let total = 0;
+    onMount(getStats);
+    getNumStats();
     //Functions
     async function loadStats() {
       console.log("Loading data...");
@@ -111,6 +113,22 @@
         getStats();
       }
     }
+    function getClaveSpanish(clave) {
+    switch (clave) {
+      case "country":
+        return "País";
+      case "year":
+        return "Año";
+      case "female_illiteracy_rate":
+        return "Porcentaje de analfabetismo femenino";
+      case "male_illiteracy_rate":
+        return "Porcentaje de analfabetismo masculino";
+      case "adult_illiteracy_rate":
+        return "Porcentaje de analfabetismo adulto";
+      case "young_illiteracy_rate":
+        return "Porcentaje de analfabetismo joven";
+    }
+  }
     async function getStats() {
       console.log("Fetching data...");
       const res = await fetch(
@@ -216,6 +234,30 @@
     }
     async function insertStat() {
       console.log("Inserting stat: " + JSON.stringify(newStat));
+      if (
+      newStat.country == null ||
+      newStat.country == "" ||
+      newStat.country == "NaN" ||
+      newStat.date == null ||
+      newStat.date == "" ||
+      newStat.date == "NaN" ||
+      newStat["marriage-rate"] == null ||
+      newStat["marriage-rate"] == "" ||
+      newStat["marriage-rate"] == "NaN" ||
+      newStat["divorce-rate"] == null ||
+      newStat["divorce-rate"] == "" ||
+      newStat["divorce-rate"] == "NaN" ||
+      newStat["ratio-actual"] == null ||
+      newStat["ratio-actual"] == "" ||
+      newStat["ratio-actual"] == "NaN" ||
+      newStat["ratio-percent"] == null ||
+      newStat["ratio-percent"] == "" ||
+      newStat["ratio-percent"] == "NaN"
+    ){
+      errorMsg = "Los datos a insertar son incorrectos, compruebe los campos";
+      okMsg = "";
+      console.log("ERROR!" + errorMsg);
+    }else{
    
       newStat.year = parseInt(newStat.year);
       newStat["female_illiteracy_rate"] = parseFloat(newStat["female_illiteracy_rate"]);
@@ -241,8 +283,8 @@
         }
       });
     }
-    onMount(getStats);
-    getNumStats();
+  }
+    
   </script>
   
   <main>
@@ -297,7 +339,7 @@
         <tr>
           <th> País </th>
           <th>Año </th>
-          <th>Porcentaje de Muujeres </th>
+          <th>Porcentaje de Mujeres </th>
           <th>Porcentaje de Hombres </th>
           <th>Porcentaje de Adultos </th>
           <th>Porcentaje de Jovenes </th>
