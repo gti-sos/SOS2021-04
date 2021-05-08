@@ -298,6 +298,8 @@
                     {/if}
                 </Col>           
             </Row>
+            <br>
+            <br>
             <Row>
                 <Col md=4>
                 </Col>

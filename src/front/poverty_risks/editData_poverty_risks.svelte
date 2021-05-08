@@ -37,7 +37,7 @@
       if(res.status===404){
           msjError = "No se encuentra el dato solicitado";
         }else if(res.status ===500){
-          msjError = "No se han podido acceder a la base de datos";
+          msjError = "Error al intentar acceder a la base de datos";
         }        
     }
   }
@@ -73,7 +73,7 @@
          if(res.status ===500){
           msjError = "No se han podido acceder a la base de datos";
         }else if(res.status ===404){
-          msjError = "No se han encontrado el dato solicitado";
+          msjError = "Error al intentar encontrar el dato solicitado";
         }        
       }
     });
