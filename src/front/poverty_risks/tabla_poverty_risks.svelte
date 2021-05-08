@@ -1,8 +1,7 @@
 <script>
-    import { Table , Button, Toast, ToastBody, ToastHeader, Col, Row, Container } from 'sveltestrap';
+    import { Table , Button, Col, Row } from 'sveltestrap';
 
     //Incluimos la ruta donde se ejecuta el backend de la Api
-
     const BASE_API_PATH = "api/v1/poverty_risks";
 
     /* Creo un array para almacenar los datos
@@ -61,7 +60,68 @@
         console.log("Searching stat...");
         //Variable con la que luego crearemos las URL de las querys
         let queryVar = "?";
-    }
+
+        /*Me devuelve los que tienen valores correctos, NO tienen valor "" (vacío).
+        
+        filter() llama a la función callback  sobre cada elemento del array,
+        y construye un nuevo array con todos los valores para los cuales 
+        callback devuelve un valor verdadero */
+        var parameters = new Map(
+        Object.entries(parametrosBusqueda).filter((cadaParametro) => {
+        return cadaParametro[1] != "";
+            })
+        );
+    
+        for (var [clave, valor] of parameters.entries()) {
+            queryVar += clave + "=" + valor + "&";
+        }
+        var theQuery = queryVar.slice(0, -1);
+
+        theQuery = (queryVar==="?")?"":queryVar;
+        //Comprobamos si la query está vacía
+        if (theQuery != "") {
+        const res = await fetch(
+        BASE_API_PATH +
+          theQuery
+      );
+      if (res.ok) {
+        console.log("OK");
+        const json = await res.json();
+        if(json.length===undefined){
+          datosBusqueda.push(json);
+          console.log(datosBusqueda.length + " Datos: "+datosBusqueda);
+            }
+            else{
+            datosBusqueda = json;
+            }
+        } else {
+            if (res.status === 404) {
+            mensajeError = "No existen datos con esos parámetros";
+            } else if (res.status === 500) {
+            mensajeError = "No se ha podido acceder a la base de datos";
+                    }
+                }
+            } else {
+            mensajeError = "Debe existir al menos un parámetro para realizar la búsqueda";
+            }
+
+        }
+
+    function resetQuery (){
+    parametrosBusqueda = {
+        "year" : "",
+        "country" : "",
+        "aprp":"",
+        "uprp":"",
+        "appl":"",
+        "uppl":"",
+        "ahpl":"",
+        "uhpl":"",
+        "apercnt":"",
+        "upercnt":""
+    };
+    getStats();
+  }
 
 
     //Creamos un elemento de tipo JSON para insertar nuevos datos,
@@ -252,22 +312,23 @@
                 <td><input type="number" placeholder="2015" min=1900 bind:value={parametrosBusqueda.year}/></td>
                 <td><input type="text" placeholder="Francia" bind:value={parametrosBusqueda.country}/></td>
                 <td>
-                    <input type="number" placeholder="686000"  bind:value={parametrosBusqueda.aprp}/>
-                    <input type="number" placeholder="12130000"  bind:value={parametrosBusqueda.uprp}/>
+                    <input type="text" placeholder="min"  bind:value={parametrosBusqueda.aprp}/>
+                    <input type="text" placeholder="max"  bind:value={parametrosBusqueda.uprp}/>
                 </td>
                 <td>
-                    <input type="number" placeholder="4454"  bind:value={parametrosBusqueda.appl}/>
-                    <input type="number" placeholder="17019"  bind:value={parametrosBusqueda.uppl}/>
+                    <input type="text" placeholder="min"  bind:value={parametrosBusqueda.appl}/>
+                    <input type="text" placeholder="max"  bind:value={parametrosBusqueda.uppl}/>
                 </td>
                 <td>
-                    <input type="number" placeholder="9353"  bind:value={parametrosBusqueda.ahpl}/>
-                    <input type="number" placeholder="35739"  bind:value={parametrosBusqueda.uhpl}/>
+                    <input type="text" placeholder="min"  bind:value={parametrosBusqueda.ahpl}/>
+                    <input type="text" placeholder="max"  bind:value={parametrosBusqueda.uhpl}/>
                 </td>
                 <td>
-                    <input type="number" placeholder="9.7"  bind:value={parametrosBusqueda.apercnt}/>
-                    <input type="number" placeholder="19.9"  bind:value={parametrosBusqueda.upercnt}/>
+                    <input type="text" placeholder="min"  bind:value={parametrosBusqueda.apercnt}/>
+                    <input type="text" placeholder="max"  bind:value={parametrosBusqueda.upercnt}/>
                 </td>
-                <td><button on:click={insertData} class="btn btn-primary">Buscar</button></td>
+                <td><button on:click={searchData} class="btn btn-primary">Buscar</button></td>
+                <td><button on:click={resetQuery} class="btn btn-secondary">Resetear</button></td>
                 <td></td>
             </tr>
 
