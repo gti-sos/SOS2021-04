@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import { Table, Button, Nav, NavItem, NavLink } from "sveltestrap";
+    import { Table, Button, Col,Nav, NavItem, NavLink } from "sveltestrap";
     const BASE_API_PATH = "/api/v1/poverty_risks";
     /*De la URL expórtame los parámetros a este array llamado params,es un JSON ({})*/
     export let params = {};
@@ -13,7 +13,8 @@
     let updatePeople_poverty_line =0;
     let updateHome_poverty_line = 0;
     let updatePercentage_risk_of_poverty = 0;
-    let mensajeError = "";
+    let msjError = "";
+    let msjOK = "";
 
     async function getStat() {
     
@@ -34,9 +35,9 @@
       
     } else {
       if(res.status===404){
-          mensajeError = "No se encuentra el dato solicitado";
+          msjError = "No se encuentra el dato solicitado";
         }else if(res.status ===500){
-          mensajeError = "No se han podido acceder a la base de datos";
+          msjError = "No se han podido acceder a la base de datos";
         }        
     }
   }
@@ -66,12 +67,13 @@
     ).then(function (res) {
       if (res.ok) {
         getStat();
-        mensajeError= "";
+        msjError= "";
+        msjOK= "Dato actualizado";
       } else {
          if(res.status ===500){
-          mensajeError = "No se han podido acceder a la base de datos";
+          msjError = "No se han podido acceder a la base de datos";
         }else if(res.status ===404){
-          mensajeError = "No se han encontrado el dato solicitado";
+          msjError = "No se han encontrado el dato solicitado";
         }        
       }
     });
@@ -84,12 +86,21 @@
     <div class="grid-block" style="background-image: url('https://i0.wp.com/criptotendencia.com/wp-content/uploads/2019/02/Como-nacio-el-Euro.jpg?fit=1000%2C642&ssl=1'); width: 100%; height: 100%;padding: 5%; ">
         <div id="interno" class="grid-block" style="background-color:rgb(245, 181, 128);border-radius:4%; padding:1%;">
             <em><h1 class="display-3" style="text-align: center;" >Modifica {params.country}/{params.year}</h1></em>
-        </div>
-        
+        </div>     
+
     </div>
 
     <br>
-    
+      <Col md=4 style="text-align: right;">
+      <div>
+          {#if msjError.length!=0}
+          <p style="color:tomato">Se ha producido un error:<b> {msjError} </b></p>
+          {/if}
+          {#if msjOK.length!=0}
+          <p class="msjOK"><b> {msjOK} </b></p>
+          {/if}
+      </div>
+      </Col>  
 
       <Table bordered>
         <thead>
@@ -116,8 +127,8 @@
           </tr>
         </tbody>
       </Table>
-      {#if mensajeError}
-        <p style="color: red">ERROR: {mensajeError}</p>
+      {#if msjError}
+        <p style="color: red">ERROR: {msjError}</p>
       {/if}
       <div class="foot" style="min-width: 100%;
     color: white;

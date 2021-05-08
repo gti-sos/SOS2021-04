@@ -42,8 +42,8 @@
     Porque mi API sólo funciona a partir de objetos JSON
     No lo puedo hacer de forma separada*/
     let parametrosBusqueda = {
-        "country" : "",
-        "year" : "",
+        "c" : "",
+        "y" : "",
         "aprp":"",
         "uprp":"",
         "appl":"",
@@ -90,8 +90,8 @@
       if (res.ok) {
         console.log("OK");
         const json = await res.json();
-        msjError = "";
-        msjOK = "Estos son los resultados de la búsqueda:";
+       /* msjError = "";
+        msjOK = "Estos son los resultados de la búsqueda:";*/
         console.log(JSON.stringify(json,null,2))
         if(json.length===undefined){
           datosBusqueda.push(json);
@@ -99,6 +99,12 @@
             }
             else{
             datosBusqueda = json;
+            }
+            if (datosBusqueda.length==0) {
+            msjError = "No existen datos con esos parámetros";
+            }else{
+                msjError = "";
+                msjOK = "Estos son los resultados de la búsqueda"
             }
         } else {
             if (res.status === 404) {
@@ -115,8 +121,8 @@
 
     function resetQuery (){
     parametrosBusqueda = {
-        "year" : "",
-        "country" : "",
+        "y" : "",
+        "c" : "",
         "aprp":"",
         "uprp":"",
         "appl":"",
@@ -335,8 +341,8 @@
                 
             <tr>
                 <!--Por cada campo haremos un input-->
-                <td><input type="number" placeholder="2015" min=1900 bind:value={parametrosBusqueda.year}/></td>
-                <td><input type="text" placeholder="Francia" bind:value={parametrosBusqueda.country}/></td>
+                <td><input type="number" placeholder="2015" min=1900 bind:value={parametrosBusqueda.y}/></td>
+                <td><input type="text" placeholder="Francia" bind:value={parametrosBusqueda.c}/></td>
                 <td>
                     <input type="text" placeholder="min"  bind:value={parametrosBusqueda.aprp}/>
                     <input type="text" placeholder="max"  bind:value={parametrosBusqueda.uprp}/>
