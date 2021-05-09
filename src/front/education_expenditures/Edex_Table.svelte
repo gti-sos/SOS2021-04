@@ -1,21 +1,22 @@
 <script>
     import { Table , Button, Col, Row,
-    Nav,
-    Modal,
-    ModalBody,
-    ModalFooter,
-    ModalHeader,
-    NavItem,
-    NavLink,
-    Pagination,
-    PaginationItem,
-    PaginationLink, } from 'sveltestrap';
+      Nav,
+      Modal,
+      ModalBody,
+      ModalFooter,
+      ModalHeader,
+      NavItem,
+      NavLink,
+      Pagination,
+      PaginationItem,
+      PaginationLink, } from 'sveltestrap';
+
+      import { onMount } from "svelte";
 
     //Incluimos la ruta donde se ejecuta el backend de la Api
     
     const BASE_API_PATH = "api/v1/education_expenditures";
-    
-    
+
     //Creamos un elemento de tipo Json para insertar nuevos datos
 
     let nuevoElemento = {
@@ -44,6 +45,7 @@
       "upc":""    //aquellos que están por debajo de una cantidad x per capita de gasto en educacion
 
     };
+    var fullQuery = "";
 
     //Variables auxiliares para la muestra de errores
     let mensajeError = "";
@@ -69,34 +71,39 @@
 
     async function getStats() {
       esBusqueda = false;
+      
       console.log("Fetching data...");
+      
       const res = await fetch(
       BASE_API_PATH + "?skip="+ offset_actual + "&limit=" +limit 
       );
       if (res.ok) {
-        console.log(BASE_API_PATH + "?&limit=" + limit + "&skip="+offset_actual);
+        console.log(BASE_API_PATH + "?limit=" + limit + "&skip="+offset_actual);
         const json = await res.json();
+        
         if(json.length===undefined){
           edex_data = [];
           edex_data.push(json);
-          console.log(edex_data.length + " Datos: "+edex_data);
+          getTotalDatos();
           mensajeError = "";
           mensajeCorrecto = "Datos cargados correctamente";
           
         }
         else{
           edex_data = json;
-          ultima_pagina = Math.ceil((edex_data.length+1) / limit);
-          totalDatos = edex_data.length +1;
+          getTotalDatos();
+          
           mensajeError = "";
           mensajeCorrecto = "Datos cargados correctamente";
         }
         mensajeError="";
       } else {
         if (res.status === 500) {
+          mensajeCorrecto="";
           mensajeError = "No se ha podido acceder a la base de datos";
         }
         if (edex_data.length === 0) {
+          mensajeCorrecto="";
           mensajeError = "No hay datos disponibles";
         }
         
@@ -145,7 +152,7 @@
 		
         const peticion = await fetch(BASE_API_PATH, {
 			method: "DELETE"
-		}).then(function (peticion) {
+		  }).then(function (peticion) {
 			
             if (peticion.ok){
                 edex_data = [];
@@ -156,11 +163,13 @@
             
             else if (peticion.status==404){ //no data found
                 console.log("No data found"); //Posibilidad de redirigir a una ventana similar a la de error 404
+                mensajeCorrecto="";
                 mensajeError = "No se han encontrado datos para eliminar";
 			} 
             
             else  { 
               console.log("Error deleting DB stats");
+              mensajeCorrecto="";
               mensajeError = "Error de acceso a BD";
 			}
             console.log(edex_data.length);
@@ -200,10 +209,13 @@
           mensajeCorrecto = "Dato cargado correctamente";
         } else {
           if (res.status === 409) {
+            mensajeCorrecto="";
             mensajeError = `Ya existe un dato con valores idénticos para los campos año y país.`;
           } else if (res.status === 500) {
+            mensajeCorrecto="";
             mensajeError = "No se ha podido acceder a la base de datos.";
           }else if(res.status === 400){
+            mensajeCorrecto="";
             mensajeError = "Todos los campos deben estar rellenados según el patron predefinido.";
           }
         }
@@ -215,6 +227,8 @@
   async function deleteElement(year, country) {
     let mensajeError = "";
     let mensajeCorrecto = "";
+    offset_actual = 0;
+    pagina_actual = 1;
     
     const res = await fetch(
       BASE_API_PATH + "/" + country + "/" + year,
@@ -224,16 +238,18 @@
     ).then(function (res) {
       if (res.ok) {
         console.log("OK");
-        getStats();
         mensajeError = "";
         mensajeCorrecto = "Dato eliminado correctamente";
       } else {
         if (res.status === 404) {
+          mensajeCorrecto="";
           mensajeError = `No se puede eliminar, la entrada ${year}/${country} no existe`;
         } else if (res.status === 500) {
+          mensajeCorrecto="";
           mensajeError = "No se ha podido acceder a la base de datos";
         }
       }
+      getStats();
     });
   }
 
@@ -256,7 +272,7 @@
         simboloQuery += clave + "=" + valor + "&";}
         
     }
-    var fullQuery = "";
+    fullQuery = "";
     fullQuery = (simboloQuery==="?")?"":simboloQuery;
     //Comprobamos si la query está vacía
     if (fullQuery != "") {
@@ -272,21 +288,21 @@
         if(json.length===undefined){
           edex_data = [];
           edex_data.push(json);
-          console.log(edex_data.length + " Datos: "+edex_data);
-          ultima_pagina = Math.ceil((edex_data.length+1) / limit);
-          totalDatos = edex_data.length +1;
+          
+          getTotalDatosBusqueda();
           
         }
         else{
-          mensajeError = "";
-          mensajeCorrecto = "¡Se han encontrado coincidencias!";
           edex_data = json;
+          getTotalDatosBusqueda();
         }
         
       } else {
         if (res.status === 404) {
+          mensajeCorrecto="";
           mensajeError = "No existen datos con esos parámetros";
         } else if (res.status === 500) {
+          mensajeCorrecto="";
           mensajeError = "No se ha podido acceder a la base de datos";
         }
       }
@@ -316,24 +332,61 @@
   }
 
   function cambiaPagina(pagina, offset, busqueda){
-    ultima_pagina = Math.ceil(totalDatos / limit); //Usamos la función matematica techo -> menor numero entero mayor que el resultado
-    offset_actual = offset;
-    pagina_actual = pagina;
-    if(busqueda){
-      searchStat()
+    console.log("*** Cambio Página ***");
+    console.log(
+      "Parametros pagina: " + pagina + " offset: " + offset + " busqueda: " + busqueda
+    );
+    ultima_pagina = Math.ceil(totalDatos / limit);
+    console.log("La última página es: " + ultima_pagina);
+    if (pagina !== pagina_actual) {
+      console.log("enter if");
+      offset_actual = offset;
+      pagina_actual = pagina;
+     
+      if (busqueda == false) {
+        getStats();
+      } else {
+        searchStat();
+      }
     }
-    else{
-      getStats();
+    console.log("*** Fin Cambio Página ***");
+  
+  }
+
+  function range(ultima, inicio = 0) {
+    return [...Array(ultima).keys()].map((i) => i + inicio);
+  }
+
+  async function getTotalDatos() {
+    const res = await fetch(BASE_API_PATH);
+    if (res.ok) {
+      const json = await res.json();
+      totalDatos = json.length;
+      
+      cambiaPagina(pagina_actual, offset_actual, esBusqueda);
+    } else {
+      mensajeCorrecto = "";
+      mensajeError = "No hay datos disponibles";
     }
   }
-  function range(tamano, inicio = 1) {
-    var arrayPaginas = [];
-    for(var i=inicio;i<tamano+1;i++){
-      arrayPaginas.push(i);
+
+  async function getTotalDatosBusqueda() {
+    const res = await fetch(
+      BASE_API_PATH + fullQuery
+    );
+    if (res.ok) {
+      const json = await res.json();
+      totalDatos = json.length;
+      cambiaPagina(pagina_actual, offset_actual, esBusqueda);
+    } else {
+      mensajeCorrecto = "";
+      mensajeError = "No hay datos disponibles";
     }
-    console.log(arrayPaginas);
-    return arrayPaginas;
   }
+
+
+  onMount(getStats);
+
 
 </script>
 
@@ -496,7 +549,7 @@
         </Table>
 
         <div>
-          <!-- Pagination -->
+          <!-- Paginacion -->
           <Pagination ariaLabel="Web pagination">
             <PaginationItem class={pagina_actual === 1 ? "disabled" : ""}>
               <PaginationLink
@@ -506,20 +559,20 @@
                   cambiaPagina(pagina_actual - 1, offset_actual - 10, esBusqueda)}
               />
             </PaginationItem>
-            {#each range(ultima_pagina,1) as pagina}
-              <PaginationItem class={pagina_actual === pagina ? "active" : ""}>
+            {#each range(ultima_pagina, 1) as page}
+              <PaginationItem class={pagina_actual === page ? "active" : ""}>
                 <PaginationLink
                   previous
                   href="#/education_expenditures"
-                  on:click={() => cambiaPagina(pagina, (pagina - 1) * 10, esBusqueda)}
-                  >{pagina}</PaginationLink
+                  on:click={() => cambiaPagina(page, (page - 1) * 10, esBusqueda)}
+                  >{page}</PaginationLink
                 >
               </PaginationItem>
             {/each}
             <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
               <PaginationLink
                 next
-                href="#/education_expenditures"
+                href="#/natality-stats"
                 on:click={() =>
                   cambiaPagina(pagina_actual + 1, offset_actual + 10, esBusqueda)}
               />
@@ -652,7 +705,7 @@
                 </tbody>
               </Table>
               <div>
-                <!-- Pagination -->
+                <!-- Paginacion -->
                 <Pagination ariaLabel="Web pagination">
                   <PaginationItem class={pagina_actual === 1 ? "disabled" : ""}>
                     <PaginationLink
@@ -662,26 +715,26 @@
                         cambiaPagina(pagina_actual - 1, offset_actual - 10, esBusqueda)}
                     />
                   </PaginationItem>
-                  {#each range(ultima_pagina,1) as pagina}
-                    <PaginationItem class={pagina_actual === pagina ? "active" : ""}>
+                  {#each range(ultima_pagina, 1) as page}
+                    <PaginationItem class={pagina_actual === page ? "active" : ""}>
                       <PaginationLink
                         previous
                         href="#/education_expenditures"
-                        on:click={() => cambiaPagina(pagina, (pagina - 1) * 10, esBusqueda)}
-                        >{pagina}</PaginationLink
+                        on:click={() => cambiaPagina(page, (page - 1) * 10, esBusqueda)}
+                        >{page}</PaginationLink
                       >
                     </PaginationItem>
                   {/each}
                   <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
                     <PaginationLink
                       next
-                      href="#/education_expenditures"
+                      href="#/natality-stats"
                       on:click={() =>
                         cambiaPagina(pagina_actual + 1, offset_actual + 10, esBusqueda)}
                     />
                   </PaginationItem>
                 </Pagination>
-              </div>                
+              </div> 
 
       {/if}
 
