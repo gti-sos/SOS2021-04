@@ -1,5 +1,5 @@
 <script>
-  import Tabla_illiteracy from './Edit_tables.svelte';
+  //import Tabla_illiteracy from './Edit_Tables.txt';
   </script>
   
   <main>
@@ -10,7 +10,7 @@
           
       </div>
     <div>
-      <Tabla_illiteracy/>
+      <!--<Tabla_illiteracy/>-->
     </div>
   
   
