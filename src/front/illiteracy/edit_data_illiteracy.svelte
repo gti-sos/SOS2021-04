@@ -1,7 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { Table, Button, Col,Nav, NavItem, NavLink } from "sveltestrap";
-    const BASE_API_PATH = "/api/v1/poverty_risks";
+    const BASE_API_PATH = "/api/v1/illiteracy";
     /*De la URL expórtame los parámetros a este array llamado params,es un JSON ({})*/
     export let params = {};
     
@@ -9,10 +9,10 @@
     let stat = {};
     let updateCountry = "";
     let updateYear = 0;
-    let updatePeople_in_risk_of_poverty = 0;
-    let updatePeople_poverty_line =0;
-    let updateHome_poverty_line = 0;
-    let updatePercentage_risk_of_poverty = 0;
+    let updatefemale_illiteracy_rate = 0;
+    let updatemale_illiteracy_rate =0;
+    let updateadult_illiteracy_rate = 0;
+    let updateyoung_illiteracy_rate = 0;
     let msjError = "";
     let msjOK = "";
 
@@ -28,11 +28,11 @@
       stat = json;
       updateCountry = stat.country;
       updateYear = stat.year;
-      updatePeople_in_risk_of_poverty = stat.people_in_risk_of_poverty;
-      updatePeople_poverty_line = stat.people_poverty_line;
-      updateHome_poverty_line = stat.home_poverty_line;
-      updatePercentage_risk_of_poverty = stat.percentage_risk_of_poverty;
-      
+      updatefemale_illiteracy_rate = stat.female_illiteracy_rate;
+      updatemale_illiteracy_rate = stat.male_illiteracy_rate;
+      updateadult_illiteracy_rate = stat.adult_illiteracy_rate;
+      updateyoung_illiteracy_rate = stat.young_illiteracy_rate;
+        
     } else {
       if(res.status===404){
           msjError = "No se encuentra el dato solicitado";
@@ -55,10 +55,10 @@
         body: JSON.stringify({
           "country": params.country,
           "year": parseInt(params.year),
-          "people_in_risk_of_poverty": parseFloat(updatePeople_in_risk_of_poverty),
-          "people_poverty_line": parseFloat(updatePeople_poverty_line),
-          "home_poverty_line": parseFloat(updateHome_poverty_line),
-          "percentage_risk_of_poverty": parseFloat(updatePercentage_risk_of_poverty)
+          "female_illiteracy_rate": parseFloat(updatefemale_illiteracy_rate),
+          "male_illiteracy_rate": parseFloat(updatemale_illiteracy_rate),
+          "adult_illiteracy_rate": parseFloat(updateadult_illiteracy_rate),
+          "young_illiteracy_rate": parseFloat(updateyoung_illiteracy_rate)
         }),
         headers: {
           "Content-Type": "application/json",
@@ -108,10 +108,10 @@
             <tr style="text-align: center; " valign="middle">
                 <td valign="middle">Año</td>
                 <td valign="middle">País</td>
-                <td valign="middle">Personas en riesgo de pobreza</td>
-                <td valign="middle">Índice de riesgo de pobreza (persona)</td>
-                <td valign="middle">Índice de riesgo de pobreza (hogar)</td>
-                <td valign="middle">Porcentaje población en riesgo de pobreza</td>
+                <td valign="middle">Porcentaje de mujeres analfabetas</td>
+                <td valign="middle">Porcentaje de hombres analfabetos</td>
+                <td valign="middle">Porcentaje de adultos analfabetos</td>
+                <td valign="middle">Porcentaje de jovenes analfabetos</td>
                 <td valign="middle"colspan="2"> Acciones </td>
           </tr>
         </thead>
@@ -119,10 +119,10 @@
           <tr>
                   <td>{updateYear}</td>
                   <td>{updateCountry}</td>
-                    <td><input type="number" placeholder="8474000"  bind:value={updatePeople_in_risk_of_poverty}/></td>
-                    <td><input type="number" placeholder="12849"  bind:value={updatePeople_poverty_line}/></td>
-                    <td><input type="number" placeholder="26983"  bind:value={updateHome_poverty_line}/></td>
-                    <td><input type="number" placeholder="13.6"  bind:value={updatePercentage_risk_of_poverty}/></td>
+                    <td><input type="number" placeholder="8474000"  bind:value={updatefemale_illiteracy_rate}/></td>
+                    <td><input type="number" placeholder="12849"  bind:value={updatemale_illiteracy_rate}/></td>
+                    <td><input type="number" placeholder="26983"  bind:value={updateadult_illiteracy_rate}/></td>
+                    <td><input type="number" placeholder="13.6"  bind:value={updateyoung_illiteracy_rate}/></td>
                     <td><button on:click={updateStat} class="btn btn-success"> Actualizar </button></td>
           </tr>
         </tbody>
@@ -144,7 +144,7 @@
        
 
         <div>
-           <a href="#/poverty_risks"><Button style="background-color: blue;">Volver</Button></a>
+           <a href="#/illiteracy"><Button style="background-color: blue;">Volver</Button></a>
        </div>
         
     </footer>
