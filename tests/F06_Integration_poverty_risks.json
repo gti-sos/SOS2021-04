@@ -90,7 +90,7 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.test(\"There are 7 sources\", function () {\r",
+							"pm.test(\"There are 16 sources\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.length).to.eql(16);\r",
 							"});"
