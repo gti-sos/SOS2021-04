@@ -7,7 +7,8 @@
 	import App_edex from "./front/education_expenditures/App_edex.svelte";
 	import Edit_data_edex from "./front/education_expenditures/Edit_data_edex.svelte";
 	import illiteracy from "./front/illiteracy/illiteracyApp.svelte";
-	import illiteracy_edit from "./front/illiteracy/Edit_Tables.svelte";
+	import illiteracy_edit from "./front/illiteracy/edit_data_illiteracy.svelte";
+	import illiteracy_chart from "./front/illiteracy/edit_Tables.svelte";
 	import AppPovertyRisks from './front/poverty_risks/appPovertyRisks.svelte';
 	import editData_poverty_risks from "./front/poverty_risks/editData_poverty_risks.svelte";
 	
@@ -17,6 +18,7 @@
 		"/education_expenditures":App_edex,
 		"/illiteracy":illiteracy,
 		"/illiteracy/:country/:date":illiteracy_edit,
+		"/illiteracy/illiteracy_chart":illiteracy_chart,
 		"/education_expenditures/:country/:year": Edit_data_edex,
 		"/poverty_risks":AppPovertyRisks,
 		"/poverty_risks/:country/:year": editData_poverty_risks,

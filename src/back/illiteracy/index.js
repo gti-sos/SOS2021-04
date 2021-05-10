@@ -59,7 +59,7 @@
 		});
 
 		//Generamos las distintas peticiones
-
+ 
 		//Get del array completo
 		app.get(BASE_API_PATH+"/illiteracy", (req,res)=>{
 			//Cuando llamen a /api/v1/poverty_risks
