@@ -68,6 +68,69 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 			"people_poverty_line": 17019,
 			"home_poverty_line": 35739,
 			"percentage_risk_of_poverty": 12.2
+		},{
+			"year": 2015,
+			"country":"Estonia",
+			"people_in_risk_of_poverty": 281000 ,
+			"people_poverty_line": 4.733,
+			"home_poverty_line": 9.940,
+			"percentage_risk_of_poverty": 21.6
+		},{
+			"year": 2015,
+			"country":"Grecia",
+			"people_in_risk_of_poverty": 2293000 ,
+			"people_poverty_line": 4512,
+			"home_poverty_line": 9475,
+			"percentage_risk_of_poverty": 21.4
+		},{
+			"year": 2015,
+			"country":"Croacia",
+			"people_in_risk_of_poverty": 837000 ,
+			"people_poverty_line": 3272,
+			"home_poverty_line": 6871,
+			"percentage_risk_of_poverty": 20.0
+		},{
+			"year": 2016,
+			"country":"Finlandia",
+			"people_in_risk_of_poverty": 630000 ,
+			"people_poverty_line": 14190,
+			"home_poverty_line": 29799,
+			"percentage_risk_of_poverty": 11.6
+		},{
+			"year": 2016,
+			"country":"Hungría",
+			"people_in_risk_of_poverty": 1398000 ,
+			"people_poverty_line": 2861,
+			"home_poverty_line": 6007,
+			"percentage_risk_of_poverty": 14.5
+		},{
+			"year": 2015,
+			"country":"Irlanda",
+			"people_in_risk_of_poverty": 760000 ,
+			"people_poverty_line": 12978,
+			"home_poverty_line": 27253,
+			"percentage_risk_of_poverty": 16.3
+		},{
+			"year": 2015,
+			"country":"Islandia",
+			"people_in_risk_of_poverty": 29000 ,
+			"people_poverty_line": 14732,
+			"home_poverty_line": 30938,
+			"percentage_risk_of_poverty": 9.6
+		},{
+			"year": 2015,
+			"country":"Lituania",
+			"people_in_risk_of_poverty": 649000 ,
+			"people_poverty_line": 3108,
+			"home_poverty_line": 6527,
+			"percentage_risk_of_poverty": 22.2
+		},{
+			"year": 2015,
+			"country":"Luxemburgo",
+			"people_in_risk_of_poverty": 79000 ,
+			"people_poverty_line": 21162,
+			"home_poverty_line": 44441,
+			"percentage_risk_of_poverty": 15.3
 		}
 
 	];
