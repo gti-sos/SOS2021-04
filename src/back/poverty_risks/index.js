@@ -72,8 +72,8 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 			"year": 2015,
 			"country":"Estonia",
 			"people_in_risk_of_poverty": 281000 ,
-			"people_poverty_line": 4.733,
-			"home_poverty_line": 9.940,
+			"people_poverty_line": 4733,
+			"home_poverty_line": 9940,
 			"percentage_risk_of_poverty": 21.6
 		},{
 			"year": 2015,
