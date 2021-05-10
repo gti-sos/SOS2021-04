@@ -572,7 +572,7 @@
             <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
               <PaginationLink
                 next
-                href="#/natality-stats"
+                href="#/education_expenditures"
                 on:click={() =>
                   cambiaPagina(pagina_actual + 1, offset_actual + 10, esBusqueda)}
               />
@@ -728,7 +728,7 @@
                   <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
                     <PaginationLink
                       next
-                      href="#/natality-stats"
+                      href="#/education_expenditures"
                       on:click={() =>
                         cambiaPagina(pagina_actual + 1, offset_actual + 10, esBusqueda)}
                     />

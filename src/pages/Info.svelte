@@ -7,9 +7,9 @@
 
 		<u><b><h3>Componentes</h3></b></u>
 		
-		·<a href="https://github.com/mangonreg">Manuel González Regadera - Gastos en educación</a><br>
-		·<a href="https://github.com/JavierCarmona16">Javier Carmona Andrés - Riesgos de pobreza</a><br>
-		·<a href="https://github.com/migueclon98">Miguel Gómez Vázquez - Analfabetismo</a><br>
+		·<a href="https://github.com/mangonreg">Manuel González Regadera - education_expenditures</a><br>
+		·<a href="https://github.com/JavierCarmona16">Javier Carmona Andrés - poverty_risks</a><br>
+		·<a href="https://github.com/migueclon98">Miguel Gómez Vázquez - illiteracy</a><br>
 		
 		<u><b><h3>Descripción del proyecto</h3></b></u>
 		<em>Relación entre tasa de alfabetización, gasto público en educación e índice de pobreza en diversos países por años ¿Podría un incremento
