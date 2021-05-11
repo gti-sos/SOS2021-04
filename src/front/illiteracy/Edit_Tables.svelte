@@ -1,207 +1,886 @@
 <script>
+  import { Table , Button, Col, Row,
+    Nav,
+    Modal,
+    ModalBody,
+    ModalFooter,
+    ModalHeader,
+    NavItem,
+    NavLink,
+    Pagination,
+    PaginationItem,
+    PaginationLink, } from 'sveltestrap';
+
     import { onMount } from "svelte";
-    import { Table, Button, Nav, NavItem, NavLink } from "sveltestrap";
-    const BASE_CONTACT_API_PATH = "/api/v1";
-    let illiteracyData = [];
-    let illiteracyChartData = [];
-  let illiteracyChartCountryData = [];
-  let natalityChartMenBornData = [];
-  let natalityChartWomenBornData = [];
-  let natalityChartNatalityRateData = [];
-  let natalityChartFertilityRateData = [];
-    let errorMsg = "";
-    let okMsg = "";
-    function distinctRecords(MYJSON, prop) {
-      return MYJSON.filter((obj, pos, arr) => {
-        return arr.map((mapObj) => mapObj[prop]).indexOf(obj[prop]) === pos;
-      });
-    }
-    async function loadChart() {
-      console.log("Fetching data...");
-      const res = await fetch(BASE_CONTACT_API_PATH + "/illiteracy");
-      illiteracyData = await res.json();
-      if (res.ok) {
-        illiteracyData.forEach(stat => {
-        illiteracyChartCountryData.push(stat.country+"-"+stat.date);
-        natalityChartMenBornData.push(stat["female_illiteracy_rate"]);
-        natalityChartWomenBornData.push(stat["male_illiteracy_rate"]);
-        natalityChartNatalityRateData.push(stat["adult_illiteracy_rate"]);
-        natalityChartFertilityRateData.push(stat["young_illiteracy_rate"]);   
-        });
+
+  //Incluimos la ruta donde se ejecuta el backend de la Api
+  
+  const BASE_API_PATH = "api/v1/illiteracy";
+
+  //Creamos un elemento de tipo Json para insertar nuevos datos
+
+  let nuevoElemento = {
+      "year" : "",
+      "country" : "",
+      "female_illiteracy_rate":"",
+      "male_illiteracy_rate":"",
+      "adult_illiteracy_rate":"",
+      "young_illiteracy_rate":""
+  };
+
+  let query = {
+    "c" :"",    
+    "y":"",
+    
+    "apm":"",            // aquellos que están por encima de un gasto de x millones en educacion
+    "upm" :"",   // aquellos que están por debajo de un gasto de x millones en educacion
+  
+    "app":"",            //aquellos que están por encima de un porcentaje x de gasto publico en educacion
+    "upp":"",   //aquellos que están por debajo de un porcentaje x de gasto publico en educacion
+          
+    "agdp":"",           //aquellos que están por encima de un porcentaje x de pib en gasto publico en educacion
+    "ugdp":"",   //aquellos que están por debajo de un porcentaje x de pib en gasto publico en educacion        
+  
+    "apc":"",            //aquellos que están por encima de una cantidad x per capita de gasto en educacion
+    "upc":""    //aquellos que están por debajo de una cantidad x per capita de gasto en educacion
+
+  };
+  var fullQuery = "";
+
+  //Variables auxiliares para la muestra de errores
+  let mensajeError = "";
+  let mensajeCorrecto = "";
+
+  //Creamos variables para paginación
+
+  export let offset_actual = 0;
+  export let limit = 10; //Limite por defecto, opcional
+  export let pagina_actual = 1;
+  export let ultima_pagina = 1; //Se debe actualizar en función de los datos que tengamos
+  export let totalDatos = 0;
+  export let esBusqueda = false;
+
+  //Cargamos los datos iniciales
+
+  var charged = false;
+  var edex_data = [];
+
+
+
+  //Función asincrona para la carga de datos
+
+  async function getStats() {
+    esBusqueda = false;
+    
+    console.log("Fetching data...");
+    
+    const res = await fetch(
+    BASE_API_PATH + "?skip="+ offset_actual + "&limit=" +limit 
+    );
+    if (res.ok) {
+      console.log(BASE_API_PATH + "?limit=" + limit + "&skip="+offset_actual);
+      const json = await res.json();
+      
+      if(json.length===undefined){
+        edex_data = [];
+        edex_data.push(json);
+        getTotalDatos();
+        mensajeError = "";
+        mensajeCorrecto = "Datos cargados correctamente";
+        
+      }
+      else{
+        edex_data = json;
+        getTotalDatos();
+        
+        mensajeError = "";
+        mensajeCorrecto = "Datos cargados correctamente";
+      }
+      mensajeError="";
+    } else {
+      if (res.status === 500) {
+        mensajeCorrecto="";
+        mensajeError = "No se ha podido acceder a la base de datos";
+      }
+      if (edex_data.length === 0) {
+        mensajeCorrecto="";
+        mensajeError = "No hay datos disponibles";
       }
       
-      console.log("Natality Chart DaTa: " + illiteracyChartData);
-      Highcharts.chart("container", {
-        title: {
-          text: "illiteracy",
-        },
-        yAxis: {
-          title: {
-            text: "Valor",
-          },
-        },
-        xAxis: {
-          title: {
-            text: "País-Año",
-          },
-          categories: illiteracyChartCountryData,
-        },
-        legend: {
-          layout: "vertical",
-          align: "right",
-          verticalAlign: "middle",
-        },
-        annotations: [
-          {
-            labels: [
-              {
-                point: "date",
-                text: "",
-              },
-              {
-                point: "min",
-                text: "Min",
-                backgroundColor: "white",
-              },
-            ],
-          },
-        ],
-        series: [
-          {
-            name: "porcentaje de mujeres analfabetas (%)",
-            data: natalityChartMenBornData,
-          },
-          {
-            name: "porcentaje de hombres analfabetos (%)",
-            data: natalityChartWomenBornData,
-          },
-          {
-            name: "porcentaje de adultos analfabetos (%)",
-            data: natalityChartNatalityRateData,
-          },
-          {
-            name: "porcentaje de jovenes analfabetos (%)",
-            data: natalityChartFertilityRateData,
+    } 
+}
+
+  async function loadInitialData(){
+      //Para cargarlos hacemos un fetch a la direccion donde está el método de carga inicial
+      
+      
+      const peticionCarga = await fetch(BASE_API_PATH + '/loadInitialData'); //Se espera hasta que termine la peticion
+      
+      if(peticionCarga.ok){
+          const peticionMuestra = await fetch(BASE_API_PATH); //Se accede a la toma de todos los elementos
+
+          if(peticionMuestra.ok){
+              console.log(" Receiving data, wait a moment ...")
+              const data = await peticionMuestra.json();
+              edex_data = data;
+              console.log(`Done! Received ${data.length} stats.`);
+              console.log(edex_data);
+              mensajeError = "";
+              mensajeCorrecto = "Datos insertados correctamente";
           }
+          else{
+              console.log("No data loaded.");
+              
+              mensajeError="Los datos no han podido cargarse";
+          }
+      }
+      else{
+          console.log("Error loading data.");
+          mensajeError = "Error de acceso a BD";
+      }
+      charged = true;
+      console.log(edex_data.length);
+      getStats();
+      
+  
+  }
+      
+  async function deleteAll() {
+
+      console.log(edex_data.length);
+      
+  
+      const peticion = await fetch(BASE_API_PATH, {
+    method: "DELETE"
+    }).then(function (peticion) {
+    
+          if (peticion.ok){
+              edex_data = [];
+              charged = false;
+              mensajeError = "";
+              mensajeCorrecto = "Datos eliminados correctamente";
+    } 
           
-        ],
-        responsive: {
-          rules: [
-            {
-              condition: {
-                maxWidth: 500,
-              },
-              chartOptions: {
-                legend: {
-                  layout: "horizontal",
-                  align: "center",
-                  verticalAlign: "bottom",
-                },
-              },
-            },
-          ],
-        },
-      });
+          else if (peticion.status==404){ //no data found
+              console.log("No data found"); //Posibilidad de redirigir a una ventana similar a la de error 404
+              mensajeCorrecto="";
+              mensajeError = "No se han encontrado datos para eliminar";
+    } 
+          
+          else  { 
+            console.log("Error deleting DB stats");
+            mensajeCorrecto="";
+            mensajeError = "Error de acceso a BD";
     }
-  </script>
-  <svelte:head>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script
-      src="https://code.highcharts.com/modules/accessibility.js"
-      on:load={loadChart}></script>
-  </svelte:head>
-  <main>
-    <Nav>
-      <NavItem>
-        <NavLink href="/">Página Principal</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink href="#/illiteracy">Datos</NavLink>
-      </NavItem>
-    </Nav>
+          console.log(edex_data.length);
+    
+  });
+}
+
+  function removeDataInserted(){
+      nuevoElemento = {
+      "year" : "",
+      "country" : "",
+      "female_illiteracy_rate":"",
+      "male_illiteracy_rate":"",
+      "adult_illiteracy_rate":"",
+      "young_illiteracy_rate":""
+      };
+
+  };
+
+  async function insertData() {
   
-    <div>
-      <h2>
-        Análiticas
-      </h2>
-    </div>
+    nuevoElemento.year = parseInt(nuevoElemento.year);
+    nuevoElemento.country = String(nuevoElemento.country);
+    nuevoElemento.female_illiteracy_rate = parseFloat(nuevoElemento.female_illiteracy_rate);
+    nuevoElemento.male_illiteracy_rate = parseFloat(nuevoElemento.male_illiteracy_rate);
+    nuevoElemento.adult_illiteracy_rate = parseFloat(nuevoElemento.adult_illiteracy_rate);
+    nuevoElemento.young_illiteracy_rate = parseFloat(nuevoElemento.young_illiteracy_rate);
+    const res = await fetch(BASE_API_PATH, {
+      method: "POST",
+      body: JSON.stringify(nuevoElemento),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(function (res) {
+      if (res.ok) {
+        mensajeError = "";
+        mensajeCorrecto = "Dato cargado correctamente";
+      } else {
+        if (res.status === 409) {
+          mensajeCorrecto="";
+          mensajeError = `Ya existe un dato con valores idénticos para los campos año y país.`;
+        } else if (res.status === 500) {
+          mensajeCorrecto="";
+          mensajeError = "No se ha podido acceder a la base de datos.";
+        }else if(res.status === 400){
+          mensajeCorrecto="";
+          mensajeError = "Todos los campos deben estar rellenados según el patron predefinido.";
+        }
+      }
+      removeDataInserted();
+      getStats();
+    });
+}
+
+async function deleteElement(year, country) {
+  let mensajeError = "";
+  let mensajeCorrecto = "";
+  offset_actual = 0;
+  pagina_actual = 1;
   
-    <div>
-      {#if errorMsg}
-        <p class="msgRed" style="color: #9d1c24">ERROR: {errorMsg}</p>
-      {/if}
-      {#if okMsg}
-        <p class="msgGreen" style="color: #155724">{okMsg}</p>
-      {/if}
-    </div>
+  const res = await fetch(
+    BASE_API_PATH + "/" + country + "/" + year,
+    {
+      method: "DELETE",
+    }
+  ).then(function (res) {
+    if (res.ok) {
+      console.log("OK");
+      mensajeError = "";
+      mensajeCorrecto = "Dato eliminado correctamente";
+    } else {
+      if (res.status === 404) {
+        mensajeCorrecto="";
+        mensajeError = `No se puede eliminar, la entrada ${year}/${country} no existe`;
+      } else if (res.status === 500) {
+        mensajeCorrecto="";
+        mensajeError = "No se ha podido acceder a la base de datos";
+      }
+    }
+    getStats();
+  });
+}
+
+async function searchStat() {
+  esBusqueda = true;
+
   
-    <div>
-      <figure class="highcharts-figure">
-        <div id="container" />
-        <p class="highcharts-description">
-          Gráfico de líneas básico que muestra los diferentes valores para los campos de illiteracy.
-        </p>
-      </figure>
-    </div>
-  </main>
+  var parametros = new Map(
+    Object.entries(query).filter((introducidos) => {
+      return introducidos[1] != "";
+    })
+  );
+  let simboloQuery = "?";
+  let i = 0; //Contador para saber cuando llega al ultimo par
+  for (var [clave, valor] of parametros.entries()) {
+    i=i+1;
+    if(i===parametros.entries().length){
+      simboloQuery += clave + "=" + valor;}
+    else{
+      simboloQuery += clave + "=" + valor + "&";}
+      
+  }
+  fullQuery = "";
+  fullQuery = (simboloQuery==="?")?"":simboloQuery;
+  //Comprobamos si la query está vacía
+  if (fullQuery != "") {
+    const res = await fetch(
+      BASE_API_PATH +
+        fullQuery +  "&skip="+offset_actual +"&limit=" + limit 
+    );
+    if (res.ok) {
+      console.log("OK");
+      const json = await res.json();
+      mensajeError = "";
+      mensajeCorrecto = "¡Se han encontrado coincidencias!";
+      if(json.length===undefined){
+        edex_data = [];
+        edex_data.push(json);
+        
+        getTotalDatosBusqueda();
+        
+      }
+      else{
+        edex_data = json;
+        getTotalDatosBusqueda();
+      }
+      
+    } else {
+      if (res.status === 404) {
+        mensajeCorrecto="";
+        mensajeError = "No existen datos con esos parámetros";
+      } else if (res.status === 500) {
+        mensajeCorrecto="";
+        mensajeError = "No se ha podido acceder a la base de datos";
+      }
+    }
+  } else {
+    mensajeError = "Debe existir al menos un parámetro para realizar la búsqueda";
+  }
+  console.log(query);
+   //Cargamos los datos en la tabla
+}
+
+function borrarQuery (){
+  query = {
+    "c" :"",    
+    "y":"",
+    "apm":"",          
+    "upm" :"",   
+    "app":"",            
+    "upp":"",   
+    "agdp":"",           
+    "ugdp":"",         
+    "apc":"",            
+    "upc":""
+  };
+
+  getStats();
+
+}
+
+function cambiaPagina(pagina, offset, busqueda){
+  console.log("*** Cambio Página ***");
+  console.log(
+    "Parametros pagina: " + pagina + " offset: " + offset + " busqueda: " + busqueda
+  );
+  ultima_pagina = Math.ceil(totalDatos / limit);
+  console.log("La última página es: " + ultima_pagina);
+  if (pagina !== pagina_actual) {
+    console.log("enter if");
+    offset_actual = offset;
+    pagina_actual = pagina;
+   
+    if (busqueda == false) {
+      getStats();
+    } else {
+      searchStat();
+    }
+  }
+  console.log("*** Fin Cambio Página ***");
+
+}
+
+function range(ultima, inicio = 0) {
+  return [...Array(ultima).keys()].map((i) => i + inicio);
+}
+
+async function getTotalDatos() {
+  const res = await fetch(BASE_API_PATH);
+  if (res.ok) {
+    const json = await res.json();
+    totalDatos = json.length;
+    
+    cambiaPagina(pagina_actual, offset_actual, esBusqueda);
+  } else {
+    mensajeCorrecto = "";
+    mensajeError = "No hay datos disponibles";
+  }
+}
+
+async function getTotalDatosBusqueda() {
+  const res = await fetch(
+    BASE_API_PATH + fullQuery
+  );
+  if (res.ok) {
+    const json = await res.json();
+    totalDatos = json.length;
+    cambiaPagina(pagina_actual, offset_actual, esBusqueda);
+  } else {
+    mensajeCorrecto = "";
+    mensajeError = "No hay datos disponibles";
+  }
+}
+
+
+onMount(getStats);
+
+
+</script>
+
+<main>
+  <!-- Creamos un div para incluir dentro dos botones, uno para cargar datos y otro para borrarlos todos -->
+  <div style="padding:1%">
+          <Row>
+              <Col>
+                  {#if edex_data.length!=0}
+                  <Button style="background-color: green;" disabled>Cargar datos</Button>
+                  <Button style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
+                  {:else}
+                  <Button style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
+                  <Button style="background-color: red;" disabled>Borrar datos</Button>
+                  {/if}
+              </Col>           
+          </Row>
+          <Row>
+              <Col md=4>
+              </Col>
+              <Col md=4 style="text-align: center;">
+                  {#if mensajeError.length!=0}
+                  <p class="mensajeError">Se ha producido un error:<b> {mensajeError} </b></p>
+                  {:else if mensajeCorrecto.length!=0}
+                  <p class="mensajeCorrecto"><b> {mensajeCorrecto} </b></p>
+
+                  {/if}
+              </Col>
+              <Col md=4>
+              </Col>
+              
+          </Row>
+
+  </div>
+
+
+
+ <br>
+  <!--Introducimos salto para separar contenido-->
+  <div>
+    {#if edex_data.length> 1}
+      <Table>
+        <!-- Incluye los nombres de los atributos para Búsquedas-->
+        <thead>  
+          
+          <tr style="text-align: center; background-color: rgb(150, 152, 154);" valign="middle">
+            <td valign="middle"></td>
+            <td valign="middle"></td>
+            <td valign="middle"></td>
+            <td valign="middle"><h3> Busqueda</h3> </td>
+            <td valign="middle"></td>
+            <td valign="middle"></td>
+            <td valign="middle"colspan="2"></td>
+        </tr>
+
+            <tr style="text-align: center; " valign="middle">
+                <td valign="middle">Año</td>
+                <td valign="middle">País</td>
+                <td valign="middle">Alfabetizacion de Mujeres</td>
+                <td valign="middle">Alfabetizacion de hombres</td>
+                <td valign="middle">Alfabetizacion de adultos</td>
+                <td valign="middle">Alfabetizacion de jovenes</td>
+                <td valign="middle"colspan="2"> Acciones </td>
+            </tr>
+        </thead>
+        <tbody>
+
+        <!--Incluimos el espacio de inserts para búsquedas--> 
+
+            <tr style="text-align: center; align-items: center; max-width: 100%;">
+                <!--Por cada campo haremos un input-->
+                <td><input type="number" placeholder="2010" min=1950 bind:value={query.y}/></td>
+                <td><input type="text" placeholder="Francia" bind:value={query.c}/></td>
+                <td>
+                  <input type="number" placeholder="min"  bind:value={query.apm}/>
+                  <input type="number" placeholder="max"  bind:value={query.upm}/>
+                
+                </td>
+                <td>
+                  <input type="number" placeholder="min"  bind:value={query.app}/>
+                  <input type="number" placeholder="max"  bind:value={query.upp}/>
+                </td>
+                <td>
+                  <input type="number" placeholder="min"  bind:value={query.agdp}/>
+                  <input type="number" placeholder="max"  bind:value={query.ugdp}/>
+                </td>
+
+                <td>
+                  <div class ="row col-xs-12">
+                  <input type="number" placeholder="min"  bind:value={query.apc} class="col-xs-12"/>
+                  <input type="number" placeholder="max"  bind:value={query.upc} class="col-xs-12"/>
+                </div>
+                </td>
+
+                <td><button class="btn btn-primary" on:click={searchStat}>Buscar</button></td>
+                <td><button class="btn btn-dark" on:click={borrarQuery}>Restaurar</button></td>
+                
+            </tr>
+
+        </tbody>
+      </Table>
+
+      <!--Tabla de Datos-->
+
+      <Table>
+          <!-- Incluye los nombres de los atributos -->
+          <thead>  
+            <tr style="text-align: center; background-color: rgb(150, 152, 154); max-width: 100%;" valign="middle">
+              <td valign="middle"></td>
+              <td valign="middle"></td>
+              <td valign="middle"></td>
+              <td valign="middle"> <h3>Datos</h3></td>
+              <td valign="middle"></td>
+              <td valign="middle"></td>
+              <td valign="middle" colspan="2"></td>
+              
+              
+          </tr>
+              <tr style="text-align: center; " valign="middle">
+                  <td valign="middle">Año</td>
+                  <td valign="middle">País</td>
+                  <td valign="middle">Alfabetizacion de Mujeres</td>
+                  <td valign="middle">Alfabetizacion de hombres</td>
+                  <td valign="middle">Alfabetizacion de adultos</td>
+                  <td valign="middle">Alfabetizacion de jovenes</td>
+                  <td valign="middle"colspan="2"> Acciones </td>
+              </tr>
+          </thead>
+          <tbody>
+
+          <!--Incluimos el espacio de inserts--> 
+
+              <tr>
+                  <!--Por cada campo haremos un input-->
+                    <td><input type="number" placeholder="2010" min=1900 bind:value={nuevoElemento.year}/></td>
+                    <td><input type="text" placeholder="Francia" bind:value={nuevoElemento.country}/></td>
+                    <td><input type="number" placeholder="250.4"  bind:value={nuevoElemento.female_illiteracy_rate}/></td>
+                    <td><input type="number" placeholder="112.3"  bind:value={nuevoElemento.male_illiteracy_rate}/></td>
+                    <td><input type="number" placeholder="2.5"  bind:value={nuevoElemento.adult_illiteracy_rate}/></td>
+                    <td><input type="number" placeholder="2010"  bind:value={nuevoElemento.young_illiteracy_rate}/></td>
+                    <td><button on:click={insertData} class="btn btn-success">Insertar</button></td>
+                    <td></td>
+              </tr>
+
+              {#each edex_data as stat}
+                <tr  style="text-align: center;">
+                    <th>{stat.year}</th>
+                    <th>{stat.country}</th>
+                    <th>{stat.female_illiteracy_rate}%</th>
+                    <th>{stat.male_illiteracy_rate}%</th>
+                    <th>{stat.adult_illiteracy_rate}%</th>
+                    <th>{stat.young_illiteracy_rate}%</th>
+                    <th><button class="btn btn-danger" on:click={deleteElement(stat.year,stat.country)}>Eliminar</button></th>
+                    <th><a href='#/illiteracy/{stat.country}/{stat.year}'><button class="btn btn-warning">Modificar</button></a></th>
+
+                </tr>
+              {/each}
+
+
+      </Table>
+
+      <div>
+        <!-- Paginacion -->
+        <Pagination ariaLabel="Web pagination">
+          <PaginationItem class={pagina_actual === 1 ? "disabled" : ""}>
+            <PaginationLink
+              previous
+              href="#/illiteracy"
+              on:click={() =>
+                cambiaPagina(pagina_actual - 1, offset_actual - 10, esBusqueda)}
+            />
+          </PaginationItem>
+          {#each range(ultima_pagina, 1) as page}
+            <PaginationItem class={pagina_actual === page ? "active" : ""}>
+              <PaginationLink
+                previous
+                href="#/illiteracy"
+                on:click={() => cambiaPagina(page, (page - 1) * 10, esBusqueda)}
+                >{page}</PaginationLink
+              >
+            </PaginationItem>
+          {/each}
+          <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
+            <PaginationLink
+              next
+              href="#/illiteracy"
+              on:click={() =>
+                cambiaPagina(pagina_actual + 1, offset_actual + 10, esBusqueda)}
+            />
+          </PaginationItem>
+        </Pagination>
+      </div>
+
+
+
+    {/if}
+    
+
   
-  <style>
-    main {
-      text-align: center;
-      padding: 1em;
-      margin: 0 auto;
-    }
-    div{
-      margin-bottom: 15px;
-    }
-    p {
-      display: inline;
-    }
-    .msgRed {
-      padding: 8px;
-      background-color: #f8d7da;
-    }
-    .msgGreen {
-      padding: 8px;
-      background-color: #d4edda;
-    }
-    .highcharts-figure,
-    .highcharts-data-table table {
-      min-width: 360px;
-      max-width: 800px;
-      margin: 1em auto;
-    }
-    .highcharts-data-table table {
-      font-family: Verdana, sans-serif;
-      border-collapse: collapse;
-      border: 1px solid #ebebeb;
-      margin: 10px auto;
-      text-align: center;
-      width: 100%;
-      max-width: 500px;
-    }
-    .highcharts-data-table caption {
-      padding: 1em 0;
-      font-size: 1.2em;
-      color: #555;
-    }
-    .highcharts-data-table th {
-      font-weight: 600;
-      padding: 0.5em;
-    }
-    .highcharts-data-table td,
-    .highcharts-data-table th,
-    .highcharts-data-table caption {
-      padding: 0.5em;
-    }
-    .highcharts-data-table thead tr,
-    .highcharts-data-table tr:nth-child(even) {
-      background: #f8f8f8;
-    }
-    .highcharts-data-table tr:hover {
-      background: #f1f7ff;
-    }
-  </style>
+          <!-- Incluye cada uno de los elementos en el vector-->
+        
+
+    {#if edex_data.length==1}
+
+      <Table>
+        <!-- Incluye los nombres de los atributos para Búsquedas-->
+        <thead>  
+          
+          <tr style="text-align: center; background-color: rgb(150, 152, 154);" valign="middle">
+            <td valign="middle"></td>
+            <td valign="middle"></td>
+            <td valign="middle"></td>
+            <td valign="middle"><h3> Busqueda</h3> </td>
+            <td valign="middle"></td>
+            <td valign="middle"></td>
+            <td valign="middle"colspan="2"></td>
+        </tr>
+
+            <tr style="text-align: center; " valign="middle">
+                <td valign="middle">Año</td>
+                <td valign="middle">País</td>
+                <td valign="middle">Alfabetizacion de Mujeres</td>
+                <td valign="middle">Alfabetizacion de hombres</td>
+                <td valign="middle">Alfabetizacion de adultos</td>
+                <td valign="middle">Alfabetizacion de jovenes</td>
+                <td valign="middle"colspan="2"> Acciones </td>
+            </tr>
+        </thead>
+        <tbody>
+
+        <!--Incluimos el espacio de inserts para búsquedas--> 
+
+            <tr style="text-align: center; align-items: center; max-width: 100%;">
+                <!--Por cada campo haremos un input-->
+                <td><input type="number" placeholder="2010" min=1950 bind:value={query.y}/></td>
+                <td><input type="text" placeholder="Francia" bind:value={query.c}/></td>
+                <td>
+                  <input type="number" placeholder="min"  bind:value={query.apm}/>
+                  <input type="number" placeholder="max"  bind:value={query.upm}/>
+                
+                </td>
+                <td>
+                  <input type="number" placeholder="min"  bind:value={query.app}/>
+                  <input type="number" placeholder="max"  bind:value={query.upp}/>
+                </td>
+                <td>
+                  <input type="number" placeholder="max"  bind:value={query.agdp}/>
+                  <input type="number" placeholder="min"  bind:value={query.ugdp}/>
+                </td>
+
+                <td>
+                  <div class ="row col-xs-12">
+                  <input type="number" placeholder="max"  bind:value={query.apc} class="col-xs-12"/>
+                  <input type="number" placeholder="min"  bind:value={query.upc} class="col-xs-12"/>
+                </div>
+                </td>
+
+                <td><button class="btn btn-primary" on:click={searchStat}>Buscar</button></td>
+                <td><button class="btn btn-dark" on:click={borrarQuery}>Restaurar</button></td>
+                
+            </tr>
+
+        </tbody>
+      </Table>
+              <!--Para evitar errores, en el caso de que solo haya un elemento se introduce manualmente-->
+              <Table>
+                <!-- Incluye los nombres de los atributos -->
+                <thead>  
+                  <tr style="text-align: center; background-color: rgb(150, 152, 154); max-width: 100%;" valign="middle">
+                    <td valign="middle"></td>
+                    <td valign="middle"></td>
+                    <td valign="middle"></td>
+                    <td valign="middle"> <h3>Datos</h3></td>
+                    <td valign="middle"></td>
+                    <td valign="middle"></td>
+                    <td valign="middle" colspan="2"></td>
+                    
+                    
+                </tr>
+                    <tr style="text-align: center; " valign="middle">
+                        <td valign="middle">Año</td>
+                        <td valign="middle">País</td>
+                        <td valign="middle">Alfabetizacion de Mujeres</td>
+                        <td valign="middle">Alfabetizacion de hombres</td>
+                        <td valign="middle">Alfabetizacion de adultos</td>
+                        <td valign="middle">Alfabetizacion de jovenes</td>
+                        <td valign="middle"colspan="2"> Acciones </td>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                <!--Incluimos el espacio de inserts--> 
+
+                <tr>
+                  <!--Por cada campo haremos un input-->
+                    <td><input type="number" placeholder="2010" min=1900 bind:value={nuevoElemento.year}/></td>
+                    <td><input type="text" placeholder="Francia" bind:value={nuevoElemento.country}/></td>
+                    <td><input type="number" placeholder="250.4"  bind:value={nuevoElemento.female_illiteracy_rate}/></td>
+                    <td><input type="number" placeholder="112.3"  bind:value={nuevoElemento.male_illiteracy_rate}/></td>
+                    <td><input type="number" placeholder="2.5"  bind:value={nuevoElemento.adult_illiteracy_rate}/></td>
+                    <td><input type="number" placeholder="2010"  bind:value={nuevoElemento.young_illiteracy_rate}/></td>
+                    <td><button on:click={insertData} class="btn btn-success">Insertar</button></td>
+                    <td></td>
+              </tr>
+    
+                <tr  style="text-align: center;">
+                  <th>{edex_data[0].year}</th>
+                    <th>{edex_data[0].country}</th>
+                    <th>{edex_data[0].female_illiteracy_rate}</th>
+                    <th>{edex_data[0].male_illiteracy_rate}</th>
+                    <th>{edex_data[0].adult_illiteracy_rate}</th>
+                    <th>{edex_data[0].young_illiteracy_rate}</th>
+                    <th><button class="btn btn-danger" on:click={deleteElement(edex_data[0].year,edex_data[0].country)}>Eliminar</button></th>
+                    <th><a href='#/illiteracy/{edex_data[0].country}/{edex_data[0].year}'><button class="btn btn-warning">Modificar</button></a></th>
+                        </tr>
+              </tbody>
+            </Table>
+            <div>
+              <!-- Paginacion -->
+              <Pagination ariaLabel="Web pagination">
+                <PaginationItem class={pagina_actual === 1 ? "disabled" : ""}>
+                  <PaginationLink
+                    previous
+                    href="#/illiteracy"
+                    on:click={() =>
+                      cambiaPagina(pagina_actual - 1, offset_actual - 10, esBusqueda)}
+                  />
+                </PaginationItem>
+                {#each range(ultima_pagina, 1) as page}
+                  <PaginationItem class={pagina_actual === page ? "active" : ""}>
+                    <PaginationLink
+                      previous
+                      href="#/illiteracy"
+                      on:click={() => cambiaPagina(page, (page - 1) * 10, esBusqueda)}
+                      >{page}</PaginationLink
+                    >
+                  </PaginationItem>
+                {/each}
+                <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
+                  <PaginationLink
+                    next
+                    href="#/illiteracy"
+                    on:click={() =>
+                      cambiaPagina(pagina_actual + 1, offset_actual + 10, esBusqueda)}
+                  />
+                </PaginationItem>
+              </Pagination>
+            </div> 
+
+    {/if}
+
+    {#if edex_data.length==0}
+      <div style="aling-items:center; justify-content:center;">
+        <Row>
+            <Col md=12 style="text-align: center;">
+                <h2>No existen datos cargados. Por favor, pulse el botón "Cargar datos".</h2>
+            </Col>
+        </Row>
+        <Row>
+            <Col md=3>
+            </Col>
+            <Col md=4>
+                <img src="images/noDatos.jpg" alt="noDatos">
+            </Col>
+            <Col md=4>
+            </Col>
+        </Row>
+      </div>
+    {/if}
+
+  </div>
+  
+  
+  <div class="foot" style="min-width: 100%;
+  color: white;
+  background-color:#343c44;
+  min-width: 100%;
+  
+  bottom: 0;
+  background-color:#343c44;
+  left: 0;
+  position: relative;">
+  <footer>
+     
+
+       <div>
+          <a href="/"><Button style="background-color: blue;">Página Principal</Button></a>
+      </div>
+       
+   </footer>
+   </div>
+  
+</main>
+
+<style>
+  .foot{
+  min-width: 100%;
+  color: white;
+  background-color:#343c44;
+  width: 100%;
+  
+  bottom: 0;
+  background-color:#343c44;
+  left: 0;
+  
+  
+  
+}
+footer{
+  
+  padding: 1%;
+  width: 100%;
+
+  
+}
+.mensajeError{
+color:tomato;
+}
+
+.mensajeCorrecto{
+color:green;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeOut {
+0% {
+  opacity:1;
+}
+100% {
+  opacity:0;
+}
+}
+
+@-moz-keyframes fadeOut {
+0% {
+  opacity:1;
+}
+100% {
+  opacity:0;
+}
+}
+
+@-webkit-keyframes fadeOut {
+0% {
+  opacity:1;
+}
+100% {
+  opacity:0;
+}
+}
+
+@-o-keyframes fadeOut {
+0% {
+  opacity:1;
+}
+100% {
+  opacity:0;
+}
+}
+
+@-ms-keyframes fadeOut {
+0% {
+  opacity:1;
+}
+100% {
+  opacity:0;
+}
+}
+</style>

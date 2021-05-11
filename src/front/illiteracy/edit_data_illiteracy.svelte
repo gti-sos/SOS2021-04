@@ -2,19 +2,19 @@
   <script>
     import { onMount } from "svelte";
     import { Table, Button, Nav, NavItem, NavLink } from "sveltestrap";
-    const BASE_CONTACT_API_PATH = "/api/v2";
+    const BASE_CONTACT_API_PATH = "/api/v1";
     export let params = {};
     let stat = {};
     let updateCountry = "XXXX";
-    let updateyear = 1999;
-    let updatefemale_illiteracy_rate = 99.9;
-    let updatemale_illiteracy_rate = 99.0;
-    let updateadult_illiteracy_rate = 99.9;
-    let updateyoung_illiteracy_rate = 99.9;
+    let updateDate = 1999;
+    let updateMenBorn = 999;
+    let updateWomenBorn = 999.9;
+    let updateNatalityRate = 999.9;
+    let updateFertilityRate = 999.9;
     let errorMsg = "";
     let okMsg = "";
     async function getStat() {
-      console.log("Fetching stat..." + params.country + " " + params.year);
+      console.log("Fetching stat..." + params.country + " " + params.date);
       const res = await fetch(
         BASE_CONTACT_API_PATH +
           "/illiteracy/" +
@@ -27,15 +27,15 @@
         const json = await res.json();
         stat = json;
         updateCountry = stat.country;
-        updateyear = stat.year;
-        updatefemale_illiteracy_rate = stat["female_illiteracy_rate"];
-        updatemale_illiteracy_rate = stat["male_illiteracy_rate"];
-        updateadult_illiteracy_rate = stat["adult_illiteracy_rate"];
-        updateyoung_illiteracy_rate = stat["young_illiteracy_rate"];
+        updateDate = stat.year;
+        updateMenBorn = stat["female_illiteracy_rate"];
+        updateWomenBorn = stat["male_illiteracy_rate"];
+        updateNatalityRate = stat["adult_illiteracy_rate"];
+        updateFertilityRate = stat["young_illiteracy_rate"];
         console.log("Received stat.");
       } else {
         if (res.status === 404) {
-          errorMsg = `No existe dato con pais: ${params.country} y fecha: ${params.year}`;
+          errorMsg = `No existe dato con pais: ${params.country} y fecha: ${params.date}`;
         } else if (res.status === 500) {
           errorMsg = "No se han podido acceder a la base de datos";
         }
@@ -47,23 +47,23 @@
       console.log(
         "Updating stat..." +
           JSON.stringify(params.country) +
-          JSON.stringify(params.year)
+          JSON.stringify(params.date)
       );
       const res = await fetch(
         BASE_CONTACT_API_PATH +
           "/illiteracy/" +
           params.country +
           "/" +
-          params.year,
+          params.date,
         {
           method: "PUT",
           body: JSON.stringify({
             country: params.country,
-            date: parseInt(params.year),
-            "female_illiteracy_rate": parseFloat(updatefemale_illiteracy_rate),
-            "male_illiteracy_rate": parseFloat(updatemale_illiteracy_rate),
-            "adult_illiteracy_rate": parseFloat(updateadult_illiteracy_rate),
-            "young_illiteracy_rate": parseFloat(updateyoung_illiteracy_rate),
+            year: parseInt(updateDate),
+            "female_illiteracy_rate": parseFloat(updateMenBorn),
+            "male_illiteracy_rate": parseFloat(updateWomenBorn),
+            "adult_illiteracy_rate": parseFloat(updateNatalityRate),
+            "young_illiteracy_rate": parseFloat(updateFertilityRate),
           }),
           headers: {
             "Content-Type": "application/json",
@@ -74,7 +74,7 @@
           console.log("OK");
           getStat();
           errorMsg = "";
-          okMsg = `${params.country} ${params.year} ha sido actualizado correctamente`;
+          okMsg = `${params.country} ${params.date} ha sido actualizado correctamente`;
         } else {
           if (res.status === 500) {
             errorMsg = "No se han podido acceder a la base de datos";
@@ -122,48 +122,47 @@
           <tr>
             <th> País </th>
             <th>Año </th>
-            <th>porcentaje de mujeres analfabetas </th>
-            <th>porcentaje de hombres analfabetos </th>
-            <th>porcentaje de Adultos analfabetos </th>
-            <th>porcentaje de jovenes analfabetos </th>
+            <th>Alfabetizacion de mujeres </th>
+            <th>Alfabetizacion de hombres </th>
+            <th>Alfabetizacion de adultos </th>
+            <th>Alfabetizacion de jovenes </th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>{updateCountry}</td>
-            <td>{updateyear}</td>
-
+            <td>{updateDate}</td>
             <td
               ><input
                 type="number"
-                placeholder="99.9"
+                placeholder="1000"
                 min="1"
-                bind:value={updatefemale_illiteracy_rate}
+                bind:value={updateMenBorn}
               /></td
             >
             <td
               ><input
                 type="number"
-                placeholder="99.9"
+                placeholder="1000"
                 min="1"
-                bind:value={updatemale_illiteracy_rate}
+                bind:value={updateWomenBorn}
               /></td
             >
             <td
               ><input
                 type="number"
-                placeholder="99.9"
+                placeholder="10.2"
                 min="1.0"
-                bind:value={updateadult_illiteracy_rate}
+                bind:value={updateNatalityRate}
               /></td
             >
             <td
               ><input
                 type="number"
-                placeholder="99.9"
+                placeholder="2.1"
                 min="1.0"
-                bind:value={updateyoung_illiteracy_rate}
+                bind:value={updateFertilityRate}
               /></td
             >
             <td>
