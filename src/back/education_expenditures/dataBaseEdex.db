@@ -8,6 +8,7 @@
 {"year":2016,"country":"Spain","education_expenditure_per_millions":46882.8,"education_expenditure_per_public_expenditure":9.97,"education_expenditure_gdp":4.21,"education_expenditure_per_capita":1009,"_id":"mktrGFVywOjz3DF9"}
 {"year":2016,"country":"Germany","education_expenditure_per_millions":150496.7,"education_expenditure_per_public_expenditure":10.93,"education_expenditure_gdp":4.8,"education_expenditure_per_capita":1828,"_id":"wiLIwcTQ5h57gWbi"}
 {"year":2016,"country":"Japan","education_expenditure_per_millions":141956.6,"education_expenditure_per_public_expenditure":8.38,"education_expenditure_gdp":3.19,"education_expenditure_per_capita":1118,"_id":"x6RzMiVX0PAPPQtd"}
+<<<<<<< HEAD
 {"$$deleted":true,"_id":"326Fq5uAIJLeCrz6"}
 {"$$deleted":true,"_id":"8CjXHpdnVKcET6R7"}
 {"$$deleted":true,"_id":"FMZdfRVyfc5V2qQh"}
@@ -140,3 +141,5 @@
 {"year":2016,"country":"UK","education_expenditure_per_millions":133559.4,"education_expenditure_per_public_expenditure":13.83,"education_expenditure_gdp":5.49,"education_expenditure_per_capita":2035,"_id":"pw5FFGUR59ls4OGX"}
 {"year":2005,"country":"Greece","education_expenditure_per_millions":7897.9,"education_expenditure_per_public_expenditure":8.7,"education_expenditure_gdp":3.96,"education_expenditure_per_capita":719,"_id":"fV225wy0YavAkdt7"}
 {"year":2010,"country":"Korea","education_expenditure_per_millions":123.9,"education_expenditure_per_public_expenditure":122.7,"education_expenditure_gdp":6.7,"education_expenditure_per_capita":1445,"_id":"IfADLdBnTK0PB5v6"}
+=======
+>>>>>>> 750abc89039166d9aac32678cbce89ac9587965e
