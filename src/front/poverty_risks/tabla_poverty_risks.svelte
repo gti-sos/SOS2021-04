@@ -1,5 +1,6 @@
 <script>
     import { Table , Button, Col, Row } from 'sveltestrap';
+    import { Pagination, PaginationItem, PaginationLink } from 'sveltestrap';
 
     //Incluimos la ruta donde se ejecuta el backend de la Api
     const BASE_API_PATH = "api/v1/poverty_risks";
@@ -7,25 +8,53 @@
     /* Creo un array para almacenar los datos
     guardados de las consultas al backend*/
     let datosRecibidos = [];
+    let datosRecibidosSinLimit=[];
+    let superBusqueda=[];
 
     //Variables auxiliares para la muestra de errores
     let msjError = ""
     let msjOK = ""
+
+    //Variables de paginacion
+	let limit = 10;
+	let offset = 0;
+	let masDatos = true;
+    /* No la utilizamos pero nos sirve para saber
+    en que pagina estamos (quizas en un futuro)*/
+	let currentPage=1;
+
+     //Variables de paginacion
+	let limitBusqueda = 10;
+	let offsetBusqueda = 0;
+	let masDatosBusqueda = true;
+    /* No la utilizamos pero nos sirve para saber
+    en que pagina estamos (quizas en un futuro)*/
+	let currentPageBusqueda=1;
+
 
     async function getStats() {
         console.log("Fetching data...");
         /* Busqueda a la URL que se necesite
         (se le pueden pasar parámetros para modificar las consultas)
         Voy a tener una función para cada petición que quiera hacer.*/
-        const res = await fetch(BASE_API_PATH); 
+        const res = await fetch(BASE_API_PATH+"?"+"limit="+limit+"&skip="+(offset*limit));
+        const resSinLimit = await fetch(BASE_API_PATH); 
         if (res.ok) {
             const json = await res.json();
+            const jsonSinLimit = await resSinLimit.json();
             /*Que espere la respuesta de la consulta y la guarde en
             un JSON.*/
             datosRecibidos = json;
+            datosRecibidosSinLimit = jsonSinLimit;
             /*Y ahora la guardas en el array datosRecibidos.*/
             msjError = "";
             msjOK = "Datos cargados correctamente";
+            console.log(JSON.stringify(datosRecibidos,null,2));
+            console.log(datosRecibidos.length +" Datos Recibidos");
+            console.log(datosRecibidosSinLimit.length +": Nº Datos Totales");
+            console.log((Math.ceil(datosRecibidosSinLimit.length / limit))+": Nº max pag(Math.ceil)");
+            console.log(currentPage+": currentPage");
+            console.log(res);
         } else {
             if (datosRecibidos.length == 0) {
                 msjError = "No hay datos disponibles";
@@ -57,6 +86,8 @@
     /* Creo un array para almacenar los datos
     guardados de las BÚSQUEDAS*/
     let datosBusqueda = [];
+    let datosBusquedaSinLimit=[];
+    let queryVarConLimitOffset= "";
 
     async function searchData() {
         console.log("Searching stat...");
@@ -77,19 +108,32 @@
         for (var [clave, valor] of parameters.entries()) {
             queryVar += clave + "=" + valor + "&";
         }
-        var theQuery = queryVar.slice(0, -1);
-        console.log(theQuery);
+        queryVarConLimitOffset +=queryVar+ "limit" + "=" + limitBusqueda + "&" + "skip" + "="+(offsetBusqueda*limitBusqueda);
+        console.log((offsetBusqueda*limitBusqueda)+ " : offsetBusqueda*limitBusqueda");
+        //var theQuery = queryVarConLimitOffset.slice(0, -1);
+        var theQuery = "";
+        // console.log(queryVar+ " : queryVar");
+        //console.log(queryVarConLimitOffset+ " : queryVarConLimitOffset");
 
-        theQuery = (queryVar==="?")?"":queryVar;
+        theQuery = (queryVarConLimitOffset==="?")?"":queryVarConLimitOffset;
+        //console.log(theQuery+ " : theQuery");
+        console.log(BASE_API_PATH + theQuery + " : BASE_API_PATH + theQuery");
         //Comprobamos si la query está vacía
         if (theQuery != "") {
         const res = await fetch(
         BASE_API_PATH +
           theQuery
       );
+
+      const resBusqueda = await fetch(
+        BASE_API_PATH +
+          queryVar
+      );
+
       if (res.ok) {
         console.log("OK");
         const json = await res.json();
+        const jsonBusqueda = await resBusqueda.json();
        /* msjError = "";
         msjOK = "Estos son los resultados de la búsqueda:";*/
         console.log(JSON.stringify(json,null,2))
@@ -99,6 +143,7 @@
             }
             else{
             datosBusqueda = json;
+            datosBusquedaSinLimit=jsonBusqueda;
             }
             if (datosBusqueda.length==0) {
             msjError = "No existen datos con esos parámetros";
@@ -201,16 +246,18 @@
         
         
         const peticionCarga = await fetch(BASE_API_PATH + '/loadInitialData'); //Se espera hasta que termine la peticion
-        
+        //const numTotalDatos = await fetch(BASE_API_PATH);
         if(peticionCarga.ok){
-            const peticionMuestra = await fetch(BASE_API_PATH); //Se accede a la toma de todos los elementos
+            const peticionMuestra = await fetch(BASE_API_PATH+"?"+"limit="+limit+"&offset="+(offset*limit)); //Se accede a la toma de todos los elementos
 
             if(peticionMuestra.ok){
                 console.log(" Receiving data, wait a moment ...")
                 const data = await peticionMuestra.json();
                 datosRecibidos = data;
+                //const numData= await numTotalDatos.json();
+                //datosRecibidosSinLimit = numTotalDatos;
                 console.log(`Done! Received ${data.length} stats.`);
-                console.log(datosRecibidos)
+                //console.log( datosRecibidosSinLimit.length+": Datos Totales Búsqueda");
                 msjError = "";
                 msjOK = "Datos insertados correctamente";
             }
@@ -223,9 +270,12 @@
             console.log("Error loading data.");
             msjError = "Error de acceso a BD";
         }
-        console.log(datosRecibidos.length);
-        
-    
+
+        console.log(datosRecibidos.length +" Datos Recibidos");
+        console.log(currentPage+": currentPage");
+        console.log(datosRecibidosSinLimit.length +": Nº Datos Totales");
+        console.log((Math.ceil(datosRecibidosSinLimit.length) / limit)+": Math.ceil");   
+
     }
 
     async function deleteElement(year, country) {
@@ -281,6 +331,86 @@
 		});
 	}
 
+    function changePage(increment){
+		offset += increment;
+		currentPage += increment;
+        console.log("Cambiando de página");
+		getStats();
+	}
+
+    function changePageBusqueda(increment){
+		offsetBusqueda += increment;
+		currentPageBusqueda += increment;
+        console.log("Cambiando de página en búsqueda");
+
+        if(increment>0){
+            superBusquedaPositiva();
+        }else{
+            superBusquedaNegativa();
+        }
+		
+	}
+
+    async function superBusquedaPositiva(increment){
+		offsetBusqueda += increment;
+		currentPageBusqueda += increment;
+        console.log("Cambiando de página en búsqueda");
+		
+        const ressuperBusqueda = await fetch(BASE_API_PATH+"?"+ "apercnt=0&upercnt=90&limit="+limit+"&skip="+(0));
+        if (ressuperBusqueda.ok) {
+            const jsonsuperBusqueda = await ressuperBusqueda.json();
+            /*Que espere la respuesta de la consulta y la guarde en
+            un JSON.*/
+            superBusqueda = jsonsuperBusqueda;
+            /*Y ahora la guardas en el array datosRecibidos.*/
+            msjError = "";
+            msjOK = "Datos cargados correctamente";
+            console.log(JSON.stringify(superBusqueda,null,2));
+            console.log(superBusqueda.length +" Datos Recibidos");
+            console.log(currentPageBusqueda+": currentPage");
+            console.log(superBusqueda);
+        } else {
+            if (superBusqueda.length == 0) {
+                msjError = "No hay datos disponibles";
+            }
+            if (ressuperBusqueda.status === 500) {
+                msjError = "No se ha podido acceder a la base de datos";
+            }
+        }
+
+	}
+
+
+    async function superBusquedaNegativa(increment){
+		offsetBusqueda += increment;
+		currentPageBusqueda += increment;
+        console.log("Cambiando de página en búsqueda");
+		
+        const ressuperBusqueda = await fetch(BASE_API_PATH+"?"+ "apercnt=0&upercnt=90&limit="+limit+"&skip="+(10));
+        if (ressuperBusqueda.ok) {
+            const jsonsuperBusqueda = await ressuperBusqueda.json();
+            /*Que espere la respuesta de la consulta y la guarde en
+            un JSON.*/
+            superBusqueda = jsonsuperBusqueda;
+            /*Y ahora la guardas en el array datosRecibidos.*/
+            msjError = "";
+            msjOK = "Datos cargados correctamente";
+            console.log(JSON.stringify(superBusqueda,null,2));
+            console.log(superBusqueda.length +" Datos Recibidos");
+            console.log(currentPageBusqueda+": currentPage");
+            console.log(superBusqueda);
+        } else {
+            if (superBusqueda.length == 0) {
+                msjError = "No hay datos disponibles";
+            }
+            if (ressuperBusqueda.status === 500) {
+                msjError = "No se ha podido acceder a la base de datos";
+            }
+        }
+
+	}
+
+
 </script>
 
 <main>
@@ -292,7 +422,7 @@
                     {#if datosRecibidos.length!=0}
                     <Button style="background-color: green;" disabled>Cargar datos</Button>
                     <Button style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
-                    <a href="#/poverty_risks"><Button style="background-color: blue;">Página principal</Button></a>
+                    <!-- <a href="#/poverty_risks"><Button style="background-color: blue;">Página principal</Button></a> -->
                     {:else}
                     <Button style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
                     <Button style="background-color: red;" disabled>Borrar datos</Button>
@@ -377,6 +507,54 @@
     <h3>Listado de datos</h3>
 
     <!-- CREO LA ESTRUCTURA DE LA TABLA -->
+    {#if superBusqueda.length!=0}
+        <Table>
+            <!-- Incluye los nombres de los atributos -->
+            <thead>  
+                <tr style="text-align: center; " valign="middle">
+                    <td valign="middle">Año</td>
+                    <td valign="middle">País</td>
+                    <td valign="middle">Personas en riesgo de pobreza</td>
+                    <td valign="middle">Índice de riesgo de pobreza (persona)</td>
+                    <td valign="middle">Índice de riesgo de pobreza (hogar)</td>
+                    <td valign="middle">Porcentaje población en riesgo de pobreza</td>
+                    <td valign="middle"colspan="2"> Acciones </td>
+                </tr>
+            </thead>
+            <tbody>
+    
+            <!-- Incluye cada uno de los elementos en el vector-->
+
+            <!-- RELLENO LA TABLA CON DATOS -->
+                {#each superBusqueda as stat}
+                <tr  style="text-align: center;">
+                    <th>{stat.year}</th>
+                    <th>{stat.country}</th>
+                    <th>{stat.people_in_risk_of_poverty}</th>
+                    <th>{stat.people_poverty_line}</th>
+                    <th>{stat.home_poverty_line}</th>
+                    <th>{stat.percentage_risk_of_poverty}</th>
+                    <th><button class="btn btn-danger" on:click={deleteElement(stat.year,stat.country)}>Borrar</button></th>
+                    <th><a href='#/poverty_risks/{stat.country}/{stat.year}'><button class="btn btn-warning">Editar</button></a></th>
+                </tr>
+                {/each}
+            </tbody>
+
+        <!-- Funcionando -->
+            
+            <Pagination ariaLabel ="Web Pagination">
+                <PaginationItem class="{currentPageBusqueda===1? 'disabled' : ''}">
+                    <PaginationLink previous href="#/poverty_risks" on:click="{() =>changePageBusqueda(-1)}" />
+                </PaginationItem>
+                {#if masDatosBusqueda}
+                <PaginationItem class="{currentPageBusqueda===(Math.ceil(datosBusquedaSinLimit.length / limit))? 'disabled' : ''}">
+                    <PaginationLink next href="#/poverty_risks" on:click="{() => changePageBusqueda(1)}"/>
+                </PaginationItem>
+                {/if}
+            </Pagination>
+    
+        </Table>
+        {/if}
 
     {#if datosBusqueda.length!=0}
         {#if datosBusqueda.length!=0}
@@ -412,6 +590,18 @@
                 {/each}
             </tbody>
 
+        <!-- Funcionando -->
+            
+            <Pagination ariaLabel ="Web Pagination">
+                <PaginationItem class="{currentPageBusqueda===1? 'disabled' : ''}">
+                    <PaginationLink previous href="#/poverty_risks" on:click="{() =>changePageBusqueda(-1)}" />
+                </PaginationItem>
+                {#if masDatosBusqueda}
+                <PaginationItem class="{currentPageBusqueda===(Math.ceil(datosBusquedaSinLimit.length / limit))? 'disabled' : ''}">
+                    <PaginationLink next href="#/poverty_risks" on:click="{() => changePageBusqueda(1)}"/>
+                </PaginationItem>
+                {/if}
+            </Pagination>
     
         </Table>
 
@@ -475,6 +665,18 @@
                 {/each}
             </tbody>
 
+            <!--  Funcionando   -->
+
+            <Pagination ariaLabel ="Web Pagination">
+                <PaginationItem class="{currentPage===1? 'disabled' : ''}">
+                    <PaginationLink previous href="#/poverty_risks" on:click="{() =>changePage(-1)}" />
+                </PaginationItem>
+                {#if masDatos}
+                <PaginationItem class="{currentPage===(Math.ceil(datosRecibidosSinLimit.length / limit))? 'disabled' : ''}">
+                    <PaginationLink next href="#/poverty_risks" on:click="{() => changePage(1)}"/>
+                </PaginationItem>
+                {/if}
+            </Pagination>
     
         </Table>
 

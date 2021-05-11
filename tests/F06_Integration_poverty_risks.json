@@ -89,10 +89,6 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"There are 7 sources\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.length).to.eql(7);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -244,6 +240,50 @@
 							"key": "y",
 							"value": "2015"
 						},
+						{
+							"key": "upercent",
+							"value": "90"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Toma elementos que cumplen restricciones de parametros Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches Alemania\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Alemania\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://sos2021-04.herokuapp.com/api/v1/poverty_risks?upercent=90",
+					"protocol": "http",
+					"host": [
+						"sos2021-04",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"poverty_risks"
+					],
+					"query": [
 						{
 							"key": "upercent",
 							"value": "90"
