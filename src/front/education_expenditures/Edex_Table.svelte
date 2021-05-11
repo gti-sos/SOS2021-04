@@ -249,7 +249,12 @@
           mensajeError = "No se ha podido acceder a la base de datos";
         }
       }
-      getStats();
+      if(esBusqueda){
+        searchStat();
+      }
+      else{
+        getStats();
+      }
     });
   }
 
