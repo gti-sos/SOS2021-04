@@ -86,7 +86,7 @@
           edex_data.push(json);
           getTotalDatos();
           mensajeError = "";
-          mensajeCorrecto = "Datos cargados correctamente";
+          mensajeCorrecto = "";
           
         }
         else{
@@ -210,7 +210,7 @@
         } else {
           if (res.status === 409) {
             mensajeCorrecto="";
-            mensajeError = `Ya existe un dato con valores idénticos para los campos año y país.`;
+            mensajeError = "Ya existe un dato con valores idénticos para los campos año y país.";
           } else if (res.status === 500) {
             mensajeCorrecto="";
             mensajeError = "No se ha podido acceder a la base de datos.";
@@ -251,9 +251,11 @@
       }
       if(esBusqueda){
         searchStat();
+        mensajeCorrecto = "Dato eliminado correctamente";
       }
       else{
         getStats();
+        mensajeCorrecto = "Dato eliminado correctamente";
       }
     });
   }
