@@ -92,7 +92,7 @@
 							"});\r",
 							"pm.test(\"There are 3 sources\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.length).to.eql(3);\r",
+							"    pm.expect(jsonData.length).to.eql(18);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -130,7 +130,7 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Body matches France\", function () {\r",
+							"pm.test(\"Body matches Spain\", function () {\r",
 							"    pm.expect(pm.response.text()).to.include(\"Spain\");\r",
 							"});"
 						],
@@ -149,8 +149,8 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy/Spain/2018",
-					"protocol": "http",
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/illiteracy/Spain/2018",
+					"protocol": "https",
 					"host": [
 						"sos2021-04",
 						"herokuapp",
@@ -186,8 +186,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy/England/2015",
-					"protocol": "http",
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/illiteracy/England/2015",
+					"protocol": "https",
 					"host": [
 						"sos2021-04",
 						"herokuapp",
@@ -216,7 +216,7 @@
 							"});\r",
 							"pm.test(\"There are 2 sources\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.length).to.eql(2);\r",
+							"    pm.expect(jsonData.length).to.eql(17);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -227,8 +227,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy?ami=98.00",
-					"protocol": "http",
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/illiteracy?ami=98.00",
+					"protocol": "https",
 					"host": [
 						"sos2021-04",
 						"herokuapp",
@@ -272,8 +272,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy?skip=1&limit=2",
-					"protocol": "http",
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/illiteracy?skip=1&limit=2",
+					"protocol": "https",
 					"host": [
 						"sos2021-04",
 						"herokuapp",
@@ -320,8 +320,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://sos2021-04.herokuapp.com/api/v1/illiteracy/Spain",
-					"protocol": "http",
+					"raw": "https://sos2021-04.herokuapp.com/api/v1/illiteracy/Spain",
+					"protocol": "https",
 					"host": [
 						"sos2021-04",
 						"herokuapp",
@@ -597,7 +597,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrar elemento Espana 2016 Copy",
+			"name": "Borrar elemento Espana 2018",
 			"event": [
 				{
 					"listen": "test",
@@ -671,7 +671,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrar todos los elementos Copy",
+			"name": "Borrar todos los elementos",
 			"event": [
 				{
 					"listen": "test",
