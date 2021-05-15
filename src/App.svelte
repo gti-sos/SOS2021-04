@@ -14,10 +14,13 @@
 	
 	import AppPovertyRisks from './front/poverty_risks/appPovertyRisks.svelte';
 	import editData_poverty_risks from "./front/poverty_risks/editData_poverty_risks.svelte";
+
+	import GraficasConjunto from './pages/GraficasConjunto.svelte';
 	
 	const routes = {
 		"/":Home,
 		"/info":Info,
+		"/graphics":GraficasConjunto,
 		
 		"/education_expenditures":App_edex,
 		"/education_expenditures/:country/:year": Edit_data_edex,

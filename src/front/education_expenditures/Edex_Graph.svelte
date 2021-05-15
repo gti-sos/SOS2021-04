@@ -46,9 +46,11 @@ var mensajeError = "";
 
 
 async function tomaDatosGrafica(datos){
+    
     var datosFiltradosAnyo = datos.filter((e)=>{
         return e.year >= inicio;
     });
+
     paises = new Array();
     var arrayTotal = [];
     var arrayAux1 = {};
@@ -103,6 +105,9 @@ async function tomaDatosGrafica(datos){
     
     debemos ir creando los objetos {name: pais, data: datos} de tal manera que data esté ordenado
     por años y en caso de no encontrarse el dato en algún año, el valor será null
+
+
+
     */
    
     var arrayFinal = [];
