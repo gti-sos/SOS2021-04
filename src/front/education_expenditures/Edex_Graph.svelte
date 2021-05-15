@@ -287,6 +287,7 @@ function cambiaDato(nombre){
     cargaGrafica();
 
 }
+onMount(getData);
 
 
 
@@ -294,11 +295,8 @@ function cambiaDato(nombre){
 
 <svelte:head>
 
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js" on:load={getData}></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js" on:load={cargaGrafica} ></script>
+    <script src="https://code.highcharts.com/highcharts.js" on:load={cargaGrafica} ></script>
+    
     
 </svelte:head>
 

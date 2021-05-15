@@ -17436,16 +17436,8 @@ var app = (function () {
     const file$7 = "src\\front\\education_expenditures\\Edex_Graph.svelte";
 
     function create_fragment$7(ctx) {
-    	let script0;
-    	let script0_src_value;
-    	let script1;
-    	let script1_src_value;
-    	let script2;
-    	let script2_src_value;
-    	let script3;
-    	let script3_src_value;
-    	let script4;
-    	let script4_src_value;
+    	let script;
+    	let script_src_value;
     	let t0;
     	let main;
     	let figure;
@@ -17463,11 +17455,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			script0 = element("script");
-    			script1 = element("script");
-    			script2 = element("script");
-    			script3 = element("script");
-    			script4 = element("script");
+    			script = element("script");
     			t0 = space();
     			main = element("main");
     			figure = element("figure");
@@ -17481,41 +17469,29 @@ var app = (function () {
     			thead = element("thead");
     			t4 = space();
     			tbody = element("tbody");
-    			if (script0.src !== (script0_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script0, "src", script0_src_value);
-    			add_location(script0, file$7, 296, 4, 7681);
-    			if (script1.src !== (script1_src_value = "https://code.highcharts.com/modules/series-label.js")) attr_dev(script1, "src", script1_src_value);
-    			add_location(script1, file$7, 297, 4, 7752);
-    			if (script2.src !== (script2_src_value = "https://code.highcharts.com/modules/exporting.js")) attr_dev(script2, "src", script2_src_value);
-    			add_location(script2, file$7, 298, 4, 7833);
-    			if (script3.src !== (script3_src_value = "https://code.highcharts.com/modules/export-data.js")) attr_dev(script3, "src", script3_src_value);
-    			add_location(script3, file$7, 299, 4, 7911);
-    			if (script4.src !== (script4_src_value = "https://code.highcharts.com/modules/accessibility.js")) attr_dev(script4, "src", script4_src_value);
-    			add_location(script4, file$7, 300, 4, 8009);
+    			if (script.src !== (script_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script, "src", script_src_value);
+    			add_location(script, file$7, 297, 4, 7700);
     			attr_dev(div, "id", "container");
-    			add_location(div, file$7, 306, 8, 8191);
-    			add_location(em, file$7, 308, 16, 8342);
+    			add_location(div, file$7, 304, 8, 7877);
+    			add_location(em, file$7, 306, 16, 8028);
     			attr_dev(p, "class", "highcharts-description");
     			set_style(p, "font-size", "0.85em");
     			set_style(p, "text-align", "center");
     			set_style(p, "padding", "1em");
-    			add_location(p, file$7, 307, 12, 8231);
-    			add_location(thead, file$7, 311, 16, 8618);
-    			add_location(tbody, file$7, 312, 16, 8651);
+    			add_location(p, file$7, 305, 12, 7917);
+    			add_location(thead, file$7, 309, 16, 8304);
+    			add_location(tbody, file$7, 310, 16, 8337);
     			attr_dev(table, "id", "datatable");
-    			add_location(table, file$7, 310, 12, 8578);
+    			add_location(table, file$7, 308, 12, 8264);
     			attr_dev(figure, "class", "highcharts-figure svelte-15u343e");
-    			add_location(figure, file$7, 305, 4, 8147);
-    			add_location(main, file$7, 304, 0, 8135);
+    			add_location(figure, file$7, 303, 4, 7833);
+    			add_location(main, file$7, 302, 0, 7821);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			append_dev(document.head, script0);
-    			append_dev(document.head, script1);
-    			append_dev(document.head, script2);
-    			append_dev(document.head, script3);
-    			append_dev(document.head, script4);
+    			append_dev(document.head, script);
     			insert_dev(target, t0, anchor);
     			insert_dev(target, main, anchor);
     			append_dev(main, figure);
@@ -17530,11 +17506,7 @@ var app = (function () {
     			append_dev(table, tbody);
 
     			if (!mounted) {
-    				dispose = [
-    					listen_dev(script3, "load", /*getData*/ ctx[0], false, false, false),
-    					listen_dev(script4, "load", /*cargaGrafica*/ ctx[1], false, false, false)
-    				];
-
+    				dispose = listen_dev(script, "load", /*cargaGrafica*/ ctx[0], false, false, false);
     				mounted = true;
     			}
     		},
@@ -17542,15 +17514,11 @@ var app = (function () {
     		i: noop$1,
     		o: noop$1,
     		d: function destroy(detaching) {
-    			detach_dev(script0);
-    			detach_dev(script1);
-    			detach_dev(script2);
-    			detach_dev(script3);
-    			detach_dev(script4);
+    			detach_dev(script);
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(main);
     			mounted = false;
-    			run_all(dispose);
+    			dispose();
     		}
     	};
 
@@ -17826,6 +17794,7 @@ var app = (function () {
     		cargaGrafica();
     	}
 
+    	onMount(getData);
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -17878,7 +17847,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [getData, cargaGrafica];
+    	return [cargaGrafica];
     }
 
     class Edex_Graph extends SvelteComponentDev {
