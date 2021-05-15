@@ -251,11 +251,9 @@
       }
       if(esBusqueda){
         searchStat();
-        mensajeCorrecto = "Dato eliminado correctamente";
       }
       else{
         getStats();
-        mensajeCorrecto = "Dato eliminado correctamente";
       }
     });
   }

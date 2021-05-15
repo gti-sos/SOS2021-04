@@ -79,7 +79,13 @@
             </a>
             <a href="https://documenter.getpostman.com/view/14947441/TzJsexSA"
               ><Button color="info">Documentación v1</Button></a>
-          </CardBody>
+              <a href="/#/edex_graphs">
+                <Button color="primary">Graficas</Button>
+              </a>
+          
+          
+            </CardBody>
+
           <CardFooter
             >desarrollado por
             <a href="https://github.com/mangonreg">Manuel González Regadera</a>
