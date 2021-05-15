@@ -17470,22 +17470,22 @@ var app = (function () {
     			t4 = space();
     			tbody = element("tbody");
     			if (script.src !== (script_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$7, 297, 4, 7700);
+    			add_location(script, file$7, 342, 4, 9092);
     			attr_dev(div, "id", "container");
-    			add_location(div, file$7, 304, 8, 7877);
-    			add_location(em, file$7, 306, 16, 8028);
+    			add_location(div, file$7, 349, 8, 9269);
+    			add_location(em, file$7, 351, 16, 9420);
     			attr_dev(p, "class", "highcharts-description");
     			set_style(p, "font-size", "0.85em");
     			set_style(p, "text-align", "center");
     			set_style(p, "padding", "1em");
-    			add_location(p, file$7, 305, 12, 7917);
-    			add_location(thead, file$7, 309, 16, 8304);
-    			add_location(tbody, file$7, 310, 16, 8337);
+    			add_location(p, file$7, 350, 12, 9309);
+    			add_location(thead, file$7, 354, 16, 9696);
+    			add_location(tbody, file$7, 355, 16, 9729);
     			attr_dev(table, "id", "datatable");
-    			add_location(table, file$7, 308, 12, 8264);
+    			add_location(table, file$7, 353, 12, 9656);
     			attr_dev(figure, "class", "highcharts-figure svelte-15u343e");
-    			add_location(figure, file$7, 303, 4, 7833);
-    			add_location(main, file$7, 302, 0, 7821);
+    			add_location(figure, file$7, 348, 4, 9225);
+    			add_location(main, file$7, 347, 0, 9213);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -17591,7 +17591,7 @@ var app = (function () {
     	var mensajeError = "";
 
     	//Funciones auxiliares
-    	function tomaDatosGrafica(datos) {
+    	async function tomaDatosGrafica(datos) {
     		var datosFiltradosAnyo = datos.filter(e => {
     			return e.year >= inicio;
     		});
@@ -17703,6 +17703,7 @@ var app = (function () {
 
     	//Funciones principales
     	async function getData() {
+    		console.log("se ejecuta carga datos");
     		const res = await fetch(BASE_API_PATH);
 
     		if (res.ok) {
@@ -17748,6 +17749,53 @@ var app = (function () {
     	}
 
     	async function cargaGrafica() {
+    		//Peticion de datos
+    		console.log("se ejecuta cargar grafica");
+
+    		const res = await fetch(BASE_API_PATH);
+
+    		if (res.ok) {
+    			var json = await res.json();
+
+    			if (json.length === undefined) {
+    				edex_data = [];
+    				edex_data.push(json);
+    			} else {
+    				edex_data = json;
+    			}
+
+    			mensajeError = "";
+    			mensajeCorrecto = "Datos cargados correctamente";
+    		} else {
+    			if (res.status === 500) {
+    				mensajeError = "No se ha podido acceder a la base de datos";
+    				console.log("No");
+    			}
+
+    			if (edex_data.length === 0) {
+    				mensajeError = "No hay datos disponibles";
+    				console.log("No");
+    			}
+    		}
+
+    		console.log(edex_data);
+
+    		//tomamos los años y el dato a buscar de los elementos seleccionados
+    		for (var elemento in edex_data) {
+    			console.log(elemento);
+    			anyos.push(edex_data[elemento].year);
+    			data_clasif.push(edex_data[elemento][datoClasif]);
+    		}
+
+    		console.log("años: " + anyos);
+    		console.log("datos " + datoClasifEsp + ":" + data_clasif);
+    		conjuntoAnyos = new Set(anyos);
+    		anyos = [...conjuntoAnyos];
+
+    		//Tomamos los datos
+    		datosGrafica = await tomaDatosGrafica(edex_data);
+
+    		//Construccion de la grafica
     		Highcharts.chart("container", {
     			title: {
     				text: "Gasto público en educación a nivel mundial"
@@ -17790,11 +17838,9 @@ var app = (function () {
 
     	function cambiaDato(nombre) {
     		datoClasif = nombre;
-    		getData();
     		cargaGrafica();
     	}
 
-    	onMount(getData);
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {

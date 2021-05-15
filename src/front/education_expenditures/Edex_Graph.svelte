@@ -45,7 +45,7 @@ var mensajeError = "";
 //Funciones auxiliares
 
 
-function tomaDatosGrafica(datos){
+async function tomaDatosGrafica(datos){
     var datosFiltradosAnyo = datos.filter((e)=>{
         return e.year >= inicio;
     });
@@ -178,6 +178,7 @@ function rangoAnyos(inic,fin){
 
 
 async function getData(){
+    console.log("se ejecuta carga datos");
     const res = await fetch(
       BASE_API_PATH
       );
@@ -222,6 +223,54 @@ async function getData(){
 }
 
 async function cargaGrafica(){
+
+    //Peticion de datos
+
+    console.log("se ejecuta cargar grafica");
+
+    const res = await fetch(
+      BASE_API_PATH
+      );
+      if (res.ok) {
+        var json = await res.json();
+        if(json.length===undefined){
+          edex_data = [];
+          edex_data.push(json);          
+        }
+        else{
+          edex_data = json;
+        }
+        mensajeError="";
+        mensajeCorrecto="Datos cargados correctamente"
+      } else {
+        if (res.status === 500) {
+          mensajeError = "No se ha podido acceder a la base de datos";
+          console.log("No");
+        }
+        if (edex_data.length === 0) {
+          mensajeError = "No hay datos disponibles";
+          console.log("No")
+        }
+        
+      } 
+      console.log(edex_data);
+      
+      //tomamos los años y el dato a buscar de los elementos seleccionados
+      for(var elemento in edex_data){
+          console.log(elemento);
+          anyos.push(edex_data[elemento].year);
+          data_clasif.push(edex_data[elemento][datoClasif]);
+      }
+      console.log("años: " + anyos);
+      console.log("datos " + datoClasifEsp + ":" + data_clasif);
+      conjuntoAnyos = new Set(anyos);
+      anyos = [...conjuntoAnyos];
+
+      //Tomamos los datos
+
+      datosGrafica = await tomaDatosGrafica(edex_data);
+
+    //Construccion de la grafica
 
     Highcharts.chart('container', {
 
@@ -283,13 +332,9 @@ async function cargaGrafica(){
 
 function cambiaDato(nombre){
     datoClasif = nombre;
-    getData();
     cargaGrafica();
 
 }
-onMount(getData);
-
-
 
 </script>
 
