@@ -55,6 +55,10 @@
     <a href="/#/info">
       <Button color="primary">Info</Button>
     </a>
+
+    <a href="/#/graphics">
+      <Button color="primary">Gráfica Conjunta</Button>
+    </a>
   
     <p />
   
