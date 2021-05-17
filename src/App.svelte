@@ -14,6 +14,7 @@
 	
 	import AppPovertyRisks from './front/poverty_risks/appPovertyRisks.svelte';
 	import editData_poverty_risks from "./front/poverty_risks/editData_poverty_risks.svelte";
+	import povertyRisks_Graphs from "./front/poverty_risks/povertyRisks_Graphs.svelte";
 
 	import GraficasConjunto from './pages/GraficasConjunto.svelte';
 	
@@ -31,6 +32,7 @@
 		
 		"/poverty_risks":AppPovertyRisks,
 		"/poverty_risks/:country/:year": editData_poverty_risks,
+		"/povertyrisks_graphs" : povertyRisks_Graphs,
 		
 		
 		'*': NotFound //Debe ir la última o se ejecutará antes y la tomará como no encontrada

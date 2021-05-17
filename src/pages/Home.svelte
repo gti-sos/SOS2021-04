@@ -114,6 +114,8 @@
             </a>
             <a href="https://documenter.getpostman.com/view/14968173/TzJu8we5">
               <Button color="info">Documentación v1</Button>
+              <a href="/#/povertyrisks_graphs">
+              <Button color="primary">Graficas</Button>
             </a>
           </CardBody>
           <CardFooter
