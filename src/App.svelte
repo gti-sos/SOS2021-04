@@ -11,6 +11,7 @@
 	
 	import illiteracy from "./front/illiteracy/illiteracyApp.svelte";
 	import illiteracy_edit from "./front/illiteracy/edit_data_illiteracy.svelte";
+	import illiteracy_Graphs from "./front/illiteracy/illiteracy_Graphs.svelte";
 	
 	import AppPovertyRisks from './front/poverty_risks/appPovertyRisks.svelte';
 	import editData_poverty_risks from "./front/poverty_risks/editData_poverty_risks.svelte";
@@ -29,6 +30,7 @@
 		
 		"/illiteracy":illiteracy,
 		"/illiteracy/:country/:date":illiteracy_edit,
+		"/illiteracy_graphs" : illiteracy_Graphs,
 		
 		"/poverty_risks":AppPovertyRisks,
 		"/poverty_risks/:country/:year": editData_poverty_risks,
