@@ -393,7 +393,7 @@
         max-width: 500px;
     }
     .highcharts-data-table caption {
-        padding: 1em 0;
+        padding: 1em 0; 
         font-size: 1.2em;
         color: #555;
     }
