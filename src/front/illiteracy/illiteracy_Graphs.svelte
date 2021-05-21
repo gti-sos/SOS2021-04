@@ -24,17 +24,17 @@
     
     
     switch (datoClasif){
-        case "education_expenditure_per_millions":
-            datoClasifEsp = "Gasto en educación en millones de Dolares";
+        case "female_illiteracy_rate":
+            datoClasifEsp = "Tasa de Alfabetización en Mujeres";
             break;
-        case "education_expenditure_per_public_expenditure":
-            datoClasifEsp = "Gasto en educación por gasto público";
+        case "male_illiteracy_rate":
+            datoClasifEsp = "Tasa de Alfabetización en Hombres";
             break;
-        case "education_expenditure_gdp":
-            datoClasifEsp = "Gasto en educación por PIB";
+        case "adult_illiteracy_rate":
+            datoClasifEsp = "Tasa de Alfabetización en Adultos";
             break;
         default:
-            datoClasifEsp="Gasto en educación per capita";
+            datoClasifEsp="Tasa de Alfabetización";
     
     }
     
@@ -280,7 +280,7 @@
         Highcharts.chart('container', {
     
         title: {
-            text: "Gasto público en educación a nivel mundial"
+            text: "Porcentaje de Población Mundial Alfabetizada"
     
         },
     
@@ -354,7 +354,7 @@
         <figure class="highcharts-figure">
             <div id="container"></div>
                 <p class="highcharts-description" style="font-size: 0.85em; text-align: center; padding:1em">
-                    <em>'El Gasto Público en Educación es aquel que destina el Gobierno a instituciones educativas, administración educativa y subsidios para estudiantes y otras entidades privadas a lo largo de un año.'</em>
+                    <em>'La Población que está Alfabetizada se considera a aquella que tienen la habilidad de leer, escribir y controlar los numeros con fluidez'</em>
                 </p>
                 <table id="datatable">
                     <thead></thead>
