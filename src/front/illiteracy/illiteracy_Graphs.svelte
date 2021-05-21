@@ -299,7 +299,7 @@
                 rangeDescription: 'Range:'+inicio+'  to 2016'
             }
         },
-    
+     
         legend: {
             layout: 'vertical',
             align: 'right',
