@@ -201,7 +201,7 @@
 			}
 
 
-		];
+		]; 
 
 
 		// GET para insertar los datos iniciales en la base de datos
