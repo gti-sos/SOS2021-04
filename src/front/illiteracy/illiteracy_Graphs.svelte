@@ -367,7 +367,7 @@
                 label: {
                     connectorAllowed: false
                 },
-                pointStart: inicio
+                pointStart: inicio 
             } 
         },
   series: datosGrafica
