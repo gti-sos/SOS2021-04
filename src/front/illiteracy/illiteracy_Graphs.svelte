@@ -11,7 +11,7 @@
     var anyos = [];
     var paises = [];
     var inicio = 2013;
-    var fin = 2020;
+    var fin = 2019;
     var data_clasif = [];
     var clasif = ["female_illiteracy_rate","male_illiteracy_rate",
     "adult_illiteracy_rate","young_illiteracy_rate",];
@@ -34,7 +34,7 @@
             datoClasifEsp = "Tasa de Alfabetización en Adultos";
             break;
         default:
-            datoClasifEsp="Tasa de Alfabetización";
+            datoClasifEsp="Tasa de Alfabetización en Jovenes";
     
     }
     
@@ -276,7 +276,7 @@
           datosGrafica = await tomaDatosGrafica(edex_data);
     
         //Construccion de la grafica
-    
+    /*
         Highcharts.chart('container', {
     
         title: {
@@ -334,13 +334,50 @@
     
         });
     }
-    
+    */
+    Highcharts.chart('container', {
+  chart: {
+    type: 'spline'
+  },
+  title: {
+    text: "Porcentaje de Población Mundial Alfabetizada"
+  },
+  subtitle: {
+    text: datoClasifEsp
+  },
+  xAxis: {
+    categories: 'Range:'+inicio+'  to 2016'
+  },
+  yAxis: {
+    title: {
+      text:datoClasifEsp
+    },
+    labels: {
+      formatter: function () {
+        return this.value + '%';
+      }
+    }
+  },
+  tooltip: {
+    crosshairs: true,
+    shared: true
+  },
+  plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                pointStart: inicio
+            }
+        },
+  series: datosGrafica
+});
     function cambiaDato(nombre){
         datoClasif = nombre;
         cargaGrafica();
     
     }
-    
+}   
     </script>
     
     <svelte:head>
@@ -377,38 +414,38 @@
     </main>
     
     <style>
-    .highcharts-figure, .highcharts-data-table table {
-        min-width: 360px; 
-        max-width: 800px;
-        margin: 1em auto;
-    }
-    
-    .highcharts-data-table table {
-        font-family: Verdana, sans-serif;
-        border-collapse: collapse;
-        border: 1px solid #EBEBEB;
-        margin: 10px auto;
-        text-align: center;
-        width: 100%;
-        max-width: 500px;
-    }
-    .highcharts-data-table caption {
-        padding: 1em 0; 
-        font-size: 1.2em;
-        color: #555;
-    }
-    .highcharts-data-table th {
-        font-weight: 600;
-        padding: 0.5em;
-    }
-    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-        padding: 0.5em;
-    }
-    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-        background: #f8f8f8;
-    }
-    .highcharts-data-table tr:hover {
-        background: #f1f7ff;
-    }
+        .highcharts-figure, .highcharts-data-table table {
+  min-width: 310px; 
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+  padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+  padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
     
     </style>

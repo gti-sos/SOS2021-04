@@ -17,6 +17,38 @@
 				"adult_illiteracy_rate":98.44,
 				"young_illiteracy_rate":99.72
 			},
+			{
+				"year":2017,
+				"country":"Spain",
+				"female_illiteracy_rate":97.97,
+				"male_illiteracy_rate":97.93,
+				"adult_illiteracy_rate":97.44,
+				"young_illiteracy_rate":97.72
+			},
+			{
+				"year":2016,
+				"country":"Spain",
+				"female_illiteracy_rate":96.97,
+				"male_illiteracy_rate":96.93,
+				"adult_illiteracy_rate":96.44,
+				"young_illiteracy_rate":96.72
+			},
+			{
+				"year":2015,
+				"country":"Spain",
+				"female_illiteracy_rate":95.97,
+				"male_illiteracy_rate":95.93,
+				"adult_illiteracy_rate":95.44,
+				"young_illiteracy_rate":95.72
+			},
+			{
+				"year":2013,
+				"country":"Spain",
+				"female_illiteracy_rate":97.97,
+				"male_illiteracy_rate":98.93,
+				"adult_illiteracy_rate":98.44,
+				"young_illiteracy_rate":99.72
+			},
 
 			{
 				"year":2018,

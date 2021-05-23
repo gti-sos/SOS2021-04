@@ -23826,29 +23826,29 @@ var app = (function () {
     			t1 = space();
     			p = element("p");
     			em = element("em");
-    			em.textContent = "'El Gasto Público en Educación es aquel que destina el Gobierno a instituciones educativas, administración educativa y subsidios para estudiantes y otras entidades privadas a lo largo de un año.'";
+    			em.textContent = "'La Población que está Alfabetizada se considera a aquella que tienen la habilidad de leer, escribir y controlar los numeros con fluidez'";
     			t3 = space();
     			table = element("table");
     			thead = element("thead");
     			t4 = space();
     			tbody = element("tbody");
     			if (script.src !== (script_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$6, 347, 8, 10431);
+    			add_location(script, file$6, 384, 8, 11106);
     			attr_dev(div, "id", "container");
-    			add_location(div, file$6, 354, 12, 10636);
-    			add_location(em, file$6, 356, 20, 10795);
+    			add_location(div, file$6, 391, 12, 11311);
+    			add_location(em, file$6, 393, 20, 11470);
     			attr_dev(p, "class", "highcharts-description");
     			set_style(p, "font-size", "0.85em");
     			set_style(p, "text-align", "center");
     			set_style(p, "padding", "1em");
-    			add_location(p, file$6, 355, 16, 10680);
-    			add_location(thead, file$6, 359, 20, 11083);
-    			add_location(tbody, file$6, 360, 20, 11120);
+    			add_location(p, file$6, 392, 16, 11355);
+    			add_location(thead, file$6, 396, 20, 11700);
+    			add_location(tbody, file$6, 397, 20, 11737);
     			attr_dev(table, "id", "datatable");
-    			add_location(table, file$6, 358, 16, 11039);
-    			attr_dev(figure, "class", "highcharts-figure svelte-ugooo");
-    			add_location(figure, file$6, 353, 8, 10588);
-    			add_location(main, file$6, 352, 4, 10572);
+    			add_location(table, file$6, 395, 16, 11656);
+    			attr_dev(figure, "class", "highcharts-figure svelte-1961wwl");
+    			add_location(figure, file$6, 390, 8, 11263);
+    			add_location(main, file$6, 389, 4, 11247);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -23918,7 +23918,7 @@ var app = (function () {
     	var anyos = [];
     	var paises = [];
     	var inicio = 2013;
-    	var fin = 2020;
+    	var fin = 2019;
     	var data_clasif = [];
 
     	var clasif = [
@@ -23935,17 +23935,17 @@ var app = (function () {
 
     	//Declaramos los arrays que incluirán a cada uno de los paise
     	switch (datoClasif) {
-    		case "education_expenditure_per_millions":
-    			datoClasifEsp = "Gasto en educación en millones de Dolares";
+    		case "female_illiteracy_rate":
+    			datoClasifEsp = "Tasa de Alfabetización en Mujeres";
     			break;
-    		case "education_expenditure_per_public_expenditure":
-    			datoClasifEsp = "Gasto en educación por gasto público";
+    		case "male_illiteracy_rate":
+    			datoClasifEsp = "Tasa de Alfabetización en Hombres";
     			break;
-    		case "education_expenditure_gdp":
-    			datoClasifEsp = "Gasto en educación por PIB";
+    		case "adult_illiteracy_rate":
+    			datoClasifEsp = "Tasa de Alfabetización en Adultos";
     			break;
     		default:
-    			datoClasifEsp = "Gasto en educación per capita";
+    			datoClasifEsp = "Tasa de Alfabetización en Jovenes";
     	}
 
     	//Variables para mensajes al usuario
@@ -24162,49 +24162,91 @@ var app = (function () {
     		datosGrafica = await tomaDatosGrafica(edex_data);
 
     		//Construccion de la grafica
+    		/*
+        Highcharts.chart('container', {
+
+        title: {
+            text: "Porcentaje de Población Mundial Alfabetizada"
+
+        },
+
+        subtitle: {
+            text: datoClasifEsp
+        },
+
+        yAxis: {
+            title: {
+                text: datoClasifEsp
+            }
+        },
+
+        xAxis: {
+            accessibility: {
+                rangeDescription: 'Range:'+inicio+'  to 2016'
+            }
+        },
+     
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                pointStart: inicio
+            }
+        },
+
+        series: datosGrafica,
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+
+        });
+    }
+    */
     		Highcharts.chart("container", {
+    			chart: { type: "spline" },
     			title: {
-    				text: "Gasto público en educación a nivel mundial"
+    				text: "Porcentaje de Población Mundial Alfabetizada"
     			},
     			subtitle: { text: datoClasifEsp },
-    			yAxis: { title: { text: datoClasifEsp } },
     			xAxis: {
-    				accessibility: {
-    					rangeDescription: "Range:" + inicio + "  to 2016"
+    				categories: "Range:" + inicio + "  to 2016"
+    			},
+    			yAxis: {
+    				title: { text: datoClasifEsp },
+    				labels: {
+    					formatter() {
+    						return this.value + "%";
+    					}
     				}
     			},
-    			legend: {
-    				layout: "vertical",
-    				align: "right",
-    				verticalAlign: "middle"
-    			},
+    			tooltip: { crosshairs: true, shared: true },
     			plotOptions: {
     				series: {
     					label: { connectorAllowed: false },
     					pointStart: inicio
     				}
     			},
-    			series: datosGrafica,
-    			responsive: {
-    				rules: [
-    					{
-    						condition: { maxWidth: 500 },
-    						chartOptions: {
-    							legend: {
-    								layout: "horizontal",
-    								align: "center",
-    								verticalAlign: "bottom"
-    							}
-    						}
-    					}
-    				]
-    			}
+    			series: datosGrafica
     		});
-    	}
-
-    	function cambiaDato(nombre) {
-    		datoClasif = nombre;
-    		cargaGrafica();
     	}
 
     	const writable_props = [];
@@ -24234,8 +24276,7 @@ var app = (function () {
     		compareNumbers: compareNumbers$1,
     		rangoAnyos: rangoAnyos$2,
     		getData,
-    		cargaGrafica,
-    		cambiaDato
+    		cargaGrafica
     	});
 
     	$$self.$inject_state = $$props => {
