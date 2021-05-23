@@ -368,7 +368,7 @@
                     connectorAllowed: false
                 },
                 pointStart: inicio
-            }
+            } 
         },
   series: datosGrafica
 });
