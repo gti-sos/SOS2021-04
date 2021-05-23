@@ -377,7 +377,7 @@
         cargaGrafica();
     
     }
-}   
+}    
     </script>
     
     <svelte:head>
