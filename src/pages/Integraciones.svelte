@@ -61,11 +61,11 @@
       <CardBody>
         <CardSubtitle />
         <CardText />
-        <a href="/#/integrations/breakingbad"
-          ><Button color="primary"> API 1</Button></a
+        <a href="/#/integrations/api1"
+          ><Button color="primary"> API Externa 1</Button></a
         >
         <a href="/#/integrations/rickandmortyAPI"
-          ><Button color="primary"> API 2</Button></a
+          ><Button color="primary"> API Externa 2</Button></a
         >
       
       </CardBody>
