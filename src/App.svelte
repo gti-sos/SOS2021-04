@@ -4,6 +4,7 @@
 	import NotFound from "./pages/NotFound.svelte";
 	import Home from "./pages/Home.svelte";
 	import Info from "./pages/Info.svelte";
+	import Integrations from "./pages/Integraciones.svelte";
 	
 	import App_edex from "./front/education_expenditures/App_edex.svelte";
 	import Edit_data_edex from "./front/education_expenditures/Edit_data_edex.svelte";
@@ -23,6 +24,7 @@
 		"/":Home,
 		"/info":Info,
 		"/graphics":GraficasConjunto,
+		"/integrations": Integrations,
 		
 		"/education_expenditures":App_edex,
 		"/education_expenditures/:country/:year": Edit_data_edex,

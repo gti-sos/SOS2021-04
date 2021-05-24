@@ -11,7 +11,7 @@
     var anyos = [];
     var paises = [];
     var inicio = 2013;
-    var fin = 2019;
+    var fin = 2018;
     var data_clasif = [];
     var clasif = ["female_illiteracy_rate","male_illiteracy_rate",
     "adult_illiteracy_rate","young_illiteracy_rate",];
