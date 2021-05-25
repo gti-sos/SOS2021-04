@@ -321,50 +321,7 @@
 			},
 			"response": []
 		},
-		{
-			"name": "Anadir elemento Italia 2016",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Successful POST request\", function () {\r",
-							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\t\t\t\t\"year\":2016,\r\n\t\t\t\t\"country\":\"Italy\",\r\n\t\t\t\t\"education_expenditure_per_millions\": 64936.1 ,\r\n\t\t\t\t\"education_expenditure_per_public_expenditure\":7.81,\r\n\t\t\t\t\"education_expenditure_gdp\":3.83,\r\n\t\t\t\t\"education_expenditure_per_capita\":1071.00\r\n\t\t\t}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://sos2021-04.herokuapp.com/api/v1/education_expenditures",
-					"protocol": "https",
-					"host": [
-						"sos2021-04",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"api",
-						"v1",
-						"education_expenditures"
-					]
-				}
-			},
-			"response": []
-		},
+		
 		{
 			"name": "Anadir elemento Italia 2016 - Error Duplicado",
 			"event": [

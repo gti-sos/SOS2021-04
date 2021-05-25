@@ -28,6 +28,6 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm install
       - run: npm start &
-      - run: npx newman run tests/illiteracy-tests.json
+      - run: npx newman run tests/test_illiteracy2.json
 
   

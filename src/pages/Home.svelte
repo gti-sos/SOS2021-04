@@ -59,6 +59,9 @@
     <a href="/#/graphics">
       <Button color="primary">Gráfica Conjunta</Button>
     </a>
+    <a href="/#/integrations">
+      <Button color="primary">Integraciones</Button>
+    </a>
   
     <p />
   
@@ -151,6 +154,8 @@
             <a href="/#/illiteracy"><Button color="primary">Interfaz</Button></a>
 
             <a href="https://documenter.getpostman.com/view/14948423/TzJsfJT1"><Button color="info">Documentación v1</Button></a>
+            <a href="/#/illiteracy_graphs">
+              <Button color="primary">Graficas</Button>
           </CardBody>
           <CardFooter
             >Desarrollado por

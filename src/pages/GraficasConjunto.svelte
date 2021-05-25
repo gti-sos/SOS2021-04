@@ -83,7 +83,7 @@ async function cargaGrafica(){
     var datosGrafica_edex = await tomaDatosGrafica(edex_data,"education_expenditure_per_public_expenditure");
     console.log("edex final:" + datosGrafica_edex);
     var datosGrafica_pr   = await tomaDatosGrafica(pr_data,"percentage_risk_of_poverty");
-    var datosGrafica_i    = await tomaDatosGrafica(i_data);
+    var datosGrafica_i    = await tomaDatosGrafica(i_data,"male_illiteracy_rate");
 
     //Construccion de la grafica
 
