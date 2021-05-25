@@ -217,6 +217,7 @@
 						res.sendStatus(500); //Error de servidor
 					}
 					else{
+						illiteracy_DB.remove({}, {multi: true});
 						illiteracy_DB.insert(initialData_illiteracy);
 						res.sendStatus(200)                  
 					}
