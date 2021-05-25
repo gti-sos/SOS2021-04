@@ -9041,11 +9041,7 @@ var app = (function () {
     const file$h = "src\\pages\\Home.svelte";
 
     // (23:6) <Col>
-<<<<<<< HEAD
-    function create_default_slot_41(ctx) {
-=======
     function create_default_slot_43(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let a;
 
     	const block = {
@@ -9065,11 +9061,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-<<<<<<< HEAD
-    		id: create_default_slot_41.name,
-=======
     		id: create_default_slot_43.name,
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		type: "slot",
     		source: "(23:6) <Col>",
     		ctx
@@ -9079,11 +9071,7 @@ var app = (function () {
     }
 
     // (26:6) <Col>
-<<<<<<< HEAD
-    function create_default_slot_40(ctx) {
-=======
     function create_default_slot_42(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let a;
 
     	const block = {
@@ -9103,11 +9091,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-<<<<<<< HEAD
-    		id: create_default_slot_40.name,
-=======
     		id: create_default_slot_42.name,
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		type: "slot",
     		source: "(26:6) <Col>",
     		ctx
@@ -9117,11 +9101,7 @@ var app = (function () {
     }
 
     // (29:6) <Col>
-<<<<<<< HEAD
-    function create_default_slot_39(ctx) {
-=======
     function create_default_slot_41(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let a;
 
     	const block = {
@@ -9141,11 +9121,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-<<<<<<< HEAD
-    		id: create_default_slot_39.name,
-=======
     		id: create_default_slot_41.name,
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		type: "slot",
     		source: "(29:6) <Col>",
     		ctx
@@ -9155,11 +9131,7 @@ var app = (function () {
     }
 
     // (22:4) <Container>
-<<<<<<< HEAD
-    function create_default_slot_38(ctx) {
-=======
     function create_default_slot_40(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let col0;
     	let t0;
     	let col1;
@@ -9169,11 +9141,7 @@ var app = (function () {
 
     	col0 = new Col({
     			props: {
-<<<<<<< HEAD
-    				$$slots: { default: [create_default_slot_41] },
-=======
     				$$slots: { default: [create_default_slot_43] },
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -9181,11 +9149,7 @@ var app = (function () {
 
     	col1 = new Col({
     			props: {
-<<<<<<< HEAD
-    				$$slots: { default: [create_default_slot_40] },
-=======
     				$$slots: { default: [create_default_slot_42] },
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -9193,11 +9157,7 @@ var app = (function () {
 
     	col2 = new Col({
     			props: {
-<<<<<<< HEAD
-    				$$slots: { default: [create_default_slot_39] },
-=======
     				$$slots: { default: [create_default_slot_41] },
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -9266,11 +9226,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-<<<<<<< HEAD
-    		id: create_default_slot_38.name,
-=======
     		id: create_default_slot_40.name,
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		type: "slot",
     		source: "(22:4) <Container>",
     		ctx
@@ -9280,11 +9236,7 @@ var app = (function () {
     }
 
     // (42:6) <Col>
-<<<<<<< HEAD
-    function create_default_slot_37(ctx) {
-=======
     function create_default_slot_39(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let a;
     	let b;
     	let t1;
@@ -9312,11 +9264,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-<<<<<<< HEAD
-    		id: create_default_slot_37.name,
-=======
     		id: create_default_slot_39.name,
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		type: "slot",
     		source: "(42:6) <Col>",
     		ctx
@@ -9326,11 +9274,7 @@ var app = (function () {
     }
 
     // (47:6) <Col>
-<<<<<<< HEAD
-    function create_default_slot_36(ctx) {
-=======
     function create_default_slot_38(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let a;
     	let b;
     	let t1;
@@ -9358,11 +9302,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-<<<<<<< HEAD
-    		id: create_default_slot_36.name,
-=======
     		id: create_default_slot_38.name,
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		type: "slot",
     		source: "(47:6) <Col>",
     		ctx
@@ -9372,11 +9312,7 @@ var app = (function () {
     }
 
     // (41:4) <Container>
-<<<<<<< HEAD
-    function create_default_slot_35(ctx) {
-=======
     function create_default_slot_37(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let col0;
     	let t;
     	let col1;
@@ -9384,11 +9320,7 @@ var app = (function () {
 
     	col0 = new Col({
     			props: {
-<<<<<<< HEAD
-    				$$slots: { default: [create_default_slot_37] },
-=======
     				$$slots: { default: [create_default_slot_39] },
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -9396,11 +9328,7 @@ var app = (function () {
 
     	col1 = new Col({
     			props: {
-<<<<<<< HEAD
-    				$$slots: { default: [create_default_slot_36] },
-=======
     				$$slots: { default: [create_default_slot_38] },
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -9454,11 +9382,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-<<<<<<< HEAD
-    		id: create_default_slot_35.name,
-=======
     		id: create_default_slot_37.name,
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		type: "slot",
     		source: "(41:4) <Container>",
     		ctx
@@ -9468,11 +9392,7 @@ var app = (function () {
     }
 
     // (56:6) <Button color="primary">
-<<<<<<< HEAD
-    function create_default_slot_34(ctx) {
-=======
     function create_default_slot_36(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -9489,11 +9409,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-<<<<<<< HEAD
-    		id: create_default_slot_34.name,
-=======
     		id: create_default_slot_36.name,
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		type: "slot",
     		source: "(56:6) <Button color=\\\"primary\\\">",
     		ctx
@@ -9503,11 +9419,7 @@ var app = (function () {
     }
 
     // (60:6) <Button color="primary">
-<<<<<<< HEAD
-    function create_default_slot_33(ctx) {
-=======
     function create_default_slot_35(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -9524,11 +9436,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-<<<<<<< HEAD
-    		id: create_default_slot_33.name,
-=======
     		id: create_default_slot_35.name,
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		type: "slot",
     		source: "(60:6) <Button color=\\\"primary\\\">",
     		ctx
@@ -9537,10 +9445,6 @@ var app = (function () {
     	return block;
     }
 
-<<<<<<< HEAD
-    // (70:12) <CardTitle>
-    function create_default_slot_32(ctx) {
-=======
     // (63:6) <Button color="primary">
     function create_default_slot_34(ctx) {
     	let t;
@@ -9570,18 +9474,13 @@ var app = (function () {
 
     // (73:12) <CardTitle>
     function create_default_slot_33(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let h5;
 
     	const block = {
     		c: function create() {
     			h5 = element("h5");
     			h5.textContent = "Gastos en Educación";
-<<<<<<< HEAD
-    			add_location(h5, file$e, 69, 23, 1764);
-=======
     			add_location(h5, file$h, 72, 23, 1860);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h5, anchor);
@@ -9595,24 +9494,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_33.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(70:12) <CardTitle>",
-=======
     		source: "(73:12) <CardTitle>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (69:10) <CardHeader>
-    function create_default_slot_31(ctx) {
-=======
     // (72:10) <CardHeader>
     function create_default_slot_32(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let cardtitle;
     	let current;
 
@@ -9659,24 +9549,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_32.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(69:10) <CardHeader>",
-=======
     		source: "(72:10) <CardHeader>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (74:12) <CardText>
-    function create_default_slot_30(ctx) {
-=======
     // (77:12) <CardText>
     function create_default_slot_31(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -9695,24 +9576,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_31.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(74:12) <CardText>",
-=======
     		source: "(77:12) <CardText>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (80:14) <Button color="primary">
-    function create_default_slot_29(ctx) {
-=======
     // (83:14) <Button color="primary">
     function create_default_slot_30(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -9731,24 +9603,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_30.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(80:14) <Button color=\\\"primary\\\">",
-=======
     		source: "(83:14) <Button color=\\\"primary\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (82:14) <Button color="primary">
-    function create_default_slot_28(ctx) {
-=======
     // (85:14) <Button color="primary">
     function create_default_slot_29(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -9767,24 +9630,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_29.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(82:14) <Button color=\\\"primary\\\">",
-=======
     		source: "(85:14) <Button color=\\\"primary\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (85:15) <Button color="info">
-    function create_default_slot_27(ctx) {
-=======
     // (88:15) <Button color="info">
     function create_default_slot_28(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -9803,24 +9657,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_28.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(85:15) <Button color=\\\"info\\\">",
-=======
     		source: "(88:15) <Button color=\\\"info\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (87:16) <Button color="primary">
-    function create_default_slot_26$2(ctx) {
-=======
     // (90:16) <Button color="primary">
     function create_default_slot_27(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -9839,24 +9684,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_27.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(87:16) <Button color=\\\"primary\\\">",
-=======
     		source: "(90:16) <Button color=\\\"primary\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (72:10) <CardBody>
-    function create_default_slot_25$2(ctx) {
-=======
     // (75:10) <CardBody>
     function create_default_slot_26$2(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let cardsubtitle;
     	let t0;
     	let cardtext;
@@ -9937,15 +9773,6 @@ var app = (function () {
     			a3 = element("a");
     			create_component(button3.$$.fragment);
     			attr_dev(a0, "href", "https://sos2021-04.herokuapp.com/api/v1/education_expenditures");
-<<<<<<< HEAD
-    			add_location(a0, file$e, 78, 12, 2175);
-    			attr_dev(a1, "href", "/#/education_expenditures");
-    			add_location(a1, file$e, 80, 12, 2321);
-    			attr_dev(a2, "href", "https://documenter.getpostman.com/view/14947441/TzJsexSA");
-    			add_location(a2, file$e, 83, 12, 2446);
-    			attr_dev(a3, "href", "/#/edex_graphs");
-    			add_location(a3, file$e, 85, 14, 2595);
-=======
     			add_location(a0, file$h, 81, 12, 2271);
     			attr_dev(a1, "href", "/#/education_expenditures");
     			add_location(a1, file$h, 83, 12, 2417);
@@ -9953,7 +9780,6 @@ var app = (function () {
     			add_location(a2, file$h, 86, 12, 2542);
     			attr_dev(a3, "href", "/#/edex_graphs");
     			add_location(a3, file$h, 88, 14, 2691);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		},
     		m: function mount(target, anchor) {
     			mount_component(cardsubtitle, target, anchor);
@@ -10052,24 +9878,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_26$2.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(72:10) <CardBody>",
-=======
     		source: "(75:10) <CardBody>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (93:10) <CardFooter              >
-    function create_default_slot_24$3(ctx) {
-=======
     // (96:10) <CardFooter              >
     function create_default_slot_25$2(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t0;
     	let a;
 
@@ -10079,11 +9896,7 @@ var app = (function () {
     			a = element("a");
     			a.textContent = "Manuel González Regadera";
     			attr_dev(a, "href", "https://github.com/mangonreg");
-<<<<<<< HEAD
-    			add_location(a, file$e, 94, 12, 2818);
-=======
     			add_location(a, file$h, 97, 12, 2914);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -10099,24 +9912,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_25$2.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(93:10) <CardFooter              >",
-=======
     		source: "(96:10) <CardFooter              >",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (68:8) <Card class="mb-3">
-    function create_default_slot_23$3(ctx) {
-=======
     // (71:8) <Card class="mb-3">
     function create_default_slot_24$3(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let cardheader;
     	let t0;
     	let cardbody;
@@ -10213,24 +10017,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_24$3.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(68:8) <Card class=\\\"mb-3\\\">",
-=======
     		source: "(71:8) <Card class=\\\"mb-3\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (67:6) <Col xs="auto">
-    function create_default_slot_22$3(ctx) {
-=======
     // (70:6) <Col xs="auto">
     function create_default_slot_23$3(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let card;
     	let current;
 
@@ -10278,35 +10073,22 @@ var app = (function () {
     		block,
     		id: create_default_slot_23$3.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(67:6) <Col xs=\\\"auto\\\">",
-=======
     		source: "(70:6) <Col xs=\\\"auto\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (103:12) <CardTitle>
-    function create_default_slot_21$3(ctx) {
-=======
     // (106:12) <CardTitle>
     function create_default_slot_22$3(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let h5;
 
     	const block = {
     		c: function create() {
     			h5 = element("h5");
     			h5.textContent = "Riegos de pobreza";
-<<<<<<< HEAD
-    			add_location(h5, file$e, 102, 23, 3044);
-=======
     			add_location(h5, file$h, 105, 23, 3140);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h5, anchor);
@@ -10320,24 +10102,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_22$3.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(103:12) <CardTitle>",
-=======
     		source: "(106:12) <CardTitle>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (102:10) <CardHeader>
-    function create_default_slot_20$3(ctx) {
-=======
     // (105:10) <CardHeader>
     function create_default_slot_21$3(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let cardtitle;
     	let current;
 
@@ -10384,24 +10157,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_21$3.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(102:10) <CardHeader>",
-=======
     		source: "(105:10) <CardHeader>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (107:12) <CardText>
-    function create_default_slot_19$3(ctx) {
-=======
     // (110:12) <CardText>
     function create_default_slot_20$3(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -10420,24 +10184,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_20$3.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(107:12) <CardText>",
-=======
     		source: "(110:12) <CardText>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (114:14) <Button color="primary">
-    function create_default_slot_18$3(ctx) {
-=======
     // (117:14) <Button color="primary">
     function create_default_slot_19$3(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -10456,24 +10211,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_19$3.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(114:14) <Button color=\\\"primary\\\">",
-=======
     		source: "(117:14) <Button color=\\\"primary\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (117:14) <Button color="primary">
-    function create_default_slot_17$3(ctx) {
-=======
     // (120:14) <Button color="primary">
     function create_default_slot_18$3(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -10492,24 +10238,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_18$3.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(117:14) <Button color=\\\"primary\\\">",
-=======
     		source: "(120:14) <Button color=\\\"primary\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (120:14) <Button color="info">
-    function create_default_slot_16$3(ctx) {
-=======
     // (123:14) <Button color="info">
     function create_default_slot_17$3(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -10528,24 +10265,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_17$3.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(120:14) <Button color=\\\"info\\\">",
-=======
     		source: "(123:14) <Button color=\\\"info\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (122:14) <Button color="primary">
-    function create_default_slot_15$3(ctx) {
-=======
     // (125:14) <Button color="primary">
     function create_default_slot_16$4(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -10564,24 +10292,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_16$4.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(122:14) <Button color=\\\"primary\\\">",
-=======
     		source: "(125:14) <Button color=\\\"primary\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (105:10) <CardBody>
-    function create_default_slot_14$3(ctx) {
-=======
     // (108:10) <CardBody>
     function create_default_slot_15$4(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let cardsubtitle;
     	let t0;
     	let cardtext;
@@ -10662,15 +10381,6 @@ var app = (function () {
     			a2 = element("a");
     			create_component(button3.$$.fragment);
     			attr_dev(a0, "href", "https://sos2021-04.herokuapp.com/api/v1/poverty_risks");
-<<<<<<< HEAD
-    			add_location(a0, file$e, 112, 12, 3527);
-    			attr_dev(a1, "href", "/#/poverty_risks");
-    			add_location(a1, file$e, 115, 12, 3678);
-    			attr_dev(a2, "href", "/#/povertyrisks_graphs");
-    			add_location(a2, file$e, 120, 14, 3939);
-    			attr_dev(a3, "href", "https://documenter.getpostman.com/view/14968173/TzJu8we5");
-    			add_location(a3, file$e, 118, 12, 3794);
-=======
     			add_location(a0, file$h, 115, 12, 3623);
     			attr_dev(a1, "href", "/#/poverty_risks");
     			add_location(a1, file$h, 118, 12, 3774);
@@ -10678,7 +10388,6 @@ var app = (function () {
     			add_location(a2, file$h, 123, 14, 4035);
     			attr_dev(a3, "href", "https://documenter.getpostman.com/view/14968173/TzJu8we5");
     			add_location(a3, file$h, 121, 12, 3890);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		},
     		m: function mount(target, anchor) {
     			mount_component(cardsubtitle, target, anchor);
@@ -10775,24 +10484,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_15$4.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(105:10) <CardBody>",
-=======
     		source: "(108:10) <CardBody>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (125:10) <CardFooter              >
-    function create_default_slot_13$3(ctx) {
-=======
     // (128:10) <CardFooter              >
     function create_default_slot_14$4(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t0;
     	let a;
 
@@ -10802,11 +10502,7 @@ var app = (function () {
     			a = element("a");
     			a.textContent = "Javier Carmona Andrés";
     			attr_dev(a, "href", "https://github.com/JavierCarmona16");
-<<<<<<< HEAD
-    			add_location(a, file$e, 126, 12, 4138);
-=======
     			add_location(a, file$h, 129, 12, 4234);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -10822,24 +10518,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_14$4.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(125:10) <CardFooter              >",
-=======
     		source: "(128:10) <CardFooter              >",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (101:8) <Card class="mb-3">
-    function create_default_slot_12$3(ctx) {
-=======
     // (104:8) <Card class="mb-3">
     function create_default_slot_13$4(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let cardheader;
     	let t0;
     	let cardbody;
@@ -10936,24 +10623,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_13$4.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(101:8) <Card class=\\\"mb-3\\\">",
-=======
     		source: "(104:8) <Card class=\\\"mb-3\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (100:6) <Col xs="auto">
-    function create_default_slot_11$3(ctx) {
-=======
     // (103:6) <Col xs="auto">
     function create_default_slot_12$4(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let card;
     	let current;
 
@@ -11001,35 +10679,22 @@ var app = (function () {
     		block,
     		id: create_default_slot_12$4.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(100:6) <Col xs=\\\"auto\\\">",
-=======
     		source: "(103:6) <Col xs=\\\"auto\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (135:12) <CardTitle>
-    function create_default_slot_10$3(ctx) {
-=======
     // (138:12) <CardTitle>
     function create_default_slot_11$4(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let h5;
 
     	const block = {
     		c: function create() {
     			h5 = element("h5");
     			h5.textContent = "Analfabetismo";
-<<<<<<< HEAD
-    			add_location(h5, file$e, 134, 23, 4367);
-=======
     			add_location(h5, file$h, 137, 23, 4463);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h5, anchor);
@@ -11043,24 +10708,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_11$4.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(135:12) <CardTitle>",
-=======
     		source: "(138:12) <CardTitle>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (134:10) <CardHeader>
-    function create_default_slot_9$3(ctx) {
-=======
     // (137:10) <CardHeader>
     function create_default_slot_10$4(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let cardtitle;
     	let current;
 
@@ -11107,24 +10763,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_10$4.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(134:10) <CardHeader>",
-=======
     		source: "(137:10) <CardHeader>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (139:12) <CardText>
-    function create_default_slot_8$3(ctx) {
-=======
     // (142:12) <CardText>
     function create_default_slot_9$4(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -11143,24 +10790,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_9$4.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(139:12) <CardText>",
-=======
     		source: "(142:12) <CardText>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (142:41) <Button color="primary">
-    function create_default_slot_7$3(ctx) {
-=======
     // (145:41) <Button color="primary">
     function create_default_slot_8$4(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -11179,24 +10817,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_8$4.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(142:41) <Button color=\\\"primary\\\">",
-=======
     		source: "(145:41) <Button color=\\\"primary\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (144:36) <Button color="primary">
-    function create_default_slot_6$3(ctx) {
-=======
     // (147:36) <Button color="primary">
     function create_default_slot_7$4(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -11215,24 +10844,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_7$4.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(144:36) <Button color=\\\"primary\\\">",
-=======
     		source: "(147:36) <Button color=\\\"primary\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (146:79) <Button color="info">
-    function create_default_slot_5$3(ctx) {
-=======
     // (149:79) <Button color="info">
     function create_default_slot_6$4(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t;
 
     	const block = {
@@ -11251,39 +10871,16 @@ var app = (function () {
     		block,
     		id: create_default_slot_6$4.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(146:79) <Button color=\\\"info\\\">",
-=======
     		source: "(149:79) <Button color=\\\"info\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (137:10) <CardBody>
-    function create_default_slot_4$4(ctx) {
-    	let cardsubtitle;
-    	let t0;
-    	let cardtext;
-    	let t1;
-    	let a0;
-    	let button0;
-    	let t2;
-    	let a1;
-    	let button1;
-    	let t3;
-    	let a2;
-    	let button2;
-    	let current;
-    	cardsubtitle = new CardSubtitle({ $$inline: true });
-=======
     // (151:14) <Button color="primary">
     function create_default_slot_5$4(ctx) {
     	let t;
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
 
     	const block = {
     		c: function create() {
@@ -11390,13 +10987,6 @@ var app = (function () {
     			a3 = element("a");
     			create_component(button3.$$.fragment);
     			attr_dev(a0, "href", "/api/v1/illiteracy");
-<<<<<<< HEAD
-    			add_location(a0, file$e, 141, 12, 4613);
-    			attr_dev(a1, "href", "/#/illiteracy");
-    			add_location(a1, file$e, 143, 12, 4701);
-    			attr_dev(a2, "href", "https://documenter.getpostman.com/view/14948423/TzJsfJT1");
-    			add_location(a2, file$e, 145, 12, 4786);
-=======
     			add_location(a0, file$h, 144, 12, 4709);
     			attr_dev(a1, "href", "/#/illiteracy");
     			add_location(a1, file$h, 146, 12, 4797);
@@ -11404,7 +10994,6 @@ var app = (function () {
     			add_location(a2, file$h, 148, 12, 4882);
     			attr_dev(a3, "href", "/#/illiteracy_graphs");
     			add_location(a3, file$h, 149, 12, 5013);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		},
     		m: function mount(target, anchor) {
     			mount_component(cardsubtitle, target, anchor);
@@ -11503,24 +11092,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_4$6.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(137:10) <CardBody>",
-=======
     		source: "(140:10) <CardBody>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (148:10) <CardFooter              >
-    function create_default_slot_3$4(ctx) {
-=======
     // (153:10) <CardFooter              >
     function create_default_slot_3$6(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let t0;
     	let a;
 
@@ -11530,11 +11110,7 @@ var app = (function () {
     			a = element("a");
     			a.textContent = "Miguel Gómez Vázquez";
     			attr_dev(a, "href", "https://github.com/migueclon98");
-<<<<<<< HEAD
-    			add_location(a, file$e, 149, 12, 4994);
-=======
     			add_location(a, file$h, 154, 12, 5192);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -11550,24 +11126,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_3$6.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(148:10) <CardFooter              >",
-=======
     		source: "(153:10) <CardFooter              >",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (133:8) <Card class="mb-3">
-    function create_default_slot_2$5(ctx) {
-=======
     // (136:8) <Card class="mb-3">
     function create_default_slot_2$7(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let cardheader;
     	let t0;
     	let cardbody;
@@ -11664,24 +11231,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$7.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(133:8) <Card class=\\\"mb-3\\\">",
-=======
     		source: "(136:8) <Card class=\\\"mb-3\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (132:6) <Col xs="auto">
-    function create_default_slot_1$6(ctx) {
-=======
     // (135:6) <Col xs="auto">
     function create_default_slot_1$8(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let card;
     	let current;
 
@@ -11729,24 +11287,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$8.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(132:6) <Col xs=\\\"auto\\\">",
-=======
     		source: "(135:6) <Col xs=\\\"auto\\\">",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (66:4) <Container>
-    function create_default_slot$6(ctx) {
-=======
     // (69:4) <Container>
     function create_default_slot$8(ctx) {
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let col0;
     	let t0;
     	let col1;
@@ -11846,11 +11395,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$8.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(66:4) <Container>",
-=======
     		source: "(69:4) <Container>",
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		ctx
     	});
 
@@ -11881,12 +11426,6 @@ var app = (function () {
     	let a1;
     	let button1;
     	let t13;
-<<<<<<< HEAD
-    	let p3;
-    	let t14;
-    	let h22;
-    	let t16;
-=======
     	let a2;
     	let button2;
     	let t14;
@@ -11894,17 +11433,12 @@ var app = (function () {
     	let t15;
     	let h22;
     	let t17;
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     	let container2;
     	let current;
 
     	container0 = new Container({
     			props: {
-<<<<<<< HEAD
-    				$$slots: { default: [create_default_slot_38] },
-=======
     				$$slots: { default: [create_default_slot_40] },
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -11912,30 +11446,13 @@ var app = (function () {
 
     	container1 = new Container({
     			props: {
-<<<<<<< HEAD
-    				$$slots: { default: [create_default_slot_35] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	button0 = new Button({
-    			props: {
-    				color: "primary",
-    				$$slots: { default: [create_default_slot_34] },
-=======
     				$$slots: { default: [create_default_slot_37] },
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     				$$scope: { ctx }
     			},
     			$$inline: true
     		});
 
-<<<<<<< HEAD
-    	button1 = new Button({
-=======
     	button0 = new Button({
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     			props: {
     				color: "primary",
     				$$slots: { default: [create_default_slot_36] },
@@ -11999,27 +11516,6 @@ var app = (function () {
     			a1 = element("a");
     			create_component(button1.$$.fragment);
     			t13 = space();
-<<<<<<< HEAD
-    			p3 = element("p");
-    			t14 = space();
-    			h22 = element("h2");
-    			h22.textContent = "API's";
-    			t16 = space();
-    			create_component(container2.$$.fragment);
-    			attr_dev(h1, "class", "svelte-1c5583h");
-    			add_location(h1, file$e, 18, 4, 276);
-    			add_location(h20, file$e, 20, 4, 305);
-    			add_location(p0, file$e, 32, 4, 679);
-    			add_location(h21, file$e, 33, 4, 690);
-    			add_location(p1, file$e, 34, 4, 729);
-    			add_location(p2, file$e, 52, 4, 1422);
-    			attr_dev(a0, "href", "/#/info");
-    			add_location(a0, file$e, 54, 4, 1437);
-    			attr_dev(a1, "href", "/#/graphics");
-    			add_location(a1, file$e, 58, 4, 1518);
-    			add_location(p3, file$e, 62, 4, 1617);
-    			add_location(h22, file$e, 64, 4, 1632);
-=======
     			a2 = element("a");
     			create_component(button2.$$.fragment);
     			t14 = space();
@@ -12044,7 +11540,6 @@ var app = (function () {
     			add_location(a2, file$h, 61, 4, 1613);
     			add_location(p3, file$h, 65, 4, 1713);
     			add_location(h22, file$h, 67, 4, 1728);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     			attr_dev(main, "class", "svelte-1c5583h");
     			add_location(main, file$h, 17, 2, 264);
     		},
@@ -12075,12 +11570,6 @@ var app = (function () {
     			append_dev(main, a1);
     			mount_component(button1, a1, null);
     			append_dev(main, t13);
-<<<<<<< HEAD
-    			append_dev(main, p3);
-    			append_dev(main, t14);
-    			append_dev(main, h22);
-    			append_dev(main, t16);
-=======
     			append_dev(main, a2);
     			mount_component(button2, a2, null);
     			append_dev(main, t14);
@@ -12088,7 +11577,6 @@ var app = (function () {
     			append_dev(main, t15);
     			append_dev(main, h22);
     			append_dev(main, t17);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     			mount_component(container2, main, null);
     			current = true;
     		},
@@ -12121,8 +11609,6 @@ var app = (function () {
     			}
 
     			button1.$set(button1_changes);
-<<<<<<< HEAD
-=======
     			const button2_changes = {};
 
     			if (dirty & /*$$scope*/ 1) {
@@ -12130,7 +11616,6 @@ var app = (function () {
     			}
 
     			button2.$set(button2_changes);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     			const container2_changes = {};
 
     			if (dirty & /*$$scope*/ 1) {
@@ -12145,10 +11630,7 @@ var app = (function () {
     			transition_in(container1.$$.fragment, local);
     			transition_in(button0.$$.fragment, local);
     			transition_in(button1.$$.fragment, local);
-<<<<<<< HEAD
-=======
     			transition_in(button2.$$.fragment, local);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     			transition_in(container2.$$.fragment, local);
     			current = true;
     		},
@@ -12157,10 +11639,7 @@ var app = (function () {
     			transition_out(container1.$$.fragment, local);
     			transition_out(button0.$$.fragment, local);
     			transition_out(button1.$$.fragment, local);
-<<<<<<< HEAD
-=======
     			transition_out(button2.$$.fragment, local);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     			transition_out(container2.$$.fragment, local);
     			current = false;
     		},
@@ -12170,10 +11649,7 @@ var app = (function () {
     			destroy_component(container1);
     			destroy_component(button0);
     			destroy_component(button1);
-<<<<<<< HEAD
-=======
     			destroy_component(button2);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     			destroy_component(container2);
     		}
     	};
@@ -19339,22 +18815,23 @@ var app = (function () {
     			t4 = space();
     			tbody = element("tbody");
     			if (script.src !== (script_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$b, 347, 4, 9106);
+    			add_location(script, file$b, 330, 4, 9025);
     			attr_dev(div, "id", "container");
-    			add_location(div, file$b, 354, 8, 9283);
-    			add_location(em, file$b, 356, 16, 9434);
+    			attr_dev(div, "class", "svelte-1nyqhe3");
+    			add_location(div, file$b, 337, 8, 9202);
+    			add_location(em, file$b, 339, 16, 9353);
     			attr_dev(p, "class", "highcharts-description");
     			set_style(p, "font-size", "0.85em");
     			set_style(p, "text-align", "center");
     			set_style(p, "padding", "1em");
-    			add_location(p, file$b, 355, 12, 9323);
-    			add_location(thead, file$b, 359, 16, 9710);
-    			add_location(tbody, file$b, 360, 16, 9743);
+    			add_location(p, file$b, 338, 12, 9242);
+    			add_location(thead, file$b, 342, 16, 9629);
+    			add_location(tbody, file$b, 343, 16, 9662);
     			attr_dev(table, "id", "datatable");
-    			add_location(table, file$b, 358, 12, 9670);
-    			attr_dev(figure, "class", "highcharts-figure svelte-15u343e");
-    			add_location(figure, file$b, 353, 4, 9239);
-    			add_location(main, file$b, 352, 0, 9227);
+    			add_location(table, file$b, 341, 12, 9589);
+    			attr_dev(figure, "class", "highcharts-figure svelte-1nyqhe3");
+    			add_location(figure, file$b, 336, 4, 9158);
+    			add_location(main, file$b, 335, 0, 9146);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -19423,7 +18900,7 @@ var app = (function () {
     	var edex_data = [];
     	var anyos = [];
     	var paises = [];
-    	var inicio = 2013;
+    	var inicio = 2014;
     	var fin = 2016;
     	var data_clasif = [];
 
@@ -19438,6 +18915,7 @@ var app = (function () {
     	var datoClasifEsp = "";
     	var conjuntoAnyos = new Set(anyos);
     	var datosGrafica = [];
+    	var anyosGrafica = [];
 
     	//Declaramos los arrays que incluirán a cada uno de los paise
     	switch (datoClasif) {
@@ -19667,44 +19145,31 @@ var app = (function () {
     		//Tomamos los datos
     		datosGrafica = await tomaDatosGrafica(edex_data);
 
+    		anyosGrafica = rangoAnyos$3(inicio, fin);
+
     		//Construccion de la grafica
     		Highcharts.chart("container", {
+    			chart: { type: "column" },
     			title: {
-    				text: "Gasto público en educación a nivel mundial"
+    				text: "Gasto Público en educación a nivel mundial"
     			},
     			subtitle: { text: datoClasifEsp },
-    			yAxis: { title: { text: datoClasifEsp } },
     			xAxis: {
-    				accessibility: {
-    					rangeDescription: "Range:" + inicio + "  to 2016"
-    				}
+    				categories: anyosGrafica,
+    				crosshair: true
     			},
-    			legend: {
-    				layout: "vertical",
-    				align: "right",
-    				verticalAlign: "middle"
+    			yAxis: { min: 0, title: { text: datoClasifEsp } },
+    			tooltip: {
+    				headerFormat: "<span style=\"font-size:10px\">{point.key}</span><table>",
+    				pointFormat: "<tr><td style=\"color:{series.color};padding:0\">{series.name}: </td>" + "<td style=\"padding:0\"><b>{point.y:.1f} mm</b></td></tr>",
+    				footerFormat: "</table>",
+    				shared: true,
+    				useHTML: true
     			},
     			plotOptions: {
-    				series: {
-    					label: { connectorAllowed: false },
-    					pointStart: inicio
-    				}
+    				column: { pointPadding: 0.2, borderWidth: 0 }
     			},
-    			series: datosGrafica,
-    			responsive: {
-    				rules: [
-    					{
-    						condition: { maxWidth: 500 },
-    						chartOptions: {
-    							legend: {
-    								layout: "horizontal",
-    								align: "center",
-    								verticalAlign: "bottom"
-    							}
-    						}
-    					}
-    				]
-    			}
+    			series: datosGrafica
     		});
     	}
 
@@ -19734,6 +19199,7 @@ var app = (function () {
     		datoClasifEsp,
     		conjuntoAnyos,
     		datosGrafica,
+    		anyosGrafica,
     		mensajeCorrecto,
     		mensajeError,
     		tomaDatosGrafica,
@@ -19757,6 +19223,7 @@ var app = (function () {
     		if ("datoClasifEsp" in $$props) datoClasifEsp = $$props.datoClasifEsp;
     		if ("conjuntoAnyos" in $$props) conjuntoAnyos = $$props.conjuntoAnyos;
     		if ("datosGrafica" in $$props) datosGrafica = $$props.datosGrafica;
+    		if ("anyosGrafica" in $$props) anyosGrafica = $$props.anyosGrafica;
     		if ("mensajeCorrecto" in $$props) mensajeCorrecto = $$props.mensajeCorrecto;
     		if ("mensajeError" in $$props) mensajeError = $$props.mensajeError;
     	};
@@ -20227,42 +19694,11 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			p = element("p");
-<<<<<<< HEAD
-    			em = element("em");
-    			em.textContent = "'El Gasto Público en Educación es aquel que destina el Gobierno a instituciones educativas, administración educativa y subsidios para estudiantes y otras entidades privadas a lo largo de un año.'";
-    			t3 = space();
-    			table = element("table");
-    			thead = element("thead");
-    			t4 = space();
-    			tbody = element("tbody");
-    			if (script.src !== (script_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$9, 327, 4, 8946);
-    			attr_dev(div, "id", "container");
-    			attr_dev(div, "class", "svelte-1nyqhe3");
-    			add_location(div, file$9, 334, 8, 9123);
-    			add_location(em, file$9, 336, 16, 9274);
-    			attr_dev(p, "class", "highcharts-description");
-    			set_style(p, "font-size", "0.85em");
-    			set_style(p, "text-align", "center");
-    			set_style(p, "padding", "1em");
-    			add_location(p, file$9, 335, 12, 9163);
-    			add_location(thead, file$9, 339, 16, 9550);
-    			add_location(tbody, file$9, 340, 16, 9583);
-    			attr_dev(table, "id", "datatable");
-    			add_location(table, file$9, 338, 12, 9510);
-    			attr_dev(figure, "class", "highcharts-figure svelte-1nyqhe3");
-    			add_location(figure, file$9, 333, 4, 9079);
-    			add_location(main, file$9, 332, 0, 9067);
-    		},
-    		l: function claim(nodes) {
-    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
-=======
     			b = element("b");
     			t = text(/*mensajeCorrecto*/ ctx[7]);
     			add_location(b, file$a, 415, 45, 12470);
     			attr_dev(p, "class", "mensajeCorrecto svelte-3ztnfx");
     			add_location(p, file$a, 415, 18, 12443);
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -20330,34 +19766,9 @@ var app = (function () {
     	return block;
     }
 
-<<<<<<< HEAD
-    function instance$9($$self, $$props, $$invalidate) {
-    	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots("Edex_Graph", slots, []);
-    	var BASE_API_PATH = "/api/v1/education_expenditures";
-    	var edex_data = [];
-    	var anyos = [];
-    	var paises = [];
-    	var inicio = 2014;
-    	var fin = 2016;
-    	var data_clasif = [];
-
-    	var clasif = [
-    		"education_expenditure_per_millions",
-    		"education_expenditure_per_public_expenditure",
-    		"education_expenditure_gdp",
-    		"education_expenditure_per_capita"
-    	];
-
-    	var datoClasif = clasif[Math.floor(Math.random() * clasif.length)];
-    	var datoClasifEsp = "";
-    	var conjuntoAnyos = new Set(anyos);
-    	var datosGrafica = [];
-=======
     // (412:14) <Col md=4 style="text-align: center;">
     function create_default_slot_20$1(ctx) {
     	let if_block_anchor;
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
 
     	function select_block_type_1(ctx, dirty) {
     		if (/*mensajeError*/ ctx[6].length != 0) return create_if_block_3$1;
@@ -20955,34 +20366,9 @@ var app = (function () {
     				set_input_value(input3, /*query*/ ctx[5].upm);
     			}
 
-<<<<<<< HEAD
-    		//Construccion de la grafica
-    		Highcharts.chart("container", {
-    			chart: { type: "column" },
-    			title: {
-    				text: "Gasto Público en educación a nivel mundial"
-    			},
-    			subtitle: { text: datoClasifEsp },
-    			xAxis: { categories: anyos, crosshair: true },
-    			yAxis: { min: 0, title: { text: datoClasifEsp } },
-    			tooltip: {
-    				headerFormat: "<span style=\"font-size:10px\">{point.key}</span><table>",
-    				pointFormat: "<tr><td style=\"color:{series.color};padding:0\">{series.name}: </td>" + "<td style=\"padding:0\"><b>{point.y:.1f} mm</b></td></tr>",
-    				footerFormat: "</table>",
-    				shared: true,
-    				useHTML: true
-    			},
-    			plotOptions: {
-    				column: { pointPadding: 0.2, borderWidth: 0 }
-    			},
-    			series: datosGrafica
-    		});
-    	}
-=======
     			if (dirty[0] & /*query*/ 32 && to_number(input4.value) !== /*query*/ ctx[5].app) {
     				set_input_value(input4, /*query*/ ctx[5].app);
     			}
->>>>>>> 84ace4a8f433ae6cd2ef3dbd68047a316c5a6cbd
 
     			if (dirty[0] & /*query*/ 32 && to_number(input5.value) !== /*query*/ ctx[5].upp) {
     				set_input_value(input5, /*query*/ ctx[5].upp);

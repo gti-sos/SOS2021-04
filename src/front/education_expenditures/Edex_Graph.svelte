@@ -19,6 +19,7 @@ var datoClasif = clasif[Math.floor(Math.random()*clasif.length)];
 var datoClasifEsp = "";
 var conjuntoAnyos = new Set(anyos);
 var datosGrafica = [];
+var anyosGrafica = [];
 
 //Declaramos los arrays que incluirán a cada uno de los paise
 
@@ -275,6 +276,8 @@ async function cargaGrafica(){
 
       datosGrafica = await tomaDatosGrafica(edex_data);
 
+      anyosGrafica = rangoAnyos(inicio,fin);
+
     //Construccion de la grafica
 
     Highcharts.chart('container', {
@@ -288,7 +291,7 @@ async function cargaGrafica(){
         text: datoClasifEsp
     },
     xAxis: {
-        categories: anyos,
+        categories: anyosGrafica,
         crosshair: true
     },
     yAxis: {
