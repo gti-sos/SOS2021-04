@@ -10,7 +10,7 @@ var BASE_API_PATH = '/api/v1/education_expenditures';
 var edex_data = [];
 var anyos = [];
 var paises = [];
-var inicio = 2013;
+var inicio = 2014;
 var fin = 2016;
 var data_clasif = [];
 var clasif = ["education_expenditure_per_millions","education_expenditure_per_public_expenditure",
@@ -278,61 +278,41 @@ async function cargaGrafica(){
     //Construccion de la grafica
 
     Highcharts.chart('container', {
-
-    title: {
-        text: "Gasto público en educación a nivel mundial"
-
+    chart: {
+        type: 'column'
     },
-
+    title: {
+        text: 'Gasto Público en educación a nivel mundial'
+    },
     subtitle: {
         text: datoClasifEsp
     },
-
+    xAxis: {
+        categories: anyos,
+        crosshair: true
+    },
     yAxis: {
+        min: 0,
         title: {
             text: datoClasifEsp
         }
     },
-
-    xAxis: {
-        accessibility: {
-            rangeDescription: 'Range:'+inicio+'  to 2016'
-        }
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
     },
-
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
-    },
-
     plotOptions: {
-        series: {
-            label: {
-                connectorAllowed: false
-            },
-            pointStart: inicio
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
         }
     },
-
-    series: datosGrafica,
-
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom'
-                }
-            }
-        }]
-    }
-
-    });
+    series: datosGrafica
+});
 }
 
 function cambiaDato(nombre){
@@ -378,9 +358,13 @@ function cambiaDato(nombre){
 
 <style>
 .highcharts-figure, .highcharts-data-table table {
-    min-width: 360px; 
+    min-width: 310px; 
     max-width: 800px;
     margin: 1em auto;
+}
+
+#container {
+    height: 400px;
 }
 
 .highcharts-data-table table {
@@ -410,5 +394,6 @@ function cambiaDato(nombre){
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
 }
+
 
 </style>
