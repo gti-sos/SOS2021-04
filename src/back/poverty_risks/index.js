@@ -7,6 +7,8 @@
 
 // Api Javier Carmona Andrés - poverty_risks
 
+const request = require("request");
+
 /* Cuando alguien invoque a register me pasa un objeto app y
 con ese objeto app es con la que yo puedo registrar los métodos de mi API.*/
 module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
@@ -885,5 +887,22 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 
 		res.status(405).send("Metodo no permitido"); //Method not allowed
 	});
+
+
+	app.use("/proxyHeroku", function(req, res) {
+		console.log("New Proxy Call!");
+
+		var apiServerHost = 'https://sos2021-23.herokuapp.com'	//api/v1/du-stats;
+		console.log("apiServerHost = "+ apiServerHost);
+		console.log("baseURL = "+ req.baseUrl);
+		console.log("url = "+ req.url);
+
+		var url = apiServerHost + req.url;
+
+		console.log('piped: ' + req.url);
+		
+		req.pipe(request(url)).pipe(res);
+	  });
+	  
 
 };
