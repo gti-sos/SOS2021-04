@@ -121,9 +121,16 @@
             </a>
             <a href="https://documenter.getpostman.com/view/14968173/TzJu8we5">
               <Button color="info">Documentación v1</Button>
+              </a>
               <a href="/#/povertyrisks_graphs">
-              <Button color="primary">Graficas</Button>
-            </a>
+              <Button color="danger">Mi gráfica</Button>
+              </a>
+              <a href="/#/povertyrisks_graphs">
+              <Button color="dark">Integración con natality-stats (con cors)</Button>
+              </a>
+              <a href="/#/povertyrisks_graphs">
+              <Button color="dark">Integración con drug-use (con proxy)</Button>
+              </a>
           </CardBody>
           <CardFooter
             >desarrollado por

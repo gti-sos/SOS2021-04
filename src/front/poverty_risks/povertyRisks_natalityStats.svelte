@@ -5,37 +5,36 @@ import { each } from "svelte/internal";
 
     
 //Funcion para la toma de datos e incluirlos en la gráfica
-var BASE_API_PATH = '/api/v1/education_expenditures';
+var BASE_API_PATH = '/api/v1/poverty_risks';
 
-var edex_data = [];
+var povertyRisks_data = [];
 var anyos = [];
 var paises = [];
 var inicio = 2014;
-var fin = 2016;
+var fin = 2019;
 var data_clasif = [];
-var clasif = ["education_expenditure_per_millions","education_expenditure_per_public_expenditure",
-"education_expenditure_gdp","education_expenditure_per_capita",];
+var clasif = ["people_in_risk_of_poverty","people_poverty_line",
+"home_poverty_line","percentage_risk_of_poverty"];
 var datoClasif = clasif[Math.floor(Math.random()*clasif.length)];
 var datoClasifEsp = "";
 var conjuntoAnyos = new Set(anyos);
 var datosGrafica = [];
-var anyosGrafica = [];
 
 //Declaramos los arrays que incluirán a cada uno de los paise
 
 
 switch (datoClasif){
-    case "education_expenditure_per_millions":
-        datoClasifEsp = "Gasto en educación en millones de Dolares";
+    case "people_in_risk_of_poverty":
+        datoClasifEsp = "Personas en riesgo de pobreza";
         break;
-    case "education_expenditure_per_public_expenditure":
-        datoClasifEsp = "Gasto en educación por gasto público";
+    case "people_poverty_line":
+        datoClasifEsp = "Índice de riesgo de pobreza (persona)";
         break;
-    case "education_expenditure_gdp":
-        datoClasifEsp = "Gasto en educación por PIB";
+    case "home_poverty_line":
+        datoClasifEsp = "Índice de riesgo de pobreza (hogar)";
         break;
     default:
-        datoClasifEsp="Gasto en educación per capita";
+        datoClasifEsp="Porcentaje población en riesgo de pobreza";
 
 }
 
@@ -147,6 +146,7 @@ async function tomaDatosGrafica(datos){
             }
             else{
                 datosGraficaPorPais.push(0);
+                //Añadimos CEROS a los años para los que NO tengamos datos
             }
         }
         
@@ -181,53 +181,6 @@ function rangoAnyos(inic,fin){
 
 //Funciones principales
 
-
-
-async function getData(){
-    console.log("se ejecuta carga datos");
-    const res = await fetch(
-      BASE_API_PATH
-      );
-      if (res.ok) {
-        var json = await res.json();
-        if(json.length===undefined){
-          edex_data = [];
-          edex_data.push(json);          
-        }
-        else{
-          edex_data = json;
-        }
-        mensajeError="";
-        mensajeCorrecto="Datos cargados correctamente"
-      } else {
-        if (res.status === 500) {
-          mensajeError = "No se ha podido acceder a la base de datos";
-          console.log("No");
-        }
-        if (edex_data.length === 0) {
-          mensajeError = "No hay datos disponibles";
-          console.log("No")
-        }
-        
-      } 
-      console.log(edex_data);
-      
-      //tomamos los años y el dato a buscar de los elementos seleccionados
-      for(var elemento in edex_data){
-          console.log(elemento);
-          anyos.push(edex_data[elemento].year);
-          data_clasif.push(edex_data[elemento][datoClasif]);
-      }
-      console.log("años: " + anyos);
-      console.log("datos " + datoClasifEsp + ":" + data_clasif);
-      conjuntoAnyos = new Set(anyos);
-      anyos = [...conjuntoAnyos];
-
-      //Tomamos los datos
-
-      datosGrafica = tomaDatosGrafica(edex_data);
-}
-
 async function cargaGrafica(){
 
     //Peticion de datos
@@ -240,11 +193,11 @@ async function cargaGrafica(){
       if (res.ok) {
         var json = await res.json();
         if(json.length===undefined){
-          edex_data = [];
-          edex_data.push(json);          
+          povertyRisks_data = [];
+          povertyRisks_data.push(json);          
         }
         else{
-          edex_data = json;
+          povertyRisks_data = json;
         }
         mensajeError="";
         mensajeCorrecto="Datos cargados correctamente"
@@ -253,69 +206,87 @@ async function cargaGrafica(){
           mensajeError = "No se ha podido acceder a la base de datos";
           console.log("No");
         }
-        if (edex_data.length === 0) {
+        if (povertyRisks_data.length === 0) {
           mensajeError = "No hay datos disponibles";
           console.log("No")
         }
         
       } 
-      console.log(edex_data);
+      console.log(povertyRisks_data);
       
       //tomamos los años y el dato a buscar de los elementos seleccionados
-      for(var elemento in edex_data){
-          console.log(elemento);
-          anyos.push(edex_data[elemento].year);
-          data_clasif.push(edex_data[elemento][datoClasif]);
+     /* for(var elemento in povertyRisks_data){
+          //console.log(elemento);
+          anyos.push(povertyRisks_data[elemento].year);
+          data_clasif.push(povertyRisks_data[elemento][datoClasif]);
       }
       console.log("años: " + anyos);
       console.log("datos " + datoClasifEsp + ":" + data_clasif);
       conjuntoAnyos = new Set(anyos);
-      anyos = [...conjuntoAnyos];
+      anyos = [...conjuntoAnyos];*/
 
       //Tomamos los datos
 
-      datosGrafica = await tomaDatosGrafica(edex_data);
-
-      anyosGrafica = rangoAnyos(inicio,fin);
+      datosGrafica = await tomaDatosGrafica(povertyRisks_data);
 
     //Construccion de la grafica
 
     Highcharts.chart('container', {
-    chart: {
-        type: 'column'
-    },
+
     title: {
-        text: 'Gasto Público en educación a nivel mundial'
+        text: "Riesgo de pobreza a nivel mundial"
+
     },
+
     subtitle: {
         text: datoClasifEsp
     },
-    xAxis: {
-        categories: anyosGrafica,
-        crosshair: true
-    },
+
     yAxis: {
-        min: 0,
         title: {
             text: datoClasifEsp
         }
     },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
+
+    xAxis: {
+        accessibility: {
+            rangeDescription: 'Range:'+inicio+'  to 2019'
         }
     },
-    series: datosGrafica
-});
+
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: inicio
+        }
+    },
+
+    series: datosGrafica,
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+    });
 }
 
 function cambiaDato(nombre){
@@ -337,37 +308,16 @@ function cambiaDato(nombre){
     <figure class="highcharts-figure">
         <div id="container"></div>
             <p class="highcharts-description" style="font-size: 0.85em; text-align: center; padding:1em">
-                <em>'El Gasto Público en Educación es aquel que destina el Gobierno a instituciones educativas, administración educativa y subsidios para estudiantes y otras entidades privadas a lo largo de un año.'</em>
-            </p>
-            <table id="datatable">
-                <thead></thead>
-                <tbody> <!--
-                    <tr style="text-align: center;">
-                        <h5>Haz Click sobre alguno de los botones para cambiar el dato de la gráfica</h5>
-                    </tr>
-                    <tr>
-                        <td><button style="btn btn-primary" on:click={cambiaDato('education_expenditure_per_millions')}>Gasto en millones de dolares</button></td>
-                        <td><button style="btn btn-primary" on:click={cambiaDato('education_expenditure_per_public_expenditure')}>% Gasto en educacion por gasto publico</button></td>
-                        <td><button style="btn btn-primary" on:click={cambiaDato('education_expenditure_gdp')}>% Gasto en educacion por PIB</button></td>
-                        <td><button style="btn btn-primary" on:click={cambiaDato('education_expenditure_per_capita')}>Gasto en educacion per capita</button></td>
-                    </tr>
-
-                -->
-                    
-                </tbody>
-            </table>       
+                <em>'La tasa de riesgo de pobreza es el porcentaje de población que se encuentra por debajo del umbral de riesgo de pobreza.'</em>
+            </p>    
     </figure>
 </main>
 
 <style>
-.highcharts-figure, .highcharts-data-table table {
-    min-width: 310px; 
+/* .highcharts-figure, .highcharts-data-table table {
+    min-width: 360px; 
     max-width: 800px;
     margin: 1em auto;
-}
-
-#container {
-    height: 400px;
 }
 
 .highcharts-data-table table {
@@ -396,7 +346,6 @@ function cambiaDato(nombre){
 }
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
-}
-
+} */
 
 </style>
