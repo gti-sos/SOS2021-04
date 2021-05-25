@@ -17,6 +17,38 @@
 				"adult_illiteracy_rate":98.44,
 				"young_illiteracy_rate":99.72
 			},
+			{
+				"year":2017,
+				"country":"Spain",
+				"female_illiteracy_rate":97.97,
+				"male_illiteracy_rate":97.93,
+				"adult_illiteracy_rate":97.44,
+				"young_illiteracy_rate":97.72
+			},
+			{
+				"year":2016,
+				"country":"Spain",
+				"female_illiteracy_rate":96.97,
+				"male_illiteracy_rate":96.93,
+				"adult_illiteracy_rate":96.44,
+				"young_illiteracy_rate":96.72
+			},
+			{
+				"year":2015,
+				"country":"Spain",
+				"female_illiteracy_rate":95.97,
+				"male_illiteracy_rate":95.93,
+				"adult_illiteracy_rate":95.44,
+				"young_illiteracy_rate":95.72
+			},
+			{
+				"year":2014,
+				"country":"Spain",
+				"female_illiteracy_rate":94.97,
+				"male_illiteracy_rate":94.93,
+				"adult_illiteracy_rate":94.44,
+				"young_illiteracy_rate":94.72
+			},
 
 			{
 				"year":2018,
@@ -30,65 +62,65 @@
 			{
 				"year":2017,
 				"country":"Noruega",
-				"female_illiteracy_rate":98.97,
-				"male_illiteracy_rate":99.35,
-				"adult_illiteracy_rate":99.16,
-				"young_illiteracy_rate":99.99
+				"female_illiteracy_rate":90.97,
+				"male_illiteracy_rate":90.35,
+				"adult_illiteracy_rate":90.16,
+				"young_illiteracy_rate":90.99
 			},
 
 			{
 				"year":2017,
 				"country":"Canada",
-				"female_illiteracy_rate":98.97,
-				"male_illiteracy_rate":99.35,
-				"adult_illiteracy_rate":99.16,
-				"young_illiteracy_rate":99.99
+				"female_illiteracy_rate":92.97,
+				"male_illiteracy_rate":92.35,
+				"adult_illiteracy_rate":92.16,
+				"young_illiteracy_rate":92.99
 			},
 
 			{
 				"year":2017,
 				"country":"Mexico",
-				"female_illiteracy_rate":98.97,
-				"male_illiteracy_rate":99.35,
-				"adult_illiteracy_rate":99.16,
-				"young_illiteracy_rate":99.99
+				"female_illiteracy_rate":88.97,
+				"male_illiteracy_rate":89.35,
+				"adult_illiteracy_rate":89.16,
+				"young_illiteracy_rate":89.99
 			},
 
 			{
 				"year":2017,
 				"country":"Honduras",
-				"female_illiteracy_rate":98.97,
-				"male_illiteracy_rate":99.35,
-				"adult_illiteracy_rate":99.16,
-				"young_illiteracy_rate":99.99
+				"female_illiteracy_rate":68.97,
+				"male_illiteracy_rate":69.35,
+				"adult_illiteracy_rate":69.16,
+				"young_illiteracy_rate":69.99
 			},
 
 
 			{
 				"year":2016,
 				"country":"Cuba",
-				"female_illiteracy_rate":98.97,
-				"male_illiteracy_rate":99.35,
-				"adult_illiteracy_rate":99.16,
-				"young_illiteracy_rate":99.99
+				"female_illiteracy_rate":78.97,
+				"male_illiteracy_rate":79.35,
+				"adult_illiteracy_rate":79.16,
+				"young_illiteracy_rate":79.99
 			},
 
 			{
 				"year":2016,
 				"country":"Argentina",
-				"female_illiteracy_rate":98.97,
-				"male_illiteracy_rate":99.35,
-				"adult_illiteracy_rate":99.16,
-				"young_illiteracy_rate":99.99
+				"female_illiteracy_rate":88.57,
+				"male_illiteracy_rate":89.55,
+				"adult_illiteracy_rate":89.56,
+				"young_illiteracy_rate":89.59
 			},
 
 			{
 				"year":2016,
 				"country":"Chile",
 				"female_illiteracy_rate":98.97,
-				"male_illiteracy_rate":99.35,
-				"adult_illiteracy_rate":99.16,
-				"young_illiteracy_rate":99.99
+				"male_illiteracy_rate":79.55,
+				"adult_illiteracy_rate":89.45,
+				"young_illiteracy_rate":87.65
 			},
 
 
@@ -100,7 +132,7 @@
 				"adult_illiteracy_rate":99.16,
 				"young_illiteracy_rate":99.99
 			},
-
+ 
 			{
 				"year":2016,
 				"country":"China",
@@ -169,7 +201,7 @@
 			}
 
 
-		];
+		]; 
 
 
 		// GET para insertar los datos iniciales en la base de datos

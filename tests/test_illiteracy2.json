@@ -90,10 +90,7 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.test(\"There are 3 sources\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.length).to.eql(18);\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -214,10 +211,7 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.test(\"There are 2 sources\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.length).to.eql(17);\r",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}

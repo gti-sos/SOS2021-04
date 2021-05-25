@@ -4,13 +4,18 @@
 	import NotFound from "./pages/NotFound.svelte";
 	import Home from "./pages/Home.svelte";
 	import Info from "./pages/Info.svelte";
+	import Integrations from "./pages/Integraciones.svelte";
+	
 	
 	import App_edex from "./front/education_expenditures/App_edex.svelte";
 	import Edit_data_edex from "./front/education_expenditures/Edit_data_edex.svelte";
 	import Edex_Graphs from "./front/education_expenditures/Edex_Graph.svelte";
 	
+	
 	import illiteracy from "./front/illiteracy/illiteracyApp.svelte";
 	import illiteracy_edit from "./front/illiteracy/edit_data_illiteracy.svelte";
+	import illiteracy_Graphs from "./front/illiteracy/illiteracy_Graphs.svelte";
+	import api1 from "./front/illiteracy/Integraciones/api1.svelte";
 	
 	import AppPovertyRisks from './front/poverty_risks/appPovertyRisks.svelte';
 	import editData_poverty_risks from "./front/poverty_risks/editData_poverty_risks.svelte";
@@ -22,6 +27,8 @@
 		"/":Home,
 		"/info":Info,
 		"/graphics":GraficasConjunto,
+		"/integrations": Integrations,
+		"/integrations/api1": api1,
 		
 		"/education_expenditures":App_edex,
 		"/education_expenditures/:country/:year": Edit_data_edex,
@@ -29,6 +36,8 @@
 		
 		"/illiteracy":illiteracy,
 		"/illiteracy/:country/:date":illiteracy_edit,
+		"/illiteracy_graphs" : illiteracy_Graphs,
+
 		
 		"/poverty_risks":AppPovertyRisks,
 		"/poverty_risks/:country/:year": editData_poverty_risks,
