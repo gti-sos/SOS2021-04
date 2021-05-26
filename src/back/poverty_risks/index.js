@@ -151,6 +151,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 					res.sendStatus(500); //Error de servidor
 				}
 				else{
+					povertyRisks_DB.remove({}, {multi: true});
 					povertyRisks_DB.insert(initialData_povertyRisks);
 					res.sendStatus(200)                  
 				}
