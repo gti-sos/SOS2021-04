@@ -49,10 +49,10 @@
         <CardSubtitle />
         <CardText />
         
-        <a href="/#/povertyrisks_graphs">
+        <a href="/#/povertyRisks_natalityStats">
         <Button color="primary">Integración con natality-stats (con cors)</Button>
         </a>
-        <a href="/#/povertyrisks_graphs">
+        <a href="/#/povertyRisks_drugUse">
         <Button color="primary">Integración con drug-use (con proxy)</Button>
         </a>
       
