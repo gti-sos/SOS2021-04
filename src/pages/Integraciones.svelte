@@ -50,10 +50,10 @@
         <CardText />
         
         <a href="/#/povertyrisks_graphs">
-        <Button color="dark">Integración con natality-stats (con cors)</Button>
+        <Button color="primary">Integración con natality-stats (con cors)</Button>
         </a>
         <a href="/#/povertyrisks_graphs">
-        <Button color="dark">Integración con drug-use (con proxy)</Button>
+        <Button color="primary">Integración con drug-use (con proxy)</Button>
         </a>
       
       </CardBody>

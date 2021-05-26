@@ -60,7 +60,7 @@
       <Button color="primary">Gráfica Conjunta</Button>
     </a>
     <a href="/#/integrations">
-      <Button color="primary">Integraciones</Button>
+      <Button color="dark">Integraciones</Button>
     </a>
   
     <p />
