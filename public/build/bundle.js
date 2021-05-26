@@ -32273,21 +32273,21 @@ var app = (function () {
     			p = element("p");
     			p.textContent = "Bar chart showing horizontal columns. This chart type is often\r\n          beneficial for smaller screens, as the user can scroll through the data\r\n          vertically, and axis labels are easy to read.";
     			if (script0.src !== (script0_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script0, "src", script0_src_value);
-    			add_location(script0, file$2, 370, 4, 9579);
+    			add_location(script0, file$2, 399, 4, 10443);
     			if (script1.src !== (script1_src_value = "https://code.highcharts.com/modules/exporting.js")) attr_dev(script1, "src", script1_src_value);
-    			add_location(script1, file$2, 371, 4, 9650);
+    			add_location(script1, file$2, 400, 4, 10514);
     			if (script2.src !== (script2_src_value = "https://code.highcharts.com/modules/export-data.js")) attr_dev(script2, "src", script2_src_value);
-    			add_location(script2, file$2, 372, 4, 9728);
+    			add_location(script2, file$2, 401, 4, 10592);
     			if (script3.src !== (script3_src_value = "https://code.highcharts.com/modules/accessibility.js")) attr_dev(script3, "src", script3_src_value);
-    			add_location(script3, file$2, 373, 4, 9808);
+    			add_location(script3, file$2, 402, 4, 10672);
     			attr_dev(div, "id", "container");
     			attr_dev(div, "class", "svelte-1m2akjv");
-    			add_location(div, file$2, 380, 8, 9996);
+    			add_location(div, file$2, 409, 8, 10860);
     			attr_dev(p, "class", "highcharts-description");
-    			add_location(p, file$2, 381, 8, 10032);
+    			add_location(p, file$2, 410, 8, 10896);
     			attr_dev(figure, "class", "highcharts-figure svelte-1m2akjv");
-    			add_location(figure, file$2, 379, 4, 9952);
-    			add_location(main, file$2, 378, 0, 9940);
+    			add_location(figure, file$2, 408, 4, 10816);
+    			add_location(main, file$2, 407, 0, 10804);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -32539,7 +32539,34 @@ var app = (function () {
     			}
     		}
 
+    		const res2 = await fetch(BASE_API_PATH);
+
+    		if (res2.ok) {
+    			var json2 = await res2.json();
+
+    			if (json2.length === undefined) {
+    				drugUse_data = [];
+    				povertyRisks_data.push(json2);
+    			} else {
+    				drugUse_data = json2;
+    			}
+
+    			mensajeError = "";
+    			mensajeCorrecto = "Datos de drugUse cargados correctamente";
+    		} else {
+    			if (res2.status === 500) {
+    				mensajeError = "No se ha podido acceder a la base de datos de drugUse";
+    				console.log("No");
+    			}
+
+    			if (drugUse_data.length === 0) {
+    				mensajeError = "No hay datos disponibles en drugUse";
+    				console.log("No");
+    			}
+    		}
+
     		console.log(povertyRisks_data);
+    		console.log(drugUse_data);
 
     		//tomamos los años y el dato a buscar de los elementos seleccionados
     		/* for(var elemento in povertyRisks_data){
@@ -32553,6 +32580,8 @@ var app = (function () {
      anyos = [...conjuntoAnyos];*/
     		//Tomamos los datos
     		datosGrafica = await tomaDatosGrafica(povertyRisks_data);
+
+    		datosGraficaDrugUse = await tomaDatosGraficaDrugUse(drugUse_data);
 
     		//Construccion de la grafica
     		/*

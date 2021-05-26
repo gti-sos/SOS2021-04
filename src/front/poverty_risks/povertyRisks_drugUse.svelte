@@ -221,7 +221,7 @@ async function cargaGrafica(){
         var json2 = await res2.json();
         if(json2.length===undefined){
           drugUse_data = [];
-          povertyRisks_data.push(json2);          
+          drugUse_data.push(json2);          
         }
         else{
           drugUse_data = json2;

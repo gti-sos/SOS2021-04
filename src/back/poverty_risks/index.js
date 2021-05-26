@@ -893,7 +893,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 	app.use("/proxyHeroku", function(req, res) {
 		console.log("New Proxy Call!");
 
-		var apiServerHost = 'https://sos2021-23.herokuapp.com'	//api/v1/du-stats;
+		var apiServerHost = 'https://sos2021-23.herokuapp.com';	//api/v1/du-stats;
 		console.log("apiServerHost = "+ apiServerHost);
 		console.log("baseURL = "+ req.baseUrl);
 		console.log("url = "+ req.url);
