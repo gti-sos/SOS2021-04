@@ -190,7 +190,7 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 			},
 		];
 
-		// Incluimos los datos en el array 
+		// Incluimos los datos en el array:
 
 		for(var e in datosIniciales_PovertyRisks){
 			poverty_risks_array.push(datosIniciales_PovertyRisks[e]);
