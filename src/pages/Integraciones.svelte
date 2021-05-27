@@ -70,7 +70,7 @@
         <a href="/#/integrations/api1"
           ><Button color="primary"> API Externa 1</Button></a
         >
-        <a href="/#/integrations/rickandmortyAPI"
+        <a href="/#/integrations/api2"
           ><Button color="primary"> API Externa 2</Button></a
         >
       
@@ -95,9 +95,9 @@
     div{
       margin-bottom: 15px;
     }
-    b {
+    /*b {
       color: #00c1ff;
-    }
+    }*/
     @media (min-width: 640px) {
       main {
         max-width: none;

@@ -13,6 +13,7 @@
           municipios = json;
           //console.log(Object.keys(json));
           //console.log(Object.keys(municipios));
+
           console.log(`We have received ${municipios.poblaciones.poblacion.length} municipios.`);
           console.log("Ok");
       } else {
@@ -23,25 +24,51 @@
   }
   async function onLoad() {
       await getStats();
-      var array = []; 
+      var array=[];
+      var array2 = [0,0,0]; 
       var numMujeres=0;
       var numHombres=0;
       var numTotal=0;
-      var nombre;
-      var point = { x: "name", y: "number of municipios" , z: null}; // y=number of characters per season 
-      municipios.forEach((c) => {
-          //console.log(Object.values(c));
-          console.log(`imprimiendo c ${Object.keys(c)}`);
-          if(c.municipio=="ALLENDE"){
-            
-          }
-                      
-         
-      });
-      
      
+ 
+      for (let index = 0; index < 78; index++) { 
+        const element = municipios.poblaciones.poblacion[index]
+        console.log(element);
+        var a =[];
+        if(element.municipio == "ALLANDE"){
+        console.log("NOMBRE: "+element.municipio);
+        console.log("mujeres: "+element.mujer);
+        console.log("varones: "+element.varon);
+        console.log("total: "+element.total);
+        numMujeres=element.mujer;
+        numHombres=element.varon;
+        numTotal=element.total;
+        console.log("mujeres: "+numMujeres);
+        array2[0]=numMujeres;
+        array2[1]=numHombres;
+        array2[2]=numTotal;
+    }       
+  };
+  for ( var i = 0; i < 2; i++){
+            var point = { x: "name", y: "number of peolpe by gender" , z: null}; // y=number of characters per season
+            switch( i ){
+               case 0 :
+               point.x = "mujeres"
+               point.y = array2[0];
+               point.z = numMujeres;
+                   break;
+                case 1 :
+                point.x = "varones"
+                point.y = array2[1];              
+                point.z = numHombres;
+                   break;
+           }
+           console.log(Object.values(point));
+           console.log(array);
+           array.push(point);
+          }    
  var chart = JSC.chart('chartDiv', {
-      debug: true,
+      debug: false,
       //title_label_text: 'Breaking Bad characters per season',
       legend_visible: false,
       
@@ -54,22 +81,22 @@
           offset: '1,80'
         }
       },
-      yAxis_label_text: 'Number of municipios in this season',
-      zAxis_label_text: 'Number of characters in this season',
+      yAxis_label_text: 'Numero de varones en el municipio',
+     // zAxis_label_text: 'Number of characters in this season',
       defaultAnnotation: { label_style: { fontSize: '400px' } },
   
        
       series: [
         {
-          name: 'total of character in the serie ',
+          name: 'porcentaje sobre el total de habitantes',
           points: array
-            
+          
         }
           ]
       
     });
     
- 
+    console.log("array");
   }
 </script>
 
@@ -91,8 +118,8 @@
   </Nav>
 
   <div>
-      <h2>Uso API externa Breaking Bad </h2>
-      <CardText> Representacón del número de personajes total que aparecen en cada temporada de la serie Breaking Bad</CardText>
+      <h2>Uso API externa </h2>
+      <CardText> Representacón del Censo de los pueblos de Gijon en concreto el municipiode  Allande</CardText>
   </div>
 
   {#if errorMsg}
