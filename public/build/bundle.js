@@ -25666,7 +25666,7 @@ var app = (function () {
     const { Object: Object_1$2, console: console_1$8 } = globals;
     const file$a = "src\\front\\illiteracy\\Integraciones\\api1.svelte";
 
-    // (113:10) <NavLink href="/">
+    // (114:10) <NavLink href="/">
     function create_default_slot_5$1(ctx) {
     	let t;
 
@@ -25686,14 +25686,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5$1.name,
     		type: "slot",
-    		source: "(113:10) <NavLink href=\\\"/\\\">",
+    		source: "(114:10) <NavLink href=\\\"/\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (112:6) <NavItem>
+    // (113:6) <NavItem>
     function create_default_slot_4$2(ctx) {
     	let navlink;
     	let current;
@@ -25718,7 +25718,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const navlink_changes = {};
 
-    			if (dirty & /*$$scope*/ 32) {
+    			if (dirty & /*$$scope*/ 64) {
     				navlink_changes.$$scope = { dirty, ctx };
     			}
 
@@ -25742,14 +25742,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4$2.name,
     		type: "slot",
-    		source: "(112:6) <NavItem>",
+    		source: "(113:6) <NavItem>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (116:10) <NavLink href="/#/integrations/">
+    // (117:10) <NavLink href="/#/integrations/">
     function create_default_slot_3$2(ctx) {
     	let t;
 
@@ -25769,14 +25769,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3$2.name,
     		type: "slot",
-    		source: "(116:10) <NavLink href=\\\"/#/integrations/\\\">",
+    		source: "(117:10) <NavLink href=\\\"/#/integrations/\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (115:6) <NavItem>
+    // (116:6) <NavItem>
     function create_default_slot_2$3(ctx) {
     	let navlink;
     	let current;
@@ -25801,7 +25801,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const navlink_changes = {};
 
-    			if (dirty & /*$$scope*/ 32) {
+    			if (dirty & /*$$scope*/ 64) {
     				navlink_changes.$$scope = { dirty, ctx };
     			}
 
@@ -25825,14 +25825,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$3.name,
     		type: "slot",
-    		source: "(115:6) <NavItem>",
+    		source: "(116:6) <NavItem>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (111:2) <Nav>
+    // (112:2) <Nav>
     function create_default_slot_1$3(ctx) {
     	let navitem0;
     	let t;
@@ -25870,14 +25870,14 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const navitem0_changes = {};
 
-    			if (dirty & /*$$scope*/ 32) {
+    			if (dirty & /*$$scope*/ 64) {
     				navitem0_changes.$$scope = { dirty, ctx };
     			}
 
     			navitem0.$set(navitem0_changes);
     			const navitem1_changes = {};
 
-    			if (dirty & /*$$scope*/ 32) {
+    			if (dirty & /*$$scope*/ 64) {
     				navitem1_changes.$$scope = { dirty, ctx };
     			}
 
@@ -25905,14 +25905,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$3.name,
     		type: "slot",
-    		source: "(111:2) <Nav>",
+    		source: "(112:2) <Nav>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (122:6) <CardText>
+    // (123:6) <CardText>
     function create_default_slot$3(ctx) {
     	let t;
 
@@ -25932,14 +25932,14 @@ var app = (function () {
     		block,
     		id: create_default_slot$3.name,
     		type: "slot",
-    		source: "(122:6) <CardText>",
+    		source: "(123:6) <CardText>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (127:2) {:else}
+    // (128:2) {:else}
     function create_else_block$2(ctx) {
     	let div;
 
@@ -25948,7 +25948,7 @@ var app = (function () {
     			div = element("div");
     			attr_dev(div, "id", "chartDiv");
     			attr_dev(div, "class", "svelte-hskkne");
-    			add_location(div, file$a, 127, 6, 3790);
+    			add_location(div, file$a, 128, 6, 3826);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -25963,14 +25963,14 @@ var app = (function () {
     		block,
     		id: create_else_block$2.name,
     		type: "else",
-    		source: "(127:2) {:else}",
+    		source: "(128:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (125:2) {#if errorMsg}
+    // (126:2) {#if errorMsg}
     function create_if_block$3(ctx) {
     	let p;
     	let t;
@@ -25979,7 +25979,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(/*errorMsg*/ ctx[0]);
-    			add_location(p, file$a, 125, 6, 3754);
+    			add_location(p, file$a, 126, 6, 3790);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -25997,7 +25997,7 @@ var app = (function () {
     		block,
     		id: create_if_block$3.name,
     		type: "if",
-    		source: "(125:2) {#if errorMsg}",
+    		source: "(126:2) {#if errorMsg}",
     		ctx
     	});
 
@@ -26060,10 +26060,10 @@ var app = (function () {
     			if_block.c();
     			attr_dev(script, "type", "text/javascript");
     			if (script.src !== (script_src_value = "https://code.jscharting.com/latest/jscharting.js")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$a, 103, 2, 3197);
-    			add_location(h2, file$a, 120, 6, 3578);
-    			add_location(div, file$a, 119, 2, 3565);
-    			add_location(main, file$a, 109, 0, 3347);
+    			add_location(script, file$a, 104, 2, 3233);
+    			add_location(h2, file$a, 121, 6, 3614);
+    			add_location(div, file$a, 120, 2, 3601);
+    			add_location(main, file$a, 110, 0, 3383);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -26090,14 +26090,14 @@ var app = (function () {
     		p: function update(ctx, [dirty]) {
     			const nav_changes = {};
 
-    			if (dirty & /*$$scope*/ 32) {
+    			if (dirty & /*$$scope*/ 64) {
     				nav_changes.$$scope = { dirty, ctx };
     			}
 
     			nav.$set(nav_changes);
     			const cardtext_changes = {};
 
-    			if (dirty & /*$$scope*/ 32) {
+    			if (dirty & /*$$scope*/ 64) {
     				cardtext_changes.$$scope = { dirty, ctx };
     			}
 
@@ -26152,13 +26152,14 @@ var app = (function () {
     function instance$a($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Api1", slots, []);
+    	var BASE_API_PATH_I = "/api/v1/illiteracy";
     	var municipios = [];
     	var errorMsg = "";
     	var okMsg = "";
 
     	async function getStats() {
     		console.log("Fetching data...");
-    		const res = await fetch("http://opendata.gijon.es/descargar.php?id=227&tipo=JSON");
+    		const res = await fetch("/proxyExterna/descargar.php?id=227&tipo=JSON");
 
     		if (res.ok) {
     			const json = await res.json();
@@ -26267,6 +26268,7 @@ var app = (function () {
     		Nav,
     		NavItem,
     		NavLink,
+    		BASE_API_PATH_I,
     		municipios,
     		errorMsg,
     		okMsg,
@@ -26275,6 +26277,7 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
+    		if ("BASE_API_PATH_I" in $$props) BASE_API_PATH_I = $$props.BASE_API_PATH_I;
     		if ("municipios" in $$props) municipios = $$props.municipios;
     		if ("errorMsg" in $$props) $$invalidate(0, errorMsg = $$props.errorMsg);
     		if ("okMsg" in $$props) okMsg = $$props.okMsg;
@@ -26561,7 +26564,7 @@ var app = (function () {
     			div = element("div");
     			attr_dev(div, "id", "chartDiv");
     			attr_dev(div, "class", "svelte-18ok45m");
-    			add_location(div, file$9, 64, 4, 1723);
+    			add_location(div, file$9, 64, 4, 1728);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -26592,7 +26595,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(/*errorMsg*/ ctx[0]);
-    			add_location(p, file$9, 62, 4, 1689);
+    			add_location(p, file$9, 62, 4, 1694);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -26656,7 +26659,7 @@ var app = (function () {
     			t1 = space();
     			div = element("div");
     			h2 = element("h2");
-    			h2.textContent = "Uso API externa Variación de Poblaciones en Capitales Europeas";
+    			h2.textContent = "Uso API externa Variación de Poblaciones en Capitales Europeas en %";
     			t3 = space();
     			if_block.c();
     			if (script.src !== (script_src_value = "https://code.jscharting.com/latest/jscharting.js")) attr_dev(script, "src", script_src_value);
