@@ -73,7 +73,10 @@
         <a href="/#/integrations/api2"
           ><Button color="primary"> API Externa 2</Button></a
         >
-      
+        <a href="/#/integrations/mig-obesity-Stats"
+          ><Button color="primary"> API Obesity-Stats G10</Button></a
+        >
+        
       </CardBody>
     </Card>
   </div>

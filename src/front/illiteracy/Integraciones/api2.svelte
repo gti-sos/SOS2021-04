@@ -11,7 +11,7 @@
       const json = await res.json();
       characters = json;
       console.log(Object.keys(json));
-      console.log(Object.keys(characters));
+      //console.log(Object.keys(characters));
       console.log(`We have received ${characters.length} capitales.`);
       console.log("Ok");
     } else {
@@ -24,48 +24,14 @@
     await getStats();
     var array = [];
    
-    characters.forEach(c =>{
-      var point ={x: "nuts_name", y: null}
-
-      if(c.nuts_name === "Sevilla"){
-        console.log("prueba");
-        console.log(c.nuts_name);
-        console.log(c.nat_grw0111_pc);
-        var valor=0;
-        valor=parseFloat(c.nat_grw0111_pc);
-        console.log(valor);
-        point.x = c.nuts_name;
-        point.y = valor;
-      }
-      if(c.nuts_name == "Huelva"){
-        console.log("prueba");
-        console.log(c.nuts_name);
-        console.log(c.nat_grw0111_pc);
-        var valor=0;
-        valor=parseFloat(c.nat_grw0111_pc);
-        console.log(valor);
-        point.x = c.nuts_name;
-        point.y = valor;
-      }
-      if(c.nuts_name == "Cádiz"){
-        console.log("prueba");
-        console.log(c.nuts_name);
-        console.log(c.nat_grw0111_pc);
-        var valor=0;
-        valor=parseFloat(c.nat_grw0111_pc);
-        console.log(valor);
-        point.x = c.nuts_name;
-        point.y = valor;
-      }
-      
+    for (let index = 0; index < 10; index++) { 
+      const element = characters[index]
+      var point ={x: "name", y: null}
+      point.x = element.nuts_name
+      point.y = parseFloat(element.nat_grw0111_pc)
       array.push(point) 
       
-    }  )
-    /* let points = [
-      { x: "A", y: 10 },
-      { x: "B", y: 5 },
-    ];
- */
+    }  
     const chart = new JSC.Chart("chartDiv", {
       // Pass points to the series
       series: [{ points: array }],
