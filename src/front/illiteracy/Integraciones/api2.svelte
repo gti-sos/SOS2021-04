@@ -56,7 +56,7 @@
   </Nav>
 
   <div>
-    <h2>Uso API externa Variación de Poblaciones en Capitales Europeas</h2>
+    <h2>Uso API externa Variación de Poblaciones en Capitales Europeas en %</h2>
   </div>
 
   {#if errorMsg}
