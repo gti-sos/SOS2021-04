@@ -1,6 +1,6 @@
 <script>
 
-    var BASE_API_PATH_EE = 'http://sos2021-10.herokuapp.com/api/integration/obesity-stats';
+    var BASE_API_PATH_EE = 'proxySOSobesity/api/integration/obesity-stats';
     var BASE_API_PATH_I = '/api/v1/illiteracy';
     
     var edex_data = [];
@@ -76,7 +76,7 @@
         },
     
         subtitle: {
-            text: "prueba"
+            text: "Datos Restringidos a España"
         },
     
         yAxis: {

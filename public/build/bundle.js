@@ -26857,14 +26857,14 @@ var app = (function () {
     			t1 = space();
     			p = element("p");
     			if (script.src !== (script_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$8, 231, 8, 6240);
+    			add_location(script, file$8, 231, 8, 6245);
     			attr_dev(div, "id", "container");
-    			add_location(div, file$8, 237, 12, 6430);
+    			add_location(div, file$8, 237, 12, 6435);
     			attr_dev(p, "class", "highcharts-description");
-    			add_location(p, file$8, 238, 12, 6470);
+    			add_location(p, file$8, 238, 12, 6475);
     			attr_dev(figure, "class", "highcharts-figure");
-    			add_location(figure, file$8, 236, 8, 6382);
-    			add_location(main, file$8, 234, 4, 6360);
+    			add_location(figure, file$8, 236, 8, 6387);
+    			add_location(main, file$8, 234, 4, 6365);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -26919,7 +26919,7 @@ var app = (function () {
     function instance$8($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Mig_obesity_Stats", slots, []);
-    	var BASE_API_PATH_EE = "http://sos2021-10.herokuapp.com/api/integration/obesity-stats";
+    	var BASE_API_PATH_EE = "proxySOSobesity/api/integration/obesity-stats";
     	var BASE_API_PATH_I = "/api/v1/illiteracy";
     	var edex_data = [];
     	var i_data = [];
@@ -26979,7 +26979,7 @@ var app = (function () {
     			title: {
     				text: "Grafica conjunta Grupo 10 Obesity_stats y Grupo 4 illiteracy"
     			},
-    			subtitle: { text: "prueba" },
+    			subtitle: { text: "Datos Restringidos a España" },
     			yAxis: { title: { text: "porcentaje (%)" } },
     			xAxis: {
     				accessibility: {

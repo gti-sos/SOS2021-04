@@ -763,6 +763,21 @@ const request = require("request");
 			
 			req.pipe(request(url)).pipe(res);
 		  });
+
+		  app.use("/proxySOSobesity", function(req, res) {
+			console.log("New Proxy Call!");
+	
+			var apiServerHost = "http://sos2021-10.herokuapp.com";	///descargar.php?id=227&tipo=JSON;
+			console.log("apiServerHost = "+ apiServerHost);
+			console.log("baseURL = "+ req.baseUrl);
+			console.log("url = "+ req.url);
+	
+			var url = apiServerHost + req.url;
+	
+			console.log('piped: ' + req.url);
+			
+			req.pipe(request(url)).pipe(res);
+		  });
 		
 	
     };
