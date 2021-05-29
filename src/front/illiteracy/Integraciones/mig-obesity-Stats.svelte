@@ -109,11 +109,11 @@
         series: [
     
             {
-                name: 'Obesity-Stats',
+                name: 'Obesity-Stats_man_percent',
                 data: datosGrafica_edex
             },
             {
-                name:'Illiteracy',
+                name:'Illiteracy-male_illiteracy_rate',
                 data: datosGrafica_i
             }
     
@@ -162,7 +162,7 @@
             //Pillamos el año
             a=anyos[anyo];
             //Limpiamos variables
-            mediaPorAnyo = 0;
+            mediaPorAnyo = 0.0;
             arrayTotal=[];
             
             //Iteramos sobre los datos para comprobar si su año coincide con el establecido
@@ -171,6 +171,7 @@
                 if(dato.year == a){ //Si coincide con el año ("a") se toma el valor del atributo pasado por parametro
                     if(dato.country=="Spain"){
                      arrayTotal.push(dato[atributo]);
+                    
                     }
                     
                 }
@@ -182,7 +183,7 @@
            console.log("Total edex " + num +" " + arrayTotal);
            
            //Hacemos la media por años
-    
+           
            for(var i = 0; i < arrayTotal.length; ++i){
             if(arrayTotal[i] == 0)
                 contador0++;
@@ -192,22 +193,26 @@
     
     
            for(var num in arrayTotal){
+                
                mediaPorAnyo += arrayTotal[num];
            }
+           console.log(mediaPorAnyo);
     
            if(contador0 == anyos.length){
                mediaPorAnyo = 0;
            }
            else{
-               mediaPorAnyo = mediaPorAnyo / contadorDist;
+               mediaPorAnyo = mediaPorAnyo;
            }
     
-           mediaPorAnyo = Math.round(mediaPorAnyo);
+         //  mediaPorAnyo = parseFloat(Math.round(mediaPorAnyo));
+           
     
     
            //Pusheamos al array final
            arrayFinal.push(mediaPorAnyo);
         }
+        
     
         return arrayFinal;
        

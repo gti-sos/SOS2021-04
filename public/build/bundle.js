@@ -26857,14 +26857,14 @@ var app = (function () {
     			t1 = space();
     			p = element("p");
     			if (script.src !== (script_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$8, 226, 8, 6097);
+    			add_location(script, file$8, 231, 8, 6240);
     			attr_dev(div, "id", "container");
-    			add_location(div, file$8, 232, 12, 6287);
+    			add_location(div, file$8, 237, 12, 6430);
     			attr_dev(p, "class", "highcharts-description");
-    			add_location(p, file$8, 233, 12, 6327);
+    			add_location(p, file$8, 238, 12, 6470);
     			attr_dev(figure, "class", "highcharts-figure");
-    			add_location(figure, file$8, 231, 8, 6239);
-    			add_location(main, file$8, 229, 4, 6217);
+    			add_location(figure, file$8, 236, 8, 6382);
+    			add_location(main, file$8, 234, 4, 6360);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -26999,10 +26999,13 @@ var app = (function () {
     			},
     			series: [
     				{
-    					name: "Obesity-Stats",
+    					name: "Obesity-Stats_man_percent",
     					data: datosGrafica_edex
     				},
-    				{ name: "Illiteracy", data: datosGrafica_i }
+    				{
+    					name: "Illiteracy-male_illiteracy_rate",
+    					data: datosGrafica_i
+    				}
     			],
     			responsive: {
     				rules: [
@@ -27037,7 +27040,6 @@ var app = (function () {
     		var mediaPorAnyo = 0;
     		var arrayFinal = [];
     		var contador0 = 0;
-    		var contadorDist = 0;
 
     		//Iteramos por cada año del rango establecido
     		for (var anyo in anyos) {
@@ -27067,21 +27069,22 @@ var app = (function () {
 
     			//Hacemos la media por años
     			for (var i = 0; i < arrayTotal.length; ++i) {
-    				if (arrayTotal[i] == 0) contador0++; else contadorDist++;
+    				if (arrayTotal[i] == 0) contador0++;
     			}
 
     			for (var num in arrayTotal) {
     				mediaPorAnyo += arrayTotal[num];
     			}
 
+    			console.log(mediaPorAnyo);
+
     			if (contador0 == anyos.length) {
     				mediaPorAnyo = 0;
     			} else {
-    				mediaPorAnyo = mediaPorAnyo / contadorDist;
+    				mediaPorAnyo = mediaPorAnyo;
     			}
 
-    			mediaPorAnyo = Math.round(mediaPorAnyo);
-
+    			//  mediaPorAnyo = parseFloat(Math.round(mediaPorAnyo));
     			//Pusheamos al array final
     			arrayFinal.push(mediaPorAnyo);
     		}
