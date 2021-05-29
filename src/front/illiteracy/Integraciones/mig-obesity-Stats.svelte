@@ -69,7 +69,9 @@
         //Construccion de la grafica
     
         Highcharts.chart('container', {
-    
+            chart: {
+                type: 'spline'
+            },
         title: {
             text: "Grafica conjunta Grupo 10 Obesity_stats y Grupo 4 illiteracy"
     

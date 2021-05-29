@@ -26857,14 +26857,14 @@ var app = (function () {
     			t1 = space();
     			p = element("p");
     			if (script.src !== (script_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$8, 231, 8, 6245);
+    			add_location(script, file$8, 233, 8, 6309);
     			attr_dev(div, "id", "container");
-    			add_location(div, file$8, 237, 12, 6435);
+    			add_location(div, file$8, 239, 12, 6499);
     			attr_dev(p, "class", "highcharts-description");
-    			add_location(p, file$8, 238, 12, 6475);
+    			add_location(p, file$8, 240, 12, 6539);
     			attr_dev(figure, "class", "highcharts-figure");
-    			add_location(figure, file$8, 236, 8, 6387);
-    			add_location(main, file$8, 234, 4, 6365);
+    			add_location(figure, file$8, 238, 8, 6451);
+    			add_location(main, file$8, 236, 4, 6429);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -26976,6 +26976,7 @@ var app = (function () {
 
     		//Construccion de la grafica
     		Highcharts.chart("container", {
+    			chart: { type: "spline" },
     			title: {
     				text: "Grafica conjunta Grupo 10 Obesity_stats y Grupo 4 illiteracy"
     			},
