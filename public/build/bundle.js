@@ -19001,7 +19001,7 @@ var app = (function () {
     	return block;
     }
 
-    function compareNumbers$4(a, b) {
+    function compareNumbers$3(a, b) {
     	return a[0] - b[0];
     }
 
@@ -19143,7 +19143,7 @@ var app = (function () {
     			datosGraficaPorPais = []; //Vaciamos el array de datos por pais
 
     			//Ordenamos los datos por años
-    			arrayAux1.data.sort(compareNumbers$4);
+    			arrayAux1.data.sort(compareNumbers$3);
 
     			//Lo recorremos para tener en cuenta los años presentes
     			for (var num2 in arrayAux1.data) {
@@ -19325,7 +19325,7 @@ var app = (function () {
     		mensajeCorrecto,
     		mensajeError,
     		tomaDatosGrafica,
-    		compareNumbers: compareNumbers$4,
+    		compareNumbers: compareNumbers$3,
     		rangoAnyos: rangoAnyos$5,
     		getData,
     		cargaGrafica,
@@ -25181,7 +25181,7 @@ var app = (function () {
     	return block;
     }
 
-    function compareNumbers$3(a, b) {
+    function compareNumbers$2(a, b) {
     	return a[0] - b[0];
     }
 
@@ -25322,7 +25322,7 @@ var app = (function () {
     			datosGraficaPorPais = []; //Vaciamos el array de datos por pais
 
     			//Ordenamos los datos por años
-    			arrayAux1.data.sort(compareNumbers$3);
+    			arrayAux1.data.sort(compareNumbers$2);
 
     			//Lo recorremos para tener en cuenta los años presentes
     			for (var num2 in arrayAux1.data) {
@@ -25558,7 +25558,7 @@ var app = (function () {
     		mensajeCorrecto,
     		mensajeError,
     		tomaDatosGrafica,
-    		compareNumbers: compareNumbers$3,
+    		compareNumbers: compareNumbers$2,
     		rangoAnyos: rangoAnyos$4,
     		getData,
     		cargaGrafica
@@ -31490,7 +31490,7 @@ var app = (function () {
     	return block;
     }
 
-    function compareNumbers$2(a, b) {
+    function compareNumbers$1(a, b) {
     	return a[0] - b[0];
     }
 
@@ -31631,7 +31631,7 @@ var app = (function () {
     			datosGraficaPorPais = []; //Vaciamos el array de datos por pais
 
     			//Ordenamos los datos por años
-    			arrayAux1.data.sort(compareNumbers$2);
+    			arrayAux1.data.sort(compareNumbers$1);
 
     			//Lo recorremos para tener en cuenta los años presentes
     			for (var num2 in arrayAux1.data) {
@@ -31777,7 +31777,7 @@ var app = (function () {
     		mensajeCorrecto,
     		mensajeError,
     		tomaDatosGrafica,
-    		compareNumbers: compareNumbers$2,
+    		compareNumbers: compareNumbers$1,
     		rangoAnyos: rangoAnyos$3,
     		cargaGrafica,
     		cambiaDato
@@ -31905,7 +31905,7 @@ var app = (function () {
     	return block;
     }
 
-    function compareNumbers$1(a, b) {
+    function compareNumbers(a, b) {
     	return a[0] - b[0];
     }
 
@@ -32046,7 +32046,7 @@ var app = (function () {
     			datosGraficaPorPais = []; //Vaciamos el array de datos por pais
 
     			//Ordenamos los datos por años
-    			arrayAux1.data.sort(compareNumbers$1);
+    			arrayAux1.data.sort(compareNumbers);
 
     			//Lo recorremos para tener en cuenta los años presentes
     			for (var num2 in arrayAux1.data) {
@@ -32192,7 +32192,7 @@ var app = (function () {
     		mensajeCorrecto,
     		mensajeError,
     		tomaDatosGrafica,
-    		compareNumbers: compareNumbers$1,
+    		compareNumbers,
     		rangoAnyos: rangoAnyos$2,
     		cargaGrafica,
     		cambiaDato
@@ -32242,14 +32242,8 @@ var app = (function () {
     const file$2 = "src\\front\\poverty_risks\\povertyRisks_drugUse.svelte";
 
     function create_fragment$2(ctx) {
-    	let script0;
-    	let script0_src_value;
-    	let script1;
-    	let script1_src_value;
-    	let script2;
-    	let script2_src_value;
-    	let script3;
-    	let script3_src_value;
+    	let script;
+    	let script_src_value;
     	let t0;
     	let main;
     	let figure;
@@ -32261,42 +32255,29 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			script0 = element("script");
-    			script1 = element("script");
-    			script2 = element("script");
-    			script3 = element("script");
+    			script = element("script");
     			t0 = space();
     			main = element("main");
     			figure = element("figure");
     			div = element("div");
     			t1 = space();
     			p = element("p");
-    			p.textContent = "Bar chart showing horizontal columns. This chart type is often\r\n          beneficial for smaller screens, as the user can scroll through the data\r\n          vertically, and axis labels are easy to read.";
-    			if (script0.src !== (script0_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script0, "src", script0_src_value);
-    			add_location(script0, file$2, 399, 4, 10443);
-    			if (script1.src !== (script1_src_value = "https://code.highcharts.com/modules/exporting.js")) attr_dev(script1, "src", script1_src_value);
-    			add_location(script1, file$2, 400, 4, 10514);
-    			if (script2.src !== (script2_src_value = "https://code.highcharts.com/modules/export-data.js")) attr_dev(script2, "src", script2_src_value);
-    			add_location(script2, file$2, 401, 4, 10592);
-    			if (script3.src !== (script3_src_value = "https://code.highcharts.com/modules/accessibility.js")) attr_dev(script3, "src", script3_src_value);
-    			add_location(script3, file$2, 402, 4, 10672);
+    			p.textContent = "Integración poverty risks con drug use";
+    			if (script.src !== (script_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script, "src", script_src_value);
+    			add_location(script, file$2, 296, 4, 7442);
     			attr_dev(div, "id", "container");
-    			attr_dev(div, "class", "svelte-1m2akjv");
-    			add_location(div, file$2, 409, 8, 10860);
+    			add_location(div, file$2, 302, 8, 7613);
     			attr_dev(p, "class", "highcharts-description");
-    			add_location(p, file$2, 410, 8, 10896);
-    			attr_dev(figure, "class", "highcharts-figure svelte-1m2akjv");
-    			add_location(figure, file$2, 408, 4, 10816);
-    			add_location(main, file$2, 407, 0, 10804);
+    			add_location(p, file$2, 303, 8, 7649);
+    			attr_dev(figure, "class", "highcharts-figure");
+    			add_location(figure, file$2, 301, 4, 7569);
+    			add_location(main, file$2, 300, 0, 7557);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			append_dev(document.head, script0);
-    			append_dev(document.head, script1);
-    			append_dev(document.head, script2);
-    			append_dev(document.head, script3);
+    			append_dev(document.head, script);
     			insert_dev(target, t0, anchor);
     			insert_dev(target, main, anchor);
     			append_dev(main, figure);
@@ -32305,7 +32286,7 @@ var app = (function () {
     			append_dev(figure, p);
 
     			if (!mounted) {
-    				dispose = listen_dev(script3, "load", /*cargaGrafica*/ ctx[0], false, false, false);
+    				dispose = listen_dev(script, "load", /*cargaGrafica*/ ctx[0], false, false, false);
     				mounted = true;
     			}
     		},
@@ -32313,10 +32294,7 @@ var app = (function () {
     		i: noop$1,
     		o: noop$1,
     		d: function destroy(detaching) {
-    			detach_dev(script0);
-    			detach_dev(script1);
-    			detach_dev(script2);
-    			detach_dev(script3);
+    			detach_dev(script);
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(main);
     			mounted = false;
@@ -32333,10 +32311,6 @@ var app = (function () {
     	});
 
     	return block;
-    }
-
-    function compareNumbers(a, b) {
-    	return a[0] - b[0];
     }
 
     function rangoAnyos$1(inic, fin) {
@@ -32356,23 +32330,11 @@ var app = (function () {
     	var povertyRisks_data = [];
     	var drugUse_data = [];
     	var anyos = [];
-    	var paises = [];
     	var inicio = 2014;
     	var fin = 2019;
-    	var data_clasif = [];
-
-    	var clasif = [
-    		"people_in_risk_of_poverty",
-    		"people_poverty_line",
-    		"home_poverty_line",
-    		"percentage_risk_of_poverty"
-    	];
-
-    	//var datoClasif = clasif[Math.floor(Math.random()*clasif.length)];
-    	var datoClasifEsp = "";
-
     	var conjuntoAnyos = new Set(anyos);
     	var datosGrafica = [];
+    	var datosGraficaDrugUse = [];
 
     	//Declaramos los arrays que incluirán a cada uno de los paise
     	/*switch (datoClasif){
@@ -32396,116 +32358,111 @@ var app = (function () {
 
     	//Funciones auxiliares
     	async function tomaDatosGrafica(datos) {
+    		console.log("SE EJECUTA tomaDatosGrafica");
+
     		var datosFiltradosAnyo = datos.filter(e => {
     			return e.year >= inicio;
     		});
 
-    		paises = new Array();
-    		var arrayTotal = [];
-    		var arrayAux1 = {};
-    		var arrayAux2 = [];
-    		var indice = 0;
-
-    		for (var num in datosFiltradosAnyo) {
-    			var dato = datosFiltradosAnyo[num]; //Tomamos el dato que estamos iterando
-
-    			if (paises.indexOf(dato.country) != -1) {
-    				//Comprobamos si ya hemos pasado por ese país
-    				var arrayAux1 = {};
-
-    				var arrayAux2 = [];
-    				indice = paises.indexOf(dato.country);
-    				arrayAux1 = arrayTotal[indice]; //Guardamos aqui el array del país
-
-    				//Guardamos el par año,datoARepresentar
-    				arrayAux2.push(dato.year);
-
-    				arrayAux2.push(dato[datoClasif]);
-
-    				//Lo pusheamos al array1
-    				arrayAux1.data.push(arrayAux2);
-
-    				//Modificamos el valor en el general
-    				arrayTotal[indice] = arrayAux1;
-    			} else {
-    				//Quiere decir que es la primera vez que tomamos ese país
-    				arrayAux1 = {};
-
-    				arrayAux2 = [];
-
-    				//Añadimos el par año, datoARepresentar
-    				arrayAux2.push(dato.year);
-
-    				arrayAux2.push(dato[datoClasif]);
-
-    				//Lo pusheamos al array1 y luego al general
-    				arrayAux1 = { name: dato.country, data: [] };
-
-    				arrayAux1.data.push(arrayAux2);
-    				arrayTotal.push(arrayAux1);
-
-    				//Por ultimo añadimos el país a la lista de paises
-    				paises.push(dato.country);
-    			}
-    		}
-
-    		/*Una vez tenemos los datos de la siguiente manera
-
-    general[pais1[[año,dato],[año,dato],..],pais2[[año,dato],[año,dato],..],[],...]
-
-    debemos ir creando los objetos {name: pais, data: datos} de tal manera que data esté ordenado
-    por años y en caso de no encontrarse el dato en algún año, el valor será null
-
-
-
-    */
-    		var arrayFinal = [];
-
-    		var paisActual = "";
-    		var datosGraficaPorPais = [];
-    		var contador = 0;
+    		var arrayAux = [];
+    		var arraySumador = [];
     		var objeto = {};
-    		var anyosAuxiliar = [];
-    		var rango = rangoAnyos$1(inicio, fin);
+    		var anyos = rangoAnyos$1(inicio, fin);
+    		var a = 0;
 
-    		for (var num1 in arrayTotal) {
-    			contador = 0;
-    			anyosAuxiliar = [];
-    			arrayAux1 = {}; //Vaciamos el array auxiliar
-    			arrayAux2 = []; //Vaciamos el array auxiliar
-    			arrayAux1 = arrayTotal[num1]; //Guardamos el array del pais
-    			paisActual = paises[num1];
-    			datosGraficaPorPais = []; //Vaciamos el array de datos por pais
+    		objeto = {
+    			name: "people_in_risk_of_poverty",
+    			data: []
+    		};
 
-    			//Ordenamos los datos por años
-    			arrayAux1.data.sort(compareNumbers);
+    		//Iteramos por cada año del rango establecido
+    		for (var anyo in anyos) {
+    			//Pillamos el año
+    			a = anyos[anyo];
 
-    			//Lo recorremos para tener en cuenta los años presentes
-    			for (var num2 in arrayAux1.data) {
-    				anyosAuxiliar.push(arrayAux1.data[num2][0]); //Añadimos el año
-    			}
+    			//Limpiamos variables
+    			arrayAux = [];
 
-    			//creamos el objeto que vamos a insertar en la gráfica
-    			for (var num3 in rango) {
-    				if (anyosAuxiliar.indexOf(rango[num3]) != -1) {
-    					datosGraficaPorPais.push(arrayAux1.data[contador][1]);
-    					contador++;
+    			//Iteramos sobre los datos para comprobar si su año coincide con el establecido
+    			for (var num in datosFiltradosAnyo) {
+    				var dato = datosFiltradosAnyo[num]; //Tomamos el dato que estamos iterando
+
+    				if (dato.year == a) {
+    					//Si coincide con el año ("a") se toma el valor del atributo pasado por parametro
+    					arrayAux.push(dato["people_in_risk_of_poverty"]);
     				} else {
-    					datosGraficaPorPais.push(0);
-    				} //Añadimos CEROS a los años para los que NO tengamos datos
+    					arrayAux.push(0);
+    				}
     			}
 
-    			//Ya con los datos completos, creamos entonces el objeto
-    			objeto = {
-    				name: paisActual,
-    				data: datosGraficaPorPais
-    			};
+    			//  console.log("ArrayAux"+ a+ ": " + arrayAux);
+    			arraySumador.push(arrayAux.reduce((a, b) => a + b, 0));
+    		} //  console.log("arraySumador: " + arraySumador);
 
-    			arrayFinal.push(objeto);
+    		for (var e in arraySumador) {
+    			objeto.data.push(arraySumador[e]);
     		}
 
-    		console.log("Final:" + JSON.stringify(arrayFinal));
-    		return arrayFinal;
+    		//Pusheamos al array final
+    		//array.push(objeto);
+    		console.log("objetoPovertyRisks");
+
+    		console.log(objeto);
+
+    		//console.log(array);
+    		return objeto;
+    	}
+
+    	async function tomaDatosGraficaDrugUse(datos) {
+    		console.log("SE EJECUTA tomaDatosGraficaDrugUse");
+
+    		var datosFiltradosAnyo = datos.filter(e => {
+    			return e.year >= inicio;
+    		});
+
+    		var arrayAux = [];
+    		var arraySumador = [];
+    		var objeto = {};
+    		var anyos = rangoAnyos$1(inicio, fin);
+    		var a = 0;
+    		objeto = { name: "drugUse", data: [] };
+
+    		//Iteramos por cada año del rango establecido
+    		for (var anyo in anyos) {
+    			//Pillamos el año
+    			a = anyos[anyo];
+
+    			//Limpiamos variables
+    			arrayAux = [];
+
+    			//Iteramos sobre los datos para comprobar si su año coincide con el establecido
+    			for (var num in datosFiltradosAnyo) {
+    				var dato = datosFiltradosAnyo[num]; //Tomamos el dato que estamos iterando
+
+    				if (dato.year == a) {
+    					//Si coincide con el año ("a") se toma el valor del atributo pasado por parametro
+    					arrayAux.push(parseFloat(dato["dupopulation"]) * 1000);
+    				} else {
+    					arrayAux.push(0);
+    				}
+    			}
+
+    			//  console.log("ArrayAuxDrugUse"+ a+ ": " + arrayAux);
+    			arraySumador.push(arrayAux.reduce((a, b) => a + b, 0));
+    		} //  console.log("arraySumadorDrugUse: " + arraySumador);
+
+    		for (var e in arraySumador) {
+    			objeto.data.push(arraySumador[e]);
+    		}
+
+    		//Pusheamos al array final
+    		//array.push(objeto);
+    		console.log("objetoDrugUse");
+
+    		console.log(objeto);
+
+    		//console.log(array);
+    		return objeto;
     	}
 
     	//Funciones principales
@@ -32513,6 +32470,9 @@ var app = (function () {
     		//Peticion de datos
     		console.log("se ejecuta cargar grafica");
 
+    		var anyos = rangoAnyos$1(inicio, fin);
+    		console.log(anyos);
+    		await fetch(BASE_API_PATH + "/loadInitialData");
     		const res = await fetch(BASE_API_PATH);
 
     		if (res.ok) {
@@ -32539,14 +32499,15 @@ var app = (function () {
     			}
     		}
 
-    		const res2 = await fetch(BASE_API_PATH);
+    		await fetch("proxyHeroku/api/v1/du-stats/loadInitialData");
+    		const res2 = await fetch("proxyHeroku/api/v1/du-stats");
 
     		if (res2.ok) {
     			var json2 = await res2.json();
 
     			if (json2.length === undefined) {
     				drugUse_data = [];
-    				povertyRisks_data.push(json2);
+    				drugUse_data.push(json2);
     			} else {
     				drugUse_data = json2;
     			}
@@ -32568,134 +32529,43 @@ var app = (function () {
     		console.log(povertyRisks_data);
     		console.log(drugUse_data);
 
-    		//tomamos los años y el dato a buscar de los elementos seleccionados
-    		/* for(var elemento in povertyRisks_data){
-         //console.log(elemento);
-         anyos.push(povertyRisks_data[elemento].year);
-         data_clasif.push(povertyRisks_data[elemento][datoClasif]);
-     }
-     console.log("años: " + anyos);
-     console.log("datos " + datoClasifEsp + ":" + data_clasif);
-     conjuntoAnyos = new Set(anyos);
-     anyos = [...conjuntoAnyos];*/
     		//Tomamos los datos
     		datosGrafica = await tomaDatosGrafica(povertyRisks_data);
 
     		datosGraficaDrugUse = await tomaDatosGraficaDrugUse(drugUse_data);
 
+    		//console.log(rangoAnyos(inicio,fin));
     		//Construccion de la grafica
-    		/*
-    Highcharts.chart('container', {
-
-    title: {
-        text: "Riesgo de pobreza a nivel mundial"
-
-    },
-
-    subtitle: {
-        text: datoClasifEsp
-    },
-
-    yAxis: {
-        title: {
-            text: datoClasifEsp
-        }
-    },
-
-    xAxis: {
-        accessibility: {
-            rangeDescription: 'Range:'+inicio+'  to 2019'
-        }
-    },
-
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
-    },
-
-    plotOptions: {
-        series: {
-            label: {
-                connectorAllowed: false
-            },
-            pointStart: inicio
-        }
-    },
-
-    series: datosGrafica,
-
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom'
-                }
-            }
-        }]
-    }
-
-    });*/
     		Highcharts.chart("container", {
-    			chart: { type: "bar" },
+    			chart: { type: "area" },
     			title: {
-    				text: "Historic World Population by Region"
+    				text: "Integración 01 poverty risks con drugUse"
     			},
-    			subtitle: {
-    				text: "Source: <a href=\"https://en.wikipedia.org/wiki/World_population\">Wikipedia.org</a>"
+    			subtitle: { text: "" },
+    			xAxis: {
+    				categories: anyos,
+    				tickmarkPlacement: "on",
+    				title: { enabled: false }
     			},
-    			xAxis: { categories: rango, title: { text: null } },
     			yAxis: {
-    				min: 0,
-    				title: {
-    					text: "Population (millions)",
-    					align: "high"
-    				},
-    				labels: { overflow: "justify" }
-    			},
-    			tooltip: { valueSuffix: " millions" },
-    			plotOptions: { bar: { dataLabels: { enabled: true } } },
-    			legend: {
-    				layout: "vertical",
-    				align: "right",
-    				verticalAlign: "top",
-    				x: -40,
-    				y: 80,
-    				floating: true,
-    				borderWidth: 1,
-    				backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || "#FFFFFF",
-    				shadow: true
-    			},
-    			credits: { enabled: false },
-    			series: [
-    				{
-    					name: "Year 1800",
-    					data: [107, 31, 635, 203, 2]
-    				},
-    				{
-    					name: "Year 1900",
-    					data: [133, 156, 947, 408, 6]
-    				},
-    				{
-    					name: "Year 2000",
-    					data: [814, 841, 3714, 727, 31]
-    				},
-    				{
-    					name: "Year 2016",
-    					data: [1216, 1001, 4436, 738, 40]
+    				title: { text: "People" },
+    				labels: {
+    					formatter() {
+    						return this.value / 1000;
+    					}
     				}
-    			]
+    			},
+    			tooltip: { split: true, valueSuffix: " millions" },
+    			plotOptions: {
+    				area: {
+    					stacking: "normal",
+    					lineColor: "#666666",
+    					lineWidth: 1,
+    					marker: { lineWidth: 1, lineColor: "#666666" }
+    				}
+    			},
+    			series: [datosGrafica, datosGraficaDrugUse]
     		});
-    	}
-
-    	function cambiaDato(nombre) {
-    		datoClasif = nombre;
-    		cargaGrafica();
     	}
 
     	const writable_props = [];
@@ -32711,21 +32581,17 @@ var app = (function () {
     		povertyRisks_data,
     		drugUse_data,
     		anyos,
-    		paises,
     		inicio,
     		fin,
-    		data_clasif,
-    		clasif,
-    		datoClasifEsp,
     		conjuntoAnyos,
     		datosGrafica,
+    		datosGraficaDrugUse,
     		mensajeCorrecto,
     		mensajeError,
     		tomaDatosGrafica,
-    		compareNumbers,
+    		tomaDatosGraficaDrugUse,
     		rangoAnyos: rangoAnyos$1,
-    		cargaGrafica,
-    		cambiaDato
+    		cargaGrafica
     	});
 
     	$$self.$inject_state = $$props => {
@@ -32733,14 +32599,11 @@ var app = (function () {
     		if ("povertyRisks_data" in $$props) povertyRisks_data = $$props.povertyRisks_data;
     		if ("drugUse_data" in $$props) drugUse_data = $$props.drugUse_data;
     		if ("anyos" in $$props) anyos = $$props.anyos;
-    		if ("paises" in $$props) paises = $$props.paises;
     		if ("inicio" in $$props) inicio = $$props.inicio;
     		if ("fin" in $$props) fin = $$props.fin;
-    		if ("data_clasif" in $$props) data_clasif = $$props.data_clasif;
-    		if ("clasif" in $$props) clasif = $$props.clasif;
-    		if ("datoClasifEsp" in $$props) datoClasifEsp = $$props.datoClasifEsp;
     		if ("conjuntoAnyos" in $$props) conjuntoAnyos = $$props.conjuntoAnyos;
     		if ("datosGrafica" in $$props) datosGrafica = $$props.datosGrafica;
+    		if ("datosGraficaDrugUse" in $$props) datosGraficaDrugUse = $$props.datosGraficaDrugUse;
     		if ("mensajeCorrecto" in $$props) mensajeCorrecto = $$props.mensajeCorrecto;
     		if ("mensajeError" in $$props) mensajeError = $$props.mensajeError;
     	};
