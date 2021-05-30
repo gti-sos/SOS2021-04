@@ -136,12 +136,12 @@
       <Col xs="auto">
         <Card class="mb-3">
           <CardHeader>
-            <CardTitle><h5>Analfabetismo</h5></CardTitle>
+            <CardTitle><h5>Alfabetismo</h5></CardTitle>
           </CardHeader>
           <CardBody>
             <CardSubtitle />
             <CardText>
-              Expresa la magnitud relativa de la población analfabeta.
+              Expresa la magnitud relativa de la población alfabeta.
             </CardText>
             <a href="/api/v1/illiteracy"><Button color="primary">API v1</Button></a>
 

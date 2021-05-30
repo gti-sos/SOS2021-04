@@ -778,6 +778,21 @@ const request = require("request");
 			
 			req.pipe(request(url)).pipe(res);
 		  });
+
+		  app.use("/proxySOStemperature", function(req, res) {
+			console.log("New Proxy Call!");
+	
+			var apiServerHost = "https://sos2021-21.herokuapp.com";	///descargar.php?id=227&tipo=JSON;
+			console.log("apiServerHost = "+ apiServerHost);
+			console.log("baseURL = "+ req.baseUrl);
+			console.log("url = "+ req.url);
+	
+			var url = apiServerHost + req.url;
+	
+			console.log('piped: ' + req.url);
+			
+			req.pipe(request(url)).pipe(res);
+		  });
 		
 	
     };

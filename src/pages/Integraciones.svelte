@@ -62,21 +62,24 @@
   <div>
     <Card class="mb-3">
       <CardHeader>
-        <CardTitle><h2>Illiteracy-Stats</h2></CardTitle>
+        <CardTitle><h2>lliteracy-Stats</h2></CardTitle>
       </CardHeader>
       <CardBody>
         <CardSubtitle />
         <CardText />
         <a href="/#/integrations/api1"
-          ><Button color="primary"> API Externa 1</Button></a
+          ><Button color="primary"> API Externa 1 USO</Button></a
         >
         <a href="/#/integrations/api2"
-          ><Button color="primary"> API Externa 2</Button></a
+          ><Button color="primary"> API Externa 2 USO</Button></a
         >
         <a href="/#/integrations/mig-obesity-Stats"
           ><Button color="primary"> API Obesity-Stats G10</Button></a
         >
-        
+        <a href="/#/integrations/mig-temperature"
+          ><Button color="primary"> API Temperature-Stats G21</Button></a
+        >
+       
       </CardBody>
     </Card>
   </div>

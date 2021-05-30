@@ -18,6 +18,8 @@
 	import api1 from "./front/illiteracy/Integraciones/api1.svelte";
 	import api2 from "./front/illiteracy/Integraciones/api2.svelte";
 	import migObesity from "./front/illiteracy/Integraciones/mig-obesity-Stats.svelte";
+	import migtemperature from "./front/illiteracy/Integraciones/mig-temperature.svelte";
+	
 	
 	import AppPovertyRisks from './front/poverty_risks/appPovertyRisks.svelte';
 	import editData_poverty_risks from "./front/poverty_risks/editData_poverty_risks.svelte";
@@ -45,7 +47,7 @@
 		"/integrations/api2": api2,
 		"/integrations/api1": api1,
 		"/integrations/mig-obesity-Stats": migObesity,
-
+		"/integrations/mig-temperature": migtemperature,
 		
 		"/poverty_risks":AppPovertyRisks,
 		"/poverty_risks/:country/:year": editData_poverty_risks,

@@ -214,7 +214,8 @@
            //Pusheamos al array final
            arrayFinal.push(mediaPorAnyo);
         }
-        
+        console.log("quiero ver");
+        console.log(arrayFinal);
     
         return arrayFinal;
        
