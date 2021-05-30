@@ -16,6 +16,8 @@
 	import illiteracy_edit from "./front/illiteracy/edit_data_illiteracy.svelte";
 	import illiteracy_Graphs from "./front/illiteracy/illiteracy_Graphs.svelte";
 	import api1 from "./front/illiteracy/Integraciones/api1.svelte";
+	import api2 from "./front/illiteracy/Integraciones/api2.svelte";
+	import migObesity from "./front/illiteracy/Integraciones/mig-obesity-Stats.svelte";
 	
 	import AppPovertyRisks from './front/poverty_risks/appPovertyRisks.svelte';
 	import editData_poverty_risks from "./front/poverty_risks/editData_poverty_risks.svelte";
@@ -30,7 +32,7 @@
 		"/info":Info,
 		"/graphics":GraficasConjunto,
 		"/integrations": Integrations,
-		"/integrations/api1": api1,
+		
 		
 		"/education_expenditures":App_edex,
 		"/education_expenditures/:country/:year": Edit_data_edex,
@@ -39,6 +41,10 @@
 		"/illiteracy":illiteracy,
 		"/illiteracy/:country/:date":illiteracy_edit,
 		"/illiteracy_graphs" : illiteracy_Graphs,
+		"/integrations/api1": api1,
+		"/integrations/api2": api2,
+		"/integrations/api1": api1,
+		"/integrations/mig-obesity-Stats": migObesity,
 
 		
 		"/poverty_risks":AppPovertyRisks,

@@ -6,13 +6,13 @@
   var okMsg = "";
   async function getStats() {
     console.log("Fetching data...");
-    const res = await fetch("https://rickandmortyapi.com/api/character/");
+    const res = await fetch("https://cohesiondata.ec.europa.eu/resource/jeqt-d5ig.json");
     if (res.ok) {
       const json = await res.json();
-      characters = json.results;
+      characters = json;
       console.log(Object.keys(json));
-      console.log(Object.keys(characters));
-      console.log(`We have received ${characters.length} characters.`);
+      //console.log(Object.keys(characters));
+      console.log(`We have received ${characters.length} capitales.`);
       console.log("Ok");
     } else {
       errorMsg = "Error al obtener los  datos de los personajes";
@@ -24,20 +24,14 @@
     await getStats();
     var array = [];
    
-    characters.forEach(c =>{
-      //console.log(Object.keys(c));
-      
-      console.log(`imprimiendo c ${c}`);
+    for (let index = 0; index < 10; index++) { 
+      const element = characters[index]
       var point ={x: "name", y: null}
-      point.x = c.name
-      point.y = c.episode.length
+      point.x = element.nuts_name
+      point.y = parseFloat(element.nat_grw0111_pc)
       array.push(point) 
-    }  )
-    /* let points = [
-      { x: "A", y: 10 },
-      { x: "B", y: 5 },
-    ];
- */
+      
+    }  
     const chart = new JSC.Chart("chartDiv", {
       // Pass points to the series
       series: [{ points: array }],
@@ -62,7 +56,7 @@
   </Nav>
 
   <div>
-    <h2>Uso API externa Rick and Morty API</h2>
+    <h2>Uso API externa Variación de Poblaciones en Capitales Europeas en %</h2>
   </div>
 
   {#if errorMsg}
@@ -77,6 +71,4 @@
     width: 100%;
     height: 400px;
   }
-
-  
 </style>
