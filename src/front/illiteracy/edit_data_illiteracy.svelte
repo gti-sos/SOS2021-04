@@ -96,7 +96,7 @@
   <main>
     <Nav>
       <NavItem>
-        <NavLink href="#/illiteracy">Volver</NavLink>
+        <NavLink id="nav_return"href="#/illiteracy">Volver</NavLink>
       </NavItem>
     </Nav>
   
@@ -135,6 +135,7 @@
             <td>{updateDate}</td>
             <td
               ><input
+                id="input_update_woman"
                 type="number"
                 placeholder="1000"
                 min="1"
@@ -166,7 +167,7 @@
               /></td
             >
             <td>
-              <Button outline color="primary" on:click={updateStat}
+              <Button id="input_update_button"outline color="primary" on:click={updateStat}
                 >Actualizar</Button
               >
             </td>

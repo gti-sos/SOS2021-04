@@ -17,6 +17,7 @@
 	import illiteracy_Graphs from "./front/illiteracy/illiteracy_Graphs.svelte";
 	import api1 from "./front/illiteracy/Integraciones/api1.svelte";
 	import api2 from "./front/illiteracy/Integraciones/api2.svelte";
+	import api3 from "./front/illiteracy/Integraciones/api3.svelte";
 	import migObesity from "./front/illiteracy/Integraciones/mig-obesity-Stats.svelte";
 	import migtemperature from "./front/illiteracy/Integraciones/mig-temperature.svelte";
 	
@@ -45,7 +46,7 @@
 		"/illiteracy_graphs" : illiteracy_Graphs,
 		"/integrations/api1": api1,
 		"/integrations/api2": api2,
-		"/integrations/api1": api1,
+		"/integrations/api3": api3,
 		"/integrations/mig-obesity-Stats": migObesity,
 		"/integrations/mig-temperature": migtemperature,
 		
