@@ -1,6 +1,7 @@
 <script>
 import { onMount } from "svelte";
 import { each } from "svelte/internal";
+import ApexCharts from 'apexcharts';
 
 
     
@@ -8,22 +9,18 @@ import { each } from "svelte/internal";
 var BASE_API_PATH = '/api/v1/poverty_risks';
 
 var povertyRisks_data = [];
+var natalityStats_data = [];
 var anyos = [];
-var paises = [];
 var inicio = 2014;
 var fin = 2019;
-var data_clasif = [];
-var clasif = ["people_in_risk_of_poverty","people_poverty_line",
-"home_poverty_line","percentage_risk_of_poverty"];
-var datoClasif = clasif[Math.floor(Math.random()*clasif.length)];
-var datoClasifEsp = "";
 var conjuntoAnyos = new Set(anyos);
 var datosGrafica = [];
+var datosGraficaNatalityStats = [];
 
 //Declaramos los arrays que incluirán a cada uno de los paise
 
 
-switch (datoClasif){
+/*switch (datoClasif){
     case "people_in_risk_of_poverty":
         datoClasifEsp = "Personas en riesgo de pobreza";
         break;
@@ -36,7 +33,7 @@ switch (datoClasif){
     default:
         datoClasifEsp="Porcentaje población en riesgo de pobreza";
 
-}
+}*/
 
 //Variables para mensajes al usuario
 var mensajeCorrecto = "";
@@ -46,128 +43,115 @@ var mensajeError = "";
 
 
 async function tomaDatosGrafica(datos){
-    
+  console.log("SE EJECUTA tomaDatosGrafica");  
+
+
     var datosFiltradosAnyo = datos.filter((e)=>{
         return e.year >= inicio;
     });
 
-    paises = new Array();
-    var arrayTotal = [];
-    var arrayAux1 = {};
-    var arrayAux2 = [];
-    var indice = 0;    
+   //Creamos variables auxiliares
+   var array = [];
+   var arrayAux = [];
+   var arraySumador = [];
+   var objeto = {};
+    var anyos = rangoAnyos(inicio,fin);
+    var a = 0;
 
-    for(var num in datosFiltradosAnyo){
-        var dato = datosFiltradosAnyo[num]; //Tomamos el dato que estamos iterando
-
-        if(paises.indexOf(dato.country)!=-1){ //Comprobamos si ya hemos pasado por ese país
-            var arrayAux1 = {};
-            var arrayAux2 = [];
-            indice = paises.indexOf(dato.country);
-            arrayAux1 = arrayTotal[indice]; //Guardamos aqui el array del país
-            //Guardamos el par año,datoARepresentar
-            arrayAux2.push(dato.year);
-            arrayAux2.push(dato[datoClasif]);
-
-            //Lo pusheamos al array1
-            arrayAux1.data.push(arrayAux2);
-
-            //Modificamos el valor en el general
-            arrayTotal[indice] = arrayAux1;
-        }
-        else{
-            //Quiere decir que es la primera vez que tomamos ese país
-            arrayAux1 = {};
-            arrayAux2 = [];
-            
-            //Añadimos el par año, datoARepresentar
-            arrayAux2.push(dato.year);
-            arrayAux2.push(dato[datoClasif]);
-
-            //Lo pusheamos al array1 y luego al general
-            arrayAux1= {
-                name:dato.country,
-                data:[] 
-            }
-
-            arrayAux1.data.push(arrayAux2);
-            arrayTotal.push(arrayAux1);
-
-            //Por ultimo añadimos el país a la lista de paises
-            paises.push(dato.country);
-
-        }
-    }
-
-    /*Una vez tenemos los datos de la siguiente manera
-    
-    general[pais1[[año,dato],[año,dato],..],pais2[[año,dato],[año,dato],..],[],...]
-    
-    debemos ir creando los objetos {name: pais, data: datos} de tal manera que data esté ordenado
-    por años y en caso de no encontrarse el dato en algún año, el valor será null
-
-
-
-    */
-   
-    var arrayFinal = [];
-    var paisActual = "";
-    var datosGraficaPorPais = [];
-    var contador = 0;
-    var objeto = {};
-    var anyosAuxiliar = [];
-    var rango=rangoAnyos(inicio,fin);
-
-    for(var num1 in arrayTotal){
-        contador = 0;
-        anyosAuxiliar = [];
-        arrayAux1 = {}; //Vaciamos el array auxiliar
-        arrayAux2 = []; //Vaciamos el array auxiliar
-        arrayAux1 = arrayTotal[num1]; //Guardamos el array del pais
-        paisActual = paises[num1];
-        datosGraficaPorPais = []; //Vaciamos el array de datos por pais
-
-        //Ordenamos los datos por años
-        arrayAux1.data.sort(compareNumbers);
-
-        //Lo recorremos para tener en cuenta los años presentes
-
-        for(var num2 in arrayAux1.data){
-            anyosAuxiliar.push(arrayAux1.data[num2][0]); //Añadimos el año
+    objeto = {
+            name : "people_in_risk_of_poverty",
+            data : []
         }
 
-        //creamos el objeto que vamos a insertar en la gráfica
+    //Iteramos por cada año del rango establecido
+    for(var anyo in anyos){
+        //Pillamos el año
+        a=anyos[anyo];
+        //Limpiamos variables
+        arrayAux=[];
         
-        for(var num3 in rango){
-            
-            if(anyosAuxiliar.indexOf(rango[num3])!=-1){
-                datosGraficaPorPais.push(arrayAux1.data[contador][1]);
-                contador++;
+        //Iteramos sobre los datos para comprobar si su año coincide con el establecido
+        for(var num in datosFiltradosAnyo){
+            var dato = datosFiltradosAnyo[num]; //Tomamos el dato que estamos iterando
+            if(dato.year == a){ //Si coincide con el año ("a") se toma el valor del atributo pasado por parametro
+                arrayAux.push(dato["people_in_risk_of_poverty"]);
             }
             else{
-                datosGraficaPorPais.push(0);
-                //Añadimos CEROS a los años para los que NO tengamos datos
+                arrayAux.push(0);
             }
-        }
-        
-        //Ya con los datos completos, creamos entonces el objeto
-
-        objeto = {
-            name : paisActual,
-            data : datosGraficaPorPais
-        }
-
-        arrayFinal.push(objeto);
+       }
+      //  console.log("ArrayAux"+ a+ ": " + arrayAux);
+        arraySumador.push(arrayAux.reduce((a, b) => a + b, 0));
+      //  console.log("arraySumador: " + arraySumador);
     }
-    console.log("Final:"+JSON.stringify(arrayFinal));
+    for(var e in arraySumador){
+    objeto.data.push(arraySumador[e]);
+    }
+  
+    //Pusheamos al array final
+    //array.push(objeto);
+    console.log("objetoPovertyRisks");
+    console.log(objeto);
+    //console.log(array);
 
-    return arrayFinal;    
+    return objeto;    
 }
 
 
-function compareNumbers(a, b) {
-  return a[0] - b[0];
+async function tomaDatosGraficaNatalityStats(datos){
+    console.log("SE EJECUTA tomaDatosGraficaNatalityStats");
+    var datosFiltradosAnyo = datos.filter((e)=>{
+        return e.year >= inicio;
+    });
+
+   //Creamos variables auxiliares
+   var array = [];
+   var arrayAux = [];
+   var arraySumador = [];
+   var objeto = {};
+    var anyos = rangoAnyos(inicio,fin);
+    var a = 0;
+
+    objeto = {
+            name : "natalityStats",
+            data : []
+        }
+
+    //Iteramos por cada año del rango establecido
+    for(var anyo in anyos){
+        //Pillamos el año
+        a=anyos[anyo];
+        //Limpiamos variables
+        arrayAux=[];
+        
+        //Iteramos sobre los datos para comprobar si su año coincide con el establecido
+        for(var num in datosFiltradosAnyo){
+            var dato = datosFiltradosAnyo[num]; //Tomamos el dato que estamos iterando
+            if(dato.year == a){ //Si coincide con el año ("a") se toma el valor del atributo pasado por parametro
+                arrayAux.push(dato["born"]*1000);
+            }
+            else{
+                arrayAux.push(0);
+            }
+       }
+      //  console.log("ArrayAuxDrugUse"+ a+ ": " + arrayAux);
+        arraySumador.push(arrayAux.reduce((a, b) => a + b, 0));
+      //  console.log("arraySumadorDrugUse: " + arraySumador);
+    }
+    
+    for(var e in arraySumador){
+    objeto.data.push(arraySumador[e]);
+    }
+  
+    //Pusheamos al array final
+    //array.push(objeto);
+    console.log("objetoDrugUse");
+    console.log(objeto);
+    //console.log(array);
+
+    return objeto; 
 }
+
 
 function rangoAnyos(inic,fin){
     var rango = [];
@@ -186,6 +170,12 @@ async function cargaGrafica(){
     //Peticion de datos
 
     console.log("se ejecuta cargar grafica");
+    var anyos = rangoAnyos(inicio,fin);
+    console.log(anyos);
+
+    await fetch(BASE_API_PATH +
+      "/loadInitialData"
+      );
 
     const res = await fetch(
       BASE_API_PATH
@@ -211,87 +201,110 @@ async function cargaGrafica(){
           console.log("No")
         }
         
-      } 
-      console.log(povertyRisks_data);
-      
-      //tomamos los años y el dato a buscar de los elementos seleccionados
-     /* for(var elemento in povertyRisks_data){
-          //console.log(elemento);
-          anyos.push(povertyRisks_data[elemento].year);
-          data_clasif.push(povertyRisks_data[elemento][datoClasif]);
       }
-      console.log("años: " + anyos);
-      console.log("datos " + datoClasifEsp + ":" + data_clasif);
-      conjuntoAnyos = new Set(anyos);
-      anyos = [...conjuntoAnyos];*/
+
+      await fetch(
+      "http://sos2021-natality-stats.herokuapp.com/api/v2/natality-stats/loadinitialdata"
+      );
+
+      const res2 = await fetch(
+      "http://sos2021-natality-stats.herokuapp.com/api/v2/natality-stats/"
+      );
+      if (res2.ok) {
+        var json2 = await res2.json();
+        if(json2.length===undefined){
+          natalityStats_data = [];
+          natalityStats_data.push(json2);          
+        }
+        else{
+          natalityStats_data = json2;
+        }
+        mensajeError="";
+        mensajeCorrecto="Datos de drugUse cargados correctamente"
+      } else {
+        if (res2.status === 500) {
+          mensajeError = "No se ha podido acceder a la base de datos de drugUse";
+          console.log("No");
+        }
+        if (natalityStats_data.length === 0) {
+          mensajeError = "No hay datos disponibles en drugUse";
+          console.log("No")
+        }
+        
+      } 
+
+      console.log(povertyRisks_data);
+      console.log(natalityStats_data);
+      
 
       //Tomamos los datos
 
       datosGrafica = await tomaDatosGrafica(povertyRisks_data);
+      datosGraficaNatalityStats = await tomaDatosGraficaNatalityStats(natalityStats_data);
+      //console.log(rangoAnyos(inicio,fin));
 
     //Construccion de la grafica
-
-    Highcharts.chart('container', {
-
-    title: {
-        text: "Riesgo de pobreza a nivel mundial"
-
-    },
-
-    subtitle: {
-        text: datoClasifEsp
-    },
-
-    yAxis: {
-        title: {
-            text: datoClasifEsp
-        }
-    },
-
-    xAxis: {
-        accessibility: {
-            rangeDescription: 'Range:'+inicio+'  to 2019'
-        }
-    },
-
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
-    },
-
-    plotOptions: {
-        series: {
-            label: {
-                connectorAllowed: false
+    var options = {
+          series: [76, 67, 61, 90],
+          chart: {
+          height: 390,
+          type: 'radialBar',
+        },
+        plotOptions: {
+          radialBar: {
+            offsetY: 0,
+            startAngle: 0,
+            endAngle: 270,
+            hollow: {
+              margin: 5,
+              size: '30%',
+              background: 'transparent',
+              image: undefined,
             },
-            pointStart: inicio
-        }
-    },
-
-    series: datosGrafica,
-
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom'
-                }
+            dataLabels: {
+              name: {
+                show: false,
+              },
+              value: {
+                show: false,
+              }
             }
+          }
+        },
+        colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
+        labels: ['Vimeo', 'Messenger', 'Facebook', 'LinkedIn'],
+        legend: {
+          show: true,
+          floating: true,
+          fontSize: '16px',
+          position: 'left',
+          offsetX: 160,
+          offsetY: 15,
+          labels: {
+            useSeriesColors: true,
+          },
+          markers: {
+            size: 0
+          },
+          formatter: function(seriesName, opts) {
+            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
+          },
+          itemMargin: {
+            vertical: 3
+          }
+        },
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            legend: {
+                show: false
+            }
+          }
         }]
-    }
+        };
 
-    });
-}
-
-function cambiaDato(nombre){
-    datoClasif = nombre;
-    cargaGrafica();
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
 
 }
 
@@ -299,53 +312,19 @@ function cambiaDato(nombre){
 
 <svelte:head>
 
-    <script src="https://code.highcharts.com/highcharts.js" on:load={cargaGrafica} ></script>
-    
+    <script src="https://code.highcharts.com/highcharts.js" on:load={cargaGrafica}></script> 
     
 </svelte:head>
 
 <main>
-    <figure class="highcharts-figure">
+    <!-- <figure class="highcharts-figure">
         <div id="container"></div>
-            <p class="highcharts-description" style="font-size: 0.85em; text-align: center; padding:1em">
-                <em>'La tasa de riesgo de pobreza es el porcentaje de población que se encuentra por debajo del umbral de riesgo de pobreza.'</em>
-            </p>    
-    </figure>
+        <p class="highcharts-description">
+          Integración poverty risks con drug use
+        </p>
+    </figure> -->
 </main>
 
 <style>
-/* .highcharts-figure, .highcharts-data-table table {
-    min-width: 360px; 
-    max-width: 800px;
-    margin: 1em auto;
-}
-
-.highcharts-data-table table {
-	font-family: Verdana, sans-serif;
-	border-collapse: collapse;
-	border: 1px solid #EBEBEB;
-	margin: 10px auto;
-	text-align: center;
-	width: 100%;
-	max-width: 500px;
-}
-.highcharts-data-table caption {
-    padding: 1em 0;
-    font-size: 1.2em;
-    color: #555;
-}
-.highcharts-data-table th {
-	font-weight: 600;
-    padding: 0.5em;
-}
-.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-    padding: 0.5em;
-}
-.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-    background: #f8f8f8;
-}
-.highcharts-data-table tr:hover {
-    background: #f1f7ff;
-} */
 
 </style>

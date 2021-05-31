@@ -153,6 +153,7 @@ async function tomaDatosGrafica(datos){
         //Ya con los datos completos, creamos entonces el objeto
 
         objeto = {
+            type: 'column',
             name : paisActual,
             data : datosGraficaPorPais
         }
@@ -187,6 +188,7 @@ async function cargaGrafica(){
 
     console.log("se ejecuta cargar grafica");
 
+    await fetch(BASE_API_PATH+"/loadInitialData");
     const res = await fetch(
       BASE_API_PATH
       );
@@ -213,17 +215,6 @@ async function cargaGrafica(){
         
       } 
       console.log(povertyRisks_data);
-      
-      //tomamos los años y el dato a buscar de los elementos seleccionados
-     /* for(var elemento in povertyRisks_data){
-          //console.log(elemento);
-          anyos.push(povertyRisks_data[elemento].year);
-          data_clasif.push(povertyRisks_data[elemento][datoClasif]);
-      }
-      console.log("años: " + anyos);
-      console.log("datos " + datoClasifEsp + ":" + data_clasif);
-      conjuntoAnyos = new Set(anyos);
-      anyos = [...conjuntoAnyos];*/
 
       //Tomamos los datos
 
@@ -232,68 +223,29 @@ async function cargaGrafica(){
     //Construccion de la grafica
 
     Highcharts.chart('container', {
-
-    title: {
-        text: "Riesgo de pobreza a nivel mundial"
-
-    },
-
-    subtitle: {
-        text: datoClasifEsp
-    },
-
-    yAxis: {
-        title: {
-            text: datoClasifEsp
-        }
-    },
-
-    xAxis: {
-        accessibility: {
-            rangeDescription: 'Range:'+inicio+'  to 2019'
-        }
-    },
-
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
-    },
-
-    plotOptions: {
-        series: {
-            label: {
-                connectorAllowed: false
-            },
-            pointStart: inicio
-        }
-    },
-
-    series: datosGrafica,
-
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom'
-                }
-            }
-        }]
-    }
-
-    });
+  title: {
+    text: datoClasifEsp
+  },
+  xAxis: {
+    categories: rangoAnyos(inicio,fin)
+  },
+  labels: {
+    items: [{
+      html: '',
+      style: {
+        left: '50px',
+        top: '18px',
+        color: ( // theme
+          Highcharts.defaultOptions.title.style &&
+          Highcharts.defaultOptions.title.style.color
+        ) || 'black'
+      }
+    }]
+  },
+  series: datosGrafica
+});
 }
 
-function cambiaDato(nombre){
-    datoClasif = nombre;
-    cargaGrafica();
-
-}
 
 </script>
 
