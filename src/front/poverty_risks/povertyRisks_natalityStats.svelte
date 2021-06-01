@@ -89,7 +89,7 @@ async function tomaDatosGraficaNatalityStats(datos){
     var a = 0;
 
     objeto = {
-            name : "natalityStats",
+            name : "natalityStats (born people)",
             data : []
         }
 
@@ -245,7 +245,7 @@ async function cargaGrafica(){
         },
         yaxis: {
           title: {
-            text: '$ (thousands)'
+            text: 'Number of people'
           }
         },
         fill: {
@@ -253,9 +253,6 @@ async function cargaGrafica(){
         },
         tooltip: {
           y: {
-            formatter: function (val) {
-              return "$ " + val + " thousands"
-            }
           }
         }
         };

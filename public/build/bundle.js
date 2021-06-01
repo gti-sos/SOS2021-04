@@ -36992,10 +36992,10 @@ var app = (function () {
     			main = element("main");
     			div = element("div");
     			if (script.src !== (script_src_value = "https://cdn.jsdelivr.net/npm/apexcharts")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$3, 270, 2, 7100);
+    			add_location(script, file$3, 267, 2, 7013);
     			attr_dev(div, "id", "chart");
-    			add_location(div, file$3, 275, 2, 7222);
-    			add_location(main, file$3, 274, 0, 7212);
+    			add_location(div, file$3, 272, 2, 7135);
+    			add_location(main, file$3, 271, 0, 7125);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -37130,7 +37130,11 @@ var app = (function () {
     		var objeto = {};
     		var anyos = rangoAnyos$2(inicio, fin);
     		var a = 0;
-    		objeto = { name: "natalityStats", data: [] };
+
+    		objeto = {
+    			name: "natalityStats (born people)",
+    			data: []
+    		};
 
     		//Iteramos por cada año del rango establecido
     		for (var anyo in anyos) {
@@ -37258,15 +37262,9 @@ var app = (function () {
     				colors: ["transparent"]
     			},
     			xaxis: { categories: anyos },
-    			yaxis: { title: { text: "$ (thousands)" } },
+    			yaxis: { title: { text: "Number of people" } },
     			fill: { opacity: 1 },
-    			tooltip: {
-    				y: {
-    					formatter(val) {
-    						return "$ " + val + " thousands";
-    					}
-    				}
-    			}
+    			tooltip: { y: {} }
     		};
 
     		var chart = new ApexCharts(document.querySelector("#chart"), options);
