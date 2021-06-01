@@ -235,7 +235,7 @@ async function cargaGrafica(){
           curve: 'smooth'
         },
         xaxis: {
-          categories: anyos
+          categories: rangoAnyos(inicio,fin)
         },
         tooltip: {
           x: {
@@ -245,6 +245,8 @@ async function cargaGrafica(){
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
+        window.alert(datoClasifEsp);
+        console.log(datoClasifEsp);
 }
 
 

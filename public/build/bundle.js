@@ -30428,15 +30428,15 @@ var app = (function () {
     			div = element("div");
     			t1 = space();
     			p = element("p");
-    			if (script.src !== (script_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$a, 234, 8, 6369);
+    			if (script.src !== (script_src_value = "https://code.jscharting.com/latest/jscharting.js")) attr_dev(script, "src", script_src_value);
+    			add_location(script, file$a, 187, 8, 5375);
     			attr_dev(div, "id", "container");
-    			add_location(div, file$a, 240, 12, 6559);
+    			add_location(div, file$a, 193, 12, 5572);
     			attr_dev(p, "class", "highcharts-description");
-    			add_location(p, file$a, 241, 12, 6599);
+    			add_location(p, file$a, 194, 12, 5612);
     			attr_dev(figure, "class", "highcharts-figure");
-    			add_location(figure, file$a, 239, 8, 6511);
-    			add_location(main, file$a, 237, 4, 6489);
+    			add_location(figure, file$a, 192, 8, 5524);
+    			add_location(main, file$a, 190, 4, 5502);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -30547,53 +30547,27 @@ var app = (function () {
     		var datosGrafica_i = await tomaDatosGrafica(i_data, "male_illiteracy_rate");
 
     		//Construccion de la grafica
-    		Highcharts.chart("container", {
-    			chart: { type: "spline" },
-    			title: {
-    				text: "Grafica conjunta Grupo 10 Obesity_stats y Grupo 4 illiteracy"
-    			},
-    			subtitle: { text: "Datos Restringidos a España" },
-    			yAxis: { title: { text: "porcentaje (%)" } },
+    		JSC.chart("chartDiv", {
+    			debug: true,
+    			legend_position: "bottom right",
+    			type: "area spline",
+    			defaultSeries: { shape_opacity: 0.5 },
     			xAxis: {
-    				accessibility: {
-    					rangeDescription: "Range:" + inicio + "  to " + fin
-    				}
+    				crosshair_enabled: true,
+    				scale: { type: "time" }
     			},
-    			legend: {
-    				layout: "vertical",
-    				align: "right",
-    				verticalAlign: "middle"
-    			},
-    			plotOptions: {
-    				series: {
-    					label: { connectorAllowed: false },
-    					pointStart: inicio
-    				}
-    			},
+    			title_label_text: "Costs (Last 6 Months)",
+    			yAxis: { formatString: "c" },
     			series: [
     				{
     					name: "Obesity-Stats_man_percent",
-    					data: datosGrafica_edex
+    					points: datosGrafica_edex
     				},
     				{
     					name: "Illiteracy-male_illiteracy_rate",
-    					data: datosGrafica_i
+    					points: datosGrafica_i
     				}
-    			],
-    			responsive: {
-    				rules: [
-    					{
-    						condition: { maxWidth: 500 },
-    						chartOptions: {
-    							legend: {
-    								layout: "horizontal",
-    								align: "center",
-    								verticalAlign: "bottom"
-    							}
-    						}
-    					}
-    				]
-    			}
+    			]
     		});
     	}
 
@@ -36992,10 +36966,10 @@ var app = (function () {
     			main = element("main");
     			div = element("div");
     			if (script.src !== (script_src_value = "https://cdn.jsdelivr.net/npm/apexcharts")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$4, 254, 2, 6791);
+    			add_location(script, file$4, 256, 2, 6883);
     			attr_dev(div, "id", "chart");
-    			add_location(div, file$4, 260, 2, 6919);
-    			add_location(main, file$4, 259, 0, 6909);
+    			add_location(div, file$4, 262, 2, 7011);
+    			add_location(main, file$4, 261, 0, 7001);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -37250,12 +37224,14 @@ var app = (function () {
     			chart: { height: 350, type: "area" },
     			dataLabels: { enabled: false },
     			stroke: { curve: "smooth" },
-    			xaxis: { categories: anyos },
+    			xaxis: { categories: rangoAnyos$3(inicio, fin) },
     			tooltip: { x: {} }
     		};
 
     		var chart = new ApexCharts(document.querySelector("#chart"), options);
     		chart.render();
+    		window.alert(datoClasifEsp);
+    		console.log(datoClasifEsp);
     	}
 
     	const writable_props = [];
