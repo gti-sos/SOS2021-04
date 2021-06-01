@@ -120,16 +120,13 @@
                se considera que una persona o familia está en riesgo de pobreza.</CardText>
 
             <a href="https://sos2021-04.herokuapp.com/api/v1/poverty_risks">
-              <Button color="success">API v1</Button>
+              <Button color="primary">API v1</Button>
             </a>
             <a href="/#/poverty_risks">
               <Button color="primary">Interfaz</Button>
             </a>
             <a href="https://documenter.getpostman.com/view/14968173/TzJu8we5">
               <Button color="info">Documentación v1</Button>
-              </a>
-              <a href="/#/povertyrisks_graphs">
-              <Button color="danger">Mi gráfica</Button>
               </a>
           </CardBody>
           <CardFooter

@@ -89,7 +89,7 @@ async function tomaDatosGraficaNatalityStats(datos){
     var a = 0;
 
     objeto = {
-            name : "natalityStats",
+            name : "natalityStats (born people)",
             data : []
         }
 
@@ -120,7 +120,7 @@ async function tomaDatosGraficaNatalityStats(datos){
   
     //Pusheamos al array final
     //array.push(objeto);
-    console.log("objetoDrugUse");
+    console.log("objetoNatalityStats");
     console.log(objeto);
     //console.log(array);
 
@@ -179,11 +179,11 @@ async function cargaGrafica(){
       }
 
       await fetch(
-      "http://sos2021-natality-stats.herokuapp.com/api/v2/natality-stats/loadinitialdata"
+      "proxyHerokuNatalityStats/api/v2/natality-stats/loadinitialdata"
       );
 
       const res2 = await fetch(
-      "http://sos2021-natality-stats.herokuapp.com/api/v2/natality-stats/"
+      "proxyHerokuNatalityStats/api/v2/natality-stats/"
       );
       if (res2.ok) {
         var json2 = await res2.json();
@@ -245,7 +245,7 @@ async function cargaGrafica(){
         },
         yaxis: {
           title: {
-            text: '$ (thousands)'
+            text: 'Number of people'
           }
         },
         fill: {
@@ -253,9 +253,6 @@ async function cargaGrafica(){
         },
         tooltip: {
           y: {
-            formatter: function (val) {
-              return "$ " + val + " thousands"
-            }
           }
         }
         };
