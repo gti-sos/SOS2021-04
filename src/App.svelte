@@ -4,6 +4,8 @@
 	import NotFound from "./pages/NotFound.svelte";
 	import Home from "./pages/Home.svelte";
 	import Info from "./pages/Info.svelte";
+	import Analytics from "./pages/Analytics.svelte";
+	import About from "./pages/About.svelte";
 	import Integrations from "./pages/Integraciones.svelte";
 	
 	
@@ -36,6 +38,8 @@
 		"/info":Info,
 		"/graphics":GraficasConjunto,
 		"/integrations": Integrations,
+		"/Analytics": Analytics,
+		"/About": About,
 		
 		
 		"/education_expenditures":App_edex,
