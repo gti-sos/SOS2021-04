@@ -120,7 +120,7 @@ async function tomaDatosGraficaNatalityStats(datos){
   
     //Pusheamos al array final
     //array.push(objeto);
-    console.log("objetoDrugUse");
+    console.log("objetoNatalityStats");
     console.log(objeto);
     //console.log(array);
 

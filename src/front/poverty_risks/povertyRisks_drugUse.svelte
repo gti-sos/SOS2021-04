@@ -1,7 +1,4 @@
 <script>
-import { onMount } from "svelte";
-import { each } from "svelte/internal";
-
 
     
 //Funcion para la toma de datos e incluirlos en la gráfica
@@ -18,21 +15,6 @@ var datosGraficaDrugUse = [];
 
 //Declaramos los arrays que incluirán a cada uno de los paise
 
-
-/*switch (datoClasif){
-    case "people_in_risk_of_poverty":
-        datoClasifEsp = "Personas en riesgo de pobreza";
-        break;
-    case "people_poverty_line":
-        datoClasifEsp = "Índice de riesgo de pobreza (persona)";
-        break;
-    case "home_poverty_line":
-        datoClasifEsp = "Índice de riesgo de pobreza (hogar)";
-        break;
-    default:
-        datoClasifEsp="Porcentaje población en riesgo de pobreza";
-
-}*/
 
 //Variables para mensajes al usuario
 var mensajeCorrecto = "";
