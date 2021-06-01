@@ -68,75 +68,28 @@
     
         //Construccion de la grafica
     
-        Highcharts.chart('container', {
-            chart: {
-                type: 'spline'
-            },
-        title: {
-            text: "Grafica conjunta Grupo 10 Obesity_stats y Grupo 4 illiteracy"
-    
-        },
-    
-        subtitle: {
-            text: "Datos Restringidos a España"
-        },
-    
-        yAxis: {
-            title: {
-                text: "porcentaje (%)"
-            }
-        },
-    
+        var chart = JSC.chart('chartDiv', {
+        debug: true,
+        legend_position: 'bottom right',
+        type: 'area spline',
+        defaultSeries: { shape_opacity: 0.5 },
         xAxis: {
-            accessibility: {
-                rangeDescription: 'Range:'+inicio+'  to ' + fin
-            }
+          crosshair_enabled: true,
+          scale: { type: 'time' }
         },
-    
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
-    
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                pointStart: inicio
-            }
-        },
-    
+        title_label_text: 'Costs (Last 6 Months)',
+        yAxis: { formatString: 'c' },
         series: [
-    
-            {
-                name: 'Obesity-Stats_man_percent',
-                data: datosGrafica_edex
-            },
-            {
-                name:'Illiteracy-male_illiteracy_rate',
-                data: datosGrafica_i
-            }
-    
-        ],
-    
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
-    
-        });
+          {
+            name: 'Obesity-Stats_man_percent',
+            points: datosGrafica_edex
+          },
+          {
+            name: 'Illiteracy-male_illiteracy_rate',
+            points: datosGrafica_i
+          }
+        ]
+      });
     }
     
     async function tomaDatosGrafica(datos,atributo){
@@ -232,7 +185,7 @@
     </script>
     
     <svelte:head>
-        <script src="https://code.highcharts.com/highcharts.js" on:load={cargaGrafica}></script>
+        <script src="https://code.jscharting.com/latest/jscharting.js" on:load={cargaGrafica}></script>
     </svelte:head>
     
     <main>
