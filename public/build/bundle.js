@@ -36568,58 +36568,81 @@ var app = (function () {
     const file$5 = "src\\front\\poverty_risks\\povertyRisks_MyChartHighcharts.svelte";
 
     function create_fragment$5(ctx) {
-    	let script;
-    	let script_src_value;
+    	let script0;
+    	let script0_src_value;
+    	let script1;
+    	let script1_src_value;
+    	let script2;
+    	let script2_src_value;
+    	let script3;
+    	let script3_src_value;
+    	let script4;
+    	let script4_src_value;
+    	let script5;
+    	let script5_src_value;
     	let t0;
     	let main;
     	let figure;
     	let div;
     	let t1;
     	let p;
-    	let em;
     	let mounted;
     	let dispose;
 
     	const block = {
     		c: function create() {
-    			script = element("script");
+    			script0 = element("script");
+    			script1 = element("script");
+    			script2 = element("script");
+    			script3 = element("script");
+    			script4 = element("script");
+    			script5 = element("script");
     			t0 = space();
     			main = element("main");
     			figure = element("figure");
     			div = element("div");
     			t1 = space();
     			p = element("p");
-    			em = element("em");
-    			em.textContent = "'La tasa de riesgo de pobreza es el porcentaje de población que se encuentra por debajo del umbral de riesgo de pobreza.'";
-    			if (script.src !== (script_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$5, 253, 4, 6772);
+    			p.textContent = "Lollipop charts are variants of column charts, with a circle\r\n      marker for the data value and a line extending to the axis.";
+    			if (script0.src !== (script0_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script0, "src", script0_src_value);
+    			add_location(script0, file$5, 274, 0, 6947);
+    			if (script1.src !== (script1_src_value = "https://code.highcharts.com/highcharts-more.js")) attr_dev(script1, "src", script1_src_value);
+    			add_location(script1, file$5, 275, 0, 7014);
+    			if (script2.src !== (script2_src_value = "https://code.highcharts.com/modules/dumbbell.js")) attr_dev(script2, "src", script2_src_value);
+    			add_location(script2, file$5, 276, 0, 7086);
+    			if (script3.src !== (script3_src_value = "https://code.highcharts.com/modules/lollipop.js")) attr_dev(script3, "src", script3_src_value);
+    			add_location(script3, file$5, 277, 0, 7159);
+    			if (script4.src !== (script4_src_value = "https://code.highcharts.com/modules/exporting.js")) attr_dev(script4, "src", script4_src_value);
+    			add_location(script4, file$5, 278, 0, 7232);
+    			if (script5.src !== (script5_src_value = "https://code.highcharts.com/modules/accessibility.js")) attr_dev(script5, "src", script5_src_value);
+    			add_location(script5, file$5, 279, 0, 7306);
     			attr_dev(div, "id", "container");
-    			add_location(div, file$5, 260, 8, 6949);
-    			add_location(em, file$5, 262, 16, 7100);
+    			add_location(div, file$5, 286, 4, 7487);
     			attr_dev(p, "class", "highcharts-description");
-    			set_style(p, "font-size", "0.85em");
-    			set_style(p, "text-align", "center");
-    			set_style(p, "padding", "1em");
-    			add_location(p, file$5, 261, 12, 6989);
-    			attr_dev(figure, "class", "highcharts-figure");
-    			add_location(figure, file$5, 259, 4, 6905);
-    			add_location(main, file$5, 258, 0, 6893);
+    			add_location(p, file$5, 287, 4, 7519);
+    			attr_dev(figure, "class", "highcharts-figure svelte-ock5jn");
+    			add_location(figure, file$5, 285, 2, 7447);
+    			add_location(main, file$5, 284, 0, 7437);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			append_dev(document.head, script);
+    			append_dev(document.head, script0);
+    			append_dev(document.head, script1);
+    			append_dev(document.head, script2);
+    			append_dev(document.head, script3);
+    			append_dev(document.head, script4);
+    			append_dev(document.head, script5);
     			insert_dev(target, t0, anchor);
     			insert_dev(target, main, anchor);
     			append_dev(main, figure);
     			append_dev(figure, div);
     			append_dev(figure, t1);
     			append_dev(figure, p);
-    			append_dev(p, em);
 
     			if (!mounted) {
-    				dispose = listen_dev(script, "load", /*cargaGrafica*/ ctx[0], false, false, false);
+    				dispose = listen_dev(script5, "load", /*cargaGrafica*/ ctx[0], false, false, false);
     				mounted = true;
     			}
     		},
@@ -36627,7 +36650,12 @@ var app = (function () {
     		i: noop$1,
     		o: noop$1,
     		d: function destroy(detaching) {
-    			detach_dev(script);
+    			detach_dev(script0);
+    			detach_dev(script1);
+    			detach_dev(script2);
+    			detach_dev(script3);
+    			detach_dev(script4);
+    			detach_dev(script5);
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(main);
     			mounted = false;
@@ -36806,11 +36834,11 @@ var app = (function () {
 
     			//Ya con los datos completos, creamos entonces el objeto
     			objeto = {
-    				type: "column",
     				name: paisActual,
-    				data: datosGraficaPorPais
+    				low: datosGraficaPorPais.reduce((a, b) => a + b, 0)
     			};
 
+    			console.log("datosGraficaPorPais: " + datosGraficaPorPais);
     			arrayFinal.push(objeto);
     		}
 
@@ -36857,24 +36885,21 @@ var app = (function () {
 
     		//Construccion de la grafica
     		Highcharts.chart("container", {
-    			title: {
-    				text: datoClasifEsp + " (Combination chart)"
+    			chart: { type: "lollipop" },
+    			accessibility: {
+    				point: {
+    					valueDescriptionFormat: "{index}. {xDescription}, {point.y}."
+    				}
     			},
-    			xAxis: { categories: rangoAnyos$4(inicio, fin) },
-    			labels: {
-    				items: [
-    					{
-    						html: "",
-    						style: {
-    							left: "50px",
-    							top: "18px",
-    							color: // theme
-    							Highcharts.defaultOptions.title.style && Highcharts.defaultOptions.title.style.color || "black"
-    						}
-    					}
-    				]
+    			legend: { enabled: false },
+    			subtitle: {
+    				text: "Suma del parámetro por país en todos los años"
     			},
-    			series: datosGrafica
+    			title: { text: datoClasifEsp },
+    			tooltip: { shared: true },
+    			xAxis: { type: "category" },
+    			yAxis: { title: { text: "Population" } },
+    			series: [{ name: "Population", data: datosGrafica }]
     		});
     	}
 
