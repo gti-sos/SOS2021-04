@@ -224,7 +224,7 @@ async function cargaGrafica(){
 
     Highcharts.chart('container', {
   title: {
-    text: datoClasifEsp
+    text: datoClasifEsp + "Combination chart"
   },
   xAxis: {
     categories: rangoAnyos(inicio,fin)
