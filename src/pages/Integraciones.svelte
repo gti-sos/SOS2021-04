@@ -48,9 +48,14 @@
       <CardBody>
         <CardSubtitle />
         <CardText />
-        
+        <a href="/#/povertyRisks_USO_ParqueMovil">
+          <Button color="primary">Uso API Parque Móvil</Button>
+          </a>
+          <a href="/#/povertyRisks_USO_NacimientosMadrid">
+            <Button color="primary">Uso API Nacimientos Madrid</Button>
+          </a>
         <a href="/#/povertyRisks_natalityStats">
-        <Button color="primary">Integración con natality-stats (con cors)</Button>
+        <Button color="primary">Integración con natality-stats (con proxy)</Button>
         </a>
         <a href="/#/povertyRisks_drugUse">
         <Button color="primary">Integración con drug-use (con proxy)</Button>
