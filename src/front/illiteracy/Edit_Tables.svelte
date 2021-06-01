@@ -398,10 +398,10 @@ onMount(getStats);
           <Row>
               <Col>
                   {#if edex_data.length!=0}
-                  <Button style="background-color: green;" disabled>Cargar datos</Button>
-                  <Button style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
+                  <Button id="cargarDatos" style="background-color: green;" disabled>Cargar datos</Button>
+                  <Button id ="delete_all"style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
                   {:else}
-                  <Button style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
+                  <Button id="cargarDatos"style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
                   <Button style="background-color: red;" disabled>Borrar datos</Button>
                   {/if}
               </Col>           
@@ -460,8 +460,12 @@ onMount(getStats);
 
             <tr style="text-align: center; align-items: center; max-width: 100%;">
                 <!--Por cada campo haremos un input-->
-                <td><input type="number" placeholder="2010" min=1950 bind:value={query.y}/></td>
-                <td><input type="text" placeholder="Francia" bind:value={query.c}/></td>
+                <td><input id="query_input_date"type="number" placeholder="2010" min=1950 bind:value={query.y}/></td>
+                <td><input id="query_input_country"type="text" placeholder="Francia" bind:value={query.c}/></td>
+
+                
+                
+                
                 <td>
                   <input type="number" placeholder="min"  bind:value={query.apm}/>
                   <input type="number" placeholder="max"  bind:value={query.upm}/>
@@ -483,7 +487,7 @@ onMount(getStats);
                 </div>
                 </td>
 
-                <td><button class="btn btn-primary" on:click={searchStat}>Buscar</button></td>
+                <td><button id="query_button"class="btn btn-primary" on:click={searchStat}>Buscar</button></td>
                 <td><button class="btn btn-dark" on:click={borrarQuery}>Restaurar</button></td>
                 
             </tr>
@@ -523,13 +527,13 @@ onMount(getStats);
 
               <tr>
                   <!--Por cada campo haremos un input-->
-                    <td><input type="number" placeholder="2010" min=1900 bind:value={nuevoElemento.year}/></td>
-                    <td><input type="text" placeholder="Francia" bind:value={nuevoElemento.country}/></td>
-                    <td><input type="number" placeholder="250.4"  bind:value={nuevoElemento.female_illiteracy_rate}/></td>
-                    <td><input type="number" placeholder="112.3"  bind:value={nuevoElemento.male_illiteracy_rate}/></td>
-                    <td><input type="number" placeholder="2.5"  bind:value={nuevoElemento.adult_illiteracy_rate}/></td>
-                    <td><input type="number" placeholder="2010"  bind:value={nuevoElemento.young_illiteracy_rate}/></td>
-                    <td><button on:click={insertData} class="btn btn-success">Insertar</button></td>
+                    <td><input id="insert_input_year"type="number" placeholder="2010" min=1900 bind:value={nuevoElemento.year}/></td>
+                    <td><input id="insert_input_country"type="text" placeholder="Francia" bind:value={nuevoElemento.country}/></td>
+                    <td><input id="insert_female"type="number" placeholder="250.4"  bind:value={nuevoElemento.female_illiteracy_rate}/></td>
+                    <td><input id="insert_male"type="number" placeholder="112.3"  bind:value={nuevoElemento.male_illiteracy_rate}/></td>
+                    <td><input id="insert_adult"type="number" placeholder="2.5"  bind:value={nuevoElemento.adult_illiteracy_rate}/></td>
+                    <td><input id="insert_young"type="number" placeholder="2010"  bind:value={nuevoElemento.young_illiteracy_rate}/></td>
+                    <td><button on:click={insertData} id="insert_button"class="btn btn-success">Insertar</button></td>
                     <td></td>
               </tr>
 
@@ -541,8 +545,8 @@ onMount(getStats);
                     <th>{stat.male_illiteracy_rate}%</th>
                     <th>{stat.adult_illiteracy_rate}%</th>
                     <th>{stat.young_illiteracy_rate}%</th>
-                    <th><button class="btn btn-danger" on:click={deleteElement(stat.year,stat.country)}>Eliminar</button></th>
-                    <th><a href='#/illiteracy/{stat.country}/{stat.year}'><button class="btn btn-warning">Modificar</button></a></th>
+                    <th><button id="delete_button_{stat.country}_{stat.year}"class="btn btn-danger" on:click={deleteElement(stat.year,stat.country)}>Eliminar</button></th>
+                    <th><a id="edit_button_{stat.country}_{stat.year}"href='#/illiteracy/{stat.country}/{stat.year}'><button class="btn btn-warning">Modificar</button></a></th>
 
                 </tr>
               {/each}
@@ -556,6 +560,7 @@ onMount(getStats);
           <PaginationItem class={pagina_actual === 1 ? "disabled" : ""}>
             <PaginationLink
               previous
+              id="pagination_back"
               href="#/illiteracy"
               on:click={() =>
                 cambiaPagina(pagina_actual - 1, offset_actual - 10, esBusqueda)}
@@ -565,6 +570,7 @@ onMount(getStats);
             <PaginationItem class={pagina_actual === page ? "active" : ""}>
               <PaginationLink
                 previous
+                id="pagination_current"
                 href="#/illiteracy"
                 on:click={() => cambiaPagina(page, (page - 1) * 10, esBusqueda)}
                 >{page}</PaginationLink
@@ -574,6 +580,7 @@ onMount(getStats);
           <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
             <PaginationLink
               next
+              id="pagination_forward"
               href="#/illiteracy"
               on:click={() =>
                 cambiaPagina(pagina_actual + 1, offset_actual + 10, esBusqueda)}
@@ -623,8 +630,8 @@ onMount(getStats);
 
             <tr style="text-align: center; align-items: center; max-width: 100%;">
                 <!--Por cada campo haremos un input-->
-                <td><input type="number" placeholder="2010" min=1950 bind:value={query.y}/></td>
-                <td><input type="text" placeholder="Francia" bind:value={query.c}/></td>
+                <td><input id="query_input_date"type="number" placeholder="2010" min=1950 bind:value={query.y}/></td>
+                <td><input id="query_input_country"type="text" placeholder="Francia" bind:value={query.c}/></td>
                 <td>
                   <input type="number" placeholder="min"  bind:value={query.apm}/>
                   <input type="number" placeholder="max"  bind:value={query.upm}/>
@@ -646,7 +653,7 @@ onMount(getStats);
                 </div>
                 </td>
 
-                <td><button class="btn btn-primary" on:click={searchStat}>Buscar</button></td>
+                <td><button id="query_button"class="btn btn-primary" on:click={searchStat}>Buscar</button></td>
                 <td><button class="btn btn-dark" on:click={borrarQuery}>Restaurar</button></td>
                 
             </tr>
@@ -702,7 +709,7 @@ onMount(getStats);
                     <th>{edex_data[0].adult_illiteracy_rate}</th>
                     <th>{edex_data[0].young_illiteracy_rate}</th>
                     <th><button class="btn btn-danger" on:click={deleteElement(edex_data[0].year,edex_data[0].country)}>Eliminar</button></th>
-                    <th><a href='#/illiteracy/{edex_data[0].country}/{edex_data[0].year}'><button class="btn btn-warning">Modificar</button></a></th>
+                    <th><a id="edit_button_{edex_data[0].country}_{edex_data[0].year}"href='#/illiteracy/{edex_data[0].country}/{edex_data[0].year}'><button class="btn btn-warning">Modificar</button></a></th>
                         </tr>
               </tbody>
             </Table>

@@ -4,6 +4,8 @@
 	import NotFound from "./pages/NotFound.svelte";
 	import Home from "./pages/Home.svelte";
 	import Info from "./pages/Info.svelte";
+	import Analytics from "./pages/Analytics.svelte";
+	import About from "./pages/About.svelte";
 	import Integrations from "./pages/Integraciones.svelte";
 	
 	
@@ -15,8 +17,10 @@
 	import illiteracy from "./front/illiteracy/illiteracyApp.svelte";
 	import illiteracy_edit from "./front/illiteracy/edit_data_illiteracy.svelte";
 	import illiteracy_Graphs from "./front/illiteracy/illiteracy_Graphs.svelte";
+	import illiteracy_Graphs2 from "./front/illiteracy/grafica-bib.svelte";
 	import api1 from "./front/illiteracy/Integraciones/api1.svelte";
 	import api2 from "./front/illiteracy/Integraciones/api2.svelte";
+	import api3 from "./front/illiteracy/Integraciones/api3.svelte";
 	import migObesity from "./front/illiteracy/Integraciones/mig-obesity-Stats.svelte";
 	import migtemperature from "./front/illiteracy/Integraciones/mig-temperature.svelte";
 	
@@ -34,6 +38,8 @@
 		"/info":Info,
 		"/graphics":GraficasConjunto,
 		"/integrations": Integrations,
+		"/Analytics": Analytics,
+		"/About": About,
 		
 		
 		"/education_expenditures":App_edex,
@@ -43,9 +49,10 @@
 		"/illiteracy":illiteracy,
 		"/illiteracy/:country/:date":illiteracy_edit,
 		"/illiteracy_graphs" : illiteracy_Graphs,
+		"/illiteracy_graphs2" : illiteracy_Graphs2,
 		"/integrations/api1": api1,
 		"/integrations/api2": api2,
-		"/integrations/api1": api1,
+		"/integrations/api3": api3,
 		"/integrations/mig-obesity-Stats": migObesity,
 		"/integrations/mig-temperature": migtemperature,
 		
