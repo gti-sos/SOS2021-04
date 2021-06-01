@@ -179,11 +179,11 @@ async function cargaGrafica(){
       }
 
       await fetch(
-      "http://sos2021-natality-stats.herokuapp.com/api/v2/natality-stats/loadinitialdata"
+      "proxyHerokuNatalityStats/api/v2/natality-stats/loadinitialdata"
       );
 
       const res2 = await fetch(
-      "http://sos2021-natality-stats.herokuapp.com/api/v2/natality-stats/"
+      "proxyHerokuNatalityStats/api/v2/natality-stats/"
       );
       if (res2.ok) {
         var json2 = await res2.json();

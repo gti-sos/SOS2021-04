@@ -50,6 +50,12 @@
         <CardSubtitle />
         <CardText />
         
+        <a href="/#/povertyrisks_graphs">
+          <Button color="primary">Mi gráfica (highCharts)</Button>
+          </a>
+        <a href="/#/povertyrisks_graphs">
+          <Button color="primary">Mi gráfica (ApexCharts)</Button>
+        </a>
       
       </CardBody>
     </Card>
