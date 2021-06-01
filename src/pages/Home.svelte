@@ -87,7 +87,10 @@
             <a href="https://documenter.getpostman.com/view/14947441/TzJsexSA"
               ><Button color="info">Documentación v1</Button></a>
               <a href="/#/edex_graphs">
-                <Button color="primary">Graficas</Button>
+                <Button color="primary">Grafica HighCharts</Button>
+              </a>
+              <a href="/#/edex_graphs2">
+                <Button color="primary">Grafica Billboard</Button>
               </a>
           
           

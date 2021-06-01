@@ -10,6 +10,11 @@
 	import App_edex from "./front/education_expenditures/App_edex.svelte";
 	import Edit_data_edex from "./front/education_expenditures/Edit_data_edex.svelte";
 	import Edex_Graphs from "./front/education_expenditures/Edex_Graph.svelte";
+	import Edex_Graphs2 from "./front/education_expenditures/Edex_Graphs2.svelte";
+	import Edex_research from "./front/education_expenditures/integraciones/Edex_api20.svelte";
+	import Edex_sanity from "./front/education_expenditures/integraciones/Edex_apiSanity.svelte";
+	import Edex_tourism from "./front/education_expenditures/integraciones/Edex_apiTourism.svelte";
+
 	
 	
 	import illiteracy from "./front/illiteracy/illiteracyApp.svelte";
@@ -37,6 +42,11 @@
 		"/education_expenditures":App_edex,
 		"/education_expenditures/:country/:year": Edit_data_edex,
 		"/edex_graphs" : Edex_Graphs,
+		"/edex_graphs2" : Edex_Graphs2,
+		"/integrations/edex/api1":Edex_research,
+		"/integrations/edex/api2":Edex_sanity,
+		"/integrations/edex/api3":Edex_tourism,
+		
 		
 		"/illiteracy":illiteracy,
 		"/illiteracy/:country/:date":illiteracy_edit,
