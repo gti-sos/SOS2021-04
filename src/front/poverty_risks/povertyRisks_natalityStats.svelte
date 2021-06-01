@@ -1,8 +1,4 @@
 <script>
-import { onMount } from "svelte";
-import { each } from "svelte/internal";
-import ApexCharts from 'apexcharts';
-
 
     
 //Funcion para la toma de datos e incluirlos en la gráfica
@@ -13,33 +9,13 @@ var natalityStats_data = [];
 var anyos = [];
 var inicio = 2014;
 var fin = 2019;
-var conjuntoAnyos = new Set(anyos);
+var stringAnyos = [];
 var datosGrafica = [];
 var datosGraficaNatalityStats = [];
-
-//Declaramos los arrays que incluirán a cada uno de los paise
-
-
-/*switch (datoClasif){
-    case "people_in_risk_of_poverty":
-        datoClasifEsp = "Personas en riesgo de pobreza";
-        break;
-    case "people_poverty_line":
-        datoClasifEsp = "Índice de riesgo de pobreza (persona)";
-        break;
-    case "home_poverty_line":
-        datoClasifEsp = "Índice de riesgo de pobreza (hogar)";
-        break;
-    default:
-        datoClasifEsp="Porcentaje población en riesgo de pobreza";
-
-}*/
 
 //Variables para mensajes al usuario
 var mensajeCorrecto = "";
 var mensajeError = "";
-
-//Funciones auxiliares
 
 
 async function tomaDatosGrafica(datos){
@@ -101,7 +77,7 @@ async function tomaDatosGrafica(datos){
 async function tomaDatosGraficaNatalityStats(datos){
     console.log("SE EJECUTA tomaDatosGraficaNatalityStats");
     var datosFiltradosAnyo = datos.filter((e)=>{
-        return e.year >= inicio;
+        return e.date >= inicio;
     });
 
    //Creamos variables auxiliares
@@ -123,12 +99,11 @@ async function tomaDatosGraficaNatalityStats(datos){
         a=anyos[anyo];
         //Limpiamos variables
         arrayAux=[];
-        
         //Iteramos sobre los datos para comprobar si su año coincide con el establecido
         for(var num in datosFiltradosAnyo){
             var dato = datosFiltradosAnyo[num]; //Tomamos el dato que estamos iterando
-            if(dato.year == a){ //Si coincide con el año ("a") se toma el valor del atributo pasado por parametro
-                arrayAux.push(dato["born"]*1000);
+            if(dato.date == a){ //Si coincide con el año ("a") se toma el valor del atributo pasado por parametro
+                arrayAux.push(dato["born"]);
             }
             else{
                 arrayAux.push(0);
@@ -245,84 +220,61 @@ async function cargaGrafica(){
 
     //Construccion de la grafica
     var options = {
-          series: [76, 67, 61, 90],
+          series: [datosGrafica,datosGraficaNatalityStats],
           chart: {
-          height: 390,
-          type: 'radialBar',
+          type: 'bar',
+          height: 350
         },
         plotOptions: {
-          radialBar: {
-            offsetY: 0,
-            startAngle: 0,
-            endAngle: 270,
-            hollow: {
-              margin: 5,
-              size: '30%',
-              background: 'transparent',
-              image: undefined,
-            },
-            dataLabels: {
-              name: {
-                show: false,
-              },
-              value: {
-                show: false,
-              }
-            }
-          }
+          bar: {
+            horizontal: false,
+            columnWidth: '55%',
+            endingShape: 'rounded'
+          },
         },
-        colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
-        labels: ['Vimeo', 'Messenger', 'Facebook', 'LinkedIn'],
-        legend: {
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
           show: true,
-          floating: true,
-          fontSize: '16px',
-          position: 'left',
-          offsetX: 160,
-          offsetY: 15,
-          labels: {
-            useSeriesColors: true,
-          },
-          markers: {
-            size: 0
-          },
-          formatter: function(seriesName, opts) {
-            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
-          },
-          itemMargin: {
-            vertical: 3
+          width: 2,
+          colors: ['transparent']
+        },
+        xaxis: {
+          categories: anyos,
+        },
+        yaxis: {
+          title: {
+            text: '$ (thousands)'
           }
         },
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            legend: {
-                show: false
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return "$ " + val + " thousands"
             }
           }
-        }]
+        }
         };
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
-
 }
 
 </script>
 
 <svelte:head>
 
-    <script src="https://code.highcharts.com/highcharts.js" on:load={cargaGrafica}></script> 
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts" on:load={cargaGrafica}></script>
     
 </svelte:head>
 
 <main>
-    <!-- <figure class="highcharts-figure">
-        <div id="container"></div>
-        <p class="highcharts-description">
-          Integración poverty risks con drug use
-        </p>
-    </figure> -->
+  <div id="chart">
+  </div>
 </main>
 
 <style>
