@@ -905,5 +905,20 @@ module.exports.register = (app, BASE_API_PATH, povertyRisks_DB) => {
 		req.pipe(request(url)).pipe(res);
 	  });
 	  
+	  app.use("/proxyHerokuNatalityStats", function(req, res) {
+		console.log("New Proxy Call!");
+
+		var apiServerHost = 'http://sos2021-natality-stats.herokuapp.com';	///api/v2/natality-stats
+		console.log("apiServerHost = "+ apiServerHost);
+		console.log("baseURL = "+ req.baseUrl);
+		console.log("url = "+ req.url);
+
+		var url = apiServerHost + req.url;
+
+		console.log('piped: ' + req.url);
+		
+		req.pipe(request(url)).pipe(res);
+	  });
+	  
 
 };

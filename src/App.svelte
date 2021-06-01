@@ -4,6 +4,8 @@
 	import NotFound from "./pages/NotFound.svelte";
 	import Home from "./pages/Home.svelte";
 	import Info from "./pages/Info.svelte";
+	import Analytics from "./pages/Analytics.svelte";
+	import About from "./pages/About.svelte";
 	import Integrations from "./pages/Integraciones.svelte";
 	
 	
@@ -20,13 +22,20 @@
 	import illiteracy from "./front/illiteracy/illiteracyApp.svelte";
 	import illiteracy_edit from "./front/illiteracy/edit_data_illiteracy.svelte";
 	import illiteracy_Graphs from "./front/illiteracy/illiteracy_Graphs.svelte";
+	import illiteracy_Graphs2 from "./front/illiteracy/grafica-bib.svelte";
 	import api1 from "./front/illiteracy/Integraciones/api1.svelte";
 	import api2 from "./front/illiteracy/Integraciones/api2.svelte";
+	import api3 from "./front/illiteracy/Integraciones/api3.svelte";
 	import migObesity from "./front/illiteracy/Integraciones/mig-obesity-Stats.svelte";
+	import migtemperature from "./front/illiteracy/Integraciones/mig-temperature.svelte";
+	
 	
 	import AppPovertyRisks from './front/poverty_risks/appPovertyRisks.svelte';
 	import editData_poverty_risks from "./front/poverty_risks/editData_poverty_risks.svelte";
-	import povertyRisks_Graphs from "./front/poverty_risks/povertyRisks_Graphs.svelte";
+	import povertyRisks_MyChartHighcharts from "./front/poverty_risks/povertyRisks_MyChartHighcharts.svelte";
+	import povertyRisks_MyChartApexcharts from "./front/poverty_risks/povertyRisks_MyChartApexcharts.svelte";
+	import povertyRisks_USO_ParqueMovil from "./front/poverty_risks/povertyRisks_USO_ParqueMovil.svelte";
+	import povertyRisks_USO_NacimientosMadrid from "./front/poverty_risks/povertyRisks_USO_NacimientosMadrid.svelte";
 	import povertyRisks_natalityStats from "./front/poverty_risks/povertyRisks_natalityStats.svelte";
 	import povertyRisks_drugUse from "./front/poverty_risks/povertyRisks_drugUse.svelte";
 
@@ -37,6 +46,8 @@
 		"/info":Info,
 		"/graphics":GraficasConjunto,
 		"/integrations": Integrations,
+		"/Analytics": Analytics,
+		"/About": About,
 		
 		
 		"/education_expenditures":App_edex,
@@ -51,15 +62,19 @@
 		"/illiteracy":illiteracy,
 		"/illiteracy/:country/:date":illiteracy_edit,
 		"/illiteracy_graphs" : illiteracy_Graphs,
+		"/illiteracy_graphs2" : illiteracy_Graphs2,
 		"/integrations/api1": api1,
 		"/integrations/api2": api2,
-		"/integrations/api1": api1,
+		"/integrations/api3": api3,
 		"/integrations/mig-obesity-Stats": migObesity,
-
+		"/integrations/mig-temperature": migtemperature,
 		
 		"/poverty_risks":AppPovertyRisks,
 		"/poverty_risks/:country/:year": editData_poverty_risks,
-		"/povertyrisks_graphs" : povertyRisks_Graphs,
+		"/povertyrisks_MyChartHighcharts" : povertyRisks_MyChartHighcharts,
+		"/povertyrisks_MyChartApexcharts" : povertyRisks_MyChartApexcharts,
+		"/povertyRisks_USO_ParqueMovil" : povertyRisks_USO_ParqueMovil,
+		"/povertyRisks_USO_NacimientosMadrid" : povertyRisks_USO_NacimientosMadrid,
 		"/povertyrisks_natalityStats" : povertyRisks_natalityStats,
 		"/povertyrisks_drugUse" : povertyRisks_drugUse,
 		

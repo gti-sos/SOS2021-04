@@ -5,39 +5,20 @@
     
         
     //Funcion para la toma de datos e incluirlos en la gráfica
-    var BASE_API_PATH = '/api/v1/illiteracy';
-    
+    var BASE_API_PATH = 'https://cohesiondata.ec.europa.eu/resource/igk7-gpp4.json';
+    var datoClasif=[];
     var edex_data = [];
     var anyos = [];
     var paises = [];
     var inicio = 2013;
     var fin = 2018;
     var data_clasif = [];
-    var clasif = ["female_illiteracy_rate","male_illiteracy_rate",
-    "adult_illiteracy_rate","young_illiteracy_rate",];
-    var datoClasif = clasif[Math.floor(Math.random()*clasif.length)];
     var datoClasifEsp = "";
     var conjuntoAnyos = new Set(anyos);
     var datosGrafica = [];
     
     //Declaramos los arrays que incluirán a cada uno de los paise
-    
-    
-    switch (datoClasif){
-        case "female_illiteracy_rate":
-            datoClasifEsp = "Tasa de Alfabetización en Mujeres";
-            break;
-        case "male_illiteracy_rate":
-            datoClasifEsp = "Tasa de Alfabetización en Hombres";
-            break;
-        case "adult_illiteracy_rate":
-            datoClasifEsp = "Tasa de Alfabetización en Adultos";
-            break;
-        default:
-            datoClasifEsp="Tasa de Alfabetización en Jovenes";
-    
-    }
-    
+
     //Variables para mensajes al usuario
     var mensajeCorrecto = "";
     var mensajeError = "";
@@ -46,10 +27,6 @@
     
     
     async function tomaDatosGrafica(datos){
-        
-        var datosFiltradosAnyo = datos.filter((e)=>{
-            return e.year >= inicio;
-        });
     
         paises = new Array();
         var arrayTotal = [];
@@ -57,13 +34,13 @@
         var arrayAux2 = [];
         var indice = 0;    
     
-        for(var num in datosFiltradosAnyo){
-            var dato = datosFiltradosAnyo[num]; //Tomamos el dato que estamos iterando
+        for(var num in datos){
+            var dato = datos[num]; //Tomamos el dato que estamos iterando
     
-            if(paises.indexOf(dato.country)!=-1){ //Comprobamos si ya hemos pasado por ese país
+            if(paises.indexOf(dato.ms)!=-1){ //Comprobamos si ya hemos pasado por ese país
                 var arrayAux1 = {};
                 var arrayAux2 = [];
-                indice = paises.indexOf(dato.country);
+                indice = paises.indexOf(dato.ms);
                 arrayAux1 = arrayTotal[indice]; //Guardamos aqui el array del país
                 //Guardamos el par año,datoARepresentar
                 arrayAux2.push(dato.year);
@@ -94,7 +71,7 @@
                 arrayTotal.push(arrayAux1);
     
                 //Por ultimo añadimos el país a la lista de paises
-                paises.push(dato.country);
+                paises.push(dato.ms);
     
             }
         }
@@ -259,7 +236,7 @@
             
           } 
           console.log(edex_data);
-          
+         
           //tomamos los años y el dato a buscar de los elementos seleccionados
           for(var elemento in edex_data){
               console.log(elemento);
@@ -274,110 +251,85 @@
           //Tomamos los datos
     
           datosGrafica = await tomaDatosGrafica(edex_data);
-    
-        //Construccion de la grafica
-    /*
-        Highcharts.chart('container', {
-    
-        title: {
-            text: "Porcentaje de Población Mundial Alfabetizada"
-    
-        },
-    
-        subtitle: {
-            text: datoClasifEsp
-        },
-    
-        yAxis: {
-            title: {
-                text: datoClasifEsp
-            }
-        },
-    
-        xAxis: {
-            accessibility: {
-                rangeDescription: 'Range:'+inicio+'  to 2016'
-            }
-        },
-     
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
-    
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                pointStart: inicio
-            }
-        },
-    
-        series: datosGrafica,
-    
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
-    
-        });
-    }
-    */
-    Highcharts.chart('container', {
-  chart: {
-    type: 'spline'
-  },
+    //construimos la gráfica
+    var chart = Highcharts.chart('container', {
+
+chart: {
+  type: 'column'
+},
+
+title: {
+  text: 'Highcharts responsive chart'
+},
+
+subtitle: {
+  text: 'Resize the frame or click buttons to change appearance'
+},
+
+legend: {
+  align: 'right',
+  verticalAlign: 'middle',
+  layout: 'vertical'
+},
+
+xAxis: {
+  categories: ['Apples', 'Oranges', 'Bananas'],
+  labels: {
+    x: -10
+  }
+},
+
+yAxis: {
+  allowDecimals: false,
   title: {
-    text: "Porcentaje de Población Mundial Alfabetizada"
-  },
-  subtitle: {
-    text: datoClasifEsp
-  },
-  xAxis: {
-    categories: 'Range:'+inicio+'  to 2016'
-  },
-  yAxis: {
-    title: {
-      text:datoClasifEsp
+    text: 'Amount'
+  }
+},
+
+series: [{
+  name: 'Christmas Eve',
+  data: [1, 4, 3]
+}, {
+  name: 'Christmas Day before dinner',
+  data: [6, 4, 2]
+}, {
+  name: 'Christmas Day after dinner',
+  data: [8, 4, 3]
+}],
+
+responsive: {
+  rules: [{
+    condition: {
+      maxWidth: 500
     },
-    labels: {
-      formatter: function () {
-        return this.value + '%';
+    chartOptions: {
+      legend: {
+        align: 'center',
+        verticalAlign: 'bottom',
+        layout: 'horizontal'
+      },
+      yAxis: {
+        labels: {
+          align: 'left',
+          x: 0,
+          y: -5
+        },
+        title: {
+          text: null
+        }
+      },
+      subtitle: {
+        text: null
+      },
+      credits: {
+        enabled: false
       }
     }
-  },
-  tooltip: {
-    crosshairs: true,
-    shared: true
-  },
-  plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                pointStart: inicio 
-            } 
-        },
-  series: datosGrafica
+  }]
+}
 });
-    function cambiaDato(nombre){
-        datoClasif = nombre;
-        cargaGrafica();
-    
-    }
-}    
+
+    } 
     </script>
     
     <svelte:head>

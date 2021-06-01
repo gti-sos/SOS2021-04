@@ -30,11 +30,16 @@
   },
   "homepage": "https://github.com/gti-sos/SOS2021-04#readme",
   "dependencies": {
+<<<<<<< HEAD
     "billboard.js": "^3.0.3",
+=======
+    "apexcharts": "^3.26.3",
+>>>>>>> 1043633df1db5d27cd294d7ec6371155b1578420
     "body-parser": "^1.19.0",
     "cool-ascii-faces": "^1.3.4",
     "express": "^4.17.1",
     "nedb": "^1.8.0",
+    "puppeteer": "^9.1.1",
     "request": "^2.88.2",
     "svelte-spa-router": "^3.1.0",
     "sveltestrap": "^4.0.1"

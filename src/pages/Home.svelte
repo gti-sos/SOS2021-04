@@ -62,7 +62,13 @@
     <a href="/#/integrations">
       <Button color="dark">Integraciones</Button>
     </a>
-  
+    <a href="/#/Analytics">
+      <Button color="dark">Analytics</Button>
+    </a>
+    <a href="/#/About">
+      <Button color="dark">Videos</Button>
+    </a>
+    
     <p />
   
     <h2>API's</h2>
@@ -117,16 +123,13 @@
                se considera que una persona o familia está en riesgo de pobreza.</CardText>
 
             <a href="https://sos2021-04.herokuapp.com/api/v1/poverty_risks">
-              <Button color="success">API v1</Button>
+              <Button color="primary">API v1</Button>
             </a>
             <a href="/#/poverty_risks">
               <Button color="primary">Interfaz</Button>
             </a>
             <a href="https://documenter.getpostman.com/view/14968173/TzJu8we5">
               <Button color="info">Documentación v1</Button>
-              </a>
-              <a href="/#/povertyrisks_graphs">
-              <Button color="danger">Mi gráfica</Button>
               </a>
           </CardBody>
           <CardFooter
@@ -139,20 +142,18 @@
       <Col xs="auto">
         <Card class="mb-3">
           <CardHeader>
-            <CardTitle><h5>Analfabetismo</h5></CardTitle>
+            <CardTitle><h5>Alfabetismo</h5></CardTitle>
           </CardHeader>
           <CardBody>
             <CardSubtitle />
             <CardText>
-              Expresa la magnitud relativa de la población analfabeta.
+              Expresa la magnitud relativa de la población alfabeta.
             </CardText>
             <a href="/api/v1/illiteracy"><Button color="primary">API v1</Button></a>
 
             <a href="/#/illiteracy"><Button color="primary">Interfaz</Button></a>
 
             <a href="https://documenter.getpostman.com/view/14948423/TzJsfJT1"><Button color="info">Documentación v1</Button></a>
-            <a href="/#/illiteracy_graphs">
-              <Button color="primary">Graficas</Button>
           </CardBody>
           <CardFooter
             >Desarrollado por

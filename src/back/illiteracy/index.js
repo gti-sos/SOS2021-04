@@ -4,7 +4,7 @@
 
 
 
-
+const request = require("request");
 	module.exports.register = (app,BASE_API_PATH,illiteracy_DB) => {
 
         //Definimos los datos iniciales
@@ -745,7 +745,55 @@
 		app.put(BASE_API_PATH+"/illiteracy", function(req, res) { 
 
 		res.status(405).send("Metodo no permitido"); //Method not allowed
+
+			
 		});
+		
+		app.use("/proxyExterna", function(req, res) {
+			console.log("New Proxy Call!");
+	
+			var apiServerHost = "http://opendata.gijon.es";	///descargar.php?id=227&tipo=JSON;
+			console.log("apiServerHost = "+ apiServerHost);
+			console.log("baseURL = "+ req.baseUrl);
+			console.log("url = "+ req.url);
+	
+			var url = apiServerHost + req.url;
+	
+			console.log('piped: ' + req.url);
+			
+			req.pipe(request(url)).pipe(res);
+		  });
+
+		  app.use("/proxySOSobesity", function(req, res) {
+			console.log("New Proxy Call!");
+	
+			var apiServerHost = "http://sos2021-10.herokuapp.com";	///descargar.php?id=227&tipo=JSON;
+			console.log("apiServerHost = "+ apiServerHost);
+			console.log("baseURL = "+ req.baseUrl);
+			console.log("url = "+ req.url);
+	
+			var url = apiServerHost + req.url;
+	
+			console.log('piped: ' + req.url);
+			
+			req.pipe(request(url)).pipe(res);
+		  });
+
+		  app.use("/proxySOStemperature", function(req, res) {
+			console.log("New Proxy Call!");
+	
+			var apiServerHost = "https://sos2021-21.herokuapp.com";	///descargar.php?id=227&tipo=JSON;
+			console.log("apiServerHost = "+ apiServerHost);
+			console.log("baseURL = "+ req.baseUrl);
+			console.log("url = "+ req.url);
+	
+			var url = apiServerHost + req.url;
+	
+			console.log('piped: ' + req.url);
+			
+			req.pipe(request(url)).pipe(res);
+		  });
+		
 	
     };
 

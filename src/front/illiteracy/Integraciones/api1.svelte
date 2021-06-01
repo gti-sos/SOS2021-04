@@ -2,12 +2,13 @@
   import { CardText, Nav, NavItem, NavLink } from "sveltestrap";
 //import CommonChart from "../../../Pages/CommonChart.svelte";
   //Uso de API externa Breaking Bad
+  var BASE_API_PATH_I = '/api/v1/illiteracy';
   var municipios = [];
   var errorMsg = "";
   var okMsg = "";
   async function getStats() {
       console.log("Fetching data...");
-      const res = await fetch("http://opendata.gijon.es/descargar.php?id=227&tipo=JSON");
+      const res = await fetch("/proxyExterna/descargar.php?id=227&tipo=JSON");
       if (res.ok) {
           const json = await res.json();
           municipios = json;

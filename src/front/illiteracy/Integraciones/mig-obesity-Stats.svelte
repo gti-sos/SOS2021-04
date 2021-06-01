@@ -1,6 +1,6 @@
 <script>
 
-    var BASE_API_PATH_EE = 'http://sos2021-10.herokuapp.com/api/integration/obesity-stats';
+    var BASE_API_PATH_EE = 'proxySOSobesity/api/integration/obesity-stats';
     var BASE_API_PATH_I = '/api/v1/illiteracy';
     
     var edex_data = [];
@@ -68,73 +68,28 @@
     
         //Construccion de la grafica
     
-        Highcharts.chart('container', {
-    
-        title: {
-            text: "Grafica conjunta Grupo 10 Obesity_stats y Grupo 4 illiteracy"
-    
-        },
-    
-        subtitle: {
-            text: "prueba"
-        },
-    
-        yAxis: {
-            title: {
-                text: "porcentaje (%)"
-            }
-        },
-    
+        var chart = JSC.chart('chartDiv', {
+        debug: true,
+        legend_position: 'bottom right',
+        type: 'area spline',
+        defaultSeries: { shape_opacity: 0.5 },
         xAxis: {
-            accessibility: {
-                rangeDescription: 'Range:'+inicio+'  to ' + fin
-            }
+          crosshair_enabled: true,
+          scale: { type: 'time' }
         },
-    
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
-    
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                pointStart: inicio
-            }
-        },
-    
+        title_label_text: 'Costs (Last 6 Months)',
+        yAxis: { formatString: 'c' },
         series: [
-    
-            {
-                name: 'Obesity-Stats',
-                data: datosGrafica_edex
-            },
-            {
-                name:'Illiteracy',
-                data: datosGrafica_i
-            }
-    
-        ],
-    
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
-    
-        });
+          {
+            name: 'Obesity-Stats_man_percent',
+            points: datosGrafica_edex
+          },
+          {
+            name: 'Illiteracy-male_illiteracy_rate',
+            points: datosGrafica_i
+          }
+        ]
+      });
     }
     
     async function tomaDatosGrafica(datos,atributo){
@@ -162,7 +117,7 @@
             //Pillamos el año
             a=anyos[anyo];
             //Limpiamos variables
-            mediaPorAnyo = 0;
+            mediaPorAnyo = 0.0;
             arrayTotal=[];
             
             //Iteramos sobre los datos para comprobar si su año coincide con el establecido
@@ -171,6 +126,7 @@
                 if(dato.year == a){ //Si coincide con el año ("a") se toma el valor del atributo pasado por parametro
                     if(dato.country=="Spain"){
                      arrayTotal.push(dato[atributo]);
+                    
                     }
                     
                 }
@@ -182,7 +138,7 @@
            console.log("Total edex " + num +" " + arrayTotal);
            
            //Hacemos la media por años
-    
+           
            for(var i = 0; i < arrayTotal.length; ++i){
             if(arrayTotal[i] == 0)
                 contador0++;
@@ -192,22 +148,27 @@
     
     
            for(var num in arrayTotal){
+                
                mediaPorAnyo += arrayTotal[num];
            }
+           console.log(mediaPorAnyo);
     
            if(contador0 == anyos.length){
                mediaPorAnyo = 0;
            }
            else{
-               mediaPorAnyo = mediaPorAnyo / contadorDist;
+               mediaPorAnyo = mediaPorAnyo;
            }
     
-           mediaPorAnyo = Math.round(mediaPorAnyo);
+         //  mediaPorAnyo = parseFloat(Math.round(mediaPorAnyo));
+           
     
     
            //Pusheamos al array final
            arrayFinal.push(mediaPorAnyo);
         }
+        console.log("quiero ver");
+        console.log(arrayFinal);
     
         return arrayFinal;
        
@@ -224,7 +185,7 @@
     </script>
     
     <svelte:head>
-        <script src="https://code.highcharts.com/highcharts.js" on:load={cargaGrafica}></script>
+        <script src="https://code.jscharting.com/latest/jscharting.js" on:load={cargaGrafica}></script>
     </svelte:head>
     
     <main>
