@@ -149,7 +149,8 @@
 
             <a href="https://documenter.getpostman.com/view/14948423/TzJsfJT1"><Button color="info">Documentación v1</Button></a>
             <a href="/#/illiteracy_graphs">
-              <Button color="primary">Graficas</Button>
+              <Button color="primary">Graficas highCharts</Button>
+              <a href="/#/illiteracy_graphs2"><Button color="primary">Grafica JSCharting</Button></a>
           </CardBody>
           <CardFooter
             >Desarrollado por
