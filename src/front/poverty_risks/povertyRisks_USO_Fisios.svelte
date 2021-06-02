@@ -4,10 +4,10 @@
 //Funcion para la toma de datos e incluirlos en la gráfica
 var BASE_API_PATH = '/api/v1/poverty_risks';
 
-var parqueMovil_data = [];
+var fisios_data = [];
 var anyos = [];
 var inicio = 2014;
-var fin = 2019;
+var fin = 2018;
 var conjuntoAnyos = new Set(anyos);
 var datosGrafica = [];
 
@@ -24,11 +24,6 @@ var mensajeError = "";
 async function tomaDatosGrafica(datos){
   console.log("SE EJECUTA tomaDatosGrafica");  
 
-
-    var datosFiltradosAnyo = datos.filter((e)=>{
-        return e.Año >= inicio;
-    });
-
    //Creamos variables auxiliares
    var array = [];
    var arrayAux = [];
@@ -36,45 +31,44 @@ async function tomaDatosGrafica(datos){
    var objeto = {};
     var anyos = rangoAnyos(inicio,fin);
     var a = 0;
+    var datosTotales;
 
-    objeto = {
-            data : []
-        }
-
+    
+        console.log(datos);
+        datosTotales=datos[0].Data;
     //Iteramos por cada año del rango establecido
     for(var anyo in anyos){
         //Pillamos el año
         a=anyos[anyo];
         //Limpiamos variables
         arrayAux=[];
-        
+        console.log(a);
         //Iteramos sobre los datos para comprobar si su año coincide con el establecido
-        for(var num in datosFiltradosAnyo){
-            var dato = datosFiltradosAnyo[num]; //Tomamos el dato que estamos iterando
-            //console.log(dato.Año);
-            //console.log(dato.Unidades);
-            if(dato.Año == a){ //Si coincide con el año ("a") se toma el valor del atributo pasado por parametro
-                arrayAux.push(dato["Unidades"]);
-            }
-            else{
-                arrayAux.push(0);
-            }
+        for(var num in datosTotales){
+            var dato = datosTotales[num]; //Tomamos el dato que estamos iterando
+            if(dato.NombrePeriodo == a.toString()){ //Si coincide con el año ("a") se toma el valor del atributo pasado por parametro
+              objeto = {
+            x : dato.NombrePeriodo,
+            y : dato.Valor
+                }
+            } 
        }
+       array.push(objeto);
       //  console.log("ArrayAux"+ a+ ": " + arrayAux);
-        arraySumador.push(arrayAux.reduce((a, b) => a + b, 0));
+      //  arraySumador.push(arrayAux.reduce((a, b) => a + b, 0));
       //  console.log("arraySumador: " + arraySumador);
     }
-    for(var e in arraySumador){
+    /* for(var e in arraySumador){
     objeto.data.push(arraySumador[e]);
-    }
+    } */
   
     //Pusheamos al array final
-    //array.push(objeto);
-    console.log("objetoPovertyRisks");
+    
+    console.log("objetoFisios:");
     console.log(objeto);
-    //console.log(array);
+    console.log(array);
 
-    return objeto;    
+    return array;    
 }
 
 
@@ -98,21 +92,17 @@ async function cargaGrafica(){
     var anyos = rangoAnyos(inicio,fin);
     console.log(anyos);
 
-    await fetch(BASE_API_PATH +
-      "/loadInitialData"
-      );
-
     const res = await fetch(
-      "https://datos.alcobendas.org/dataset/cd9382b9-751c-42cb-9295-6dd5bcc32bec/resource/3835a7cb-2bd0-45cc-8cb6-961be66f205f/download/parque-movil-de-alcobendas.json"
-      );
+      "https://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t15/p416/a2018/s09001.px?tip=AM");
+      
       if (res.ok) {
         var json = await res.json();
         if(json.length===undefined){
-          parqueMovil_data = [];
-          parqueMovil_data.push(json);          
+          fisios_data = [];
+          fisios_data.push(json);          
         }
         else{
-          parqueMovil_data = json;
+          fisios_data = json;
         }
         mensajeError="";
         mensajeCorrecto="Datos cargados correctamente"
@@ -121,40 +111,52 @@ async function cargaGrafica(){
           mensajeError = "No se ha podido acceder a la base de datos";
           console.log("No");
         }
-        if (parqueMovil_data.length === 0) {
+        if (fisios_data.length === 0) {
           mensajeError = "No hay datos disponibles";
           console.log("No")
         }
         
       }
 
-      console.log(parqueMovil_data);
+      console.log(fisios_data);
       
-
       //Tomamos los datos
 
-      datosGrafica = await tomaDatosGrafica(parqueMovil_data);
+      datosGrafica = await tomaDatosGrafica(fisios_data);
       //console.log(rangoAnyos(inicio,fin));
 
     //Construccion de la grafica
     var options = {
-          series: datosGrafica.data,
-          chart: {
-          width: 380,
-          type: 'pie',
-        },
-        labels: rangoAnyos(inicio,fin),
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
-            }
+          series: [
+          {
+            data: datosGrafica
           }
-        }]
+        ],
+          legend: {
+          show: false
+        },
+        chart: {
+          height: 350,
+          type: 'treemap'
+        },
+        title: {
+          text: 'Fisioterapeutas colegiados por año',
+          align: 'center'
+        },
+        colors: [
+          '#3B93A5',
+          '#F7B844',
+          '#ADD8C7',
+          '#EC3C65',
+          '#C1F666',
+          '#D43F97'
+        ],
+        plotOptions: {
+          treemap: {
+            distributed: true,
+            enableShades: false
+          }
+        }
         };
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
@@ -167,13 +169,11 @@ async function cargaGrafica(){
 <svelte:head>
 
   <script src="https://cdn.jsdelivr.net/npm/apexcharts" on:load={cargaGrafica}></script>
-    
+
 </svelte:head>
 
 <main>
-  <h2>Número de vehículos en Madrid por año</h2>
-
-  <div id="chart">
+    <div id="chart">
   </div>
 </main>
 

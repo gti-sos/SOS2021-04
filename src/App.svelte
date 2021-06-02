@@ -30,7 +30,7 @@
 	import povertyRisks_MyChartHighcharts from "./front/poverty_risks/povertyRisks_MyChartHighcharts.svelte";
 	import povertyRisks_MyChartApexcharts from "./front/poverty_risks/povertyRisks_MyChartApexcharts.svelte";
 	import povertyRisks_USO_ParqueMovil from "./front/poverty_risks/povertyRisks_USO_ParqueMovil.svelte";
-	import povertyRisks_USO_NacimientosMadrid from "./front/poverty_risks/povertyRisks_USO_NacimientosMadrid.svelte";
+	import povertyRisks_USO_Fisios from "./front/poverty_risks/povertyRisks_USO_Fisios.svelte";
 	import povertyRisks_natalityStats from "./front/poverty_risks/povertyRisks_natalityStats.svelte";
 	import povertyRisks_drugUse from "./front/poverty_risks/povertyRisks_drugUse.svelte";
 
@@ -64,7 +64,7 @@
 		"/povertyrisks_MyChartHighcharts" : povertyRisks_MyChartHighcharts,
 		"/povertyrisks_MyChartApexcharts" : povertyRisks_MyChartApexcharts,
 		"/povertyRisks_USO_ParqueMovil" : povertyRisks_USO_ParqueMovil,
-		"/povertyRisks_USO_NacimientosMadrid" : povertyRisks_USO_NacimientosMadrid,
+		"/povertyRisks_USO_Fisios" : povertyRisks_USO_Fisios,
 		"/povertyrisks_natalityStats" : povertyRisks_natalityStats,
 		"/povertyrisks_drugUse" : povertyRisks_drugUse,
 		
