@@ -1,11 +1,18 @@
 <script>
     import {onMount} from "svelte";
+    import FusionCharts from 'fusioncharts';
+    import Charts from 'fusioncharts/fusioncharts.charts';
+    import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+    import SvelteFC, { fcRoot } from 'svelte-fusioncharts';
+ 
+    // Always set FusionCharts as the first parameter
+    fcRoot(FusionCharts, Charts, FusionTheme);
     
     
     
     var BASE_API_PATH = '/api/v1/education_expenditures';
     
-    var TOURISM_API_PATH = 'https://sos2021-03.herokuapp.com/api/integration/international-tourisms';
+    var EXTERNAL_API_PATH = 'https://servicios.ine.es/wstempus/js/es/DATOS_TABLA/32958?tip=AM';
     
        
     
@@ -16,7 +23,8 @@
     //Variables comunes
     
     var edex_data = [];
-    var tourism_data = [];
+    var ex_data = [];
+   
     var inicio = 2014;
     var fin = 2017;
     var anyos = rangoAnyos(inicio,fin);
@@ -30,7 +38,6 @@
             return e.year >= inicio;
         });
     
-        console.log("Datos filtrados:" + datosFiltradosAnyo);
     
         //Creamos variables auxiliares
         var arrayTotal = [];
@@ -62,7 +69,7 @@
                 }
            }
     
-           console.log("Total edex " + num +" " + arrayTotal);
+ 
            
            //Hacemos la media por años
     
@@ -85,9 +92,9 @@
                mediaPorAnyo = mediaPorAnyo / contadorDist;
            }
     
-           mediaPorAnyo = Math.round(mediaPorAnyo);
-           
-           var objeto =  { x: a, y: mediaPorAnyo }
+    
+           var objeto = {value: mediaPorAnyo};
+    
     
            //Pusheamos al array final
            arrayFinal.push(objeto);
@@ -95,14 +102,45 @@
     
         return arrayFinal;
     }
+
+    async function tomaDatosGraficaexterna(datosExternos){
+        
+        //Tomamos los datos totales de colegiados hombres y mujeres
+        var datosFiltradosTotal = datosExternos[1];
+        var datosTotales = datosFiltradosTotal["Data"];
+
+
+       
+        var final = [];
+        var arrayAux = [];
+        var a = 0;
+
+    for(var an in anyos){
+        //Pillamos el año
+        a=anyos[an];
+        //Limpiamos variables
+        arrayAux=[];
+        //Iteramos sobre los datos para comprobar si su año coincide con el establecido
+        for(var num in datosTotales){
+            var dato = datosTotales[num]; //Tomamos el dato que estamos iterando
+            if(parseInt(dato.NombrePeriodo) == a){ //Si coincide con el año ("a") se toma el valor del atributo pasado por parametro
+            final.push({value:dato["Valor"]});
+            } 
+       }  
+    }
+
+        return final;
+}
     
     
     
     async function cargaGrafica(){
     
         const res_ee = await fetch(BASE_API_PATH);
-        const res_r = await fetch(TOURISM_API_PATH);
+        const res_r = await fetch(EXTERNAL_API_PATH);
     
+      
+
         if (res_ee.ok){
             var json_ee = await res_ee.json();
             
@@ -119,93 +157,75 @@
             var json_r = await res_r.json();
     
             if(json_r.length===undefined){
-                console.log("Aqui llega undefined javi");
-            tourism_data = [];
-            tourism_data.push(json_r);          
+            ex_data = [];
+            ex_data.push(json_r);          
             }
             else{
-            console.log("Aqui llegan datos javi");
-            console.log("longitud:" + json_r.length);
-            tourism_data = json_r;
-            console.log(json_r);
+
+            ex_data = json_r;
+    
             }
     
         }
     
+        var datosGrafica_edex = await tomaDatosGrafica(edex_data,"education_expenditure_gdp");
+        var datosGrafica_ex    = await tomaDatosGraficaexterna(ex_data);
+
+        console.log("edex: "+ JSON.stringify(datosGrafica_edex));
+        console.log("ex: "+ JSON.stringify(datosGrafica_ex))
         
-        /*tomamos los años y el dato a buscar de los elementos seleccionados
-        for(var elemento in edex_data){
-            console.log(elemento);
-            anyos.push(edex_data[elemento].year);
-            data_clasif.push(edex_data[elemento][datoClasif]);
-        }
-        console.log("años: " + anyos);
-        console.log("datos " + datoClasifEsp + ":" + data_clasif);
-        conjuntoAnyos = new Set(anyos);
-        anyos = [...conjuntoAnyos];*/
     
-        //Tomamos los datos
-    
-        var datosGrafica_edex = await tomaDatosGrafica(edex_data,"education_expenditure_per_millions");
-        console.log("edex final:" + datosGrafica_edex);
-        var datosGrafica_tourism    = await tomaDatosGrafica(tourism_data,"expendituresbillion");
-        console.log("tourism final:" + datosGrafica_tourism);
-    
+        //Incluimos los años en formato string en un vector
         
         var anyosGraphic = [];
         var aux = "";
     
         for(var a in anyos){
             aux = String(anyos[a]);
-            anyosGraphic.push(aux);
+            anyosGraphic.push({label: aux});
         }
-        console.log("años grafica:" + anyosGraphic);
-
-        var obj_edex = {
-		type: "splineArea",
-		showInLegend: true,
-		name: "Gastos en educación (millones de euros)",
-		yValueFormatString: "€",
-		xValueFormatString: "",
-		dataPoints: datosGrafica_edex
- 	    };
-
-         var obj_tourism = {
-		type: "splineArea",
-		showInLegend: true,
-		name: "Gastos en turismo (billones de euros)",
-		yValueFormatString: "€",
-		xValueFormatString: "",
-		dataPoints: datosGrafica_tourism
- 	}
     
-     var datos_grafica = [];
-     datos_grafica.push(obj_edex);
-     datos_grafica.push(obj_tourism);
-
-
-        var chart = new CanvasJS.Chart("chartContainer", {
-            animationEnabled: true,
-            title:{
-                text: "Gatos en educación vs Gastos en Turismo"
-            },
-            axisY :{
-                includeZero: false
-                
-            },
-            toolTip: {
-                shared: true
-            },
-            legend: {
-                fontSize: 13
-            },
-            data: datos_grafica
-        });
-
-        chart.render();
-
+        const dataSource = {
+  chart: {
+    caption: "% gasto en educación por PIB vs % gasto en I+D por PIB",
+    subcaption: "2014-2017",
+    xaxisname: "Años",
+    yaxisname: "% de gasto por PIB",
+    formatnumberscale: "1",
+    theme: "fusion"
+  },
+  categories: [
+    {
+      category: anyosGraphic
+    }
+  ],
+  dataset: [
+    {
+      seriesname: "% gasto en educación por PIB",
+      data: datosGrafica_edex
+    },
+    {
+      seriesname: "% gasto en I+D por PIB",
+      data: datosGrafica_ex
+    }
+  ]
 };
 
+    FusionCharts.ready(function() {
+    var myChart = new FusionCharts({
+        type: "mscolumn3d",
+        renderAt: "chart-container",
+        width: "100%",
+        height: "100%",
+        dataFormat: "json",
+        dataSource
+    }).render();
+    });
+    
+    
+    }
+     //Graphic sound options
+    
     // Funciones auxiliares
     
     function rangoAnyos(inic,fin){
@@ -215,19 +235,20 @@
         }
         return rango;
     }
+    onMount(cargaGrafica);
     
     </script>
     
     <svelte:head>
-        <!--Se hace uso de la biblioteca CanvasJS y el tipo es  Multi Series Spline Area-->    
-        <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js" on:load="{cargaGrafica}"></script>
+      
+
     </svelte:head>
     
     <main>
-        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+        <div id="chart-container"></div>
+ 
     </main>
     
     <style>
-
-    
     </style>

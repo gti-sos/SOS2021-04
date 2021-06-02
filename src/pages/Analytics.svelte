@@ -37,6 +37,12 @@
       <CardBody>
         <CardSubtitle />
         <CardText />
+        <a href="/#/edex_graphs">
+          <Button color="primary">HighCharts</Button>
+          </a>
+        <a href="/#/edex_graphs2">
+          <Button color="primary">Billboard</Button>
+        </a>
       
       </CardBody>
     </Card>

@@ -47,7 +47,19 @@
             <a href="/#/integrations/edex/api3">
               <Button color="primary">Gastos en educacion - Gastos en turismo</Button>
               </a>
-      
+
+              <a href="/#/integrations/edex/api4">
+                <Button color="primary">Gastos en educacion - Químicos colegiados (externa)</Button>
+                </a>
+                <br>
+
+      </CardBody>
+      <CardBody>
+        <CardSubtitle />
+        <CardText />
+        <a href="/#/integrations/edex/api5">
+          <Button color="primary">Gastos en educacion - Gasto I+D (externa)</Button>
+          </a>
       </CardBody>
     </Card>
   </div>

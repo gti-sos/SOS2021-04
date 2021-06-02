@@ -16,6 +16,8 @@
 	import Edex_research from "./front/education_expenditures/integraciones/Edex_api20.svelte";
 	import Edex_sanity from "./front/education_expenditures/integraciones/Edex_apiSanity.svelte";
 	import Edex_tourism from "./front/education_expenditures/integraciones/Edex_apiTourism.svelte";
+	import Edex_external from "./front/education_expenditures/integraciones/Edex_externaColegiados.svelte";
+	import Edex_external_pib from "./front/education_expenditures/integraciones/Edex_externaGastoID.svelte";
 
 	
 	
@@ -57,6 +59,8 @@
 		"/integrations/edex/api1":Edex_research,
 		"/integrations/edex/api2":Edex_sanity,
 		"/integrations/edex/api3":Edex_tourism,
+		"/integrations/edex/api4":Edex_external,
+		"/integrations/edex/api5":Edex_external_pib,
 		
 		
 		"/illiteracy":illiteracy,
