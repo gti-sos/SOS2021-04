@@ -25,6 +25,9 @@
 
     module.exports.register = (app, BASE_API_PATH,dataBase) => {
 
+        //Para proxy
+        const request = require("request");
+
         //Definimos los datos iniciales
             
         var datos_EE =  [
@@ -710,4 +713,21 @@
 
             res.status(405).send("Metodo no permitido"); //Method not allowed
         });
+
+
+        app.use("/proxyHerokuEdex", function(req, res) {
+            console.log("New Proxy Call!");
+    
+            var apiServerHost = 'https://sos2021-20.herokuapp.com';	// /api/integration/international-tourisms;
+            console.log("apiServerHost = "+ apiServerHost);
+            console.log("baseURL = "+ req.baseUrl);
+            console.log("url = "+ req.url);
+    
+            var url = apiServerHost + req.url;
+    
+            console.log('piped: ' + req.url);
+            
+            req.pipe(request(url)).pipe(res);
+          });
+          
     };

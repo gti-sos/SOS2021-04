@@ -36,6 +36,17 @@
       <CardBody>
         <CardSubtitle />
         <CardText />
+        <a href="/#/integrations/edex/api1">
+          <Button color="primary">Gastos en educacion - Gastos en financiación</Button>
+          </a>
+
+          <a href="/#/integrations/edex/api2">
+            <Button color="primary">Gastos en educacion - Gastos en sanidad</Button>
+            </a>
+
+            <a href="/#/integrations/edex/api3">
+              <Button color="primary">Gastos en educacion - Gastos en turismo</Button>
+              </a>
       
       </CardBody>
     </Card>
