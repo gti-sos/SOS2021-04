@@ -62,7 +62,7 @@
         <a href="/#/povertyRisks_USO_ParqueMovil">
           <Button color="primary">Uso API Parque Móvil</Button>
           </a>
-          <a href="/#/povertyRisks_USO_NacimientosMadrid">
+          <a href="/#/povertyRisks_USO_Fisios">
             <Button color="primary">Uso API Fisioterapeutas</Button>
           </a>
         <a href="/#/povertyRisks_natalityStats">
