@@ -171,6 +171,8 @@ async function cargaGrafica(){
 </svelte:head>
 
 <main>
+  <h2>Número de vehículos en Madrid por año</h2>
+
   <div id="chart">
   </div>
 </main>
