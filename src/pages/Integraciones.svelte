@@ -36,7 +36,30 @@
       <CardBody>
         <CardSubtitle />
         <CardText />
-      
+        <a href="/#/integrations/edex/api1">
+          <Button color="primary">Gastos en educacion - Gastos en financiación</Button>
+          </a>
+
+          <a href="/#/integrations/edex/api2">
+            <Button color="primary">Gastos en educacion - Gastos en sanidad</Button>
+            </a>
+
+            <a href="/#/integrations/edex/api3">
+              <Button color="primary">Gastos en educacion - Gastos en turismo</Button>
+              </a>
+
+              <a href="/#/integrations/edex/api4">
+                <Button color="primary">Gastos en educacion - Químicos colegiados (externa)</Button>
+                </a>
+                <br>
+
+      </CardBody>
+      <CardBody>
+        <CardSubtitle />
+        <CardText />
+        <a href="/#/integrations/edex/api5">
+          <Button color="primary">Gastos en educacion - Gasto I+D (externa)</Button>
+          </a>
       </CardBody>
     </Card>
   </div>
@@ -48,9 +71,14 @@
       <CardBody>
         <CardSubtitle />
         <CardText />
-        
+        <a href="/#/povertyRisks_USO_ParqueMovil">
+          <Button color="primary">Uso API Parque Móvil</Button>
+          </a>
+          <a href="/#/povertyRisks_USO_Fisios">
+            <Button color="primary">Uso API Fisioterapeutas</Button>
+          </a>
         <a href="/#/povertyRisks_natalityStats">
-        <Button color="primary">Integración con natality-stats (con cors)</Button>
+        <Button color="primary">Integración con natality-stats (con proxy)</Button>
         </a>
         <a href="/#/povertyRisks_drugUse">
         <Button color="primary">Integración con drug-use (con proxy)</Button>

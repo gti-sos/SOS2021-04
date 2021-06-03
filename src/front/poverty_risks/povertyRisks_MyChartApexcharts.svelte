@@ -153,7 +153,6 @@ async function tomaDatosGrafica(datos){
         //Ya con los datos completos, creamos entonces el objeto
 
         objeto = {
-            type: 'column',
             name : paisActual,
             data : datosGraficaPorPais
         }
@@ -219,31 +218,35 @@ async function cargaGrafica(){
       //Tomamos los datos
 
       datosGrafica = await tomaDatosGrafica(povertyRisks_data);
+      console.log(datosGrafica);
 
     //Construccion de la grafica
 
-    Highcharts.chart('container', {
-  title: {
-    text: datoClasifEsp + " (Combination chart)"
-  },
-  xAxis: {
-    categories: rangoAnyos(inicio,fin)
-  },
-  labels: {
-    items: [{
-      html: '',
-      style: {
-        left: '50px',
-        top: '18px',
-        color: ( // theme
-          Highcharts.defaultOptions.title.style &&
-          Highcharts.defaultOptions.title.style.color
-        ) || 'black'
-      }
-    }]
-  },
-  series: datosGrafica
-});
+    var options = {
+          series: datosGrafica,
+          chart: {
+          height: 350,
+          type: 'area'
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          categories: rangoAnyos(inicio,fin)
+        },
+        tooltip: {
+          x: {
+          },
+        },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+        window.alert(datoClasifEsp);
+        console.log(datoClasifEsp);
 }
 
 
@@ -251,53 +254,17 @@ async function cargaGrafica(){
 
 <svelte:head>
 
-    <script src="https://code.highcharts.com/highcharts.js" on:load={cargaGrafica} ></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts" on:load={cargaGrafica}></script>
     
     
 </svelte:head>
 
 <main>
-    <figure class="highcharts-figure">
-        <div id="container"></div>
-            <p class="highcharts-description" style="font-size: 0.85em; text-align: center; padding:1em">
-                <em>'La tasa de riesgo de pobreza es el porcentaje de población que se encuentra por debajo del umbral de riesgo de pobreza.'</em>
-            </p>    
-    </figure>
+  <div id="chart">
+  </div>
 </main>
 
 <style>
-/* .highcharts-figure, .highcharts-data-table table {
-    min-width: 360px; 
-    max-width: 800px;
-    margin: 1em auto;
-}
 
-.highcharts-data-table table {
-	font-family: Verdana, sans-serif;
-	border-collapse: collapse;
-	border: 1px solid #EBEBEB;
-	margin: 10px auto;
-	text-align: center;
-	width: 100%;
-	max-width: 500px;
-}
-.highcharts-data-table caption {
-    padding: 1em 0;
-    font-size: 1.2em;
-    color: #555;
-}
-.highcharts-data-table th {
-	font-weight: 600;
-    padding: 0.5em;
-}
-.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-    padding: 0.5em;
-}
-.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-    background: #f8f8f8;
-}
-.highcharts-data-table tr:hover {
-    background: #f1f7ff;
-} */
 
 </style>

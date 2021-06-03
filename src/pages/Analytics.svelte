@@ -37,6 +37,12 @@
       <CardBody>
         <CardSubtitle />
         <CardText />
+        <a href="/#/edex_graphs">
+          <Button color="primary">HighCharts</Button>
+          </a>
+        <a href="/#/edex_graphs2">
+          <Button color="primary">Billboard</Button>
+        </a>
       
       </CardBody>
     </Card>
@@ -50,10 +56,10 @@
         <CardSubtitle />
         <CardText />
         
-        <a href="/#/povertyrisks_graphs">
+        <a href="/#/povertyrisks_MyChartHighcharts">
           <Button color="primary">Mi gráfica (highCharts)</Button>
           </a>
-        <a href="/#/povertyrisks_graphs">
+        <a href="/#/povertyrisks_MyChartApexcharts">
           <Button color="primary">Mi gráfica (ApexCharts)</Button>
         </a>
       

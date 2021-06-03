@@ -153,11 +153,10 @@ async function tomaDatosGrafica(datos){
         //Ya con los datos completos, creamos entonces el objeto
 
         objeto = {
-            type: 'column',
             name : paisActual,
-            data : datosGraficaPorPais
+            low : datosGraficaPorPais.reduce((a, b) => a + b, 0)
         }
-
+        console.log("datosGraficaPorPais: " + datosGraficaPorPais);
         arrayFinal.push(objeto);
     }
     console.log("Final:"+JSON.stringify(arrayFinal));
@@ -223,26 +222,48 @@ async function cargaGrafica(){
     //Construccion de la grafica
 
     Highcharts.chart('container', {
+
+  chart: {
+    type: 'lollipop'
+  },
+
+  accessibility: {
+    point: {
+      valueDescriptionFormat: '{index}. {xDescription}, {point.y}.'
+    }
+  },
+
+  legend: {
+    enabled: false
+  },
+
+  subtitle: {
+    text: 'Suma del parámetro por país en todos los años'
+  },
+
   title: {
-    text: datoClasifEsp + " (Combination chart)"
+    text: datoClasifEsp
   },
+
+  tooltip: {
+    shared: true
+  },
+
   xAxis: {
-    categories: rangoAnyos(inicio,fin)
+    type: 'category'
   },
-  labels: {
-    items: [{
-      html: '',
-      style: {
-        left: '50px',
-        top: '18px',
-        color: ( // theme
-          Highcharts.defaultOptions.title.style &&
-          Highcharts.defaultOptions.title.style.color
-        ) || 'black'
-      }
-    }]
+
+  yAxis: {
+    title: {
+      text: 'Population'
+    }
   },
-  series: datosGrafica
+
+  series: [{
+    name: 'Population',
+    data: datosGrafica
+  }]
+
 });
 }
 
@@ -251,25 +272,31 @@ async function cargaGrafica(){
 
 <svelte:head>
 
-    <script src="https://code.highcharts.com/highcharts.js" on:load={cargaGrafica} ></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+<script src="https://code.highcharts.com/modules/lollipop.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js" on:load={cargaGrafica}></script>
     
     
 </svelte:head>
 
 <main>
-    <figure class="highcharts-figure">
-        <div id="container"></div>
-            <p class="highcharts-description" style="font-size: 0.85em; text-align: center; padding:1em">
-                <em>'La tasa de riesgo de pobreza es el porcentaje de población que se encuentra por debajo del umbral de riesgo de pobreza.'</em>
-            </p>    
-    </figure>
+  <figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+      Lollipop charts are variants of column charts, with a circle
+      marker for the data value and a line extending to the axis.
+    </p>
+  </figure>
 </main>
 
 <style>
-/* .highcharts-figure, .highcharts-data-table table {
-    min-width: 360px; 
-    max-width: 800px;
-    margin: 1em auto;
+.highcharts-figure, .highcharts-data-table table {
+  min-width: 320px; 
+  max-width: 800px;
+  margin: 1em auto;
 }
 
 .highcharts-data-table table {
@@ -282,22 +309,35 @@ async function cargaGrafica(){
 	max-width: 500px;
 }
 .highcharts-data-table caption {
-    padding: 1em 0;
-    font-size: 1.2em;
-    color: #555;
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
 }
 .highcharts-data-table th {
 	font-weight: 600;
-    padding: 0.5em;
+  padding: 0.5em;
 }
 .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-    padding: 0.5em;
+  padding: 0.5em;
 }
 .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-    background: #f8f8f8;
+  background: #f8f8f8;
 }
 .highcharts-data-table tr:hover {
-    background: #f1f7ff;
-} */
+  background: #f1f7ff;
+}
+
+.ld-label {
+	width:200px;
+	display: inline-block;
+}
+
+.ld-url-input {
+	width: 500px; 
+}
+
+.ld-time-input {
+	width: 40px;
+}
 
 </style>
