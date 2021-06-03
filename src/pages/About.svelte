@@ -62,7 +62,7 @@
       <CardBody>
         <CardSubtitle />
         <CardText />
-            <a href="https://www.youtube.com/"><Button color="primary">Video de Miguel Gómez Vázquez</Button></a>
+            <a href="https://youtu.be/9uS1fNT95OA"><Button color="primary">Video de Miguel Gómez Vázquez</Button></a>
        
       </CardBody>
     </Card>

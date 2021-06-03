@@ -73,9 +73,8 @@
         type: 'area spline',
         defaultSeries: { shape_opacity: 0.5 },
         xAxis: {
-            accessibility: {
-                rangeDescription: 'Range:'+inicio+'  to ' + fin
-            }
+            crosshair_enabled: true,
+          scale: { type: 'year' }
         },
         yAxis: {
             title: {
