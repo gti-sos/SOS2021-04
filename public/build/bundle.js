@@ -63960,14 +63960,14 @@ var app = (function () {
     			t1 = space();
     			p = element("p");
     			if (script.src !== (script_src_value = "https://code.highcharts.com/highcharts.js")) attr_dev(script, "src", script_src_value);
-    			add_location(script, file$1, 246, 4, 5847);
+    			add_location(script, file$1, 209, 4, 5152);
     			attr_dev(div, "id", "container");
-    			add_location(div, file$1, 252, 8, 6013);
+    			add_location(div, file$1, 215, 8, 5318);
     			attr_dev(p, "class", "highcharts-description");
-    			add_location(p, file$1, 253, 8, 6049);
+    			add_location(p, file$1, 216, 8, 5354);
     			attr_dev(figure, "class", "highcharts-figure");
-    			add_location(figure, file$1, 251, 4, 5969);
-    			add_location(main, file$1, 249, 0, 5955);
+    			add_location(figure, file$1, 214, 4, 5274);
+    			add_location(main, file$1, 212, 0, 5260);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -64095,28 +64095,20 @@ var app = (function () {
     		console.log("edex final:" + datosGrafica_edex);
     		var datosGrafica_pr = await tomaDatosGrafica(pr_data, "percentage_risk_of_poverty");
     		var datosGrafica_i = await tomaDatosGrafica(i_data, "male_illiteracy_rate");
+    		var años = rangoAnyos(inicio, fin);
 
     		//Construccion de la grafica
     		Highcharts.chart("container", {
-    			title: { text: "Grafica conjunta Grupo 04" },
-    			subtitle: { text: "prueba" },
-    			yAxis: { title: { text: "porcentaje (%)" } },
-    			xAxis: {
-    				accessibility: {
-    					rangeDescription: "Range:" + inicio + "  to " + fin
-    				}
+    			chart: { type: "bar" },
+    			title: {
+    				text: "illiteracy,Education Expenditure,Poverty Risks"
     			},
-    			legend: {
-    				layout: "vertical",
-    				align: "right",
-    				verticalAlign: "middle"
+    			xAxis: { categories: años },
+    			yAxis: {
+    				title: { text: "Grafica conjunta del G04" }
     			},
-    			plotOptions: {
-    				series: {
-    					label: { connectorAllowed: false },
-    					pointStart: inicio
-    				}
-    			},
+    			legend: { reversed: true },
+    			plotOptions: { series: { stacking: "normal" } },
     			series: [
     				{
     					name: "Education Expenditures",
@@ -64127,21 +64119,7 @@ var app = (function () {
     					data: datosGrafica_pr
     				},
     				{ name: "Illiteracy", data: datosGrafica_i }
-    			],
-    			responsive: {
-    				rules: [
-    					{
-    						condition: { maxWidth: 500 },
-    						chartOptions: {
-    							legend: {
-    								layout: "horizontal",
-    								align: "center",
-    								verticalAlign: "bottom"
-    							}
-    						}
-    					}
-    				]
-    			}
+    			]
     		});
     	}
 

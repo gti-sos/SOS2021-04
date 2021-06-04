@@ -84,80 +84,43 @@ async function cargaGrafica(){
     console.log("edex final:" + datosGrafica_edex);
     var datosGrafica_pr   = await tomaDatosGrafica(pr_data,"percentage_risk_of_poverty");
     var datosGrafica_i    = await tomaDatosGrafica(i_data,"male_illiteracy_rate");
-
+    var años = rangoAnyos(inicio,fin);
     //Construccion de la grafica
 
     Highcharts.chart('container', {
-
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: 'illiteracy,Education Expenditure,Poverty Risks'
+  },
+  xAxis: {
+    categories:años
+    },
+  yAxis: {
     title: {
-        text: "Grafica conjunta Grupo 04"
-
-    },
-
-    subtitle: {
-        text: "prueba"
-    },
-
-    yAxis: {
-        title: {
-            text: "porcentaje (%)"
-        }
-    },
-
-    xAxis: {
-        accessibility: {
-            rangeDescription: 'Range:'+inicio+'  to ' + fin
-        }
-    },
-
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
-    },
-
-    plotOptions: {
-        series: {
-            label: {
-                connectorAllowed: false
-            },
-            pointStart: inicio
-        }
-    },
-
-    series: [
-
-        {
-            name: 'Education Expenditures',
-            data: datosGrafica_edex
-        },
-        {
-            name: 'Poverty Risks',
-            data: datosGrafica_pr
-        },
-        {
-            name:'Illiteracy',
-            data: datosGrafica_i
-        }
-
-    ],
-
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom'
-                }
-            }
-        }]
+      text: 'Grafica conjunta del G04'
     }
-
-    });
+  },
+  legend: {
+    reversed: true
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal'
+    }
+  },
+  series: [{
+    name: 'Education Expenditures',
+    data: datosGrafica_edex
+  }, {
+    name: 'Poverty Risks',
+    data: datosGrafica_pr
+  }, {
+    name:'Illiteracy',
+    data: datosGrafica_i
+  }]
+});
 }
 
 async function tomaDatosGrafica(datos,atributo){
