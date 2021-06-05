@@ -1,0 +1,34 @@
+﻿Project,Client,Title,Duration
+SOS2021-04,,#10 Crear al menos una issue en el repositorio del principal del proyecto (SOS2021-XX) reflejando alguna de las tareas de este feedback,03:16:00
+SOS2021-04,,#12 Tener una ruta “/info/poverty_risk generada en el servidor NodeJS (NO se permitirá un archivo .html),02:32:20
+SOS2021-04,,#15 Haber leído todas las noticias en Piazza previas a las 18:00 horas del día anterior a la sesión de feedback.,01:01:36
+SOS2021-04,,#19 Tarea Extra: Aplicar ejercicios Lab 07 al proyecto,02:13:00
+SOS2021-04,,#21 Implementacion Base de datos en API para trabajar con persistencia,08:15:30
+SOS2021-04,,#22 Se debe tener una colección de llamadas de postman con al menos 2 tests sobre la API desarrollada,02:23:46
+SOS2021-04,,#23 Implementar front-end con Svelte,12:23:24
+SOS2021-04,,#26 Implementar paginacion y detalles de front end no resueltos en la entrega anterior,07:13:17
+SOS2021-04,,#27 Una forma de buscar recursos utilizando la búsqueda que proporciona la API. (p.e. statistics?from=2000&to=2017),07:37:00
+SOS2021-04,,#29 Implementar graficas para education expenditures,06:14:47
+SOS2021-04,,"#30 Un frontend funcional que tenga, además de las funcionalidades solicitadas en entregables anteriores, una nueva vista con visualizaciones de todos los datos que están en la API con la información a partir de los datos que proporciona la API en un widget de tipo “line”  (similar al que se vio en el L11).",04:23:00
+SOS2021-04,,"#31 Realización D03. Implementación de integraciones, tests de front-end y video explicativo",10:28:03
+SOS2021-04,,Aplicar API en Heroku tal y como se especifica en L06,03:04:53
+SOS2021-04,,codigo nodeJS y Express,01:33:21
+SOS2021-04,,Configurar README y html en /public,00:57:07
+SOS2021-04,,Crear ruta /info/education_expenditure  y conjunto de datos en POSTMAN,01:54:31
+SOS2021-04,,Debe tener desplegado en Heroku una aplicación funcional que tenga las siguientes características:,07:44:00
+SOS2021-04,,Inclusión de 5 ejemplos reales en ficha de datos del proyecto,00:09:45
+SOS2021-04,,Instalar y Configurar extension Toggl Button,00:01:34
+SOS2021-04,,La API debe implementar adecuadamente todos los casos de la “tabla azul” comentada en el L06,06:36:59
+SOS2021-04,,La(s) issue(s) debe estar en estado cerrado antes de la sesión de feedback.,03:36:53
+SOS2021-04,,Tener al menos 3 horas dedicadas registradas desde la última sesión de feedback.,03:18:15
+SOS2021-04,,Tener dentro de la carpeta “public” un archivo “index.html” con la misma información que se introdujo en el archivo “Readme.md” del repositorio común.,03:12:21
+SOS2021-04,,Tener instalado Chrome,00:00:38
+SOS2021-04,,Tener una cuenta de GitHub.,00:00:23
+SOS2021-04,,Visualización de video e Implementación servidor web con Node.js en,00:58:19
+SOS2021-04,,Visualización de video e Implementación servidor web con Node.js en ,02:12:36
+SOS2021-04,,,31:53:00
+,,#1 Tarea 0,00:00:12
+,,PL2_MASI-2021_PCuest,13:35:31
+,,SOS2021 -04 - Proyecto de curso,00:00:27
+,,Tarea 0,00:00:10
+,,,00:00:04

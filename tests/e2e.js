@@ -21,7 +21,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
 
   await page.screenshot({ path: screenshotPath_illiteracy + 'HOME_0.png' });
   await page.screenshot({ path: screenshotPath_edex + 'HOME_0.png' });
- 
+ /*
   //illiteracy
   await page.screenshot({ path: screenshotPath_illiteracy + 'ILLI_14_edit_illiteracy_stat_1.png' });
   console.log("--Home press interface button to go to illiteracy-stats view--")
@@ -155,7 +155,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
   await page.close();
   await browser.close();
 
-  /*
+  
   //Education Expenditures
 
   //Volvemos a la página principal
