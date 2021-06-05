@@ -412,4 +412,5 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
 
   await page_povertyrisks.close();
   await browser_povertyrisks.close();
+  process.exit(0);
 })();
