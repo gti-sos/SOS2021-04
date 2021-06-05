@@ -401,11 +401,11 @@
             <Row>
                 <Col>
                     {#if edex_data.length!=0}
-                    <Button style="background-color: green;" disabled>Cargar datos</Button>
-                    <Button style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
+                    <Button id="cargadatos" style="background-color: green;" disabled>Cargar datos</Button>
+                    <Button id="borradatos" style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
                     {:else}
-                    <Button style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
-                    <Button style="background-color: red;" disabled>Borrar datos</Button>
+                    <Button id="cargadatos" style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
+                    <Button id="borradatos" style="background-color: red;" disabled>Borrar datos</Button>
                     {/if}
                 </Col>           
             </Row>
@@ -526,13 +526,13 @@
 
                 <tr>
                     <!--Por cada campo haremos un input-->
-                      <td><input type="number" placeholder="2010" min=1900 bind:value={nuevoElemento.year}/></td>
-                      <td><input type="text" placeholder="Francia" bind:value={nuevoElemento.country}/></td>
-                      <td><input type="number" placeholder="250.4"  bind:value={nuevoElemento.education_expenditure_per_millions}/></td>
-                      <td><input type="number" placeholder="112.3"  bind:value={nuevoElemento.education_expenditure_per_public_expenditure}/></td>
-                      <td><input type="number" placeholder="2.5"  bind:value={nuevoElemento.education_expenditure_gdp}/></td>
-                      <td><input type="number" placeholder="2010"  bind:value={nuevoElemento.education_expenditure_per_capita}/></td>
-                      <td><button on:click={insertData} class="btn btn-success">Insertar</button></td>
+                      <td><input id="input_anyo" type="number" placeholder="2010" min=1900 bind:value={nuevoElemento.year}/></td>
+                      <td><input id="input_pais" type="text" placeholder="Francia" bind:value={nuevoElemento.country}/></td>
+                      <td><input id="input_permillions" type="number" placeholder="250.4"  bind:value={nuevoElemento.education_expenditure_per_millions}/></td>
+                      <td><input id="input_perpublic" type="number" placeholder="112.3"  bind:value={nuevoElemento.education_expenditure_per_public_expenditure}/></td>
+                      <td><input id="input_gdp" type="number" placeholder="2.5"  bind:value={nuevoElemento.education_expenditure_gdp}/></td>
+                      <td><input id="input_percapita" type="number" placeholder="2010"  bind:value={nuevoElemento.education_expenditure_per_capita}/></td>
+                      <td><button id="inserta" on:click={insertData} class="btn btn-success">Insertar</button></td>
                       <td></td>
                 </tr>
 
@@ -565,7 +565,7 @@
               />
             </PaginationItem>
             {#each range(ultima_pagina, 1) as page}
-              <PaginationItem class={pagina_actual === page ? "active" : ""}>
+              <PaginationItem  class={pagina_actual === page ? "active" : ""}>
                 <PaginationLink
                   previous
                   href="#/education_expenditures"
@@ -574,7 +574,7 @@
                 >
               </PaginationItem>
             {/each}
-            <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
+            <PaginationItem id="paginacion_atras" class={pagina_actual === ultima_pagina ? "disabled" : ""}>
               <PaginationLink
                 next
                 href="#/education_expenditures"
@@ -629,13 +629,13 @@
                   <td><input type="number" placeholder="2010" min=1950 bind:value={query.y}/></td>
                   <td><input type="text" placeholder="Francia" bind:value={query.c}/></td>
                   <td>
-                    <input type="number" placeholder="min"  bind:value={query.apm}/>
+                    <input id="input_b_millones_min" type="number" placeholder="min"  bind:value={query.apm}/>
                     <input type="number" placeholder="max"  bind:value={query.upm}/>
                   
                   </td>
                   <td>
                     <input type="number" placeholder="min"  bind:value={query.app}/>
-                    <input type="number" placeholder="max"  bind:value={query.upp}/>
+                    <input id="input_b_gastoPublico_max" type="number" placeholder="max"  bind:value={query.upp}/>
                   </td>
                   <td>
                     <input type="number" placeholder="max"  bind:value={query.agdp}/>
@@ -712,7 +712,7 @@
               <div>
                 <!-- Paginacion -->
                 <Pagination ariaLabel="Web pagination">
-                  <PaginationItem class={pagina_actual === 1 ? "disabled" : ""}>
+                  <PaginationItem id="paginacion_atras" class={pagina_actual === 1 ? "disabled" : ""}>
                     <PaginationLink
                       previous
                       href="#/education_expenditures"
@@ -730,7 +730,7 @@
                       >
                     </PaginationItem>
                   {/each}
-                  <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
+                  <PaginationItem id="paginacion_siguiente" class={pagina_actual === ultima_pagina ? "disabled" : ""}>
                     <PaginationLink
                       next
                       href="#/education_expenditures"

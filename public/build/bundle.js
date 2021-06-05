@@ -9559,7 +9559,11 @@ var app = (function () {
     }
 
     // (78:10) <CardHeader>
+<<<<<<< HEAD
+    function create_default_slot_29$1(ctx) {
+=======
     function create_default_slot_29(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardtitle;
     	let current;
 
@@ -9604,7 +9608,11 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
+<<<<<<< HEAD
+    		id: create_default_slot_29$1.name,
+=======
     		id: create_default_slot_29.name,
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     		type: "slot",
     		source: "(78:10) <CardHeader>",
     		ctx
@@ -9928,7 +9936,11 @@ var app = (function () {
 
     	cardheader = new CardHeader({
     			props: {
+<<<<<<< HEAD
+    				$$slots: { default: [create_default_slot_29$1] },
+=======
     				$$slots: { default: [create_default_slot_29] },
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -10793,7 +10805,11 @@ var app = (function () {
     }
 
     // (149:79) <Button color="info">
+<<<<<<< HEAD
+    function create_default_slot_5$8(ctx) {
+=======
     function create_default_slot_5$9(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -10820,7 +10836,11 @@ var app = (function () {
     }
 
     // (140:10) <CardBody>
+<<<<<<< HEAD
+    function create_default_slot_4$b(ctx) {
+=======
     function create_default_slot_4$c(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardsubtitle;
     	let t0;
     	let cardtext;
@@ -10982,7 +11002,11 @@ var app = (function () {
     }
 
     // (151:10) <CardFooter              >
+<<<<<<< HEAD
+    function create_default_slot_3$b(ctx) {
+=======
     function create_default_slot_3$c(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t0;
     	let a;
 
@@ -11016,7 +11040,11 @@ var app = (function () {
     }
 
     // (136:8) <Card class="mb-3">
+<<<<<<< HEAD
+    function create_default_slot_2$c(ctx) {
+=======
     function create_default_slot_2$d(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardheader;
     	let t0;
     	let cardbody;
@@ -11121,7 +11149,11 @@ var app = (function () {
     }
 
     // (135:6) <Col xs="auto">
+<<<<<<< HEAD
+    function create_default_slot_1$d(ctx) {
+=======
     function create_default_slot_1$e(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let card;
     	let current;
 
@@ -15035,7 +15067,11 @@ var app = (function () {
     }
 
     // (61:10) <Button color="primary">
+<<<<<<< HEAD
+    function create_default_slot_19$3(ctx) {
+=======
     function create_default_slot_18$3(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15062,7 +15098,11 @@ var app = (function () {
     }
 
     // (57:6) <CardBody>
+<<<<<<< HEAD
+    function create_default_slot_18$3(ctx) {
+=======
     function create_default_slot_17$3(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardsubtitle;
     	let t0;
     	let cardtext;
@@ -15251,7 +15291,11 @@ var app = (function () {
     }
 
     // (69:8) <CardTitle>
+<<<<<<< HEAD
+    function create_default_slot_16$3(ctx) {
+=======
     function create_default_slot_15$3(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let h2;
 
     	const block = {
@@ -15280,7 +15324,11 @@ var app = (function () {
     }
 
     // (68:6) <CardHeader>
+<<<<<<< HEAD
+    function create_default_slot_15$3(ctx) {
+=======
     function create_default_slot_14$3(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardtitle;
     	let current;
 
@@ -15335,7 +15383,11 @@ var app = (function () {
     }
 
     // (75:10) <Button color="primary">
+<<<<<<< HEAD
+    function create_default_slot_14$3(ctx) {
+=======
     function create_default_slot_13$3(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15362,7 +15414,11 @@ var app = (function () {
     }
 
     // (78:12) <Button color="primary">
+<<<<<<< HEAD
+    function create_default_slot_13$3(ctx) {
+=======
     function create_default_slot_12$3(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15389,7 +15445,11 @@ var app = (function () {
     }
 
     // (81:8) <Button color="primary">
+<<<<<<< HEAD
+    function create_default_slot_12$3(ctx) {
+=======
     function create_default_slot_11$3(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15416,7 +15476,11 @@ var app = (function () {
     }
 
     // (84:8) <Button color="primary">
+<<<<<<< HEAD
+    function create_default_slot_11$3(ctx) {
+=======
     function create_default_slot_10$3(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15443,7 +15507,11 @@ var app = (function () {
     }
 
     // (71:6) <CardBody>
+<<<<<<< HEAD
+    function create_default_slot_10$3(ctx) {
+=======
     function create_default_slot_9$3(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardsubtitle;
     	let t0;
     	let cardtext;
@@ -15623,7 +15691,11 @@ var app = (function () {
     }
 
     // (67:4) <Card class="mb-3">
+<<<<<<< HEAD
+    function create_default_slot_9$3(ctx) {
+=======
     function create_default_slot_8$3(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardheader;
     	let t;
     	let cardbody;
@@ -15703,7 +15775,11 @@ var app = (function () {
     }
 
     // (93:8) <CardTitle>
+<<<<<<< HEAD
+    function create_default_slot_8$3(ctx) {
+=======
     function create_default_slot_7$3(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let h2;
 
     	const block = {
@@ -15732,7 +15808,11 @@ var app = (function () {
     }
 
     // (92:6) <CardHeader>
+<<<<<<< HEAD
+    function create_default_slot_7$3(ctx) {
+=======
     function create_default_slot_6$3(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardtitle;
     	let current;
 
@@ -15787,7 +15867,11 @@ var app = (function () {
     }
 
     // (99:11) <Button color="primary">
+<<<<<<< HEAD
+    function create_default_slot_6$3(ctx) {
+=======
     function create_default_slot_5$6(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15814,7 +15898,11 @@ var app = (function () {
     }
 
     // (102:11) <Button color="primary">
+<<<<<<< HEAD
+    function create_default_slot_5$5(ctx) {
+=======
     function create_default_slot_4$9(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15831,7 +15919,8 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_4$9.name,
+<<<<<<< HEAD
+    		id: create_default_slot_5$5.name,
     		type: "slot",
     		source: "(102:11) <Button color=\\\"primary\\\">",
     		ctx
@@ -15840,8 +15929,45 @@ var app = (function () {
     	return block;
     }
 
+    // (105:9) <Button color="primary">
+    function create_default_slot_4$8(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text$1("API Externa 3 USO");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_4$8.name,
+    		type: "slot",
+    		source: "(105:9) <Button color=\\\"primary\\\">",
+=======
+    		id: create_default_slot_4$9.name,
+    		type: "slot",
+    		source: "(102:11) <Button color=\\\"primary\\\">",
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
+    		ctx
+    	});
+
+    	return block;
+    }
+
+<<<<<<< HEAD
+    // (108:11) <Button color="primary">
+    function create_default_slot_3$8(ctx) {
+=======
     // (105:11) <Button color="primary">
     function create_default_slot_3$9(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15860,15 +15986,24 @@ var app = (function () {
     		block,
     		id: create_default_slot_3$9.name,
     		type: "slot",
+<<<<<<< HEAD
+    		source: "(108:11) <Button color=\\\"primary\\\">",
+=======
     		source: "(105:11) <Button color=\\\"primary\\\">",
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     		ctx
     	});
 
     	return block;
     }
 
+<<<<<<< HEAD
+    // (111:11) <Button color="primary">
+    function create_default_slot_2$9(ctx) {
+=======
     // (108:11) <Button color="primary">
     function create_default_slot_2$a(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15887,7 +16022,11 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$a.name,
     		type: "slot",
+<<<<<<< HEAD
+    		source: "(111:11) <Button color=\\\"primary\\\">",
+=======
     		source: "(108:11) <Button color=\\\"primary\\\">",
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     		ctx
     	});
 
@@ -15895,7 +16034,11 @@ var app = (function () {
     }
 
     // (95:6) <CardBody>
+<<<<<<< HEAD
+    function create_default_slot_1$a(ctx) {
+=======
     function create_default_slot_1$b(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardsubtitle;
     	let t0;
     	let cardtext;
@@ -15972,10 +16115,19 @@ var app = (function () {
     			add_location(a0, file$w, 97, 8, 2622);
     			attr_dev(a1, "href", "/#/integrations/api2");
     			add_location(a1, file$w, 100, 8, 2740);
+<<<<<<< HEAD
+    			attr_dev(a2, "href", "/#/integrations/api3");
+    			add_location(a2, file$w, 103, 8, 2858);
+    			attr_dev(a3, "href", "/#/integrations/mig-obesity-Stats");
+    			add_location(a3, file$w, 106, 8, 2972);
+    			attr_dev(a4, "href", "/#/integrations/mig-temperature");
+    			add_location(a4, file$w, 109, 8, 3107);
+=======
     			attr_dev(a2, "href", "/#/integrations/mig-obesity-Stats");
     			add_location(a2, file$w, 103, 8, 2858);
     			attr_dev(a3, "href", "/#/integrations/mig-temperature");
     			add_location(a3, file$w, 106, 8, 2993);
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     		},
     		m: function mount(target, anchor) {
     			mount_component(cardsubtitle, target, anchor);
@@ -16075,7 +16227,11 @@ var app = (function () {
     }
 
     // (91:4) <Card class="mb-3">
+<<<<<<< HEAD
+    function create_default_slot$a(ctx) {
+=======
     function create_default_slot$b(ctx) {
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardheader;
     	let t;
     	let cardbody;
@@ -55171,6 +55327,12 @@ var app = (function () {
     			transition_out(navlink.$$.fragment, local);
     			current = false;
     		},
+<<<<<<< HEAD
+    		p: noop$3,
+    		i: noop$3,
+    		o: noop$3,
+=======
+>>>>>>> c36948edb30c159f52af188041e88200a9832792
     		d: function destroy(detaching) {
     			destroy_component(navlink, detaching);
     		}
