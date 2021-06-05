@@ -46,6 +46,7 @@
 	const routes = {
 		"/":Home,
 		"/info":Info,
+		"/charts":Analytics,
 		"/integrations": Integrations,
 		"/analytics": GraficasConjunto,
 		"/about": About,

@@ -62,10 +62,10 @@
     <a href="/#/integrations">
       <Button color="dark">Integraciones</Button>
     </a>
-    <a href="/#/Analytics">
-      <Button color="dark">Analytics</Button>
+    <a href="/#/charts">
+      <Button color="dark">Gráficas Personales</Button>
     </a>
-    <a href="/#/About">
+    <a href="/#/about">
       <Button color="dark">Videos</Button>
     </a>
     
