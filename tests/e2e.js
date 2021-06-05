@@ -154,6 +154,8 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
 
   await page.close();
   await browser.close();
+
+  /*
   //Education Expenditures
 
   //Volvemos a la página principal
@@ -329,7 +331,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
     page.screenshot({ path: screenshotPath_edex + 'EE_front_Integration_4.png' });
   }
   ); 
-
+*/
 
 // ------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------
