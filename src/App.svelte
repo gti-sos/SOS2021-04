@@ -46,10 +46,9 @@
 	const routes = {
 		"/":Home,
 		"/info":Info,
-		"/graphics":GraficasConjunto,
 		"/integrations": Integrations,
-		"/Analytics": Analytics,
-		"/About": About,
+		"/analytics": GraficasConjunto,
+		"/about": About,
 		
 		
 		"/education_expenditures":App_edex,
