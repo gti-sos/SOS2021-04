@@ -1,10 +1,7 @@
 const puppeteer = require('puppeteer');
-const screenshotPath_illiteracy = './tests/e2e_capturas/miggomvaz';
-<<<<<<< HEAD
-const screenshotPath_povertyrisks = './tests/e2e_capturas/javcarand1';
-=======
-const screenshotPath_edex = './tests/e2e_capturas/mangonreg';
->>>>>>> a6d6346260a88401edfb0d923d4caaec60bcd9e3
+const screenshotPath_illiteracy = './tests/e2e_capturas/miggomvaz/';
+const screenshotPath_povertyrisks = "./tests/e2e_capturas/javcarand1/";
+const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
 
 (async () => {
   const browser = await puppeteer.launch({
@@ -17,23 +14,20 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg';
   await page.setViewport({ width: 3688, height: 1768 });
   //Home
   //https://sos2021-04.herokuapp.com
-<<<<<<< HEAD
   await page.goto('http://localhost:10000/', { waitUntil: 'networkidle2' });
-=======
   await page.goto('https://sos2021-04.herokuapp.com', { waitUntil: 'networkidle2' });
 
   //Capturas pantalla inicial
->>>>>>> a6d6346260a88401edfb0d923d4caaec60bcd9e3
 
   await page.screenshot({ path: screenshotPath_illiteracy + 'HOME_0.png' });
   await page.screenshot({ path: screenshotPath_edex + 'HOME_0.png' });
-
+ 
   //illiteracy
   await page.screenshot({ path: screenshotPath_illiteracy + 'ILLI_14_edit_illiteracy_stat_1.png' });
   console.log("--Home press interface button to go to illiteracy-stats view--")
   await Promise.all([
     page.waitForNavigation(),
-    page.click("body > main > main > div:nth-child(14) > div:nth-child(3) > div > div.card-body > a:nth-child(4) > button"),
+    page.click("body > main > main > div:nth-child(16) > div:nth-child(3) > div > div.card-body > a:nth-child(4) > button"),
   ]);
 
   await page.screenshot({ path: screenshotPath_illiteracy + 'ILLI_0_front_0.png' });
@@ -158,10 +152,8 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg';
 
   await page.screenshot({ path: screenshotPath_illiteracy + 'HOME_1.png' });
 
-<<<<<<< HEAD
   await page.close();
   await browser.close();
-=======
   //Education Expenditures
 
   //Volvemos a la página principal
@@ -247,7 +239,6 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg';
 
   //Eliminamos el primer elemento
   console.log("Eliminando un stat");
->>>>>>> a6d6346260a88401edfb0d923d4caaec60bcd9e3
 
   await Promise.all([
     page.waitForNavigation(),
@@ -337,7 +328,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg';
   await page.waitForSelector('#raphael-paper-2 > g.raphael-group-3-parentgroup > g.raphael-group-36-canvas > rect:nth-child(2)').then(()=>{
     page.screenshot({ path: screenshotPath_edex + 'EE_front_Integration_4.png' });
   }
-  );
+  ); 
 
 
 // ------------------------------------------------------------------------------------------
@@ -354,7 +345,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg';
   //https://sos2021-04.herokuapp.com
   await page_povertyrisks.goto('http://localhost:10000/', { waitUntil: 'networkidle2' });
 
-  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'HOME_0.png' });
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + '0_PR_front_Home.png' });
 
   //povertyrisks
   console.log("--Home press interface button to go to povertyrisks-stats view--")
@@ -363,64 +354,59 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg';
     page_povertyrisks.click("body > main > main > div:nth-child(16) > div:nth-child(2) > div > div.card-body > a:nth-child(4) > button"),
   ]);
 
-  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_noData_0.png' });
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + '1_PR_front_noData.png' });
 
   console.log("povertyrisks press load button.....")
 
-  await page_povertyrisks.click("#cargarDatos");
-  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_withData_1.png' });
-
-  console.log("--povertyrisks go to next page--");
-  await page_povertyrisks.click("#pagination_forward");
-  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_withData_2.png' });
-
-  console.log("--povertyrisks go to previous page--");
-  await page_povertyrisks.click("#pagination_back");
+  await page_povertyrisks.click("body > main > main > div:nth-child(2) > main > div:nth-child(1) > div:nth-child(1) > div > button:nth-child(1)");
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + '2_PR_front_withData.png' });
 
 
   console.log("povertyrisks insert new stat.....");
-  await page_povertyrisks.focus('#insert_input_year');
+  await page_povertyrisks.focus('body > main > main > div:nth-child(2) > main > table:nth-child(6) > tbody > tr:nth-child(1) > td:nth-child(1) > input[type=number]');
   await page_povertyrisks.keyboard.type("2019");
 
-  await page_povertyrisks.focus('#insert_input_country');
+  await page_povertyrisks.focus('body > main > main > div:nth-child(2) > main > table:nth-child(6) > tbody > tr:nth-child(1) > td:nth-child(2) > input[type=text]');
   await page_povertyrisks.keyboard.type("Swizterland");
 
-  await page_povertyrisks.focus('#insert_people_in_risk_of_poverty');
+  await page_povertyrisks.focus('body > main > main > div:nth-child(2) > main > table:nth-child(6) > tbody > tr:nth-child(1) > td:nth-child(3) > input[type=number]');
   await page_povertyrisks.keyboard.type("22");
 
-  await page_povertyrisks.focus('#insert_people_poverty_line');
+  await page_povertyrisks.focus('body > main > main > div:nth-child(2) > main > table:nth-child(6) > tbody > tr:nth-child(1) > td:nth-child(4) > input[type=number]');
   await page_povertyrisks.keyboard.type("22");
 
-  await page_povertyrisks.focus('#insert_home_poverty_line');
+  await page_povertyrisks.focus('body > main > main > div:nth-child(2) > main > table:nth-child(6) > tbody > tr:nth-child(1) > td:nth-child(5) > input[type=number]');
   await page_povertyrisks.keyboard.type("22");
 
-  await page_povertyrisks.focus('#insert_percentage_risk_of_poverty');
+  await page_povertyrisks.focus('body > main > main > div:nth-child(2) > main > table:nth-child(6) > tbody > tr:nth-child(1) > td:nth-child(6) > input[type=number]');
   await page_povertyrisks.keyboard.type("22");
 
-  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_beforeInsertData_3.png' });
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + '3_PR_front_beforeInsertData.png' });
 
-  await page_povertyrisks.focus('#insert_button');
-  await page_povertyrisks.click("#insert_button");
-  await page_povertyrisks.waitForSelector('#insert_button', { visible: true });
-  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_afterInsertData_4.png' });
+  await page_povertyrisks.focus('body > main > main > div:nth-child(2) > main > table:nth-child(6) > tbody > tr:nth-child(1) > td:nth-child(7) > button');
+  await page_povertyrisks.click("body > main > main > div:nth-child(2) > main > table:nth-child(6) > tbody > tr:nth-child(1) > td:nth-child(7) > button");
+  await page_povertyrisks.waitForSelector('body > main > main > div:nth-child(2) > main > table:nth-child(6) > tbody > tr:nth-child(1) > td:nth-child(7) > button', { visible: true });
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + '4_PR_front_afterInsertData.png' });
   console.log(".....povertyrisks stat inserted");
 
 
   console.log("povertyrisks search the new stat.....");
-  await page_povertyrisks.focus('#query_input_country');
-  await page_povertyrisks.keyboard.type("España");
-  await page_povertyrisks.focus('#query_input_date');
+  await page_povertyrisks.focus('body > main > main > div:nth-child(2) > main > table:nth-child(4) > tbody > tr > td:nth-child(1) > input[type=number]');
   await page_povertyrisks.keyboard.type("2019");
-  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_beforeSearchData_5.png' });
-  await page_povertyrisks.focus('#query_button');
-  await page_povertyrisks.click("#query_button");
-  await page_povertyrisks.waitForSelector('#query_button', { visible: true });
-  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_afterSearchData_6.png' });
+  await page_povertyrisks.focus('body > main > main > div:nth-child(2) > main > table:nth-child(4) > tbody > tr > td:nth-child(2) > input[type=text]');
+  await page_povertyrisks.keyboard.type("Swizterland");
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + '5_PR_front_beforeSearchData.png' });
+  await page_povertyrisks.focus('body > main > main > div:nth-child(2) > main > table:nth-child(4) > tbody > tr > td:nth-child(7) > button');
+  await page_povertyrisks.click("body > main > main > div:nth-child(2) > main > table:nth-child(4) > tbody > tr > td:nth-child(7) > button");
+  await page_povertyrisks.waitForSelector('body > main > main > div:nth-child(2) > main > table:nth-child(4) > tbody > tr > td:nth-child(7) > button', { visible: true });
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + '6_PR_front_afterSearchData.png' });
   console.log(".....povertyrisks stat searched");
-  
+  //Resetea la búsqueda
+  await page_povertyrisks.click("body > main > main > div:nth-child(2) > main > table:nth-child(4) > tbody > tr > td:nth-child(8) > button");
+
   console.log("povertyrisks press delete all button.....")
-  await page_povertyrisks.click("#delete_all");
-  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'ILLI_21_front_delete_1.png' });
+  await page_povertyrisks.click("body > main > main > div:nth-child(2) > main > div > div:nth-child(1) > div > button:nth-child(2)");
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + '7_PR_front_deleteAll.png' });
 
   await page_povertyrisks.close();
   await browser_povertyrisks.close();

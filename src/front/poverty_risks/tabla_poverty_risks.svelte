@@ -421,10 +421,10 @@
                 <Col>
                     {#if datosRecibidos.length!=0}
                     <Button style="background-color: green;" disabled>Cargar datos</Button>
-                    <Button id="borrarDatos"style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
+                    <Button style="background-color: red;" on:click = {deleteAll}>Borrar datos</Button>
                     <!-- <a href="#/poverty_risks"><Button style="background-color: blue;">Página principal</Button></a> -->
                     {:else}
-                    <Button id="cargarDatos" style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
+                    <Button style="background-color: green;" on:click = {loadInitialData}>Cargar datos</Button>
                     <Button style="background-color: red;" disabled>Borrar datos</Button>
                     {/if}
                 </Col>           
@@ -474,8 +474,8 @@
                 
             <tr>
                 <!--Por cada campo haremos un input-->
-                <td><input id='#query_input_date' type="number" placeholder="2015" min=1900 bind:value={parametrosBusqueda.y}/></td>
-                <td><input id='#query_input_country' type="text" placeholder="Francia" bind:value={parametrosBusqueda.c}/></td>
+                <td><input type="number" placeholder="2015" min=1900 bind:value={parametrosBusqueda.y}/></td>
+                <td><input type="text" placeholder="Francia" bind:value={parametrosBusqueda.c}/></td>
                 <td>
                     <input type="text" placeholder="min"  bind:value={parametrosBusqueda.aprp}/>
                     <input type="text" placeholder="max"  bind:value={parametrosBusqueda.uprp}/>
@@ -492,7 +492,7 @@
                     <input type="text" placeholder="min"  bind:value={parametrosBusqueda.apercnt}/>
                     <input type="text" placeholder="max"  bind:value={parametrosBusqueda.upercnt}/>
                 </td>
-                <td><button id='#query_button' on:click={searchData} class="btn btn-primary">Buscar</button></td>
+                <td><button on:click={searchData} class="btn btn-primary">Buscar</button></td>
                 <td><button on:click={resetQuery} class="btn btn-secondary">Resetear</button></td>
                 <td></td>
             </tr>
@@ -637,13 +637,13 @@
                 
             <tr>
                 <!--Por cada campo haremos un input-->
-                <td><input id='#insert_input_year' type="number" placeholder="2015" min=1900 bind:value={nuevoElemento.year}/></td>
-                <td><input id='#insert_input_country' type="text" placeholder="Francia" bind:value={nuevoElemento.country}/></td>
-                <td><input id='#insert_input_people_in_risk_of_poverty' type="number" placeholder="8.474"  bind:value={nuevoElemento.people_in_risk_of_poverty}/></td>
-                <td><input id='#insert_input_country' type="number" placeholder="12.849"  bind:value={nuevoElemento.people_poverty_line}/></td>
-                <td><input id='#insert_input_country' type="number" placeholder="26.983"  bind:value={nuevoElemento.home_poverty_line}/></td>
-                <td><input id='#insert_input_country' type="number" placeholder="13.6"  bind:value={nuevoElemento.percentage_risk_of_poverty}/></td>
-                <td><button id='#insert_button' on:click={insertData} class="btn btn-success">Insertar</button></td>
+                <td><input type="number" placeholder="2015" min=1900 bind:value={nuevoElemento.year}/></td>
+                <td><input type="text" placeholder="Francia" bind:value={nuevoElemento.country}/></td>
+                <td><input type="number" placeholder="8.474"  bind:value={nuevoElemento.people_in_risk_of_poverty}/></td>
+                <td><input  type="number" placeholder="12.849"  bind:value={nuevoElemento.people_poverty_line}/></td>
+                <td><input  type="number" placeholder="26.983"  bind:value={nuevoElemento.home_poverty_line}/></td>
+                <td><input  type="number" placeholder="13.6"  bind:value={nuevoElemento.percentage_risk_of_poverty}/></td>
+                <td><button on:click={insertData} class="btn btn-success">Insertar</button></td>
                 <td></td>
             </tr>
 

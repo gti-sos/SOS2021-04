@@ -9559,11 +9559,7 @@ var app = (function () {
     }
 
     // (78:10) <CardHeader>
-<<<<<<< HEAD
-    function create_default_slot_29$1(ctx) {
-=======
     function create_default_slot_29(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardtitle;
     	let current;
 
@@ -9608,11 +9604,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-<<<<<<< HEAD
-    		id: create_default_slot_29$1.name,
-=======
     		id: create_default_slot_29.name,
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     		type: "slot",
     		source: "(78:10) <CardHeader>",
     		ctx
@@ -9936,11 +9928,7 @@ var app = (function () {
 
     	cardheader = new CardHeader({
     			props: {
-<<<<<<< HEAD
-    				$$slots: { default: [create_default_slot_29$1] },
-=======
     				$$slots: { default: [create_default_slot_29] },
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -10805,11 +10793,7 @@ var app = (function () {
     }
 
     // (149:79) <Button color="info">
-<<<<<<< HEAD
-    function create_default_slot_5$8(ctx) {
-=======
     function create_default_slot_5$9(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -10836,11 +10820,7 @@ var app = (function () {
     }
 
     // (140:10) <CardBody>
-<<<<<<< HEAD
-    function create_default_slot_4$b(ctx) {
-=======
     function create_default_slot_4$c(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardsubtitle;
     	let t0;
     	let cardtext;
@@ -11002,11 +10982,7 @@ var app = (function () {
     }
 
     // (151:10) <CardFooter              >
-<<<<<<< HEAD
-    function create_default_slot_3$b(ctx) {
-=======
     function create_default_slot_3$c(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t0;
     	let a;
 
@@ -11040,11 +11016,7 @@ var app = (function () {
     }
 
     // (136:8) <Card class="mb-3">
-<<<<<<< HEAD
-    function create_default_slot_2$c(ctx) {
-=======
     function create_default_slot_2$d(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardheader;
     	let t0;
     	let cardbody;
@@ -11149,11 +11121,7 @@ var app = (function () {
     }
 
     // (135:6) <Col xs="auto">
-<<<<<<< HEAD
-    function create_default_slot_1$d(ctx) {
-=======
     function create_default_slot_1$e(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let card;
     	let current;
 
@@ -15067,11 +15035,7 @@ var app = (function () {
     }
 
     // (61:10) <Button color="primary">
-<<<<<<< HEAD
-    function create_default_slot_19$3(ctx) {
-=======
     function create_default_slot_18$3(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15098,11 +15062,7 @@ var app = (function () {
     }
 
     // (57:6) <CardBody>
-<<<<<<< HEAD
-    function create_default_slot_18$3(ctx) {
-=======
     function create_default_slot_17$3(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardsubtitle;
     	let t0;
     	let cardtext;
@@ -15291,11 +15251,7 @@ var app = (function () {
     }
 
     // (69:8) <CardTitle>
-<<<<<<< HEAD
-    function create_default_slot_16$3(ctx) {
-=======
     function create_default_slot_15$3(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let h2;
 
     	const block = {
@@ -15324,11 +15280,7 @@ var app = (function () {
     }
 
     // (68:6) <CardHeader>
-<<<<<<< HEAD
-    function create_default_slot_15$3(ctx) {
-=======
     function create_default_slot_14$3(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardtitle;
     	let current;
 
@@ -15383,11 +15335,7 @@ var app = (function () {
     }
 
     // (75:10) <Button color="primary">
-<<<<<<< HEAD
-    function create_default_slot_14$3(ctx) {
-=======
     function create_default_slot_13$3(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15414,11 +15362,7 @@ var app = (function () {
     }
 
     // (78:12) <Button color="primary">
-<<<<<<< HEAD
-    function create_default_slot_13$3(ctx) {
-=======
     function create_default_slot_12$3(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15445,11 +15389,7 @@ var app = (function () {
     }
 
     // (81:8) <Button color="primary">
-<<<<<<< HEAD
-    function create_default_slot_12$3(ctx) {
-=======
     function create_default_slot_11$3(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15476,11 +15416,7 @@ var app = (function () {
     }
 
     // (84:8) <Button color="primary">
-<<<<<<< HEAD
-    function create_default_slot_11$3(ctx) {
-=======
     function create_default_slot_10$3(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15507,11 +15443,7 @@ var app = (function () {
     }
 
     // (71:6) <CardBody>
-<<<<<<< HEAD
-    function create_default_slot_10$3(ctx) {
-=======
     function create_default_slot_9$3(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardsubtitle;
     	let t0;
     	let cardtext;
@@ -15691,11 +15623,7 @@ var app = (function () {
     }
 
     // (67:4) <Card class="mb-3">
-<<<<<<< HEAD
-    function create_default_slot_9$3(ctx) {
-=======
     function create_default_slot_8$3(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardheader;
     	let t;
     	let cardbody;
@@ -15775,11 +15703,7 @@ var app = (function () {
     }
 
     // (93:8) <CardTitle>
-<<<<<<< HEAD
-    function create_default_slot_8$3(ctx) {
-=======
     function create_default_slot_7$3(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let h2;
 
     	const block = {
@@ -15808,11 +15732,7 @@ var app = (function () {
     }
 
     // (92:6) <CardHeader>
-<<<<<<< HEAD
-    function create_default_slot_7$3(ctx) {
-=======
     function create_default_slot_6$3(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardtitle;
     	let current;
 
@@ -15867,11 +15787,7 @@ var app = (function () {
     }
 
     // (99:11) <Button color="primary">
-<<<<<<< HEAD
-    function create_default_slot_6$3(ctx) {
-=======
     function create_default_slot_5$6(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15898,11 +15814,7 @@ var app = (function () {
     }
 
     // (102:11) <Button color="primary">
-<<<<<<< HEAD
-    function create_default_slot_5$5(ctx) {
-=======
     function create_default_slot_4$9(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15919,55 +15831,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-<<<<<<< HEAD
-    		id: create_default_slot_5$5.name,
-    		type: "slot",
-    		source: "(102:11) <Button color=\\\"primary\\\">",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (105:9) <Button color="primary">
-    function create_default_slot_4$8(ctx) {
-    	let t;
-
-    	const block = {
-    		c: function create() {
-    			t = text$1("API Externa 3 USO");
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, t, anchor);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(t);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_4$8.name,
-    		type: "slot",
-    		source: "(105:9) <Button color=\\\"primary\\\">",
-=======
     		id: create_default_slot_4$9.name,
     		type: "slot",
     		source: "(102:11) <Button color=\\\"primary\\\">",
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (108:11) <Button color="primary">
-    function create_default_slot_3$8(ctx) {
-=======
     // (105:11) <Button color="primary">
     function create_default_slot_3$9(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -15986,24 +15860,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_3$9.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(108:11) <Button color=\\\"primary\\\">",
-=======
     		source: "(105:11) <Button color=\\\"primary\\\">",
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     		ctx
     	});
 
     	return block;
     }
 
-<<<<<<< HEAD
-    // (111:11) <Button color="primary">
-    function create_default_slot_2$9(ctx) {
-=======
     // (108:11) <Button color="primary">
     function create_default_slot_2$a(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let t;
 
     	const block = {
@@ -16022,11 +15887,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$a.name,
     		type: "slot",
-<<<<<<< HEAD
-    		source: "(111:11) <Button color=\\\"primary\\\">",
-=======
     		source: "(108:11) <Button color=\\\"primary\\\">",
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     		ctx
     	});
 
@@ -16034,11 +15895,7 @@ var app = (function () {
     }
 
     // (95:6) <CardBody>
-<<<<<<< HEAD
-    function create_default_slot_1$a(ctx) {
-=======
     function create_default_slot_1$b(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardsubtitle;
     	let t0;
     	let cardtext;
@@ -16115,19 +15972,10 @@ var app = (function () {
     			add_location(a0, file$w, 97, 8, 2622);
     			attr_dev(a1, "href", "/#/integrations/api2");
     			add_location(a1, file$w, 100, 8, 2740);
-<<<<<<< HEAD
-    			attr_dev(a2, "href", "/#/integrations/api3");
-    			add_location(a2, file$w, 103, 8, 2858);
-    			attr_dev(a3, "href", "/#/integrations/mig-obesity-Stats");
-    			add_location(a3, file$w, 106, 8, 2972);
-    			attr_dev(a4, "href", "/#/integrations/mig-temperature");
-    			add_location(a4, file$w, 109, 8, 3107);
-=======
     			attr_dev(a2, "href", "/#/integrations/mig-obesity-Stats");
     			add_location(a2, file$w, 103, 8, 2858);
     			attr_dev(a3, "href", "/#/integrations/mig-temperature");
     			add_location(a3, file$w, 106, 8, 2993);
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     		},
     		m: function mount(target, anchor) {
     			mount_component(cardsubtitle, target, anchor);
@@ -16227,11 +16075,7 @@ var app = (function () {
     }
 
     // (91:4) <Card class="mb-3">
-<<<<<<< HEAD
-    function create_default_slot$a(ctx) {
-=======
     function create_default_slot$b(ctx) {
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     	let cardheader;
     	let t;
     	let cardbody;
@@ -16553,6 +16397,7 @@ var app = (function () {
 
     	button0 = new Button({
     			props: {
+    				id: "cargadatos",
     				style: "background-color: green;",
     				$$slots: { default: [create_default_slot_26$1] },
     				$$scope: { ctx }
@@ -16564,6 +16409,7 @@ var app = (function () {
 
     	button1 = new Button({
     			props: {
+    				id: "borradatos",
     				style: "background-color: red;",
     				disabled: true,
     				$$slots: { default: [create_default_slot_25$1] },
@@ -16638,6 +16484,7 @@ var app = (function () {
 
     	button0 = new Button({
     			props: {
+    				id: "cargadatos",
     				style: "background-color: green;",
     				disabled: true,
     				$$slots: { default: [create_default_slot_24$2] },
@@ -16648,6 +16495,7 @@ var app = (function () {
 
     	button1 = new Button({
     			props: {
+    				id: "borradatos",
     				style: "background-color: red;",
     				$$slots: { default: [create_default_slot_23$2] },
     				$$scope: { ctx }
@@ -16714,7 +16562,7 @@ var app = (function () {
     	return block;
     }
 
-    // (407:20) <Button style="background-color: green;" on:click = {loadInitialData}>
+    // (407:20) <Button id="cargadatos" style="background-color: green;" on:click = {loadInitialData}>
     function create_default_slot_26$1(ctx) {
     	let t;
 
@@ -16734,14 +16582,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_26$1.name,
     		type: "slot",
-    		source: "(407:20) <Button style=\\\"background-color: green;\\\" on:click = {loadInitialData}>",
+    		source: "(407:20) <Button id=\\\"cargadatos\\\" style=\\\"background-color: green;\\\" on:click = {loadInitialData}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (408:20) <Button style="background-color: red;" disabled>
+    // (408:20) <Button id="borradatos" style="background-color: red;" disabled>
     function create_default_slot_25$1(ctx) {
     	let t;
 
@@ -16761,14 +16609,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_25$1.name,
     		type: "slot",
-    		source: "(408:20) <Button style=\\\"background-color: red;\\\" disabled>",
+    		source: "(408:20) <Button id=\\\"borradatos\\\" style=\\\"background-color: red;\\\" disabled>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (404:20) <Button style="background-color: green;" disabled>
+    // (404:20) <Button id="cargadatos" style="background-color: green;" disabled>
     function create_default_slot_24$2(ctx) {
     	let t;
 
@@ -16788,14 +16636,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_24$2.name,
     		type: "slot",
-    		source: "(404:20) <Button style=\\\"background-color: green;\\\" disabled>",
+    		source: "(404:20) <Button id=\\\"cargadatos\\\" style=\\\"background-color: green;\\\" disabled>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (405:20) <Button style="background-color: red;" on:click = {deleteAll}>
+    // (405:20) <Button id="borradatos" style="background-color: red;" on:click = {deleteAll}>
     function create_default_slot_23$2(ctx) {
     	let t;
 
@@ -16815,7 +16663,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_23$2.name,
     		type: "slot",
-    		source: "(405:20) <Button style=\\\"background-color: red;\\\" on:click = {deleteAll}>",
+    		source: "(405:20) <Button id=\\\"borradatos\\\" style=\\\"background-color: red;\\\" on:click = {deleteAll}>",
     		ctx
     	});
 
@@ -16968,9 +16816,9 @@ var app = (function () {
     			p = element("p");
     			b = element("b");
     			t = text$1(/*mensajeCorrecto*/ ctx[7]);
-    			add_location(b, file$v, 418, 47, 13271);
+    			add_location(b, file$v, 418, 47, 13335);
     			attr_dev(p, "class", "mensajeCorrecto svelte-17je5wt");
-    			add_location(p, file$v, 418, 20, 13244);
+    			add_location(p, file$v, 418, 20, 13308);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -17009,9 +16857,9 @@ var app = (function () {
     			t0 = text$1("Se ha producido un error:");
     			b = element("b");
     			t1 = text$1(/*mensajeError*/ ctx[6]);
-    			add_location(b, file$v, 416, 69, 13137);
+    			add_location(b, file$v, 416, 69, 13201);
     			attr_dev(p, "class", "mensajeError svelte-17je5wt");
-    			add_location(p, file$v, 416, 20, 13088);
+    			add_location(p, file$v, 416, 20, 13152);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -17215,7 +17063,7 @@ var app = (function () {
     			t1 = space();
     			div = element("div");
     			create_component(pagination.$$.fragment);
-    			add_location(div, file$v, 555, 8, 19527);
+    			add_location(div, file$v, 555, 8, 19716);
     		},
     		m: function mount(target, anchor) {
     			mount_component(table0, target, anchor);
@@ -17433,96 +17281,96 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Restaurar";
     			attr_dev(td0, "valign", "middle");
-    			add_location(td0, file$v, 440, 14, 13810);
+    			add_location(td0, file$v, 440, 14, 13874);
     			attr_dev(td1, "valign", "middle");
-    			add_location(td1, file$v, 441, 14, 13851);
+    			add_location(td1, file$v, 441, 14, 13915);
     			attr_dev(td2, "valign", "middle");
-    			add_location(td2, file$v, 442, 14, 13892);
-    			add_location(h3, file$v, 443, 34, 13953);
+    			add_location(td2, file$v, 442, 14, 13956);
+    			add_location(h3, file$v, 443, 34, 14017);
     			attr_dev(td3, "valign", "middle");
-    			add_location(td3, file$v, 443, 14, 13933);
+    			add_location(td3, file$v, 443, 14, 13997);
     			attr_dev(td4, "valign", "middle");
-    			add_location(td4, file$v, 444, 14, 13993);
+    			add_location(td4, file$v, 444, 14, 14057);
     			attr_dev(td5, "valign", "middle");
-    			add_location(td5, file$v, 445, 14, 14034);
+    			add_location(td5, file$v, 445, 14, 14098);
     			attr_dev(td6, "valign", "middle");
     			attr_dev(td6, "colspan", "2");
-    			add_location(td6, file$v, 446, 14, 14075);
+    			add_location(td6, file$v, 446, 14, 14139);
     			set_style(tr0, "text-align", "center");
     			set_style(tr0, "background-color", "rgb(245, 181, 128)");
     			attr_dev(tr0, "valign", "middle");
-    			add_location(tr0, file$v, 439, 12, 13708);
+    			add_location(tr0, file$v, 439, 12, 13772);
     			attr_dev(td7, "valign", "middle");
-    			add_location(td7, file$v, 450, 18, 14215);
+    			add_location(td7, file$v, 450, 18, 14279);
     			attr_dev(td8, "valign", "middle");
-    			add_location(td8, file$v, 451, 18, 14263);
+    			add_location(td8, file$v, 451, 18, 14327);
     			attr_dev(td9, "valign", "middle");
-    			add_location(td9, file$v, 452, 18, 14312);
+    			add_location(td9, file$v, 452, 18, 14376);
     			attr_dev(td10, "valign", "middle");
-    			add_location(td10, file$v, 453, 18, 14383);
+    			add_location(td10, file$v, 453, 18, 14447);
     			attr_dev(td11, "valign", "middle");
-    			add_location(td11, file$v, 454, 18, 14456);
+    			add_location(td11, file$v, 454, 18, 14520);
     			attr_dev(td12, "valign", "middle");
-    			add_location(td12, file$v, 455, 18, 14519);
+    			add_location(td12, file$v, 455, 18, 14583);
     			attr_dev(td13, "valign", "middle");
     			attr_dev(td13, "colspan", "2");
-    			add_location(td13, file$v, 456, 18, 14580);
+    			add_location(td13, file$v, 456, 18, 14644);
     			set_style(tr1, "text-align", "center");
     			attr_dev(tr1, "valign", "middle");
-    			add_location(tr1, file$v, 449, 14, 14146);
-    			add_location(thead, file$v, 437, 10, 13671);
+    			add_location(tr1, file$v, 449, 14, 14210);
+    			add_location(thead, file$v, 437, 10, 13735);
     			attr_dev(input0, "type", "number");
     			attr_dev(input0, "placeholder", "2010");
     			attr_dev(input0, "min", "1950");
-    			add_location(input0, file$v, 465, 22, 14924);
-    			add_location(td14, file$v, 465, 18, 14920);
+    			add_location(input0, file$v, 465, 22, 14988);
+    			add_location(td14, file$v, 465, 18, 14984);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "placeholder", "Francia");
-    			add_location(input1, file$v, 466, 22, 15024);
-    			add_location(td15, file$v, 466, 18, 15020);
+    			add_location(input1, file$v, 466, 22, 15088);
+    			add_location(td15, file$v, 466, 18, 15084);
     			attr_dev(input2, "type", "number");
     			attr_dev(input2, "placeholder", "min");
-    			add_location(input2, file$v, 468, 20, 15138);
+    			add_location(input2, file$v, 468, 20, 15202);
     			attr_dev(input3, "type", "number");
     			attr_dev(input3, "placeholder", "max");
-    			add_location(input3, file$v, 469, 20, 15224);
-    			add_location(td16, file$v, 467, 18, 15112);
+    			add_location(input3, file$v, 469, 20, 15288);
+    			add_location(td16, file$v, 467, 18, 15176);
     			attr_dev(input4, "type", "number");
     			attr_dev(input4, "placeholder", "min");
-    			add_location(input4, file$v, 473, 20, 15379);
+    			add_location(input4, file$v, 473, 20, 15443);
     			attr_dev(input5, "type", "number");
     			attr_dev(input5, "placeholder", "max");
-    			add_location(input5, file$v, 474, 20, 15465);
-    			add_location(td17, file$v, 472, 18, 15353);
+    			add_location(input5, file$v, 474, 20, 15529);
+    			add_location(td17, file$v, 472, 18, 15417);
     			attr_dev(input6, "type", "number");
     			attr_dev(input6, "placeholder", "min");
-    			add_location(input6, file$v, 477, 20, 15600);
+    			add_location(input6, file$v, 477, 20, 15664);
     			attr_dev(input7, "type", "number");
     			attr_dev(input7, "placeholder", "max");
-    			add_location(input7, file$v, 478, 20, 15687);
-    			add_location(td18, file$v, 476, 18, 15574);
+    			add_location(input7, file$v, 478, 20, 15751);
+    			add_location(td18, file$v, 476, 18, 15638);
     			attr_dev(input8, "type", "number");
     			attr_dev(input8, "placeholder", "min");
     			attr_dev(input8, "class", "col-xs-12");
-    			add_location(input8, file$v, 483, 20, 15875);
+    			add_location(input8, file$v, 483, 20, 15939);
     			attr_dev(input9, "type", "number");
     			attr_dev(input9, "placeholder", "max");
     			attr_dev(input9, "class", "col-xs-12");
-    			add_location(input9, file$v, 484, 20, 15979);
+    			add_location(input9, file$v, 484, 20, 16043);
     			attr_dev(div, "class", "row col-xs-12");
-    			add_location(div, file$v, 482, 20, 15825);
-    			add_location(td19, file$v, 481, 18, 15799);
+    			add_location(div, file$v, 482, 20, 15889);
+    			add_location(td19, file$v, 481, 18, 15863);
     			attr_dev(button0, "class", "btn btn-primary");
-    			add_location(button0, file$v, 488, 22, 16138);
-    			add_location(td20, file$v, 488, 18, 16134);
+    			add_location(button0, file$v, 488, 22, 16202);
+    			add_location(td20, file$v, 488, 18, 16198);
     			attr_dev(button1, "class", "btn btn-dark");
-    			add_location(button1, file$v, 489, 22, 16236);
-    			add_location(td21, file$v, 489, 18, 16232);
+    			add_location(button1, file$v, 489, 22, 16300);
+    			add_location(td21, file$v, 489, 18, 16296);
     			set_style(tr2, "text-align", "center");
     			set_style(tr2, "align-items", "center");
     			set_style(tr2, "max-width", "100%");
-    			add_location(tr2, file$v, 463, 14, 14772);
-    			add_location(tbody, file$v, 459, 10, 14679);
+    			add_location(tr2, file$v, 463, 14, 14836);
+    			add_location(tbody, file$v, 459, 10, 14743);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, thead, anchor);
@@ -17750,22 +17598,22 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Modificar";
     			t15 = space();
-    			add_location(th0, file$v, 540, 22, 18800);
-    			add_location(th1, file$v, 541, 22, 18844);
-    			add_location(th2, file$v, 542, 22, 18891);
-    			add_location(th3, file$v, 543, 22, 18965);
-    			add_location(th4, file$v, 544, 22, 19049);
-    			add_location(th5, file$v, 545, 22, 19114);
+    			add_location(th0, file$v, 540, 22, 18989);
+    			add_location(th1, file$v, 541, 22, 19033);
+    			add_location(th2, file$v, 542, 22, 19080);
+    			add_location(th3, file$v, 543, 22, 19154);
+    			add_location(th4, file$v, 544, 22, 19238);
+    			add_location(th5, file$v, 545, 22, 19303);
     			attr_dev(button0, "class", "btn btn-danger");
-    			add_location(button0, file$v, 546, 26, 19190);
-    			add_location(th6, file$v, 546, 22, 19186);
+    			add_location(button0, file$v, 546, 26, 19379);
+    			add_location(th6, file$v, 546, 22, 19375);
     			attr_dev(button1, "class", "btn btn-warning");
-    			add_location(button1, file$v, 547, 88, 19382);
+    			add_location(button1, file$v, 547, 88, 19571);
     			attr_dev(a, "href", a_href_value = "#/education_expenditures/" + /*stat*/ ctx[67].country + "/" + /*stat*/ ctx[67].year);
-    			add_location(a, file$v, 547, 26, 19320);
-    			add_location(th7, file$v, 547, 22, 19316);
+    			add_location(a, file$v, 547, 26, 19509);
+    			add_location(th7, file$v, 547, 22, 19505);
     			set_style(tr, "text-align", "center");
-    			add_location(tr, file$v, 539, 18, 18743);
+    			add_location(tr, file$v, 539, 18, 18932);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -17984,76 +17832,83 @@ var app = (function () {
     			}
 
     			attr_dev(td0, "valign", "middle");
-    			add_location(td0, file$v, 502, 16, 16663);
+    			add_location(td0, file$v, 502, 16, 16727);
     			attr_dev(td1, "valign", "middle");
-    			add_location(td1, file$v, 503, 16, 16706);
+    			add_location(td1, file$v, 503, 16, 16770);
     			attr_dev(td2, "valign", "middle");
-    			add_location(td2, file$v, 504, 16, 16749);
-    			add_location(h3, file$v, 505, 37, 16813);
+    			add_location(td2, file$v, 504, 16, 16813);
+    			add_location(h3, file$v, 505, 37, 16877);
     			attr_dev(td3, "valign", "middle");
-    			add_location(td3, file$v, 505, 16, 16792);
+    			add_location(td3, file$v, 505, 16, 16856);
     			attr_dev(td4, "valign", "middle");
-    			add_location(td4, file$v, 506, 16, 16850);
+    			add_location(td4, file$v, 506, 16, 16914);
     			attr_dev(td5, "valign", "middle");
-    			add_location(td5, file$v, 507, 16, 16893);
+    			add_location(td5, file$v, 507, 16, 16957);
     			attr_dev(td6, "valign", "middle");
     			attr_dev(td6, "colspan", "2");
-    			add_location(td6, file$v, 508, 16, 16936);
+    			add_location(td6, file$v, 508, 16, 17000);
     			set_style(tr0, "text-align", "center");
     			set_style(tr0, "background-color", "rgb(245, 181, 128)");
     			set_style(tr0, "max-width", "100%");
     			attr_dev(tr0, "valign", "middle");
-    			add_location(tr0, file$v, 501, 14, 16542);
+    			add_location(tr0, file$v, 501, 14, 16606);
     			attr_dev(td7, "valign", "middle");
-    			add_location(td7, file$v, 513, 20, 17117);
+    			add_location(td7, file$v, 513, 20, 17181);
     			attr_dev(td8, "valign", "middle");
-    			add_location(td8, file$v, 514, 20, 17167);
+    			add_location(td8, file$v, 514, 20, 17231);
     			attr_dev(td9, "valign", "middle");
-    			add_location(td9, file$v, 515, 20, 17218);
+    			add_location(td9, file$v, 515, 20, 17282);
     			attr_dev(td10, "valign", "middle");
-    			add_location(td10, file$v, 516, 20, 17291);
+    			add_location(td10, file$v, 516, 20, 17355);
     			attr_dev(td11, "valign", "middle");
-    			add_location(td11, file$v, 517, 20, 17366);
+    			add_location(td11, file$v, 517, 20, 17430);
     			attr_dev(td12, "valign", "middle");
-    			add_location(td12, file$v, 518, 20, 17431);
+    			add_location(td12, file$v, 518, 20, 17495);
     			attr_dev(td13, "valign", "middle");
     			attr_dev(td13, "colspan", "2");
-    			add_location(td13, file$v, 519, 20, 17494);
+    			add_location(td13, file$v, 519, 20, 17558);
     			set_style(tr1, "text-align", "center");
     			attr_dev(tr1, "valign", "middle");
-    			add_location(tr1, file$v, 512, 16, 17046);
-    			add_location(thead, file$v, 500, 12, 16517);
+    			add_location(tr1, file$v, 512, 16, 17110);
+    			add_location(thead, file$v, 500, 12, 16581);
+    			attr_dev(input0, "id", "input_anyo");
     			attr_dev(input0, "type", "number");
     			attr_dev(input0, "placeholder", "2010");
     			attr_dev(input0, "min", "1900");
-    			add_location(input0, file$v, 528, 26, 17773);
-    			add_location(td14, file$v, 528, 22, 17769);
+    			add_location(input0, file$v, 528, 26, 17837);
+    			add_location(td14, file$v, 528, 22, 17833);
+    			attr_dev(input1, "id", "input_pais");
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "placeholder", "Francia");
-    			add_location(input1, file$v, 529, 26, 17888);
-    			add_location(td15, file$v, 529, 22, 17884);
+    			add_location(input1, file$v, 529, 26, 17968);
+    			add_location(td15, file$v, 529, 22, 17964);
+    			attr_dev(input2, "id", "input_permillions");
     			attr_dev(input2, "type", "number");
     			attr_dev(input2, "placeholder", "250.4");
-    			add_location(input2, file$v, 530, 26, 17998);
-    			add_location(td16, file$v, 530, 22, 17994);
+    			add_location(input2, file$v, 530, 26, 18094);
+    			add_location(td16, file$v, 530, 22, 18090);
+    			attr_dev(input3, "id", "input_perpublic");
     			attr_dev(input3, "type", "number");
     			attr_dev(input3, "placeholder", "112.3");
-    			add_location(input3, file$v, 531, 26, 18136);
-    			add_location(td17, file$v, 531, 22, 18132);
+    			add_location(input3, file$v, 531, 26, 18255);
+    			add_location(td17, file$v, 531, 22, 18251);
+    			attr_dev(input4, "id", "input_gdp");
     			attr_dev(input4, "type", "number");
     			attr_dev(input4, "placeholder", "2.5");
-    			add_location(input4, file$v, 532, 26, 18284);
-    			add_location(td18, file$v, 532, 22, 18280);
+    			add_location(input4, file$v, 532, 26, 18424);
+    			add_location(td18, file$v, 532, 22, 18420);
+    			attr_dev(input5, "id", "input_percapita");
     			attr_dev(input5, "type", "number");
     			attr_dev(input5, "placeholder", "2010");
-    			add_location(input5, file$v, 533, 26, 18411);
-    			add_location(td19, file$v, 533, 22, 18407);
+    			add_location(input5, file$v, 533, 26, 18566);
+    			add_location(td19, file$v, 533, 22, 18562);
+    			attr_dev(button, "id", "inserta");
     			attr_dev(button, "class", "btn btn-success");
-    			add_location(button, file$v, 534, 26, 18546);
-    			add_location(td20, file$v, 534, 22, 18542);
-    			add_location(td21, file$v, 535, 22, 18646);
-    			add_location(tr2, file$v, 526, 16, 17681);
-    			add_location(tbody, file$v, 522, 12, 17599);
+    			add_location(button, file$v, 534, 26, 18722);
+    			add_location(td20, file$v, 534, 22, 18718);
+    			add_location(td21, file$v, 535, 22, 18835);
+    			add_location(tr2, file$v, 526, 16, 17745);
+    			add_location(tbody, file$v, 522, 12, 17663);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, thead, anchor);
@@ -18288,7 +18143,7 @@ var app = (function () {
     	return block;
     }
 
-    // (568:14) <PaginationItem class={pagina_actual === page ? "active" : ""}>
+    // (568:14) <PaginationItem  class={pagina_actual === page ? "active" : ""}>
     function create_default_slot_14$2(ctx) {
     	let paginationlink;
     	let current;
@@ -18345,7 +18200,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_14$2.name,
     		type: "slot",
-    		source: "(568:14) <PaginationItem class={pagina_actual === page ? \\\"active\\\" : \\\"\\\"}>",
+    		source: "(568:14) <PaginationItem  class={pagina_actual === page ? \\\"active\\\" : \\\"\\\"}>",
     		ctx
     	});
 
@@ -18414,7 +18269,7 @@ var app = (function () {
     	return block;
     }
 
-    // (577:12) <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
+    // (577:12) <PaginationItem id="paginacion_atras" class={pagina_actual === ultima_pagina ? "disabled" : ""}>
     function create_default_slot_13$2(ctx) {
     	let paginationlink;
     	let current;
@@ -18456,7 +18311,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_13$2.name,
     		type: "slot",
-    		source: "(577:12) <PaginationItem class={pagina_actual === ultima_pagina ? \\\"disabled\\\" : \\\"\\\"}>",
+    		source: "(577:12) <PaginationItem id=\\\"paginacion_atras\\\" class={pagina_actual === ultima_pagina ? \\\"disabled\\\" : \\\"\\\"}>",
     		ctx
     	});
 
@@ -18494,6 +18349,7 @@ var app = (function () {
 
     	paginationitem1 = new PaginationItem({
     			props: {
+    				id: "paginacion_atras",
     				class: /*pagina_actual*/ ctx[1] === /*ultima_pagina*/ ctx[2]
     				? "disabled"
     				: "",
@@ -18662,7 +18518,7 @@ var app = (function () {
     			t1 = space();
     			div = element("div");
     			create_component(pagination.$$.fragment);
-    			add_location(div, file$v, 711, 14, 27206);
+    			add_location(div, file$v, 711, 14, 27474);
     		},
     		m: function mount(target, anchor) {
     			mount_component(table0, target, anchor);
@@ -18880,96 +18736,98 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Restaurar";
     			attr_dev(td0, "valign", "middle");
-    			add_location(td0, file$v, 603, 14, 21194);
+    			add_location(td0, file$v, 603, 14, 21406);
     			attr_dev(td1, "valign", "middle");
-    			add_location(td1, file$v, 604, 14, 21235);
+    			add_location(td1, file$v, 604, 14, 21447);
     			attr_dev(td2, "valign", "middle");
-    			add_location(td2, file$v, 605, 14, 21276);
-    			add_location(h3, file$v, 606, 34, 21337);
+    			add_location(td2, file$v, 605, 14, 21488);
+    			add_location(h3, file$v, 606, 34, 21549);
     			attr_dev(td3, "valign", "middle");
-    			add_location(td3, file$v, 606, 14, 21317);
+    			add_location(td3, file$v, 606, 14, 21529);
     			attr_dev(td4, "valign", "middle");
-    			add_location(td4, file$v, 607, 14, 21377);
+    			add_location(td4, file$v, 607, 14, 21589);
     			attr_dev(td5, "valign", "middle");
-    			add_location(td5, file$v, 608, 14, 21418);
+    			add_location(td5, file$v, 608, 14, 21630);
     			attr_dev(td6, "valign", "middle");
     			attr_dev(td6, "colspan", "2");
-    			add_location(td6, file$v, 609, 14, 21459);
+    			add_location(td6, file$v, 609, 14, 21671);
     			set_style(tr0, "text-align", "center");
     			set_style(tr0, "background-color", "rgb(245, 181, 128)");
     			attr_dev(tr0, "valign", "middle");
-    			add_location(tr0, file$v, 602, 12, 21092);
+    			add_location(tr0, file$v, 602, 12, 21304);
     			attr_dev(td7, "valign", "middle");
-    			add_location(td7, file$v, 613, 18, 21599);
+    			add_location(td7, file$v, 613, 18, 21811);
     			attr_dev(td8, "valign", "middle");
-    			add_location(td8, file$v, 614, 18, 21647);
+    			add_location(td8, file$v, 614, 18, 21859);
     			attr_dev(td9, "valign", "middle");
-    			add_location(td9, file$v, 615, 18, 21696);
+    			add_location(td9, file$v, 615, 18, 21908);
     			attr_dev(td10, "valign", "middle");
-    			add_location(td10, file$v, 616, 18, 21767);
+    			add_location(td10, file$v, 616, 18, 21979);
     			attr_dev(td11, "valign", "middle");
-    			add_location(td11, file$v, 617, 18, 21840);
+    			add_location(td11, file$v, 617, 18, 22052);
     			attr_dev(td12, "valign", "middle");
-    			add_location(td12, file$v, 618, 18, 21903);
+    			add_location(td12, file$v, 618, 18, 22115);
     			attr_dev(td13, "valign", "middle");
     			attr_dev(td13, "colspan", "2");
-    			add_location(td13, file$v, 619, 18, 21964);
+    			add_location(td13, file$v, 619, 18, 22176);
     			set_style(tr1, "text-align", "center");
     			attr_dev(tr1, "valign", "middle");
-    			add_location(tr1, file$v, 612, 14, 21530);
-    			add_location(thead, file$v, 600, 10, 21055);
+    			add_location(tr1, file$v, 612, 14, 21742);
+    			add_location(thead, file$v, 600, 10, 21267);
     			attr_dev(input0, "type", "number");
     			attr_dev(input0, "placeholder", "2010");
     			attr_dev(input0, "min", "1950");
-    			add_location(input0, file$v, 628, 22, 22308);
-    			add_location(td14, file$v, 628, 18, 22304);
+    			add_location(input0, file$v, 628, 22, 22520);
+    			add_location(td14, file$v, 628, 18, 22516);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "placeholder", "Francia");
-    			add_location(input1, file$v, 629, 22, 22408);
-    			add_location(td15, file$v, 629, 18, 22404);
+    			add_location(input1, file$v, 629, 22, 22620);
+    			add_location(td15, file$v, 629, 18, 22616);
+    			attr_dev(input2, "id", "input_b_millones_min");
     			attr_dev(input2, "type", "number");
     			attr_dev(input2, "placeholder", "min");
-    			add_location(input2, file$v, 631, 20, 22522);
+    			add_location(input2, file$v, 631, 20, 22734);
     			attr_dev(input3, "type", "number");
     			attr_dev(input3, "placeholder", "max");
-    			add_location(input3, file$v, 632, 20, 22608);
-    			add_location(td16, file$v, 630, 18, 22496);
+    			add_location(input3, file$v, 632, 20, 22846);
+    			add_location(td16, file$v, 630, 18, 22708);
     			attr_dev(input4, "type", "number");
     			attr_dev(input4, "placeholder", "min");
-    			add_location(input4, file$v, 636, 20, 22763);
+    			add_location(input4, file$v, 636, 20, 23001);
+    			attr_dev(input5, "id", "input_b_gastoPublico_max");
     			attr_dev(input5, "type", "number");
     			attr_dev(input5, "placeholder", "max");
-    			add_location(input5, file$v, 637, 20, 22849);
-    			add_location(td17, file$v, 635, 18, 22737);
+    			add_location(input5, file$v, 637, 20, 23087);
+    			add_location(td17, file$v, 635, 18, 22975);
     			attr_dev(input6, "type", "number");
     			attr_dev(input6, "placeholder", "max");
-    			add_location(input6, file$v, 640, 20, 22984);
+    			add_location(input6, file$v, 640, 20, 23252);
     			attr_dev(input7, "type", "number");
     			attr_dev(input7, "placeholder", "min");
-    			add_location(input7, file$v, 641, 20, 23071);
-    			add_location(td18, file$v, 639, 18, 22958);
+    			add_location(input7, file$v, 641, 20, 23339);
+    			add_location(td18, file$v, 639, 18, 23226);
     			attr_dev(input8, "type", "number");
     			attr_dev(input8, "placeholder", "max");
     			attr_dev(input8, "class", "col-xs-12");
-    			add_location(input8, file$v, 646, 20, 23259);
+    			add_location(input8, file$v, 646, 20, 23527);
     			attr_dev(input9, "type", "number");
     			attr_dev(input9, "placeholder", "min");
     			attr_dev(input9, "class", "col-xs-12");
-    			add_location(input9, file$v, 647, 20, 23363);
+    			add_location(input9, file$v, 647, 20, 23631);
     			attr_dev(div, "class", "row col-xs-12");
-    			add_location(div, file$v, 645, 20, 23209);
-    			add_location(td19, file$v, 644, 18, 23183);
+    			add_location(div, file$v, 645, 20, 23477);
+    			add_location(td19, file$v, 644, 18, 23451);
     			attr_dev(button0, "class", "btn btn-primary");
-    			add_location(button0, file$v, 651, 22, 23522);
-    			add_location(td20, file$v, 651, 18, 23518);
+    			add_location(button0, file$v, 651, 22, 23790);
+    			add_location(td20, file$v, 651, 18, 23786);
     			attr_dev(button1, "class", "btn btn-dark");
-    			add_location(button1, file$v, 652, 22, 23620);
-    			add_location(td21, file$v, 652, 18, 23616);
+    			add_location(button1, file$v, 652, 22, 23888);
+    			add_location(td21, file$v, 652, 18, 23884);
     			set_style(tr2, "text-align", "center");
     			set_style(tr2, "align-items", "center");
     			set_style(tr2, "max-width", "100%");
-    			add_location(tr2, file$v, 626, 14, 22156);
-    			add_location(tbody, file$v, 622, 10, 22063);
+    			add_location(tr2, file$v, 626, 14, 22368);
+    			add_location(tbody, file$v, 622, 10, 22275);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, thead, anchor);
@@ -19319,92 +19177,92 @@ var app = (function () {
     			button2 = element("button");
     			button2.textContent = "Modificar";
     			attr_dev(td0, "valign", "middle");
-    			add_location(td0, file$v, 663, 22, 24154);
+    			add_location(td0, file$v, 663, 22, 24422);
     			attr_dev(td1, "valign", "middle");
-    			add_location(td1, file$v, 664, 22, 24203);
+    			add_location(td1, file$v, 664, 22, 24471);
     			attr_dev(td2, "valign", "middle");
-    			add_location(td2, file$v, 665, 22, 24252);
-    			add_location(h3, file$v, 666, 43, 24322);
+    			add_location(td2, file$v, 665, 22, 24520);
+    			add_location(h3, file$v, 666, 43, 24590);
     			attr_dev(td3, "valign", "middle");
-    			add_location(td3, file$v, 666, 22, 24301);
+    			add_location(td3, file$v, 666, 22, 24569);
     			attr_dev(td4, "valign", "middle");
-    			add_location(td4, file$v, 667, 22, 24365);
+    			add_location(td4, file$v, 667, 22, 24633);
     			attr_dev(td5, "valign", "middle");
-    			add_location(td5, file$v, 668, 22, 24414);
+    			add_location(td5, file$v, 668, 22, 24682);
     			attr_dev(td6, "valign", "middle");
     			attr_dev(td6, "colspan", "2");
-    			add_location(td6, file$v, 669, 22, 24463);
+    			add_location(td6, file$v, 669, 22, 24731);
     			set_style(tr0, "text-align", "center");
     			set_style(tr0, "background-color", "rgb(245, 181, 128)");
     			set_style(tr0, "max-width", "100%");
     			attr_dev(tr0, "valign", "middle");
-    			add_location(tr0, file$v, 662, 20, 24027);
+    			add_location(tr0, file$v, 662, 20, 24295);
     			attr_dev(td7, "valign", "middle");
-    			add_location(td7, file$v, 674, 26, 24674);
+    			add_location(td7, file$v, 674, 26, 24942);
     			attr_dev(td8, "valign", "middle");
-    			add_location(td8, file$v, 675, 26, 24730);
+    			add_location(td8, file$v, 675, 26, 24998);
     			attr_dev(td9, "valign", "middle");
-    			add_location(td9, file$v, 676, 26, 24787);
+    			add_location(td9, file$v, 676, 26, 25055);
     			attr_dev(td10, "valign", "middle");
-    			add_location(td10, file$v, 677, 26, 24866);
+    			add_location(td10, file$v, 677, 26, 25134);
     			attr_dev(td11, "valign", "middle");
-    			add_location(td11, file$v, 678, 26, 24947);
+    			add_location(td11, file$v, 678, 26, 25215);
     			attr_dev(td12, "valign", "middle");
-    			add_location(td12, file$v, 679, 26, 25018);
+    			add_location(td12, file$v, 679, 26, 25286);
     			attr_dev(td13, "valign", "middle");
     			attr_dev(td13, "colspan", "2");
-    			add_location(td13, file$v, 680, 26, 25087);
+    			add_location(td13, file$v, 680, 26, 25355);
     			set_style(tr1, "text-align", "center");
     			attr_dev(tr1, "valign", "middle");
-    			add_location(tr1, file$v, 673, 22, 24597);
-    			add_location(thead, file$v, 661, 18, 23996);
+    			add_location(tr1, file$v, 673, 22, 24865);
+    			add_location(thead, file$v, 661, 18, 24264);
     			attr_dev(input0, "type", "number");
     			attr_dev(input0, "placeholder", "2010");
     			attr_dev(input0, "min", "1900");
-    			add_location(input0, file$v, 689, 26, 25398);
-    			add_location(td14, file$v, 689, 22, 25394);
+    			add_location(input0, file$v, 689, 26, 25666);
+    			add_location(td14, file$v, 689, 22, 25662);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "placeholder", "Francia");
-    			add_location(input1, file$v, 690, 26, 25513);
-    			add_location(td15, file$v, 690, 22, 25509);
+    			add_location(input1, file$v, 690, 26, 25781);
+    			add_location(td15, file$v, 690, 22, 25777);
     			attr_dev(input2, "type", "number");
     			attr_dev(input2, "placeholder", "250.4");
-    			add_location(input2, file$v, 691, 26, 25623);
-    			add_location(td16, file$v, 691, 22, 25619);
+    			add_location(input2, file$v, 691, 26, 25891);
+    			add_location(td16, file$v, 691, 22, 25887);
     			attr_dev(input3, "type", "number");
     			attr_dev(input3, "placeholder", "112.3");
-    			add_location(input3, file$v, 692, 26, 25761);
-    			add_location(td17, file$v, 692, 22, 25757);
+    			add_location(input3, file$v, 692, 26, 26029);
+    			add_location(td17, file$v, 692, 22, 26025);
     			attr_dev(input4, "type", "number");
     			attr_dev(input4, "placeholder", "2.5");
-    			add_location(input4, file$v, 693, 26, 25909);
-    			add_location(td18, file$v, 693, 22, 25905);
+    			add_location(input4, file$v, 693, 26, 26177);
+    			add_location(td18, file$v, 693, 22, 26173);
     			attr_dev(input5, "type", "number");
     			attr_dev(input5, "placeholder", "2010");
-    			add_location(input5, file$v, 694, 26, 26036);
-    			add_location(td19, file$v, 694, 22, 26032);
+    			add_location(input5, file$v, 694, 26, 26304);
+    			add_location(td19, file$v, 694, 22, 26300);
     			attr_dev(button0, "class", "btn btn-success");
-    			add_location(button0, file$v, 695, 26, 26171);
-    			add_location(td20, file$v, 695, 22, 26167);
-    			add_location(td21, file$v, 696, 22, 26271);
-    			add_location(tr2, file$v, 687, 18, 25306);
-    			add_location(th0, file$v, 700, 20, 26386);
-    			add_location(th1, file$v, 701, 22, 26438);
-    			add_location(th2, file$v, 702, 22, 26493);
-    			add_location(th3, file$v, 703, 22, 26575);
-    			add_location(th4, file$v, 704, 22, 26667);
-    			add_location(th5, file$v, 705, 22, 26740);
+    			add_location(button0, file$v, 695, 26, 26439);
+    			add_location(td20, file$v, 695, 22, 26435);
+    			add_location(td21, file$v, 696, 22, 26539);
+    			add_location(tr2, file$v, 687, 18, 25574);
+    			add_location(th0, file$v, 700, 20, 26654);
+    			add_location(th1, file$v, 701, 22, 26706);
+    			add_location(th2, file$v, 702, 22, 26761);
+    			add_location(th3, file$v, 703, 22, 26843);
+    			add_location(th4, file$v, 704, 22, 26935);
+    			add_location(th5, file$v, 705, 22, 27008);
     			attr_dev(button1, "class", "btn btn-danger");
-    			add_location(button1, file$v, 706, 26, 26824);
-    			add_location(th6, file$v, 706, 22, 26820);
+    			add_location(button1, file$v, 706, 26, 27092);
+    			add_location(th6, file$v, 706, 22, 27088);
     			attr_dev(button2, "class", "btn btn-warning");
-    			add_location(button2, file$v, 707, 104, 27048);
+    			add_location(button2, file$v, 707, 104, 27316);
     			attr_dev(a, "href", a_href_value = "#/education_expenditures/" + /*edex_data*/ ctx[8][0].country + "/" + /*edex_data*/ ctx[8][0].year);
-    			add_location(a, file$v, 707, 26, 26970);
-    			add_location(th7, file$v, 707, 22, 26966);
+    			add_location(a, file$v, 707, 26, 27238);
+    			add_location(th7, file$v, 707, 22, 27234);
     			set_style(tr3, "text-align", "center");
-    			add_location(tr3, file$v, 699, 18, 26331);
-    			add_location(tbody, file$v, 683, 18, 25210);
+    			add_location(tr3, file$v, 699, 18, 26599);
+    			add_location(tbody, file$v, 683, 18, 25478);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, thead, anchor);
@@ -19578,7 +19436,7 @@ var app = (function () {
     	return block;
     }
 
-    // (715:18) <PaginationItem class={pagina_actual === 1 ? "disabled" : ""}>
+    // (715:18) <PaginationItem id="paginacion_atras" class={pagina_actual === 1 ? "disabled" : ""}>
     function create_default_slot_9$2(ctx) {
     	let paginationlink;
     	let current;
@@ -19620,7 +19478,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_9$2.name,
     		type: "slot",
-    		source: "(715:18) <PaginationItem class={pagina_actual === 1 ? \\\"disabled\\\" : \\\"\\\"}>",
+    		source: "(715:18) <PaginationItem id=\\\"paginacion_atras\\\" class={pagina_actual === 1 ? \\\"disabled\\\" : \\\"\\\"}>",
     		ctx
     	});
 
@@ -19784,7 +19642,7 @@ var app = (function () {
     	return block;
     }
 
-    // (733:18) <PaginationItem class={pagina_actual === ultima_pagina ? "disabled" : ""}>
+    // (733:18) <PaginationItem id="paginacion_siguiente" class={pagina_actual === ultima_pagina ? "disabled" : ""}>
     function create_default_slot_6$2(ctx) {
     	let paginationlink;
     	let current;
@@ -19826,7 +19684,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_6$2.name,
     		type: "slot",
-    		source: "(733:18) <PaginationItem class={pagina_actual === ultima_pagina ? \\\"disabled\\\" : \\\"\\\"}>",
+    		source: "(733:18) <PaginationItem id=\\\"paginacion_siguiente\\\" class={pagina_actual === ultima_pagina ? \\\"disabled\\\" : \\\"\\\"}>",
     		ctx
     	});
 
@@ -19843,6 +19701,7 @@ var app = (function () {
 
     	paginationitem0 = new PaginationItem({
     			props: {
+    				id: "paginacion_atras",
     				class: /*pagina_actual*/ ctx[1] === 1 ? "disabled" : "",
     				$$slots: { default: [create_default_slot_9$2] },
     				$$scope: { ctx }
@@ -19864,6 +19723,7 @@ var app = (function () {
 
     	paginationitem1 = new PaginationItem({
     			props: {
+    				id: "paginacion_siguiente",
     				class: /*pagina_actual*/ ctx[1] === /*ultima_pagina*/ ctx[2]
     				? "disabled"
     				: "",
@@ -20021,7 +19881,7 @@ var app = (function () {
     			create_component(row1.$$.fragment);
     			set_style(div, "aling-items", "center");
     			set_style(div, "justify-content", "center");
-    			add_location(div, file$v, 746, 8, 28723);
+    			add_location(div, file$v, 746, 8, 29039);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -20067,7 +19927,7 @@ var app = (function () {
     		c: function create() {
     			h2 = element("h2");
     			h2.textContent = "No existen datos cargados. Por favor, pulse el botón \"Cargar datos\".";
-    			add_location(h2, file$v, 749, 18, 28872);
+    			add_location(h2, file$v, 749, 18, 29188);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h2, anchor);
@@ -20155,7 +20015,7 @@ var app = (function () {
     			img = element("img");
     			if (img.src !== (img_src_value = "images/noDatos.jpg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "noDatos");
-    			add_location(img, file$v, 756, 18, 29100);
+    			add_location(img, file$v, 756, 18, 29416);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
@@ -20355,13 +20215,13 @@ var app = (function () {
     			create_component(button.$$.fragment);
     			set_style(div0, "padding", "1%");
     			add_location(div0, file$v, 399, 4, 12263);
-    			add_location(br, file$v, 431, 3, 13469);
-    			add_location(div1, file$v, 433, 4, 13533);
+    			add_location(br, file$v, 431, 3, 13533);
+    			add_location(div1, file$v, 433, 4, 13597);
     			attr_dev(a, "href", "/");
-    			add_location(a, file$v, 780, 12, 29555);
-    			add_location(div2, file$v, 779, 9, 29536);
+    			add_location(a, file$v, 780, 12, 29871);
+    			add_location(div2, file$v, 779, 9, 29852);
     			attr_dev(footer, "class", "svelte-17je5wt");
-    			add_location(footer, file$v, 776, 4, 29506);
+    			add_location(footer, file$v, 776, 4, 29822);
     			attr_dev(div3, "class", "foot svelte-17je5wt");
     			set_style(div3, "min-width", "100%");
     			set_style(div3, "color", "white");
@@ -20371,7 +20231,7 @@ var app = (function () {
     			set_style(div3, "background-color", "#343c44");
     			set_style(div3, "left", "0");
     			set_style(div3, "position", "relative");
-    			add_location(div3, file$v, 767, 4, 29293);
+    			add_location(div3, file$v, 767, 4, 29609);
     			add_location(main, file$v, 397, 0, 12139);
     		},
     		l: function claim(nodes) {
@@ -21496,17 +21356,18 @@ var app = (function () {
     			attr_dev(input1, "placeholder", "112.3");
     			add_location(input1, file$t, 108, 24, 3928);
     			add_location(td10, file$t, 108, 20, 3924);
+    			attr_dev(input2, "id", "edit_gdp");
     			attr_dev(input2, "type", "number");
     			attr_dev(input2, "placeholder", "2.5");
     			add_location(input2, file$t, 109, 24, 4066);
     			add_location(td11, file$t, 109, 20, 4062);
     			attr_dev(input3, "type", "number");
     			attr_dev(input3, "placeholder", "2010");
-    			add_location(input3, file$t, 110, 24, 4183);
-    			add_location(td12, file$t, 110, 20, 4179);
+    			add_location(input3, file$t, 110, 24, 4197);
+    			add_location(td12, file$t, 110, 20, 4193);
     			attr_dev(button, "class", "btn btn-success");
-    			add_location(button, file$t, 111, 24, 4308);
-    			add_location(td13, file$t, 111, 20, 4304);
+    			add_location(button, file$t, 111, 24, 4322);
+    			add_location(td13, file$t, 111, 20, 4318);
     			add_location(tr2, file$t, 104, 10, 3705);
     			add_location(tbody, file$t, 103, 8, 3686);
     		},
@@ -21619,7 +21480,7 @@ var app = (function () {
     			t0 = text$1("ERROR: ");
     			t1 = text$1(/*mensajeError*/ ctx[7]);
     			set_style(p, "color", "red");
-    			add_location(p, file$t, 116, 8, 4475);
+    			add_location(p, file$t, 116, 8, 4489);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -21758,10 +21619,10 @@ var app = (function () {
     			add_location(div1, file$t, 80, 4, 2687);
     			add_location(br, file$t, 87, 4, 3092);
     			attr_dev(a, "href", "#/education_expenditures");
-    			add_location(a, file$t, 132, 11, 4811);
-    			add_location(div2, file$t, 131, 8, 4793);
+    			add_location(a, file$t, 132, 11, 4825);
+    			add_location(div2, file$t, 131, 8, 4807);
     			attr_dev(footer, "class", "svelte-1eplfbf");
-    			add_location(footer, file$t, 128, 6, 4764);
+    			add_location(footer, file$t, 128, 6, 4778);
     			attr_dev(div3, "class", "foot svelte-1eplfbf");
     			set_style(div3, "min-width", "100%");
     			set_style(div3, "color", "white");
@@ -21771,7 +21632,7 @@ var app = (function () {
     			set_style(div3, "background-color", "#343c44");
     			set_style(div3, "left", "0");
     			set_style(div3, "position", "absolute");
-    			add_location(div3, file$t, 118, 6, 4543);
+    			add_location(div3, file$t, 118, 6, 4557);
     			add_location(main, file$t, 78, 0, 2673);
     		},
     		l: function claim(nodes) {
@@ -55327,12 +55188,6 @@ var app = (function () {
     			transition_out(navlink.$$.fragment, local);
     			current = false;
     		},
-<<<<<<< HEAD
-    		p: noop$3,
-    		i: noop$3,
-    		o: noop$3,
-=======
->>>>>>> c36948edb30c159f52af188041e88200a9832792
     		d: function destroy(detaching) {
     			destroy_component(navlink, detaching);
     		}
@@ -56903,7 +56758,6 @@ var app = (function () {
 
     	button0 = new Button({
     			props: {
-    				id: "cargarDatos",
     				style: "background-color: green;",
     				$$slots: { default: [create_default_slot_24] },
     				$$scope: { ctx }
@@ -56999,7 +56853,6 @@ var app = (function () {
 
     	button1 = new Button({
     			props: {
-    				id: "borrarDatos",
     				style: "background-color: red;",
     				$$slots: { default: [create_default_slot_21] },
     				$$scope: { ctx }
@@ -57066,7 +56919,7 @@ var app = (function () {
     	return block;
     }
 
-    // (427:20) <Button id="cargarDatos" style="background-color: green;" on:click = {loadInitialData}>
+    // (427:20) <Button style="background-color: green;" on:click = {loadInitialData}>
     function create_default_slot_24(ctx) {
     	let t;
 
@@ -57086,7 +56939,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_24.name,
     		type: "slot",
-    		source: "(427:20) <Button id=\\\"cargarDatos\\\" style=\\\"background-color: green;\\\" on:click = {loadInitialData}>",
+    		source: "(427:20) <Button style=\\\"background-color: green;\\\" on:click = {loadInitialData}>",
     		ctx
     	});
 
@@ -57147,7 +57000,7 @@ var app = (function () {
     	return block;
     }
 
-    // (424:20) <Button id="borrarDatos"style="background-color: red;" on:click = {deleteAll}>
+    // (424:20) <Button style="background-color: red;" on:click = {deleteAll}>
     function create_default_slot_21(ctx) {
     	let t;
 
@@ -57167,7 +57020,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_21.name,
     		type: "slot",
-    		source: "(424:20) <Button id=\\\"borrarDatos\\\"style=\\\"background-color: red;\\\" on:click = {deleteAll}>",
+    		source: "(424:20) <Button style=\\\"background-color: red;\\\" on:click = {deleteAll}>",
     		ctx
     	});
 
@@ -57322,9 +57175,9 @@ var app = (function () {
     			t0 = text$1("Se ha producido un error:");
     			b = element("b");
     			t1 = text$1(/*msjError*/ ctx[3]);
-    			add_location(b, file$a, 438, 69, 15825);
+    			add_location(b, file$a, 438, 69, 15792);
     			set_style(p, "color", "tomato");
-    			add_location(p, file$a, 438, 20, 15776);
+    			add_location(p, file$a, 438, 20, 15743);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -57362,9 +57215,9 @@ var app = (function () {
     			p = element("p");
     			b = element("b");
     			t = text$1(/*msjOK*/ ctx[4]);
-    			add_location(b, file$a, 441, 37, 15957);
+    			add_location(b, file$a, 441, 37, 15924);
     			attr_dev(p, "class", "msjOK");
-    			add_location(p, file$a, 441, 20, 15940);
+    			add_location(p, file$a, 441, 20, 15907);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -57655,73 +57508,70 @@ var app = (function () {
     			t27 = space();
     			td15 = element("td");
     			attr_dev(td0, "valign", "middle");
-    			add_location(td0, file$a, 461, 20, 16470);
+    			add_location(td0, file$a, 461, 20, 16437);
     			attr_dev(td1, "valign", "middle");
-    			add_location(td1, file$a, 462, 20, 16520);
+    			add_location(td1, file$a, 462, 20, 16487);
     			attr_dev(td2, "valign", "middle");
-    			add_location(td2, file$a, 463, 20, 16571);
+    			add_location(td2, file$a, 463, 20, 16538);
     			attr_dev(td3, "valign", "middle");
-    			add_location(td3, file$a, 464, 20, 16647);
+    			add_location(td3, file$a, 464, 20, 16614);
     			attr_dev(td4, "valign", "middle");
-    			add_location(td4, file$a, 465, 20, 16731);
+    			add_location(td4, file$a, 465, 20, 16698);
     			attr_dev(td5, "valign", "middle");
-    			add_location(td5, file$a, 466, 20, 16813);
+    			add_location(td5, file$a, 466, 20, 16780);
     			attr_dev(td6, "valign", "middle");
     			attr_dev(td6, "colspan", "2");
-    			add_location(td6, file$a, 467, 20, 16901);
+    			add_location(td6, file$a, 467, 20, 16868);
     			set_style(tr0, "text-align", "center");
     			attr_dev(tr0, "valign", "middle");
-    			add_location(tr0, file$a, 460, 16, 16399);
-    			add_location(thead, file$a, 459, 12, 16372);
-    			attr_dev(input0, "id", "#query_input_date");
+    			add_location(tr0, file$a, 460, 16, 16366);
+    			add_location(thead, file$a, 459, 12, 16339);
     			attr_dev(input0, "type", "number");
     			attr_dev(input0, "placeholder", "2015");
     			attr_dev(input0, "min", "1900");
-    			add_location(input0, file$a, 476, 20, 17182);
-    			add_location(td7, file$a, 476, 16, 17178);
-    			attr_dev(input1, "id", "#query_input_country");
+    			add_location(input0, file$a, 476, 20, 17149);
+    			add_location(td7, file$a, 476, 16, 17145);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "placeholder", "Francia");
-    			add_location(input1, file$a, 477, 20, 17316);
-    			add_location(td8, file$a, 477, 16, 17312);
+    			add_location(input1, file$a, 477, 20, 17260);
+    			add_location(td8, file$a, 477, 16, 17256);
     			attr_dev(input2, "type", "text");
     			attr_dev(input2, "placeholder", "min");
-    			add_location(input2, file$a, 479, 20, 17467);
+    			add_location(input2, file$a, 479, 20, 17385);
     			attr_dev(input3, "type", "text");
     			attr_dev(input3, "placeholder", "max");
-    			add_location(input3, file$a, 480, 20, 17565);
-    			add_location(td9, file$a, 478, 16, 17441);
+    			add_location(input3, file$a, 480, 20, 17483);
+    			add_location(td9, file$a, 478, 16, 17359);
     			attr_dev(input4, "type", "text");
     			attr_dev(input4, "placeholder", "min");
-    			add_location(input4, file$a, 483, 20, 17708);
+    			add_location(input4, file$a, 483, 20, 17626);
     			attr_dev(input5, "type", "text");
     			attr_dev(input5, "placeholder", "max");
-    			add_location(input5, file$a, 484, 20, 17806);
-    			add_location(td10, file$a, 482, 16, 17682);
+    			add_location(input5, file$a, 484, 20, 17724);
+    			add_location(td10, file$a, 482, 16, 17600);
     			attr_dev(input6, "type", "text");
     			attr_dev(input6, "placeholder", "min");
-    			add_location(input6, file$a, 487, 20, 17949);
+    			add_location(input6, file$a, 487, 20, 17867);
     			attr_dev(input7, "type", "text");
     			attr_dev(input7, "placeholder", "max");
-    			add_location(input7, file$a, 488, 20, 18047);
-    			add_location(td11, file$a, 486, 16, 17923);
+    			add_location(input7, file$a, 488, 20, 17965);
+    			add_location(td11, file$a, 486, 16, 17841);
     			attr_dev(input8, "type", "text");
     			attr_dev(input8, "placeholder", "min");
-    			add_location(input8, file$a, 491, 20, 18190);
+    			add_location(input8, file$a, 491, 20, 18108);
     			attr_dev(input9, "type", "text");
     			attr_dev(input9, "placeholder", "max");
-    			add_location(input9, file$a, 492, 20, 18291);
-    			add_location(td12, file$a, 490, 16, 18164);
-    			attr_dev(button0, "id", "#query_button");
+    			add_location(input9, file$a, 492, 20, 18209);
+    			add_location(td12, file$a, 490, 16, 18082);
     			attr_dev(button0, "class", "btn btn-primary");
-    			add_location(button0, file$a, 494, 20, 18415);
-    			add_location(td13, file$a, 494, 16, 18411);
+    			add_location(button0, file$a, 494, 20, 18333);
+    			add_location(td13, file$a, 494, 16, 18329);
     			attr_dev(button1, "class", "btn btn-secondary");
-    			add_location(button1, file$a, 495, 20, 18530);
-    			add_location(td14, file$a, 495, 16, 18526);
-    			add_location(td15, file$a, 496, 16, 18626);
-    			add_location(tr1, file$a, 474, 12, 17100);
-    			add_location(tbody, file$a, 470, 12, 17006);
+    			add_location(button1, file$a, 495, 20, 18429);
+    			add_location(td14, file$a, 495, 16, 18425);
+    			add_location(td15, file$a, 496, 16, 18525);
+    			add_location(tr1, file$a, 474, 12, 17067);
+    			add_location(tbody, file$a, 470, 12, 16973);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, thead, anchor);
@@ -57989,22 +57839,22 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Editar";
     			t15 = space();
-    			add_location(th0, file$a, 530, 20, 19851);
-    			add_location(th1, file$a, 531, 20, 19893);
-    			add_location(th2, file$a, 532, 20, 19938);
-    			add_location(th3, file$a, 533, 20, 20001);
-    			add_location(th4, file$a, 534, 20, 20058);
-    			add_location(th5, file$a, 535, 20, 20113);
+    			add_location(th0, file$a, 530, 20, 19750);
+    			add_location(th1, file$a, 531, 20, 19792);
+    			add_location(th2, file$a, 532, 20, 19837);
+    			add_location(th3, file$a, 533, 20, 19900);
+    			add_location(th4, file$a, 534, 20, 19957);
+    			add_location(th5, file$a, 535, 20, 20012);
     			attr_dev(button0, "class", "btn btn-danger");
-    			add_location(button0, file$a, 536, 24, 20181);
-    			add_location(th6, file$a, 536, 20, 20177);
+    			add_location(button0, file$a, 536, 24, 20080);
+    			add_location(th6, file$a, 536, 20, 20076);
     			attr_dev(button1, "class", "btn btn-warning");
-    			add_location(button1, file$a, 537, 77, 20360);
+    			add_location(button1, file$a, 537, 77, 20259);
     			attr_dev(a, "href", a_href_value = "#/poverty_risks/" + /*stat*/ ctx[52].country + "/" + /*stat*/ ctx[52].year);
-    			add_location(a, file$a, 537, 24, 20307);
-    			add_location(th7, file$a, 537, 20, 20303);
+    			add_location(a, file$a, 537, 24, 20206);
+    			add_location(th7, file$a, 537, 20, 20202);
     			set_style(tr, "text-align", "center");
-    			add_location(tr, file$a, 529, 16, 19796);
+    			add_location(tr, file$a, 529, 16, 19695);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -58380,25 +58230,25 @@ var app = (function () {
     			t14 = space();
     			create_component(pagination.$$.fragment);
     			attr_dev(td0, "valign", "middle");
-    			add_location(td0, file$a, 514, 20, 19063);
+    			add_location(td0, file$a, 514, 20, 18962);
     			attr_dev(td1, "valign", "middle");
-    			add_location(td1, file$a, 515, 20, 19113);
+    			add_location(td1, file$a, 515, 20, 19012);
     			attr_dev(td2, "valign", "middle");
-    			add_location(td2, file$a, 516, 20, 19164);
+    			add_location(td2, file$a, 516, 20, 19063);
     			attr_dev(td3, "valign", "middle");
-    			add_location(td3, file$a, 517, 20, 19240);
+    			add_location(td3, file$a, 517, 20, 19139);
     			attr_dev(td4, "valign", "middle");
-    			add_location(td4, file$a, 518, 20, 19324);
+    			add_location(td4, file$a, 518, 20, 19223);
     			attr_dev(td5, "valign", "middle");
-    			add_location(td5, file$a, 519, 20, 19406);
+    			add_location(td5, file$a, 519, 20, 19305);
     			attr_dev(td6, "valign", "middle");
     			attr_dev(td6, "colspan", "2");
-    			add_location(td6, file$a, 520, 20, 19494);
+    			add_location(td6, file$a, 520, 20, 19393);
     			set_style(tr, "text-align", "center");
     			attr_dev(tr, "valign", "middle");
-    			add_location(tr, file$a, 513, 16, 18992);
-    			add_location(thead, file$a, 512, 12, 18965);
-    			add_location(tbody, file$a, 523, 12, 19599);
+    			add_location(tr, file$a, 513, 16, 18891);
+    			add_location(thead, file$a, 512, 12, 18864);
+    			add_location(tbody, file$a, 523, 12, 19498);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, thead, anchor);
@@ -58510,7 +58360,7 @@ var app = (function () {
     			create_component(row.$$.fragment);
     			set_style(div, "aling-items", "center");
     			set_style(div, "justify-content", "center");
-    			add_location(div, file$a, 683, 12, 27681);
+    			add_location(div, file$a, 683, 12, 27386);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -58695,7 +58545,7 @@ var app = (function () {
     		c: function create() {
     			h2 = element("h2");
     			h2.textContent = "No existen datos cargados. Por favor, pulse el botón \"Cargar datos\".";
-    			add_location(h2, file$a, 686, 24, 27848);
+    			add_location(h2, file$a, 686, 24, 27553);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h2, anchor);
@@ -58841,22 +58691,22 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Editar";
     			t15 = space();
-    			add_location(th0, file$a, 655, 20, 26287);
-    			add_location(th1, file$a, 656, 20, 26329);
-    			add_location(th2, file$a, 657, 20, 26374);
-    			add_location(th3, file$a, 658, 20, 26437);
-    			add_location(th4, file$a, 659, 20, 26494);
-    			add_location(th5, file$a, 660, 20, 26549);
+    			add_location(th0, file$a, 655, 20, 25992);
+    			add_location(th1, file$a, 656, 20, 26034);
+    			add_location(th2, file$a, 657, 20, 26079);
+    			add_location(th3, file$a, 658, 20, 26142);
+    			add_location(th4, file$a, 659, 20, 26199);
+    			add_location(th5, file$a, 660, 20, 26254);
     			attr_dev(button0, "class", "btn btn-danger");
-    			add_location(button0, file$a, 661, 24, 26617);
-    			add_location(th6, file$a, 661, 20, 26613);
+    			add_location(button0, file$a, 661, 24, 26322);
+    			add_location(th6, file$a, 661, 20, 26318);
     			attr_dev(button1, "class", "btn btn-warning");
-    			add_location(button1, file$a, 662, 77, 26796);
+    			add_location(button1, file$a, 662, 77, 26501);
     			attr_dev(a, "href", a_href_value = "#/poverty_risks/" + /*stat*/ ctx[52].country + "/" + /*stat*/ ctx[52].year);
-    			add_location(a, file$a, 662, 24, 26743);
-    			add_location(th7, file$a, 662, 20, 26739);
+    			add_location(a, file$a, 662, 24, 26448);
+    			add_location(th7, file$a, 662, 20, 26444);
     			set_style(tr, "text-align", "center");
-    			add_location(tr, file$a, 654, 16, 26232);
+    			add_location(tr, file$a, 654, 16, 25937);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -59285,62 +59135,55 @@ var app = (function () {
     			t23 = space();
     			create_component(pagination.$$.fragment);
     			attr_dev(td0, "valign", "middle");
-    			add_location(td0, file$a, 624, 20, 24315);
+    			add_location(td0, file$a, 624, 20, 24214);
     			attr_dev(td1, "valign", "middle");
-    			add_location(td1, file$a, 625, 20, 24365);
+    			add_location(td1, file$a, 625, 20, 24264);
     			attr_dev(td2, "valign", "middle");
-    			add_location(td2, file$a, 626, 20, 24416);
+    			add_location(td2, file$a, 626, 20, 24315);
     			attr_dev(td3, "valign", "middle");
-    			add_location(td3, file$a, 627, 20, 24492);
+    			add_location(td3, file$a, 627, 20, 24391);
     			attr_dev(td4, "valign", "middle");
-    			add_location(td4, file$a, 628, 20, 24576);
+    			add_location(td4, file$a, 628, 20, 24475);
     			attr_dev(td5, "valign", "middle");
-    			add_location(td5, file$a, 629, 20, 24658);
+    			add_location(td5, file$a, 629, 20, 24557);
     			attr_dev(td6, "valign", "middle");
     			attr_dev(td6, "colspan", "2");
-    			add_location(td6, file$a, 630, 20, 24746);
+    			add_location(td6, file$a, 630, 20, 24645);
     			set_style(tr0, "text-align", "center");
     			attr_dev(tr0, "valign", "middle");
-    			add_location(tr0, file$a, 623, 16, 24244);
-    			add_location(thead, file$a, 622, 12, 24217);
-    			attr_dev(input0, "id", "#insert_input_year");
+    			add_location(tr0, file$a, 623, 16, 24143);
+    			add_location(thead, file$a, 622, 12, 24116);
     			attr_dev(input0, "type", "number");
     			attr_dev(input0, "placeholder", "2015");
     			attr_dev(input0, "min", "1900");
-    			add_location(input0, file$a, 639, 20, 25027);
-    			add_location(td7, file$a, 639, 16, 25023);
-    			attr_dev(input1, "id", "#insert_input_country");
+    			add_location(input0, file$a, 639, 20, 24926);
+    			add_location(td7, file$a, 639, 16, 24922);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "placeholder", "Francia");
-    			add_location(input1, file$a, 640, 20, 25160);
-    			add_location(td8, file$a, 640, 16, 25156);
-    			attr_dev(input2, "id", "#insert_input_people_in_risk_of_poverty");
+    			add_location(input1, file$a, 640, 20, 25035);
+    			add_location(td8, file$a, 640, 16, 25031);
     			attr_dev(input2, "type", "number");
     			attr_dev(input2, "placeholder", "8.474");
-    			add_location(input2, file$a, 641, 20, 25291);
-    			add_location(td9, file$a, 641, 16, 25287);
-    			attr_dev(input3, "id", "#insert_input_country");
+    			add_location(input2, file$a, 641, 20, 25139);
+    			add_location(td9, file$a, 641, 16, 25135);
     			attr_dev(input3, "type", "number");
     			attr_dev(input3, "placeholder", "12.849");
-    			add_location(input3, file$a, 642, 20, 25459);
-    			add_location(td10, file$a, 642, 16, 25455);
-    			attr_dev(input4, "id", "#insert_input_country");
+    			add_location(input3, file$a, 642, 20, 25262);
+    			add_location(td10, file$a, 642, 16, 25258);
     			attr_dev(input4, "type", "number");
     			attr_dev(input4, "placeholder", "26.983");
-    			add_location(input4, file$a, 643, 20, 25604);
-    			add_location(td11, file$a, 643, 16, 25600);
-    			attr_dev(input5, "id", "#insert_input_country");
+    			add_location(input4, file$a, 643, 20, 25381);
+    			add_location(td11, file$a, 643, 16, 25377);
     			attr_dev(input5, "type", "number");
     			attr_dev(input5, "placeholder", "13.6");
-    			add_location(input5, file$a, 644, 20, 25747);
-    			add_location(td12, file$a, 644, 16, 25743);
-    			attr_dev(button, "id", "#insert_button");
+    			add_location(input5, file$a, 644, 20, 25498);
+    			add_location(td12, file$a, 644, 16, 25494);
     			attr_dev(button, "class", "btn btn-success");
-    			add_location(button, file$a, 645, 20, 25897);
-    			add_location(td13, file$a, 645, 16, 25893);
-    			add_location(td14, file$a, 646, 16, 26011);
-    			add_location(tr1, file$a, 637, 12, 24945);
-    			add_location(tbody, file$a, 633, 12, 24851);
+    			add_location(button, file$a, 645, 20, 25622);
+    			add_location(td13, file$a, 645, 16, 25618);
+    			add_location(td14, file$a, 646, 16, 25716);
+    			add_location(tr1, file$a, 637, 12, 24844);
+    			add_location(tbody, file$a, 633, 12, 24750);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, thead, anchor);
@@ -59522,7 +59365,7 @@ var app = (function () {
     			create_component(row.$$.fragment);
     			set_style(div, "aling-items", "center");
     			set_style(div, "justify-content", "center");
-    			add_location(div, file$a, 608, 12, 23667);
+    			add_location(div, file$a, 608, 12, 23566);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -59627,7 +59470,7 @@ var app = (function () {
     		c: function create() {
     			h2 = element("h2");
     			h2.textContent = "No existen datos cargados. Por favor, pulse el botón \"Cargar datos\".";
-    			add_location(h2, file$a, 611, 24, 23834);
+    			add_location(h2, file$a, 611, 24, 23733);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h2, anchor);
@@ -59773,22 +59616,22 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Editar";
     			t15 = space();
-    			add_location(th0, file$a, 580, 20, 22276);
-    			add_location(th1, file$a, 581, 20, 22318);
-    			add_location(th2, file$a, 582, 20, 22363);
-    			add_location(th3, file$a, 583, 20, 22426);
-    			add_location(th4, file$a, 584, 20, 22483);
-    			add_location(th5, file$a, 585, 20, 22538);
+    			add_location(th0, file$a, 580, 20, 22175);
+    			add_location(th1, file$a, 581, 20, 22217);
+    			add_location(th2, file$a, 582, 20, 22262);
+    			add_location(th3, file$a, 583, 20, 22325);
+    			add_location(th4, file$a, 584, 20, 22382);
+    			add_location(th5, file$a, 585, 20, 22437);
     			attr_dev(button0, "class", "btn btn-danger");
-    			add_location(button0, file$a, 586, 24, 22606);
-    			add_location(th6, file$a, 586, 20, 22602);
+    			add_location(button0, file$a, 586, 24, 22505);
+    			add_location(th6, file$a, 586, 20, 22501);
     			attr_dev(button1, "class", "btn btn-warning");
-    			add_location(button1, file$a, 587, 77, 22785);
+    			add_location(button1, file$a, 587, 77, 22684);
     			attr_dev(a, "href", a_href_value = "#/poverty_risks/" + /*stat*/ ctx[52].country + "/" + /*stat*/ ctx[52].year);
-    			add_location(a, file$a, 587, 24, 22732);
-    			add_location(th7, file$a, 587, 20, 22728);
+    			add_location(a, file$a, 587, 24, 22631);
+    			add_location(th7, file$a, 587, 20, 22627);
     			set_style(tr, "text-align", "center");
-    			add_location(tr, file$a, 579, 16, 22221);
+    			add_location(tr, file$a, 579, 16, 22120);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -60164,25 +60007,25 @@ var app = (function () {
     			t14 = space();
     			create_component(pagination.$$.fragment);
     			attr_dev(td0, "valign", "middle");
-    			add_location(td0, file$a, 564, 20, 21488);
+    			add_location(td0, file$a, 564, 20, 21387);
     			attr_dev(td1, "valign", "middle");
-    			add_location(td1, file$a, 565, 20, 21538);
+    			add_location(td1, file$a, 565, 20, 21437);
     			attr_dev(td2, "valign", "middle");
-    			add_location(td2, file$a, 566, 20, 21589);
+    			add_location(td2, file$a, 566, 20, 21488);
     			attr_dev(td3, "valign", "middle");
-    			add_location(td3, file$a, 567, 20, 21665);
+    			add_location(td3, file$a, 567, 20, 21564);
     			attr_dev(td4, "valign", "middle");
-    			add_location(td4, file$a, 568, 20, 21749);
+    			add_location(td4, file$a, 568, 20, 21648);
     			attr_dev(td5, "valign", "middle");
-    			add_location(td5, file$a, 569, 20, 21831);
+    			add_location(td5, file$a, 569, 20, 21730);
     			attr_dev(td6, "valign", "middle");
     			attr_dev(td6, "colspan", "2");
-    			add_location(td6, file$a, 570, 20, 21919);
+    			add_location(td6, file$a, 570, 20, 21818);
     			set_style(tr, "text-align", "center");
     			attr_dev(tr, "valign", "middle");
-    			add_location(tr, file$a, 563, 16, 21417);
-    			add_location(thead, file$a, 562, 12, 21390);
-    			add_location(tbody, file$a, 573, 12, 22024);
+    			add_location(tr, file$a, 563, 16, 21316);
+    			add_location(thead, file$a, 562, 12, 21289);
+    			add_location(tbody, file$a, 573, 12, 21923);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, thead, anchor);
@@ -60360,13 +60203,13 @@ var app = (function () {
     			if (if_block0) if_block0.c();
     			t10 = space();
     			if_block1.c();
-    			add_location(br0, file$a, 431, 12, 15559);
-    			add_location(br1, file$a, 432, 12, 15577);
+    			add_location(br0, file$a, 431, 12, 15526);
+    			add_location(br1, file$a, 432, 12, 15544);
     			set_style(div, "padding", "1%");
     			add_location(div, file$a, 418, 4, 14755);
-    			add_location(br2, file$a, 451, 3, 16139);
-    			add_location(h30, file$a, 454, 4, 16205);
-    			add_location(h31, file$a, 506, 4, 18768);
+    			add_location(br2, file$a, 451, 3, 16106);
+    			add_location(h30, file$a, 454, 4, 16172);
+    			add_location(h31, file$a, 506, 4, 18667);
     			attr_dev(main, "class", "svelte-swwete");
     			add_location(main, file$a, 415, 0, 14629);
     		},
