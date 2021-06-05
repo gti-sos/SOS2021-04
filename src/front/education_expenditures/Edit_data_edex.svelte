@@ -107,7 +107,7 @@
             <td>{updateCountry}</td>
             <td><input type="number" placeholder="250.4"  bind:value={updateEducation_expenditure_per_millions}/></td>
                     <td><input type="number" placeholder="112.3"  bind:value={updateEducation_expenditure_per_public_expenditure}/></td>
-                    <td><input type="number" placeholder="2.5"  bind:value={updateEducation_expenditure_gdp}/></td>
+                    <td><input id="edit_gdp" type="number" placeholder="2.5"  bind:value={updateEducation_expenditure_gdp}/></td>
                     <td><input type="number" placeholder="2010"  bind:value={updateEducation_expenditure_per_capita}/></td>
                     <td><button on:click={updateStat} class="btn btn-success"> Actualizar </button></td>
           </tr>

@@ -1,19 +1,24 @@
 const puppeteer = require('puppeteer');
 const screenshotPath_illiteracy = './tests/e2e_capturas/miggomvaz';
+const screenshotPath_edex = './tests/e2e_capturas/mangonreg';
 
 (async () => {
   const browser = await puppeteer.launch({
     headless: true, // Especificamos que el navegador no es headless
     slowMo: 1000, // Añadimos un delay de 1 segundo entre cada comando.
   });
+
   const context = await browser.createIncognitoBrowserContext();
   const page = await browser.newPage();
   await page.setViewport({ width: 3688, height: 1768 });
   //Home
-  //https://sos2021-01.herokuapp.com
-  await page.goto('http://localhost:10000/', { waitUntil: 'networkidle2' });
+  //https://sos2021-04.herokuapp.com
+  await page.goto('https://sos2021-04.herokuapp.com', { waitUntil: 'networkidle2' });
+
+  //Capturas pantalla inicial
 
   await page.screenshot({ path: screenshotPath_illiteracy + 'HOME_0.png' });
+  await page.screenshot({ path: screenshotPath_edex + 'HOME_0.png' });
 
   //illiteracy
   await page.screenshot({ path: screenshotPath_illiteracy + 'ILLI_14_edit_illiteracy_stat_1.png' });
@@ -145,7 +150,181 @@ const screenshotPath_illiteracy = './tests/e2e_capturas/miggomvaz';
 
   await page.screenshot({ path: screenshotPath_illiteracy + 'HOME_1.png' });
 
+  //Education Expenditures
 
+  //Volvemos a la página principal
+  await page.goto('https://sos2021-04.herokuapp.com', { waitUntil: 'networkidle2' });
+
+  await Promise.all([
+    page.waitForNavigation(),
+    //Accedemos a la interfaz de Education expenditures
+    page.click("body > main > main > div:nth-child(16) > div:nth-child(1) > div > div.card-body > a:nth-child(4) > button"),
+  ]);
+
+  //Eliminar datos cargados
+  console.log("Se hace click en borrar datos");
+  await page.click("#borraDatos");
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_Interf_0.png' });
+
+  //Carga de datos
+  console.log("Se hace click en cargar datos");
+  await page.click("#cargaDatos");
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_Interf_1.png' });
+
+  //Capturas sobre paginacion (hacia adelante/ hacia atrás)
+  console.log("Cambiar página (paginación) hacia adelante");
+  await page.click("#paginacion_siguiente");
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_Interf_2.png' });
+
+  console.log("Cambiar página (paginación) hacia detrás");
+  await page.click("#paginacion_atras");
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_Interf_3.png' });
+
+  //Insertar un nuevo dato
+
+  console.log("Acceso a introducción de un nuevo dato");
+  await page.focus('#input_pais');
+  await page.keyboard.type("Argentina");
+
+  await page.focus('#input_anyo');
+  await page.keyboard.type("2017");
+
+  await page.focus('#input_permillions');
+  await page.keyboard.type("31069.00");
+
+  await page.focus('#input_perpublic');
+  await page.keyboard.type("13.26");
+
+  await page.focus('#input_gdp');
+  await page.keyboard.type("5.46");
+
+  await page.focus('#input_percapita');
+  await page.keyboard.type("705.00");
+
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_insert_0.png' });
+
+  await page.focus('#inserta');
+  await page.click("#inserta");
+  await page.waitForSelector('#inserta', { visible: true });
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_insert_1.png' });
+  console.log("Dato insertado en edex");
+
+  //Acceso a editar un stat
+
+  console.log("Editando un stat");
+
+  await Promise.all([
+    page.waitForNavigation(),
+    //Accedemos a la interfaz de Education expenditures
+    page.click("body > main > main > div:nth-child(2) > main > div:nth-child(3) > table:nth-child(2) > tbody > tr:nth-child(2) > th:nth-child(8) > a > button"),
+  ]);
+
+  await page.focus('#edit_gdp');
+  await page.keyboard.type('12.6');
+
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_Edit_0.png' });
+
+  //Volvemos a la pagina principal
+  await Promise.all([
+    page.waitForNavigation(),
+    //Accedemos a la interfaz de Education expenditures
+    page.click("body > main > main > div.foot.svelte-1eplfbf > footer > div > a > button"),
+  ]);
+
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_Edit_1.png' });
+
+  //Eliminamos el primer elemento
+  console.log("Eliminando un stat");
+
+  await Promise.all([
+    page.waitForNavigation(),
+    //Accedemos a la interfaz de Education expenditures
+    page.click("body > main > main > div:nth-child(2) > main > div:nth-child(3) > table:nth-child(2) > tbody > tr:nth-child(2) > th:nth-child(7) > button"),
+  ]);
+
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_DeleteElement_0.png' });
+
+  //Búsqueda
+  console.log("Acceso a búsqueda");
+  await page.focus('#input_b_millones_min');
+  await page.keyboard.type("100000.0");
+
+  await page.focus('#input_b_gastoPublico_max');
+  await page.keyboard.type("9.5");
+
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_Search_0.png' });
+
+  console.log("Buscando stats");
+
+  await Promise.all([
+    page.waitForNavigation(),
+    //Accedemos a la interfaz de Education expenditures
+    page.click("body > main > main > div:nth-child(2) > main > div:nth-child(3) > table:nth-child(1) > tbody > tr > td:nth-child(7) > button"),
+  ]);
+
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_Search_1.png' });
+
+  //Restauramos la busqueda y volvemos a borrar y cargar datos
+
+  await Promise.all([
+    page.waitForNavigation(),
+    page.click("body > main > main > div:nth-child(2) > main > div:nth-child(3) > table:nth-child(1) > tbody > tr > td:nth-child(8) > button"),
+  ]);
+
+  await page.click("#borraDatos");
+  await page.click("#cargaDatos");
+
+  //Pasamos a la página de edex_graphs (grafica propia de highcharts)
+
+  await page.goto('https://sos2021-04.herokuapp.com/#/edex_graphs', { waitUntil: 'networkidle2' });
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_Graphic_0.png' });
+
+  //Pasamos a la página de edex_graphs2 (grafica propia de highcharts)
+
+  await page.goto('https://sos2021-04.herokuapp.com/#/edex_graphs2', { waitUntil: 'networkidle2' });
+  await page.screenshot({ path: screenshotPath_edex + 'EE_front_Graphic_1.png' });
+
+  //Pasamos a las integraciones
+
+  //API-SOS-0
+  await page.goto('https://sos2021-04.herokuapp.com/#/integrations/edex/api1', { waitUntil: 'networkidle2' });
+  
+  await page.waitForSelector('#chartContainer > div > canvas:nth-child(2)').then(()=>{
+    page.screenshot({ path: screenshotPath_edex + 'EE_front_Integration_0.png' });
+  }
+  );
+
+  //API-SOS-1
+  await page.goto('https://sos2021-04.herokuapp.com/#/integrations/edex/api2', { waitUntil: 'networkidle2' });
+  
+  await page.waitForSelector('#chartContainer > div > canvas:nth-child(2)').then(()=>{
+     page.screenshot({ path: screenshotPath_edex + 'EE_front_Integration_1.png' });
+  }
+  );
+
+  //API-SOS-2
+  await page.goto('https://sos2021-04.herokuapp.com/#/integrations/edex/api3', { waitUntil: 'networkidle2' });
+  
+  await page.waitForSelector('#chartContainer > div > canvas:nth-child(2)').then(()=>{
+     page.screenshot({ path: screenshotPath_edex + 'EE_front_Integration_2.png' });
+  }
+  );
+
+  //API-Ext-0
+  await page.goto('https://sos2021-04.herokuapp.com/#/integrations/edex/api4', { waitUntil: 'networkidle2' });
+  
+  await page.waitForSelector('#SvgjsG2379').then(()=>{
+     page.screenshot({ path: screenshotPath_edex + 'EE_front_Integration_3.png' });
+  }
+  );
+
+  //API-Ext-1
+  await page.goto('https://sos2021-04.herokuapp.com/#/integrations/edex/api5', { waitUntil: 'networkidle2' });
+  
+  await page.waitForSelector('#raphael-paper-2 > g.raphael-group-3-parentgroup > g.raphael-group-36-canvas > rect:nth-child(2)').then(()=>{
+    page.screenshot({ path: screenshotPath_edex + 'EE_front_Integration_4.png' });
+  }
+  );
 
 
   await page.close();
