@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const screenshotPath_illiteracy = './tests/e2e_capturas/miggomvaz';
+const screenshotPath_povertyrisks = './tests/e2e_capturas/javcarand1';
 
 (async () => {
   const browser = await puppeteer.launch({
@@ -10,7 +11,7 @@ const screenshotPath_illiteracy = './tests/e2e_capturas/miggomvaz';
   const page = await browser.newPage();
   await page.setViewport({ width: 3688, height: 1768 });
   //Home
-  //https://sos2021-01.herokuapp.com
+  //https://sos2021-04.herokuapp.com
   await page.goto('http://localhost:10000/', { waitUntil: 'networkidle2' });
 
   await page.screenshot({ path: screenshotPath_illiteracy + 'HOME_0.png' });
@@ -145,9 +146,93 @@ const screenshotPath_illiteracy = './tests/e2e_capturas/miggomvaz';
 
   await page.screenshot({ path: screenshotPath_illiteracy + 'HOME_1.png' });
 
-
-
-
   await page.close();
   await browser.close();
+
+
+
+// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+  const browser_povertyrisks = await puppeteer.launch({
+    headless: true, // Especificamos que el navegador es headless, se ejecuta sin interfaz gráfica
+    slowMo: 1000, // Añadimos un delay de 1 segundo entre cada comando.
+  });
+  const context_povertyrisks = await browser_povertyrisks.createIncognitoBrowserContext();
+  const page_povertyrisks = await browser_povertyrisks.newPage();
+  await page_povertyrisks.setViewport({ width: 3688, height: 1768 });
+  //Home
+  //https://sos2021-04.herokuapp.com
+  await page_povertyrisks.goto('http://localhost:10000/', { waitUntil: 'networkidle2' });
+
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'HOME_0.png' });
+
+  //povertyrisks
+  console.log("--Home press interface button to go to povertyrisks-stats view--")
+  await Promise.all([
+    page_povertyrisks.waitForNavigation(),
+    page_povertyrisks.click("body > main > main > div:nth-child(16) > div:nth-child(2) > div > div.card-body > a:nth-child(4) > button"),
+  ]);
+
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_noData_0.png' });
+
+  console.log("povertyrisks press load button.....")
+
+  await page_povertyrisks.click("#cargarDatos");
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_withData_1.png' });
+
+  console.log("--povertyrisks go to next page--");
+  await page_povertyrisks.click("#pagination_forward");
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_withData_2.png' });
+
+  console.log("--povertyrisks go to previous page--");
+  await page_povertyrisks.click("#pagination_back");
+
+
+  console.log("povertyrisks insert new stat.....");
+  await page_povertyrisks.focus('#insert_input_year');
+  await page_povertyrisks.keyboard.type("2019");
+
+  await page_povertyrisks.focus('#insert_input_country');
+  await page_povertyrisks.keyboard.type("Swizterland");
+
+  await page_povertyrisks.focus('#insert_people_in_risk_of_poverty');
+  await page_povertyrisks.keyboard.type("22");
+
+  await page_povertyrisks.focus('#insert_people_poverty_line');
+  await page_povertyrisks.keyboard.type("22");
+
+  await page_povertyrisks.focus('#insert_home_poverty_line');
+  await page_povertyrisks.keyboard.type("22");
+
+  await page_povertyrisks.focus('#insert_percentage_risk_of_poverty');
+  await page_povertyrisks.keyboard.type("22");
+
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_beforeInsertData_3.png' });
+
+  await page_povertyrisks.focus('#insert_button');
+  await page_povertyrisks.click("#insert_button");
+  await page_povertyrisks.waitForSelector('#insert_button', { visible: true });
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_afterInsertData_4.png' });
+  console.log(".....povertyrisks stat inserted");
+
+
+  console.log("povertyrisks search the new stat.....");
+  await page_povertyrisks.focus('#query_input_country');
+  await page_povertyrisks.keyboard.type("España");
+  await page_povertyrisks.focus('#query_input_date');
+  await page_povertyrisks.keyboard.type("2019");
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_beforeSearchData_5.png' });
+  await page_povertyrisks.focus('#query_button');
+  await page_povertyrisks.click("#query_button");
+  await page_povertyrisks.waitForSelector('#query_button', { visible: true });
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'PR_front_afterSearchData_6.png' });
+  console.log(".....povertyrisks stat searched");
+  
+  console.log("povertyrisks press delete all button.....")
+  await page_povertyrisks.click("#delete_all");
+  await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + 'ILLI_21_front_delete_1.png' });
+
+  await page_povertyrisks.close();
+  await browser_povertyrisks.close();
 })();

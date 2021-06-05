@@ -13,6 +13,7 @@ jobs:
       - run: npm install
       - run: npm start &
       - run: npx newman run tests/integration_edex.json
+      - run: node tests/e2e.js
 
   integration_poverty_risks:
     runs-on: ubuntu-latest
@@ -21,6 +22,7 @@ jobs:
       - run: npm install
       - run: npm start &
       - run: npx newman run tests/F06_Integration_poverty_risks.json
+      
 
   integration_illiteracy:
     runs-on: ubuntu-latest
