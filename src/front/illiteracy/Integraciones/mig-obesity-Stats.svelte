@@ -67,18 +67,21 @@
         var datosGrafica_i    = await tomaDatosGrafica(i_data,"male_illiteracy_rate");
     
         //Construccion de la grafica
-    
         var chart = JSC.chart('chartDiv', {
         debug: true,
         legend_position: 'bottom right',
         type: 'area spline',
         defaultSeries: { shape_opacity: 0.5 },
         xAxis: {
-          crosshair_enabled: true,
-          scale: { type: 'time' }
+            crosshair_enabled: true,
+          scale: { type: 'year' }
+        },
+        yAxis: {
+            title: {
+                text: "porcentaje (%)"
+            }
         },
         title_label_text: 'Costs (Last 6 Months)',
-        yAxis: { formatString: 'c' },
         series: [
           {
             name: 'Obesity-Stats_man_percent',
@@ -86,7 +89,7 @@
           },
           {
             name: 'Illiteracy-male_illiteracy_rate',
-            points: datosGrafica_i
+            points:datosGrafica_i
           }
         ]
       });

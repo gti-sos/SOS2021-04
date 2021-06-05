@@ -33,6 +33,7 @@
       
     }  
     const chart = new JSC.Chart("chartDiv", {
+      type: 'Step', 
       // Pass points to the series
       series: [{ points: array }],
     });

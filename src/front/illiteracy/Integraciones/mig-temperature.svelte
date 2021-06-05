@@ -139,7 +139,7 @@
   
       
       var chart = JSC.chart("chartDiv", {
-          debug: true,
+          debug: false,
           type: "horizontal column",
           title_label_text:
               "lliteracy Man Rate and Temperatures Maxims by countries",

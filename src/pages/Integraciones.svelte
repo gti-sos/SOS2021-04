@@ -101,9 +101,6 @@
         <a href="/#/integrations/api2"
           ><Button color="primary"> API Externa 2 USO</Button></a
         >
-        <a href="/#/integrations/api3"
-        ><Button color="primary"> API Externa 3 USO</Button></a
-      >
         <a href="/#/integrations/mig-obesity-Stats"
           ><Button color="primary"> API Obesity-Stats G10</Button></a
         >
