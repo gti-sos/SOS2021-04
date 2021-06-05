@@ -56,7 +56,7 @@
       <Button color="primary">Info</Button>
     </a>
 
-    <a href="/#/graphics">
+    <a href="/#/analytics">
       <Button color="primary">Gráfica Conjunta</Button>
     </a>
     <a href="/#/integrations">

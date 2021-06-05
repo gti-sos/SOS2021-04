@@ -9537,7 +9537,7 @@ var app = (function () {
     		c: function create() {
     			h5 = element("h5");
     			h5.textContent = "Gastos en Educación";
-    			add_location(h5, file$A, 78, 23, 2024);
+    			add_location(h5, file$A, 78, 23, 2025);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h5, anchor);
@@ -9788,11 +9788,11 @@ var app = (function () {
     			a2 = element("a");
     			create_component(button2.$$.fragment);
     			attr_dev(a0, "href", "https://sos2021-04.herokuapp.com/api/v1/education_expenditures");
-    			add_location(a0, file$A, 87, 12, 2435);
+    			add_location(a0, file$A, 87, 12, 2436);
     			attr_dev(a1, "href", "/#/education_expenditures");
-    			add_location(a1, file$A, 89, 12, 2581);
+    			add_location(a1, file$A, 89, 12, 2582);
     			attr_dev(a2, "href", "https://documenter.getpostman.com/view/14947441/TzJsexSA");
-    			add_location(a2, file$A, 92, 12, 2706);
+    			add_location(a2, file$A, 92, 12, 2707);
     		},
     		m: function mount(target, anchor) {
     			mount_component(cardsubtitle, target, anchor);
@@ -9894,7 +9894,7 @@ var app = (function () {
     			a = element("a");
     			a.textContent = "Manuel González Regadera";
     			attr_dev(a, "href", "https://github.com/mangonreg");
-    			add_location(a, file$A, 99, 12, 2936);
+    			add_location(a, file$A, 99, 12, 2937);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -10086,7 +10086,7 @@ var app = (function () {
     		c: function create() {
     			h5 = element("h5");
     			h5.textContent = "Riegos de pobreza";
-    			add_location(h5, file$A, 107, 23, 3162);
+    			add_location(h5, file$A, 107, 23, 3163);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h5, anchor);
@@ -10337,11 +10337,11 @@ var app = (function () {
     			a2 = element("a");
     			create_component(button2.$$.fragment);
     			attr_dev(a0, "href", "https://sos2021-04.herokuapp.com/api/v1/poverty_risks");
-    			add_location(a0, file$A, 117, 12, 3645);
+    			add_location(a0, file$A, 117, 12, 3646);
     			attr_dev(a1, "href", "/#/poverty_risks");
-    			add_location(a1, file$A, 120, 12, 3796);
+    			add_location(a1, file$A, 120, 12, 3797);
     			attr_dev(a2, "href", "https://documenter.getpostman.com/view/14968173/TzJu8we5");
-    			add_location(a2, file$A, 123, 12, 3912);
+    			add_location(a2, file$A, 123, 12, 3913);
     		},
     		m: function mount(target, anchor) {
     			mount_component(cardsubtitle, target, anchor);
@@ -10443,7 +10443,7 @@ var app = (function () {
     			a = element("a");
     			a.textContent = "Javier Carmona Andrés";
     			attr_dev(a, "href", "https://github.com/JavierCarmona16");
-    			add_location(a, file$A, 129, 12, 4152);
+    			add_location(a, file$A, 129, 12, 4153);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -10635,7 +10635,7 @@ var app = (function () {
     		c: function create() {
     			h5 = element("h5");
     			h5.textContent = "Alfabetismo";
-    			add_location(h5, file$A, 137, 23, 4381);
+    			add_location(h5, file$A, 137, 23, 4382);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h5, anchor);
@@ -10886,11 +10886,11 @@ var app = (function () {
     			a2 = element("a");
     			create_component(button2.$$.fragment);
     			attr_dev(a0, "href", "/api/v1/illiteracy");
-    			add_location(a0, file$A, 144, 12, 4623);
+    			add_location(a0, file$A, 144, 12, 4624);
     			attr_dev(a1, "href", "/#/illiteracy");
-    			add_location(a1, file$A, 146, 12, 4711);
+    			add_location(a1, file$A, 146, 12, 4712);
     			attr_dev(a2, "href", "https://documenter.getpostman.com/view/14948423/TzJsfJT1");
-    			add_location(a2, file$A, 148, 12, 4796);
+    			add_location(a2, file$A, 148, 12, 4797);
     		},
     		m: function mount(target, anchor) {
     			mount_component(cardsubtitle, target, anchor);
@@ -10992,7 +10992,7 @@ var app = (function () {
     			a = element("a");
     			a.textContent = "Miguel Gómez Vázquez";
     			attr_dev(a, "href", "https://github.com/migueclon98");
-    			add_location(a, file$A, 152, 12, 5004);
+    			add_location(a, file$A, 152, 12, 5005);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -11446,16 +11446,16 @@ var app = (function () {
     			add_location(p2, file$A, 52, 4, 1422);
     			attr_dev(a0, "href", "/#/info");
     			add_location(a0, file$A, 54, 4, 1437);
-    			attr_dev(a1, "href", "/#/graphics");
+    			attr_dev(a1, "href", "/#/analytics");
     			add_location(a1, file$A, 58, 4, 1518);
     			attr_dev(a2, "href", "/#/integrations");
-    			add_location(a2, file$A, 61, 4, 1613);
+    			add_location(a2, file$A, 61, 4, 1614);
     			attr_dev(a3, "href", "/#/Analytics");
-    			add_location(a3, file$A, 64, 4, 1706);
+    			add_location(a3, file$A, 64, 4, 1707);
     			attr_dev(a4, "href", "/#/About");
-    			add_location(a4, file$A, 67, 4, 1792);
-    			add_location(p3, file$A, 71, 4, 1877);
-    			add_location(h22, file$A, 73, 4, 1892);
+    			add_location(a4, file$A, 67, 4, 1793);
+    			add_location(p3, file$A, 71, 4, 1878);
+    			add_location(h22, file$A, 73, 4, 1893);
     			attr_dev(main, "class", "svelte-1c5583h");
     			add_location(main, file$A, 17, 2, 264);
     		},
@@ -64277,7 +64277,7 @@ var app = (function () {
     		c: function create() {
     			main = element("main");
     			create_component(router.$$.fragment);
-    			add_location(main, file, 93, 0, 4240);
+    			add_location(main, file, 92, 0, 4214);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -64321,10 +64321,9 @@ var app = (function () {
     	const routes = {
     		"/": Home,
     		"/info": Info,
-    		"/graphics": GraficasConjunto,
     		"/integrations": Integraciones,
-    		"/Analytics": Analytics,
-    		"/About": About,
+    		"/analytics": GraficasConjunto,
+    		"/about": About,
     		"/education_expenditures": App_edex,
     		"/education_expenditures/:country/:year": Edit_data_edex,
     		"/edex_graphs": Edex_Graph,
