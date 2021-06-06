@@ -225,6 +225,7 @@
                         res.sendStatus(500); //Error de servidor
                     }
                     else{
+                        dataBase.remove({}, {multi: true});
                         dataBase.insert(datos_EE);
                         res.sendStatus(200);                        
                     }
