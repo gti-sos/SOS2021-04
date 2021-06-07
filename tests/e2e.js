@@ -284,7 +284,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
 
   const browser_povertyrisks = await puppeteer.launch({
     headless: true, // Especificamos que el navegador es headless, se ejecuta sin interfaz gráfica
-    slowMo: 1000, // Añadimos un delay de 1 segundo entre cada comando.
+    slowMo: 1000, // Añadimos un delay de 1 segundo entre cada comando
   });
   const context_povertyrisks = await browser_povertyrisks.createIncognitoBrowserContext();
   const page_povertyrisks = await browser_povertyrisks.newPage();
