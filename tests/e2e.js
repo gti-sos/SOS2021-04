@@ -98,7 +98,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
     page.waitForSelector('#edit_button_Spain_2014', { visible: true }),
   ]);
   await page.screenshot({ path: screenshotPath_illiteracy + 'ILLI_13_edit_illiteracy_stat_0.png' });
-
+/*
   console.log("illiteracy update Spain_2014 .....");
   await page.focus('#input_update_woman');
   await page.$eval("#input_update_woman", el => el.value = "");
@@ -149,7 +149,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
     page.waitForNavigation(),
     page.click("#nav_home"),
   ]);
-
+*/
   await page.screenshot({ path: screenshotPath_illiteracy + 'HOME_1.png' });
 
   await page.close();
