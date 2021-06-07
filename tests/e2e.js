@@ -135,7 +135,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
   await page.waitForTimeout(1000);
   
   await page.screenshot({ path: screenshotPath_illiteracy + 'ILLI_19_front_deleted_illiteracy_stat_0.png' });
-*/
+
   console.log("illiteracy press delete all button.....")
   await page.click("#delete_all");
   await page.screenshot({ path: screenshotPath_illiteracy + 'ILLI_21_front_delete_1.png' });
@@ -148,7 +148,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
     page.waitForNavigation(),
     page.click("#nav_home"),
   ]);
-
+*/
   await page.screenshot({ path: screenshotPath_illiteracy + 'HOME_1.png' });
 
   await page.close();
