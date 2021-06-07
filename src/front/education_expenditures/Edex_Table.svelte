@@ -466,13 +466,13 @@
                   <td><input type="number" placeholder="2010" min=1950 bind:value={query.y}/></td>
                   <td><input type="text" placeholder="Francia" bind:value={query.c}/></td>
                   <td>
-                    <input type="number" placeholder="min"  bind:value={query.apm}/>
+                    <input type="number" id="input_b_millones_min" placeholder="min"  bind:value={query.apm}/>
                     <input type="number" placeholder="max"  bind:value={query.upm}/>
                   
                   </td>
                   <td>
                     <input type="number" placeholder="min"  bind:value={query.app}/>
-                    <input type="number" placeholder="max"  bind:value={query.upp}/>
+                    <input type="number" id="input_b_gastoPublico_max" placeholder="max"  bind:value={query.upp}/>
                   </td>
                   <td>
                     <input type="number" placeholder="min"  bind:value={query.agdp}/>
@@ -556,7 +556,7 @@
         <div>
           <!-- Paginacion -->
           <Pagination ariaLabel="Web pagination">
-            <PaginationItem class={pagina_actual === 1 ? "disabled" : ""}>
+            <PaginationItem id="paginacion_atras" class={pagina_actual === 1 ? "disabled" : ""}>
               <PaginationLink
                 previous
                 href="#/education_expenditures"
@@ -574,7 +574,7 @@
                 >
               </PaginationItem>
             {/each}
-            <PaginationItem id="paginacion_atras" class={pagina_actual === ultima_pagina ? "disabled" : ""}>
+            <PaginationItem id="paginacion_siguiente" class={pagina_actual === ultima_pagina ? "disabled" : ""}>
               <PaginationLink
                 next
                 href="#/education_expenditures"
@@ -721,7 +721,7 @@
                     />
                   </PaginationItem>
                   {#each range(ultima_pagina, 1) as page}
-                    <PaginationItem class={pagina_actual === page ? "active" : ""}>
+                    <PaginationItem  class={pagina_actual === page ? "active" : ""}>
                       <PaginationLink
                         previous
                         href="#/education_expenditures"

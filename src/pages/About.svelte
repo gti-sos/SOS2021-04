@@ -33,11 +33,12 @@
     <Card class="mb-3">
       <CardHeader>
         <CardTitle><h2>Education expenditure</h2></CardTitle>
+        
       </CardHeader>
       <CardBody>
         <CardSubtitle />
         <CardText />
-      
+          <a href="https://youtu.be/_fcAlbktzfQ"><Button color="primary">Video de Manuel González Regadera</Button></a>
       </CardBody>
     </Card>
   </div>
