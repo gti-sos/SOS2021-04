@@ -10,7 +10,7 @@ SOS2021-04,,#26 Implementar paginacion y detalles de front end no resueltos en l
 SOS2021-04,,#27 Una forma de buscar recursos utilizando la búsqueda que proporciona la API. (p.e. statistics?from=2000&to=2017),07:37:00
 SOS2021-04,,#29 Implementar graficas para education expenditures,06:14:47
 SOS2021-04,,"#30 Un frontend funcional que tenga, además de las funcionalidades solicitadas en entregables anteriores, una nueva vista con visualizaciones de todos los datos que están en la API con la información a partir de los datos que proporciona la API en un widget de tipo “line”  (similar al que se vio en el L11).",04:23:00
-SOS2021-04,,"#31 Realización D03. Implementación de integraciones, tests de front-end y video explicativo",10:28:03
+SOS2021-04,,"#31 Realización D03. Implementación de integraciones, tests de front-end y video explicativo",12:28:03
 SOS2021-04,,Aplicar API en Heroku tal y como se especifica en L06,03:04:53
 SOS2021-04,,codigo nodeJS y Express,01:33:21
 SOS2021-04,,Configurar README y html en /public,00:57:07
@@ -26,4 +26,4 @@ SOS2021-04,,Tener instalado Chrome,00:00:38
 SOS2021-04,,Tener una cuenta de GitHub.,00:00:23
 SOS2021-04,,Visualización de video e Implementación servidor web con Node.js en,00:58:19
 SOS2021-04,,Visualización de video e Implementación servidor web con Node.js en ,02:12:36
-SOS2021-04,,,31:53:00
+SOS2021-04,,,36:05:00
