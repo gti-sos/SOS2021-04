@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const screenshotPath_illiteracy = './tests/e2e_capturas/miggomvaz/';
-const screenshotPath_povertyrisks = "./tests/e2e_capturas/javcarand1/e2e/";
+const screenshotPath_povertyrisks = "./tests/e2e_capturas/javcarand1/";
 const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
 
 (async () => {
@@ -8,13 +8,14 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
     headless: true, // Especificamos que el navegador no es headless
     slowMo: 1000, // Añadimos un delay de 1 segundo entre cada comando.
   });
+  
 
   const context = await browser.createIncognitoBrowserContext();
   const page = await browser.newPage();
   await page.setViewport({ width: 3688, height: 1768 });
   //Home
   //https://sos2021-04.herokuapp.com
-  await page.goto('http://localhost:10000/', { waitUntil: 'networkidle2' });
+  await page.goto('https://sos2021-04.herokuapp.com', { waitUntil: 'networkidle2' });
 
   //Capturas pantalla inicial
 
@@ -97,7 +98,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
     page.waitForSelector('#edit_button_Spain_2014', { visible: true }),
   ]);
   await page.screenshot({ path: screenshotPath_illiteracy + 'ILLI_13_edit_illiteracy_stat_0.png' });
-/*
+
   console.log("illiteracy update Spain_2014 .....");
   await page.focus('#input_update_woman');
   await page.$eval("#input_update_woman", el => el.value = "");
@@ -148,13 +149,13 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
     page.waitForNavigation(),
     page.click("#nav_home"),
   ]);
-*/
+
   await page.screenshot({ path: screenshotPath_illiteracy + 'HOME_1.png' });
 
   await page.close();
   await browser.close();
 
-  
+
   //Education Expenditures
 
   //Volvemos a la página principal
@@ -168,7 +169,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
   page_edex.setDefaultTimeout(0);
   page_edex.setDefaultNavigationTimeout(0);
 
-  await page_edex.goto('http://localhost:10000/', { waitUntil: 'networkidle2' });
+  await page_edex.goto('https://sos2021-04.herokuapp.com', { waitUntil: 'networkidle2' });
 
   await Promise.all([
     page_edex.waitForNavigation(),
@@ -291,7 +292,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
   await page_povertyrisks.setViewport({ width: 3688, height: 1768 });
   //Home
   //https://sos2021-04.herokuapp.com
-  await page_povertyrisks.goto('http://localhost:10000/', { waitUntil: 'networkidle2' });
+  await page_povertyrisks.goto('https://sos2021-04.herokuapp.com', { waitUntil: 'networkidle2' });
 
   await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + '0_PR_front_Home.png' });
 
