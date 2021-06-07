@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const screenshotPath_illiteracy = './tests/e2e_capturas/miggomvaz/';
-const screenshotPath_povertyrisks = "./tests/e2e_capturas/javcarand1/";
+const screenshotPath_povertyrisks = "./tests/e2e_capturas/javcarand1/e2e/";
 const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
 
 (async () => {
@@ -20,7 +20,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
 
   await page.screenshot({ path: screenshotPath_illiteracy + 'HOME_0.png' });
   await page.screenshot({ path: screenshotPath_edex + 'HOME_0.png' });
- /*
+ 
   //illiteracy
   await page.screenshot({ path: screenshotPath_illiteracy + 'ILLI_14_edit_illiteracy_stat_1.png' });
   console.log("--Home press interface button to go to illiteracy-stats view--")
@@ -153,7 +153,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
 
   await page.close();
   await browser.close();
-*/
+
   
   //Education Expenditures
 
@@ -281,7 +281,7 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
 
 // ------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------
-/*
+
   const browser_povertyrisks = await puppeteer.launch({
     headless: true, // Especificamos que el navegador es headless, se ejecuta sin interfaz gráfica
     slowMo: 1000, // Añadimos un delay de 1 segundo entre cada comando.
@@ -357,6 +357,6 @@ const screenshotPath_edex = './tests/e2e_capturas/mangonreg/';
   await page_povertyrisks.screenshot({ path: screenshotPath_povertyrisks + '7_PR_front_deleteAll.png' });
 
   await page_povertyrisks.close();
-  await browser_povertyrisks.close();*/
+  await browser_povertyrisks.close();
   process.exit(0);
 })();
